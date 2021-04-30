@@ -1,0 +1,8 @@
+name: app-lydia-finance
+static_sites:
+  - name: site
+    github:
+      repo: lydiafinance/lydia-frontend
+      branch: main
+      deploy_on_push: true
+    error_document: index.html

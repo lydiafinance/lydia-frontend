@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- GTAG -->
+    <!-- <script>
+      ;(function (w, d, s, l, i) {
+        w[l] = w[l] || []
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : ''
+        j.async = true
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
+        f.parentNode.insertBefore(j, f)
+      })(window, document, 'script', 'dataLayer', 'G-ER3FJJ4V38')
+    </script> -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ER3FJJ4V38"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+
+      gtag('config', 'G-ER3FJJ4V38')
+    </script>
+
+    <!-- @@@@@@ FIREBASE START @@@@@  -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+        apiKey: 'AIzaSyCyRRqmGgNdSUPevWYYS6p17LQ_UUn2xOM',
+        authDomain: 'lydiafinance-d806d.firebaseapp.com',
+        projectId: 'lydiafinance-d806d',
+        storageBucket: 'lydiafinance-d806d.appspot.com',
+        messagingSenderId: '17671478750',
+        appId: '1:17671478750:web:6f86232174dd30c4d0114f',
+        measurementId: 'G-MKXM3SJ8EB',
+      }
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig)
+      firebase.analytics()
+    </script>
+    <!-- @@@@@@ FIREBASE END @@@@@  -->
+
+    <!-- Links -->
+    <link rel="preconnect" href="%REACT_APP_NODE_1%" />
+    <link rel="preconnect" href="%REACT_APP_NODE_2%" />
+    <link rel="preconnect" href="%REACT_APP_NODE_3%" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!-- Meta -->
+    <title>LydiaFinance</title>
+    <meta
+      name="description"
+      content="Discover LydiaFinance, the leading DEX on Avalanche (AVAX) with the best farms in DeFi."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="twitter:image" content="https://lydia.finance/hero.png" />
+    <meta
+      name="twitter:description"
+      content="The best AMM on AVAX! Earn LYD through yield farming or stake them in Electrum Pools to earn more tokens!"
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="🦁 LydiaFinance - A next evolution DeFi exchange on Avalanche (AVAX)" />
+  </head>
+  <body>
+    <!-- GTAG (noscript) -->
+    <!-- <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=G-ER3FJJ4V38"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe>
+    </noscript> -->
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>

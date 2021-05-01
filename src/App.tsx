@@ -68,9 +68,9 @@ const App: React.FC = () => {
             <Route path="/electrum">
               <Redirect to="/pools" />
             </Route>
-            <Route path="/airdrop">
+            {/* <Route path="/airdrop">
               <Airdrop />
-            </Route>
+            </Route> */}
             {/* <Route path="/lottery">
               <Lottery />
             </Route> */}

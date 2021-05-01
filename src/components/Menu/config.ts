@@ -30,11 +30,11 @@ const config: MenuEntry[] = [
     icon: 'PoolIcon',
     href: '/pools',
   },
-  {
-    label: 'Airdrop',
-    icon: 'AirdropIcon',
-    href: '/airdrop',
-  },
+  // {
+  //   label: 'Airdrop',
+  //   icon: 'AirdropIcon',
+  //   href: '/airdrop',
+  // },
   // {
   //   label: 'Lottery',
   //   icon: 'TicketIcon',

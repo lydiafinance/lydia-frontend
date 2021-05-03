@@ -14,6 +14,23 @@ const farms: FarmConfig[] = [
   //   token: tokens.electrum,
   //   quoteToken: tokens.wavax,
   // },
+
+  // pid: 19,
+  // lpSymbol: 'LYD-AVAX LP',
+  // lpAddresses: {
+  //   97: '',
+  //   56: '',
+  //   43114: '0xCD36DCefE1D6BA70eC1329F51C7A3eA61847Bcb1',
+  // },
+  // tokenSymbol: 'LYD',
+  // tokenAddresses: {
+  //   97: '',
+  //   56: '',
+  //   43114: '0x4C9B4E1AC6F24CdE3660D5E4Ef1eBF77C710C084',
+  // },
+  // quoteTokenSymbol: QuoteToken.AVAX,
+  // quoteTokenAdresses: contracts.wbnb,
+
   {
     pid: 3,
     lpSymbol: 'USDT-LYD LP',
@@ -23,6 +40,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.usdt,
     quoteToken: tokens.lyd,
+    quoteTokenSymbol: 'LYD',
   },
   {
     pid: 4,
@@ -33,6 +51,9 @@ const farms: FarmConfig[] = [
     },
     token: tokens.lyd,
     quoteToken: tokens.wavax,
+    tokenSymbol: 'LYD',
+    quoteTokenAdresses: tokens.wavax,
+    quoteTokenSymbol: 'AVAX',
   },
   {
     pid: 7,
@@ -43,6 +64,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.png,
     quoteToken: tokens.lyd,
+    quoteTokenSymbol: 'LYD',
   },
   {
     pid: 9,
@@ -53,6 +75,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.eth,
     quoteToken: tokens.lyd,
+    quoteTokenSymbol: 'LYD',
   },
   {
     pid: 1,
@@ -63,6 +86,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.usdt,
     quoteToken: tokens.wavax,
+    quoteTokenSymbol: 'AVAX',
   },
   {
     pid: 2,
@@ -73,6 +97,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.eth,
     quoteToken: tokens.wavax,
+    quoteTokenSymbol: 'AVAX',
   },
   {
     pid: 6,
@@ -83,6 +108,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.sushi,
     quoteToken: tokens.wavax,
+    quoteTokenSymbol: 'AVAX',
   },
   {
     pid: 8,
@@ -93,6 +119,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.wbtc,
     quoteToken: tokens.wavax,
+    quoteTokenSymbol: 'AVAX',
   },
 ]
 

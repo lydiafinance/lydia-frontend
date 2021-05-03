@@ -66,7 +66,7 @@ export const useFarmUser = (pid) => {
 
   const stakedBalance = farm.userData ? new BigNumber(farm.userData.stakedBalance) : new BigNumber(0)
 
-  const stakedInQuoteToken = stakedBalance.dividedBy(farm?.lpTokenBalance).multipliedBy(farm.lpTotalInQuoteToken)
+  const stakedInQuoteToken = stakedBalance.dividedBy(farm?.lpTokenBalanceMC).multipliedBy(farm.lpTotalInQuoteToken)
   let stakedUsd = new BigNumber(0)
 
   if (farm.quoteTokenSymbol === QuoteToken.AVAX) {

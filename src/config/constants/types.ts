@@ -56,7 +56,7 @@ export interface FarmConfig {
   lpAddresses: Address
   token: Token
   quoteToken: Token
-  lpTokenBalance?: any
+  lpTokenBalanceMC?: any
   multiplier?: string
   isCommunity?: any
   quoteTokenSymbol?: any

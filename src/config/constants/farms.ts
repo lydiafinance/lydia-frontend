@@ -14,23 +14,6 @@ const farms: FarmConfig[] = [
   //   token: tokens.electrum,
   //   quoteToken: tokens.wavax,
   // },
-
-  // pid: 19,
-  // lpSymbol: 'LYD-AVAX LP',
-  // lpAddresses: {
-  //   97: '',
-  //   56: '',
-  //   43114: '0xCD36DCefE1D6BA70eC1329F51C7A3eA61847Bcb1',
-  // },
-  // tokenSymbol: 'LYD',
-  // tokenAddresses: {
-  //   97: '',
-  //   56: '',
-  //   43114: '0x4C9B4E1AC6F24CdE3660D5E4Ef1eBF77C710C084',
-  // },
-  // quoteTokenSymbol: QuoteToken.AVAX,
-  // quoteTokenAdresses: contracts.wbnb,
-
   {
     pid: 3,
     lpSymbol: 'USDT-LYD LP',

@@ -24,6 +24,14 @@ export interface Ifo {
   campaignId?: string
 }
 
+export enum QuoteToken {
+  'AVAX' = 'AVAX',
+  'USDT' = 'USDT',
+  'ETH' = 'ETH',
+  'WBTC' = 'WBTC',
+  'LYD' = 'LYD',
+}
+
 export enum PoolCategory {
   'COMMUNITY' = 'Community',
   'CORE' = 'Core',
@@ -48,8 +56,13 @@ export interface FarmConfig {
   lpAddresses: Address
   token: Token
   quoteToken: Token
+  lpTokenBalanceMC?: any
   multiplier?: string
-  isCommunity?: boolean
+  isCommunity?: any
+  quoteTokenSymbol?: any
+  isTokenOnly?: any
+  tokenSymbol?: any
+  quoteTokenAdresses?: any
   dual?: {
     rewardPerBlock: number
     earnLabel: string

@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Team } from 'config/constants/types'
 import { getWeb3NoAccount } from 'utils/web3'
 import useRefresh from 'hooks/useRefresh'
+import { QuoteToken } from '../config/constants/types'
 import {
   fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
@@ -60,12 +61,26 @@ export const useFarmFromSymbol = (lpSymbol: string): Farm => {
 
 export const useFarmUser = (pid) => {
   const farm = useFarmFromPid(pid)
+  const avaxPrice = useAvaxPriceUsdt()
+  const lydPrice = usePriceLydUsdt()
+
+  const stakedBalance = farm.userData ? new BigNumber(farm.userData.stakedBalance) : new BigNumber(0)
+
+  const stakedInQuoteToken = stakedBalance.dividedBy(farm?.lpTokenBalanceMC).multipliedBy(farm.lpTotalInQuoteToken)
+  let stakedUsd = new BigNumber(0)
+
+  if (farm.quoteTokenSymbol === QuoteToken.AVAX) {
+    stakedUsd = avaxPrice.times(stakedInQuoteToken)
+  } else if (farm.quoteTokenSymbol === QuoteToken.LYD) {
+    stakedUsd = lydPrice.times(stakedInQuoteToken)
+  }
 
   return {
     allowance: farm.userData ? new BigNumber(farm.userData.allowance) : new BigNumber(0),
     tokenBalance: farm.userData ? new BigNumber(farm.userData.tokenBalance) : new BigNumber(0),
     stakedBalance: farm.userData ? new BigNumber(farm.userData.stakedBalance) : new BigNumber(0),
     earnings: farm.userData ? new BigNumber(farm.userData.earnings) : new BigNumber(0),
+    stakedUsd,
   }
 }
 
@@ -208,6 +223,15 @@ export const usePriceLydUsdt = (): BigNumber => {
   const lydUsdtPrice = lydAvaxFarm?.tokenPriceVsQuote ? avaxUsdtPrice.times(lydAvaxFarm?.tokenPriceVsQuote) : ZERO
 
   return lydUsdtPrice
+}
+
+export const useAvaxPriceUsdt = (): BigNumber => {
+  const ZERO = new BigNumber(0)
+  const avaxUsdtFarm = useFarmFromPid(1)
+
+  const avaxUsdtPrice = avaxUsdtFarm?.tokenPriceVsQuote ? new BigNumber(1).div(avaxUsdtFarm?.tokenPriceVsQuote) : ZERO
+
+  return avaxUsdtPrice
 }
 
 // Block

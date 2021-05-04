@@ -4,6 +4,7 @@ import BigNumber from 'bignumber.js'
 import { Button, Flex, Heading, IconButton, AddIcon, MinusIcon, useModal } from '@lydiafinance/uikit'
 import useI18n from 'hooks/useI18n'
 import useStake from 'hooks/useStake'
+import { useGetApiPrices } from 'state/hooks'
 import useUnstake from 'hooks/useUnstake'
 import { getBalanceNumber } from 'utils/formatBalance'
 import DepositModal from '../DepositModal'
@@ -15,6 +16,7 @@ interface FarmCardActionsProps {
   tokenName?: string
   pid?: number
   addLiquidityUrl?: string
+  stakedUsd?: BigNumber
 }
 
 const IconButtonWrapper = styled.div`
@@ -23,6 +25,14 @@ const IconButtonWrapper = styled.div`
     width: 20px;
   }
 `
+const Label = styled.div`
+  color: ${({ theme }) => theme.colors.textSubtle};
+  font-size: 14px;
+`
+
+const LPWrapper = styled.div`
+  text-align: left;
+`
 
 const StakeAction: React.FC<FarmCardActionsProps> = ({
   stakedBalance,
@@ -30,13 +40,22 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   tokenName,
   pid,
   addLiquidityUrl,
+  stakedUsd,
 }) => {
   const TranslateString = useI18n()
   const { onStake } = useStake(pid)
   const { onUnstake } = useUnstake(pid)
 
   const rawStakedBalance = getBalanceNumber(stakedBalance)
-  const displayBalance = rawStakedBalance.toLocaleString()
+  const displayBalance = rawStakedBalance.toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 8,
+  })
+  const rawStakedUsd = getBalanceNumber(stakedUsd, 0)
+  const displayBalanceUsd = rawStakedUsd.toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })
 
   const [onPresentDeposit] = useModal(
     <DepositModal max={tokenBalance} onConfirm={onStake} tokenName={tokenName} addLiquidityUrl={addLiquidityUrl} />,
@@ -62,7 +81,11 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
 
   return (
     <Flex justifyContent="space-between" alignItems="center">
-      <Heading color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>{displayBalance}</Heading>
+      <LPWrapper>
+        <Heading color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>{displayBalance}</Heading>
+        {rawStakedBalance !== 0 && <Label>~${displayBalanceUsd}</Label>}
+      </LPWrapper>
+
       {renderStakingButtons()}
     </Flex>
   )

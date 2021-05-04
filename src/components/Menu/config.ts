@@ -30,6 +30,15 @@ const config: MenuEntry[] = [
     icon: 'PoolIcon',
     href: '/pools',
   },
+  {
+    label: 'Maximus',
+    icon: 'TeamBattleIcon',
+    href: '/maximus',
+    status: {
+      text: 'SOON',
+      color: 'warning',
+    },
+  },
   // {
   //   label: 'Airdrop',
   //   icon: 'AirdropIcon',

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tag, VerifiedIcon, CommunityIcon, AvalancheIcon } from '@lydiafinance/uikit'
+import { Tag, VerifiedIcon, CommunityIcon } from '@lydiafinance/uikit'
 
 const CoreTag = (props) => (
   <Tag variant="secondary" outline startIcon={<VerifiedIcon color="secondary" />} {...props}>
@@ -14,7 +14,7 @@ const CommunityTag = (props) => (
 )
 
 const AvaxTag = (props) => (
-  <Tag variant="avalanche" outline startIcon={<AvalancheIcon color="secondary" />} {...props}>
+  <Tag variant="avalanche" outline startIcon={<CommunityIcon color="secondary" />} {...props}>
     Avalanche
   </Tag>
 )

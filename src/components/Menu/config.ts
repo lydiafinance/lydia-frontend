@@ -32,7 +32,7 @@ const config: MenuEntry[] = [
   },
   {
     label: 'Maximus',
-    icon: 'TeamBattleIcon',
+    icon: 'CrownIcon',
     href: '/maximus',
     status: {
       text: 'SOON',

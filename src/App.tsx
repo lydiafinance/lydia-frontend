@@ -12,6 +12,7 @@ import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
 import EasterEgg from './components/EasterEgg'
 import Pools from './views/Pools'
+import ComingSoon from './views/ComingSoon'
 import Airdrop from './views/Airdrop'
 import history from './routerHistory'
 
@@ -67,6 +68,12 @@ const App: React.FC = () => {
             </Route>
             <Route path="/electrum">
               <Redirect to="/pools" />
+            </Route>
+            <Route path="/maximus">
+              <Redirect to="/coming-soon" />
+            </Route>
+            <Route path="/coming-soon">
+              <ComingSoon />
             </Route>
             {/* <Route path="/airdrop">
               <Airdrop />

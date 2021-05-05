@@ -61,6 +61,17 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: 'LYD',
   },
   {
+    pid: 10,
+    lpSymbol: 'SNOB-LYD LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x1ccd24def23a742d56a976810ca5bda37b43744d',
+      [ChainId.AVALANCHE]: '0x805B7d20e92893FF4b68c83E40c1Fc9A7a6162Fa',
+    },
+    token: tokens.snob,
+    quoteToken: tokens.lyd,
+    quoteTokenSymbol: 'LYD',
+  },
+  {
     pid: 1,
     lpSymbol: 'USDT-AVAX LP',
     lpAddresses: {

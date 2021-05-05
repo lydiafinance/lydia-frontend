@@ -11,13 +11,13 @@ export const fetchPoolsBlockLimits = async () => {
   const callsStartBlock = poolsWithEnd.map((poolConfig) => {
     return {
       address: getAddress(poolConfig.contractAddress),
-      name: 'startBlock',
+      name: 'startTimestamp',
     }
   })
   const callsEndBlock = poolsWithEnd.map((poolConfig) => {
     return {
       address: getAddress(poolConfig.contractAddress),
-      name: 'bonusEndBlock',
+      name: 'bonusEndTimestamp',
     }
   })
 

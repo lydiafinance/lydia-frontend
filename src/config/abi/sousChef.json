@@ -2,28 +2,28 @@
   {
     "inputs": [
       {
-        "internalType": "contract IBEP20",
-        "name": "_electrum",
+        "internalType": "contract IERC20",
+        "name": "_syrup",
         "type": "address"
       },
       {
-        "internalType": "contract IBEP20",
+        "internalType": "contract IERC20",
         "name": "_rewardToken",
         "type": "address"
       },
       {
         "internalType": "uint256",
-        "name": "_rewardPerBlock",
+        "name": "_rewardPerSec",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_startBlock",
+        "name": "_startTimestamp",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_bonusEndBlock",
+        "name": "_bonusEndTimestamp",
         "type": "uint256"
       }
     ],
@@ -108,7 +108,7 @@
   },
   {
     "inputs": [],
-    "name": "bonusEndBlock",
+    "name": "bonusEndTimestamp",
     "outputs": [
       {
         "internalType": "uint256",
@@ -226,7 +226,7 @@
     "name": "poolInfo",
     "outputs": [
       {
-        "internalType": "contract IBEP20",
+        "internalType": "contract IERC20",
         "name": "lpToken",
         "type": "address"
       },
@@ -237,7 +237,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "lastRewardBlock",
+        "name": "lastRewardTimestamp",
         "type": "uint256"
       },
       {
@@ -258,7 +258,7 @@
   },
   {
     "inputs": [],
-    "name": "rewardPerBlock",
+    "name": "rewardPerSec",
     "outputs": [
       {
         "internalType": "uint256",
@@ -274,7 +274,7 @@
     "name": "rewardToken",
     "outputs": [
       {
-        "internalType": "contract IBEP20",
+        "internalType": "contract IERC20",
         "name": "",
         "type": "address"
       }
@@ -284,7 +284,7 @@
   },
   {
     "inputs": [],
-    "name": "startBlock",
+    "name": "startTimestamp",
     "outputs": [
       {
         "internalType": "uint256",
@@ -304,10 +304,10 @@
   },
   {
     "inputs": [],
-    "name": "electrum",
+    "name": "syrup",
     "outputs": [
       {
-        "internalType": "contract IBEP20",
+        "internalType": "contract IERC20",
         "name": "",
         "type": "address"
       }

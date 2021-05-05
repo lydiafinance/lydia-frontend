@@ -18,7 +18,7 @@ const tokens = {
     symbol: 'LYD',
     address: {
       [ChainId.AVALANCHE]: '0x4C9B4E1AC6F24CdE3660D5E4Ef1eBF77C710C084',
-      [ChainId.FUJI]: '0xDe5D7A6484E885eDcCA237dFa93E970DA60F74Db',
+      [ChainId.FUJI]: '0x12F81569Fe25657589628B4637d0F16095d87973',
     },
     decimals: 18,
     projectLink: 'https://lydia.finance/',
@@ -94,6 +94,15 @@ const tokens = {
     },
     decimals: 8,
     projectLink: 'https://ptokens.io/',
+  },
+  snob: {
+    symbol: 'SNOB',
+    address: {
+      [ChainId.AVALANCHE]: '0xc38f41a296a4493ff429f1238e030924a1542e50',
+      [ChainId.FUJI]: '0xDFE6639633394fC5C8ADc14f12Dc0F99Cf6cc71d',
+    },
+    decimals: 18,
+    projectLink: 'https://snowball.network/',
   },
 }
 

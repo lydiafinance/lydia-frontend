@@ -128,7 +128,7 @@ const CardFooter: React.FC<Props> = ({
             </FlexFull>
             <Balance fontSize="14px" isDisabled={isFinished} value={getBalanceNumber(totalStaked, decimals)} />
           </Row>
-          {blocksUntilStart > 0 && (
+          {/* {blocksUntilStart > 0 && (
             <Row mb="4px">
               <FlexFull>
                 <Label>{TranslateString(1212, 'Start')}:</Label>
@@ -143,7 +143,7 @@ const CardFooter: React.FC<Props> = ({
               </FlexFull>
               <Balance fontSize="14px" isDisabled={isFinished} value={blocksRemaining} decimals={0} />
             </Row>
-          )}
+          )} */}
           {tokenAddress && (
             <Flex mb="4px">
               <TokenLink onClick={() => registerToken(tokenAddress, tokenName, tokenDecimals, imageSrc)}>

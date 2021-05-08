@@ -2,12 +2,12 @@
   {
     "inputs": [
       {
-        "internalType": "contract IBEP20",
+        "internalType": "contract IERC20",
         "name": "_token",
         "type": "address"
       },
       {
-        "internalType": "contract IBEP20",
+        "internalType": "contract IERC20",
         "name": "_receiptToken",
         "type": "address"
       },
@@ -261,7 +261,7 @@
   },
   {
     "inputs": [],
-    "name": "calculateHarvestlydRewards",
+    "name": "calculateHarvestCakeRewards",
     "outputs": [
       {
         "internalType": "uint256",
@@ -274,7 +274,7 @@
   },
   {
     "inputs": [],
-    "name": "calculateTotalPendinglydRewards",
+    "name": "calculateTotalPendingLydRewards",
     "outputs": [
       {
         "internalType": "uint256",
@@ -428,7 +428,7 @@
     "name": "receiptToken",
     "outputs": [
       {
-        "internalType": "contract IBEP20",
+        "internalType": "contract IERC20",
         "name": "",
         "type": "address"
       }
@@ -522,11 +522,30 @@
     "type": "function"
   },
   {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "sharesOf",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "token",
     "outputs": [
       {
-        "internalType": "contract IBEP20",
+        "internalType": "contract IERC20",
         "name": "",
         "type": "address"
       }

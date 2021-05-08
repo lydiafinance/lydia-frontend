@@ -44,13 +44,13 @@ const Pools: React.FC = () => {
       <PageHeader>
         <Flex justifyContent="space-between" flexDirection={['column', null, 'row']}>
           <Flex flexDirection="column" mr={['8px', 0]}>
-            <Heading as="h1" size="xxl" color="secondary" mb="24px">
+            <Heading as="h1" size="xxl" color="alwaysWhite" mb="24px">
               {t('Electrum Pools')}
             </Heading>
-            <Heading size="md" color="text">
+            <Heading size="md" color="alwaysWhite">
               {t('Simply stake tokens to earn.')}
             </Heading>
-            <Heading size="md" color="text">
+            <Heading size="md" color="alwaysWhite">
               {t('High APR, low risk.')}
             </Heading>
           </Flex>
@@ -84,14 +84,6 @@ const Pools: React.FC = () => {
             ))}
           </Route>
         </FlexLayout>
-        <Image
-          mx="auto"
-          mt="12px"
-          src="/images/3d-syrup-bunnies.png"
-          alt="lydia illustration"
-          width={192}
-          height={184.5}
-        />
       </Page>
     </>
   )

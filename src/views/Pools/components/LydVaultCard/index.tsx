@@ -39,7 +39,7 @@ const LydVaultCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly }) => {
   //   Estimate & manual for now. 288 = once every 5 mins. We can change once we have a better sense of this
   const timesCompoundedDaily = 288
   const accountHasSharesStaked = userInfo.shares && userInfo.shares.gt(0)
-  const stakingTokenPrice = useGetApiPrice(stakingToken.address ? getAddress(stakingToken.address) : '')
+  const stakingTokenPrice = useGetApiPrice(stakingToken?.symbol?.toLowerCase())
   const isLoading = !pool.userData || !userInfo.shares
   const performanceFeeAsDecimal = vaultFees.performanceFee && parseInt(vaultFees.performanceFee, 10) / 100
 

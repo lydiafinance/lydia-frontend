@@ -26,7 +26,7 @@ const UnstakingFeeCountdownRow: React.FC<UnstakingFeeCountdownRowProps> = ({
       </Text>
       <Text>
         {t(
-          'Only applies within 3 days of staking. Unstaking after 3 days will not include a fee. Timer resets every time you stake new LYD in the pool.',
+          'Only applies within 5 days of staking. Unstaking after 5 days will not include a fee. Timer resets every time you stake new LYD in the pool.',
         )}
       </Text>
     </>,
@@ -51,7 +51,7 @@ const UnstakingFeeCountdownRow: React.FC<UnstakingFeeCountdownRowProps> = ({
     if (shouldShowTimer) {
       return t('unstaking fee until')
     }
-    return t('unstaking fee if withdrawn within 72h')
+    return t('unstaking fee if withdrawn within 120h')
   }
 
   return (

@@ -4,7 +4,7 @@ import { Card, CardBody, Heading, Text, Flex, MetamaskIcon } from '@lydiafinance
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { registerToken } from 'utils/wallet'
 import { getLydAddress } from 'utils/addressHelpers'
 import { useGetApiPrice } from 'state/hooks'
@@ -33,7 +33,7 @@ const TokenLink = styled.a`
 `
 
 const LydStats = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const totalSupply = useTotalSupply()
   const tokenAddress = getLydAddress()
   const burnedBalance = getBalanceNumber(useBurnedBalance(tokenAddress))
@@ -49,29 +49,29 @@ const LydStats = () => {
     <StyledLydStats>
       <CardBody>
         <Heading size="xl" mb="24px">
-          {TranslateString(534, 'LYD Stats')}
+          {t('LYD Stats')}
         </Heading>
         {/* <Row>
-          <Text fontSize="14px">{TranslateString(536, 'Circulating Supply')}</Text>
+          <Text fontSize="14px">{t('Circulating Supply')}</Text>
           {lydSupply && <CardValue fontSize="14px" value={lydSupply} />}
         </Row> */}
         <Row>
-          <Text fontSize="14px">{TranslateString(536, 'Total LYD Supply 🦁')}</Text>
+          <Text fontSize="14px">{t('Total LYD Supply 🦁')}</Text>
           {lydSupply && <CardValue fontSize="14px" value={lydSupply} />}
         </Row>
         <Row>
-          <Text fontSize="14px">{TranslateString(538, 'Total LYD Burned 🔥')}</Text>
+          <Text fontSize="14px">{t('Total LYD Burned 🔥')}</Text>
           <CardValue fontSize="14px" decimals={0} value={burnedBalance} />
         </Row>
         <Row>
-          <Text fontSize="14px">{TranslateString(540, 'New LYD/second 🕒')}</Text>
+          <Text fontSize="14px">{t('New LYD/second 🕒')}</Text>
           <CardValue fontSize="14px" decimals={0} value={Number(LYD_PER_SECOND)} />
         </Row>
 
         {isMobile && (
           <Row>
-            <Text fontSize="14px">{TranslateString(540, 'LYD Price')}</Text>
-            <Text fontSize="14px">{TranslateString(540, `$${lydPrice?.toFixed(3)}`)}</Text>
+            <Text fontSize="14px">{t('LYD Price')}</Text>
+            <Text fontSize="14px">{t(`$${lydPrice?.toFixed(3)}`)}</Text>
           </Row>
         )}
 

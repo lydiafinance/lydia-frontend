@@ -36,7 +36,7 @@ const NotEnoughTokensModal: React.FC<NotEnoughTokensModalProps> = ({ tokenSymbol
       <Button mt="24px" as="a" external href={BASE_EXCHANGE_URL}>
         {t('Buy')} {tokenSymbol}
       </Button>
-      <StyledLink href="https://yieldwatch.net" external>
+      <StyledLink href="https://exchange.lydia.finance" external>
         <Button variant="secondary" mt="8px" width="100%">
           {t('Locate Assets')}
           <OpenNewIcon color="primary" ml="4px" />

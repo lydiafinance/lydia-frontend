@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Heading, Text } from '@lydiafinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import Container from 'components/layout/Container'
 import LotteryProgress from './LotteryProgress'
 
@@ -17,7 +17,7 @@ const Blurb = styled(Text)`
 `
 
 const StyledHero = styled.div`
-  background-image: linear-gradient(180deg, #53dee9 0%, #1fc7d4 100%);
+  background-image: linear-gradient(0deg, #53dee9 0%, #1fc7d4 100%);
   padding-bottom: 40px;
   padding-top: 40px;
 `
@@ -64,15 +64,15 @@ const RightWrapper = styled.div`
 `
 
 const Hero = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   return (
     <StyledHero>
       <StyledContainer>
         <LeftWrapper>
-          <Title>{TranslateString(708, 'The LYD Lottery')}</Title>
-          <Blurb>{TranslateString(710, 'Buy tickets with LYD')}</Blurb>
-          <Blurb>{TranslateString(712, 'Win if 2, 3, or 4 of your ticket numbers match!')}</Blurb>
+          <Title>{t('The LYD Lottery')}</Title>
+          <Blurb>{t('Buy tickets with LYD')}</Blurb>
+          <Blurb>{t('Win if 2, 3, or 4 of your ticket numbers match!')}</Blurb>
         </LeftWrapper>
         <RightWrapper>
           <LotteryProgress />

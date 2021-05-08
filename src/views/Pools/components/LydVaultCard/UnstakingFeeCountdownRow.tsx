@@ -2,7 +2,7 @@ import React from 'react'
 import { Flex, Text, TooltipText, useTooltip } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
-import useWithdrawalFeeTimer from 'hooks/cakeVault/useWithdrawalFeeTimer'
+import useWithdrawalFeeTimer from 'hooks/lydVault/useWithdrawalFeeTimer'
 import WithdrawalFeeTimer from './WithdrawalFeeTimer'
 
 interface UnstakingFeeCountdownRowProps {

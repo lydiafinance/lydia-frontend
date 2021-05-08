@@ -12,6 +12,7 @@ interface BalanceProps extends TextProps {
   value?: number
   decimals?: number
   unit?: string
+  bold?: boolean
 }
 
 const Balance: React.FC<BalanceProps> = ({ value, fontSize, color, decimals, isDisabled, unit }) => {

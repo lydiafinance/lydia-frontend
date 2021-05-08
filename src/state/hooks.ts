@@ -17,7 +17,7 @@ import {
   clear as clearToast,
   setBlock,
 } from './actions'
-import { State, Farm, Pool, ProfileState, TeamsState, AchievementState, PriceState } from './types'
+import { State, Farm, Pool, ProfileState, TeamsState, AchievementState, PriceState, FarmsState } from './types'
 // import { fetchProfile } from './profile'
 import { fetchTeam, fetchTeams } from './teams'
 import { fetchAchievements } from './achievements'
@@ -44,8 +44,8 @@ export const useFetchPublicData = () => {
 
 // Farms
 
-export const useFarms = (): Farm[] => {
-  const farms = useSelector((state: State) => state.farms.data)
+export const useFarms = (): FarmsState => {
+  const farms = useSelector((state: State) => state.farms)
   return farms
 }
 

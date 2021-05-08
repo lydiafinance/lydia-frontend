@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Heading, Text, BaseLayout } from '@lydiafinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import Page from 'components/layout/Page'
 import { useWeb3React } from '@web3-react/core'
 import { usePools } from 'state/hooks'
@@ -70,7 +70,7 @@ const DesktopSupportCard = styled(BaseLayout)<{ isMobile: boolean }>`
 `
 
 const Home: React.FC = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { account } = useWeb3React()
   const deviceSize = useDeviceSize()
   const { isMobile } = deviceSize
@@ -80,9 +80,9 @@ const Home: React.FC = () => {
     <Page>
       <Hero>
         <Heading as="h1" size="xl" mb="24px" color="secondary">
-          {TranslateString(576, 'Lydia Finance')}
+          {t('Lydia Finance')}
         </Heading>
-        <Text>{TranslateString(578, 'AMM and yield farm on Avalanche.')}</Text>
+        <Text>{t('AMM and yield farm on Avalanche.')}</Text>
       </Hero>
 
       <DesktopSupportCard isMobile={isMobile}>
@@ -94,7 +94,7 @@ const Home: React.FC = () => {
           </Cards>
         </Cards>
         <Cards column={isMobile}>
-          <PoolCard key={pools[0]?.sousId} pool={pools[0]} />
+          <PoolCard key={pools[0]?.sousId} pool={pools[0]} account={account} />
           <LydStats />
         </Cards>
       </DesktopSupportCard>
@@ -108,7 +108,7 @@ const Home: React.FC = () => {
           </Cards>
         </Cards>
         <Cards column={isMobile}>
-          <PoolCard key={pools[0]?.sousId} pool={pools[0]} />
+          <PoolCard key={pools[0]?.sousId} pool={pools[0]} account={account} />
           <FarmStakingCard />
         </Cards>
       </MobileSupportCard>

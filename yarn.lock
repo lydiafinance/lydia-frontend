@@ -2002,10 +2002,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@lydiafinance/uikit@^1.1.7":
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/@lydiafinance/uikit/-/uikit-1.1.7.tgz#0ba4ff5119b416e4a4464921dd28a7aaf9e37e23"
-  integrity sha512-mExS4ON9D45S4fw3S8jLv2gn+fzR+PBM7yVK2de//floDG79PjUb1pVBZzc7X96Q7EfxGL2TrVR2aCsmwPoWbQ==
+"@lydiafinance/uikit@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@lydiafinance/uikit/-/uikit-1.2.0.tgz#e045ac9151f039e7230932ac73037ca89b4743bb"
+  integrity sha512-qzED4kW+rmcVl5x/yTLrdBGbCmIoedDOQel7m/FPNpUetHFAvgdbaoIymtIkZcZC7+SgxvE2iSyl0QCBHy6YwA==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"

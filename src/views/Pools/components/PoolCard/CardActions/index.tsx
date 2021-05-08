@@ -23,7 +23,7 @@ interface CardActionsProps {
 const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance, stakingTokenPrice }) => {
   const { sousId, stakingToken, earningToken, harvest, poolCategory, userData } = pool
   // Pools using native AVAX behave differently than pools using a token
-  const isBnbPool = poolCategory === PoolCategory.BINANCE
+  const isBnbPool = poolCategory === PoolCategory.AVALANCHE
   const { t } = useTranslation()
   const allowance = userData?.allowance ? new BigNumber(userData.allowance) : BIG_ZERO
   const stakingTokenBalance = userData?.stakingTokenBalance ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO

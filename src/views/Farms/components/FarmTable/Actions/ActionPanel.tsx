@@ -1,10 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
-import useI18n from 'hooks/useI18n'
+import styled, { keyframes, css } from 'styled-components'
+import { useTranslation } from 'contexts/Localization'
 import { LinkExternal, Text } from '@lydiafinance/uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
-import { communityFarms } from 'config/constants'
 import { CommunityTag, CoreTag, DualTag } from 'components/Tags'
 
 import HarvestAction from './HarvestAction'
@@ -18,9 +17,38 @@ export interface ActionPanelProps {
   multiplier: MultiplierProps
   liquidity: LiquidityProps
   details: FarmWithStakedValue
+  userDataReady: boolean
+  expanded: boolean
 }
 
-const Container = styled.div`
+const expandAnimation = keyframes`
+  from {
+    max-height: 0px;
+  }
+  to {
+    max-height: 500px;
+  }
+`
+
+const collapseAnimation = keyframes`
+  from {
+    max-height: 500px;
+  }
+  to {
+    max-height: 0px;
+  }
+`
+
+const Container = styled.div<{ expanded }>`
+  animation: ${({ expanded }) =>
+    expanded
+      ? css`
+          ${expandAnimation} 300ms linear forwards
+        `
+      : css`
+          ${collapseAnimation} 300ms linear forwards
+        `};
+  overflow: hidden;
   background: ${({ theme }) => theme.colors.background};
   display: flex;
   width: 100%;
@@ -100,12 +128,20 @@ const ValueWrapper = styled.div`
   margin: 4px 0px;
 `
 
-const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, multiplier, liquidity }) => {
+const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
+  details,
+  apr,
+  multiplier,
+  liquidity,
+  userDataReady,
+  expanded,
+}) => {
   const farm = details
 
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
+  const isActive = farm.multiplier !== '0X'
   const { quoteToken, token, dual } = farm
-  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('LYDIA', '')
+  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANCAKE', '')
   const liquidityUrlPathParts = getLiquidityUrlPathParts({
     quoteTokenAddress: quoteToken.address,
     tokenAddress: token.address,
@@ -113,40 +149,42 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, 
   const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
   const avax = `https://cchain.explorer.avax.network/address/${lpAddress}`
   const info = `https://info.lydia.finance/pair/${lpAddress}`
-  const isCommunityFarm = communityFarms.includes(token.symbol)
+  // const isCommunityFarm = communityFarms.includes(token.symbol)
 
   return (
-    <Container>
+    <Container expanded={expanded}>
       <InfoContainer>
-        <StakeContainer>
-          <StyledLinkExternal href={`https://exchange.lydia.finance/#/add/${liquidityUrlPathParts}`}>
-            {TranslateString(999, `Get ${lpLabel}`, { name: lpLabel })}
-          </StyledLinkExternal>
-        </StakeContainer>
-        <StyledLinkExternal href={avax}>{TranslateString(999, 'View Contract')}</StyledLinkExternal>
-        <StyledLinkExternal href={info}>{TranslateString(999, 'See Pair Info')}</StyledLinkExternal>
+        {isActive && (
+          <StakeContainer>
+            <StyledLinkExternal href={`https://exchange.lydia.finance/#/add/${liquidityUrlPathParts}`}>
+              {t(`Get ${lpLabel}`, { name: lpLabel })}
+            </StyledLinkExternal>
+          </StakeContainer>
+        )}
+        <StyledLinkExternal href={avax}>{t('View Contract')}</StyledLinkExternal>
+        <StyledLinkExternal href={info}>{t('See Pair Info')}</StyledLinkExternal>
         <TagsContainer>
-          {isCommunityFarm ? <CommunityTag /> : <CoreTag />}
+          {farm.isCommunity ? <CommunityTag /> : <CoreTag />}
           {dual ? <DualTag /> : null}
         </TagsContainer>
       </InfoContainer>
       <ValueContainer>
         <ValueWrapper>
-          <Text>{TranslateString(736, 'APR')}</Text>
+          <Text>{t('APR')}</Text>
           <Apr {...apr} />
         </ValueWrapper>
         <ValueWrapper>
-          <Text>{TranslateString(999, 'Multiplier')}</Text>
+          <Text>{t('Multiplier')}</Text>
           <Multiplier {...multiplier} />
         </ValueWrapper>
         <ValueWrapper>
-          <Text>{TranslateString(999, 'Liquidity')}</Text>
+          <Text>{t('Liquidity')}</Text>
           <Liquidity {...liquidity} />
         </ValueWrapper>
       </ValueContainer>
       <ActionContainer>
-        <HarvestAction {...farm} />
-        <StakedAction {...farm} />
+        <HarvestAction {...farm} userDataReady={userDataReady} />
+        <StakedAction {...farm} userDataReady={userDataReady} />
       </ActionContainer>
     </Container>
   )

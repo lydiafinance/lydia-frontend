@@ -18,8 +18,8 @@ interface ApyCalculatorModalProps {
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, auto);
+  grid-template-columns: repeat(, 1fr);
+  grid-template-rows: repeat(, auto);
   margin-bottom: 24px;
 `
 

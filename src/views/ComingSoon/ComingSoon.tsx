@@ -5,18 +5,18 @@ import { useWeb3React } from '@web3-react/core'
 import { Heading } from '@lydiafinance/uikit'
 import useWeb3 from 'hooks/useWeb3'
 
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import Page from 'components/layout/Page'
 
 const Airdrop: React.FC = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   return (
     <Page>
       <Hero>
         <img src="/images/white_king.png" alt="Electrum POOL icon" width={300} height={300} />
         <Heading as="h1" size="xxl" mb="16px">
-          {TranslateString(738, 'Coming Soon')}
+          {t('Coming Soon')}
         </Heading>
       </Hero>
     </Page>

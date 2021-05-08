@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
 import { Heading, Card, CardBody, CardFooter, Text, LydiaRoundIcon, Flex, Skeleton } from '@lydiafinance/uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { useTotalRewards } from 'hooks/useTickets'
 import PastLotteryDataContext from 'contexts/PastLotteryDataContext'
 import ExpandableSectionButton from 'components/ExpandableSectionButton/ExpandableSectionButton'
@@ -49,7 +49,7 @@ const ExpandingWrapper = styled.div<{ showFooter: boolean }>`
 `
 
 const TotalPrizesCard = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { account } = useWeb3React()
   const [showFooter, setShowFooter] = useState(false)
   const lotteryPrizeAmount = +getBalanceNumber(useTotalRewards()).toFixed(0)
@@ -65,7 +65,7 @@ const TotalPrizesCard = () => {
             {currentLotteryNumber > 0 && (
               <>
                 <Text fontSize="12px" style={{ fontWeight: 600 }}>
-                  {TranslateString(720, `Round #${currentLotteryNumber}`, { num: currentLotteryNumber })}
+                  {t(`Round #${currentLotteryNumber}`, { num: currentLotteryNumber })}
                 </Text>
               </>
             )}
@@ -78,7 +78,7 @@ const TotalPrizesCard = () => {
             </IconWrapper>
             <PrizeCountWrapper>
               <Text fontSize="14px" color="textSubtle">
-                {TranslateString(722, 'Total Pot:')}
+                {t('Total Pot:')}
               </Text>
               <Heading size="lg">{lotteryPrizeWithCommaSeparators} LYD</Heading>
             </PrizeCountWrapper>

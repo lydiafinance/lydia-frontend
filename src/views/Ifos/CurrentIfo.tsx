@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Text, Heading, BaseLayout, Button, LinkExternal, Flex, Image } from '@lydiafinance/uikit'
 import { ifosConfig } from 'config/constants'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import IfoCard from './components/IfoCard'
 import Title from './components/Title'
 import IfoCards from './components/IfoCards'
@@ -36,7 +36,7 @@ const List = styled.ul`
 const activeIfo = ifosConfig.find((ifo) => ifo.isActive)
 
 const Ifo = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   return (
     <div>
@@ -45,28 +45,26 @@ const Ifo = () => {
       </IfoCards>
       <LaunchIfoCallout>
         <div>
-          <Title as="h2">{TranslateString(592, 'How to take part')}</Title>
-          <Heading mb="16px">{TranslateString(594, 'Before Sale')}:</Heading>
+          <Title as="h2">{t('How to take part')}</Title>
+          <Heading mb="16px">{t('Before Sale')}:</Heading>
           <List>
-            <li>{TranslateString(596, 'Buy LYD and AVAX tokens')}</li>
-            <li>{TranslateString(598, 'Get LYD-AVAX LP tokens by adding LYD and AVAX liquidity')}</li>
+            <li>{t('Buy LYD and AVAX tokens')}</li>
+            <li>{t('Get LYD-AVAX LP tokens by adding LYD and AVAX liquidity')}</li>
           </List>
           <Flex mb="16px">
             <LinkExternal href="https://exchange.lydia.finance/#/swap" mr="16px">
-              {TranslateString(1060, 'Buy LYD')}
+              {t('Buy LYD')}
             </LinkExternal>
-            <LinkExternal href="https://exchange.lydia.finance/#/add/AVAX/">
-              {TranslateString(1062, 'Get LP tokens')}
-            </LinkExternal>
+            <LinkExternal href="https://exchange.lydia.finance/#/add/AVAX/">{t('Get LP tokens')}</LinkExternal>
           </Flex>
-          <Heading mb="16px">{TranslateString(600, 'During Sale')}:</Heading>
+          <Heading mb="16px">{t('During Sale')}:</Heading>
           <List>
-            <li>{TranslateString(602, 'While the sale is live, commit your LYD-LP tokens to buy the IFO tokens')}</li>
+            <li>{t('While the sale is live, commit your LYD-LP tokens to buy the IFO tokens')}</li>
           </List>
-          <Heading mb="16px">{TranslateString(604, 'After Sale')}:</Heading>
+          <Heading mb="16px">{t('After Sale')}:</Heading>
           <List>
-            <li>{TranslateString(606, 'Claim the tokens you bought, along with any unspent funds.')}</li>
-            <li>{TranslateString(608, 'Done!')}</li>
+            <li>{t('Claim the tokens you bought, along with any unspent funds.')}</li>
+            <li>{t('Done!')}</li>
           </List>
           <Text as="div" pt="16px">
             <Button
@@ -74,17 +72,16 @@ const Ifo = () => {
               variant="secondary"
               href="https://docs.lydia.finance/core-products/ifo-initial-farm-offering"
             >
-              {TranslateString(610, 'Read more')}
+              {t('Read more')}
             </Button>
           </Text>
         </div>
         <div>
           <Image src="/images/ifo-bunny.svg" alt="ifo bunny" width={436} height={406} responsive />
           <div>
-            <Title as="h2">{TranslateString(512, 'Want to launch your own IFO?')}</Title>
+            <Title as="h2">{t('Want to launch your own IFO?')}</Title>
             <Text mb={3}>
-              {TranslateString(
-                514,
+              {t(
                 'Launch your project with LydiaFinance, Avalanche’s most-used AMM project and liquidity provider, to bring your token directly to the most active and rapidly growing community on AVAX.',
               )}
             </Text>
@@ -93,7 +90,7 @@ const Ifo = () => {
               href="https://docs.google.com/forms/d/e/1FAIpQLScGdT5rrVMr4WOWr08pvcroSeuIOtEJf1sVdQGVdcAOqryigQ/viewform"
               external
             >
-              {TranslateString(516, 'Apply to launch')}
+              {t('Apply to launch')}
             </Button>
           </div>
         </div>

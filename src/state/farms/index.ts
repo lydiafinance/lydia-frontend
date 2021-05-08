@@ -10,7 +10,17 @@ import {
 } from './fetchFarmUser'
 import { FarmsState, Farm } from '../types'
 
-const initialState: FarmsState = { data: [...farmsConfig] }
+const noAccountFarmConfig = farmsConfig.map((farm) => ({
+  ...farm,
+  userData: {
+    allowance: '0',
+    tokenBalance: '0',
+    stakedBalance: '0',
+    earnings: '0',
+  },
+}))
+
+const initialState: FarmsState = { data: noAccountFarmConfig, loadArchivedFarmsData: false, userDataLoaded: false }
 
 export const farmsSlice = createSlice({
   name: 'Farms',
@@ -26,9 +36,11 @@ export const farmsSlice = createSlice({
     setFarmUserData: (state, action) => {
       const { arrayOfUserDataObjects } = action.payload
       arrayOfUserDataObjects.forEach((userDataEl) => {
-        const { index } = userDataEl
+        const { pid } = userDataEl
+        const index = state.data.findIndex((farm) => farm.pid === pid)
         state.data[index] = { ...state.data[index], userData: userDataEl }
       })
+      state.userDataLoaded = true
     },
   },
 })

@@ -1,13 +1,14 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
 import { useTable, Button, ChevronUpIcon, ColumnType } from '@lydiafinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 
 import Row, { RowProps } from './Row'
 
 export interface ITableProps {
   data: RowProps[]
   columns: ColumnType<RowProps>[]
+  userDataReady: boolean
   sortColumn?: string
 }
 
@@ -58,8 +59,8 @@ const ScrollButtonContainer = styled.div`
 
 const FarmTable: React.FC<ITableProps> = (props) => {
   const tableWrapperEl = useRef<HTMLDivElement>(null)
-  const TranslateString = useI18n()
-  const { data, columns } = props
+  const { t } = useTranslation()
+  const { data, columns, userDataReady } = props
 
   const { rows } = useTable(columns, data, { sortable: true, sortColumn: 'farm' })
 
@@ -76,14 +77,14 @@ const FarmTable: React.FC<ITableProps> = (props) => {
           <StyledTable>
             <TableBody>
               {rows.map((row) => {
-                return <Row {...row.original} key={`table-row-${row.id}`} />
+                return <Row {...row.original} userDataReady={userDataReady} key={`table-row-${row.id}`} />
               })}
             </TableBody>
           </StyledTable>
         </TableWrapper>
         <ScrollButtonContainer>
           <Button variant="text" onClick={scrollToTop}>
-            {TranslateString(999, 'To Top')}
+            {t('To Top')}
             <ChevronUpIcon color="primary" />
           </Button>
         </ScrollButtonContainer>

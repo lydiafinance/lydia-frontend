@@ -9,6 +9,7 @@ import {
 } from 'state/actions'
 import { unstake, sousUnstake, sousEmergencyUnstake } from 'utils/callHelpers'
 import { useMasterchef, useSousChef } from './useContract'
+import { useAppDispatch } from '../state'
 
 const useUnstake = (pid: number) => {
   const dispatch = useDispatch()
@@ -29,20 +30,19 @@ const useUnstake = (pid: number) => {
 
 const ELECTRUMIDS = [5, 6, 3, 1, 22, 23, 78]
 
-export const useSousUnstake = (sousId) => {
-  const dispatch = useDispatch()
+export const useSousUnstake = (sousId, enableEmergencyWithdraw = false) => {
+  const dispatch = useAppDispatch()
   const { account } = useWeb3React()
   const masterChefContract = useMasterchef()
   const sousChefContract = useSousChef(sousId)
-  const isOldElectrum = ELECTRUMIDS.includes(sousId)
 
   const handleUnstake = useCallback(
     async (amount: string, decimals: number) => {
       if (sousId === 0) {
         const txHash = await unstake(masterChefContract, 0, amount, account)
         console.info(txHash)
-      } else if (isOldElectrum) {
-        const txHash = await sousEmergencyUnstake(sousChefContract, amount, account)
+      } else if (enableEmergencyWithdraw) {
+        const txHash = await sousEmergencyUnstake(sousChefContract, account)
         console.info(txHash)
       } else {
         const txHash = await sousUnstake(sousChefContract, amount, decimals, account)
@@ -52,7 +52,7 @@ export const useSousUnstake = (sousId) => {
       dispatch(updateUserBalance(sousId, account))
       dispatch(updateUserPendingReward(sousId, account))
     },
-    [account, dispatch, isOldElectrum, masterChefContract, sousChefContract, sousId],
+    [account, dispatch, enableEmergencyWithdraw, masterChefContract, sousChefContract, sousId],
   )
 
   return { onUnstake: handleUnstake }

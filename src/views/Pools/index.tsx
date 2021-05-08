@@ -5,7 +5,7 @@ import { useWeb3React } from '@web3-react/core'
 import { Heading, Flex, Image } from '@lydiafinance/uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
-// import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from 'contexts/Localization'
 import usePersistState from 'hooks/usePersistState'
 import { usePools, useBlock } from 'state/hooks'
 import FlexLayout from 'components/layout/Flex'
@@ -18,7 +18,7 @@ import BountyCard from './components/BountyCard'
 
 const Pools: React.FC = () => {
   const { path } = useRouteMatch()
-  // const { t } = useTranslation()
+  const { t } = useTranslation()
   const { account } = useWeb3React()
   const pools = usePools(account)
   const { currentBlock } = useBlock()
@@ -45,7 +45,7 @@ const Pools: React.FC = () => {
         <Flex justifyContent="space-between" flexDirection={['column', null, 'row']}>
           <Flex flexDirection="column" mr={['8px', 0]}>
             <Heading as="h1" size="xxl" color="secondary" mb="24px">
-              {t('Syrup Pools')}
+              {t('Electrum Pools')}
             </Heading>
             <Heading size="md" color="text">
               {t('Simply stake tokens to earn.')}

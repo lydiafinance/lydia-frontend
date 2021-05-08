@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Menu as UikitMenu } from '@lydiafinance/uikit'
 import { useWeb3React } from '@web3-react/core'
-import { allLanguages } from 'config/localisation/languageCodes'
+import { languageList } from 'config/localization/languages'
 import { LanguageContext } from 'contexts/Localisation/languageContext'
 import useTheme from 'hooks/useTheme'
 import { useGetApiPrice } from 'state/hooks'
@@ -25,7 +25,7 @@ const Menu = (props) => {
       toggleTheme={toggleTheme}
       links={config}
       currentLang={selectedLanguage && selectedLanguage.code}
-      langs={allLanguages}
+      langs={languageList}
       setLang={setSelectedLanguage}
       lydPriceUsd={lydPrice}
       profile={null}

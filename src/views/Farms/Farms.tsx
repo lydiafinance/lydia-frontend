@@ -304,10 +304,10 @@ const Farms: React.FC = () => {
     <>
       <Header>
         <div>
-          <Heading as="h1" size="xxl" color="alwaysWhite" mb="24px">
+          <Heading as="h1" size="xxl" color="secondary" mb="24px">
             {t('Farms')}
           </Heading>
-          <Heading size="lg" color="alwaysWhite">
+          <Heading size="lg" color="secondary">
             {t('Stake Liquidity Pool (LP) tokens to earn.')}
           </Heading>
         </div>

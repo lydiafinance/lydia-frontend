@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Team } from 'config/constants/types'
 import { getWeb3NoAccount } from 'utils/web3'
 import useRefresh from 'hooks/useRefresh'
-import { QuoteToken } from '../config/constants/types'
 import {
   fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
@@ -17,6 +16,7 @@ import {
   clear as clearToast,
   setBlock,
 } from './actions'
+import { QuoteToken } from '../config/constants/types'
 import { State, Farm, Pool, ProfileState, TeamsState, AchievementState, PriceState, FarmsState } from './types'
 // import { fetchProfile } from './profile'
 import { fetchTeam, fetchTeams } from './teams'

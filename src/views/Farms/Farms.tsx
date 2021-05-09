@@ -24,6 +24,7 @@ import { RowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
 import Select, { OptionProps } from './components/Select/Select'
+import useDeviceSize from '../../hooks/useWindowSize'
 
 const ControlContainer = styled.div`
   display: flex;
@@ -124,6 +125,8 @@ const Farms: React.FC = () => {
   const { account } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
   const prices = useGetApiPrices()
+  const deviceSize = useDeviceSize()
+  const { isMobile } = deviceSize
 
   const dispatch = useDispatch()
   const { fastRefresh } = useRefresh()
@@ -301,15 +304,15 @@ const Farms: React.FC = () => {
     <>
       <Header>
         <div>
-          <Heading as="h1" size="xxl" color="secondary" mb="24px">
+          <Heading as="h1" size="xxl" color="alwaysWhite" mb="24px">
             {t('Farms')}
           </Heading>
-          <Heading size="lg" color="text">
+          <Heading size="lg" color="alwaysWhite">
             {t('Stake Liquidity Pool (LP) tokens to earn.')}
           </Heading>
         </div>
 
-        <FarmerImage src="/images/farmer.png" alt="electrum" width={500} height={253} />
+        {!isMobile && <FarmerImage src="/images/farmer.png" alt="electrum" width={350} height={200} />}
       </Header>
       <Page>
         <ControlContainer>

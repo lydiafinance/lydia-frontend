@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import { Card } from '@lydiafinance/uikit'
 
-const StyledCard = styled(Card)<{ isStaking?: boolean; isFinished?: boolean }>`
-  max-width: 352px;
+const StyledCard = styled(Card)<{ isStaking?: boolean; isFinished?: boolean; isHomeCard?: boolean }>`
+  max-width: ${(props) => `${props.isHomeCard ? '100%' : '352px'}`};
   margin: 0 8px 24px;
   background: ${(props) => props.theme.card.background};
   border-radius: 32px;

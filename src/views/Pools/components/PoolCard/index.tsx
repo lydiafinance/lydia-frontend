@@ -13,7 +13,7 @@ import CardFooter from './CardFooter'
 import StyledCardHeader from './StyledCardHeader'
 import CardActions from './CardActions'
 
-const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) => {
+const PoolCard: React.FC<{ pool: Pool; account: string; isHomeCard?: boolean }> = ({ pool, account, isHomeCard }) => {
   const { sousId, stakingToken, earningToken, isFinished, userData } = pool
   const { t } = useTranslation()
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
@@ -25,6 +25,7 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
       isStaking={!isFinished && accountHasStakedBalance}
       isFinished={isFinished && sousId !== 0}
       ribbon={isFinished && <CardRibbon variantColor="textDisabled" text={`${t('Finished')}`} />}
+      isHomeCard={isHomeCard}
     >
       <StyledCardHeader
         earningTokenSymbol={earningToken.symbol}

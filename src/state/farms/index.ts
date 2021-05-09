@@ -42,12 +42,15 @@ export const farmsSlice = createSlice({
       })
       state.userDataLoaded = true
     },
+    setLoadArchivedFarmsData: (state, action) => {
+      const loadArchivedFarmsData = action.payload
+      state.loadArchivedFarmsData = loadArchivedFarmsData
+    },
   },
 })
 
 // Actions
-export const { setFarmsPublicData, setFarmUserData } = farmsSlice.actions
-
+export const { setFarmsPublicData, setFarmUserData, setLoadArchivedFarmsData } = farmsSlice.actions
 // Thunks
 export const fetchFarmsPublicDataAsync = () => async (dispatch) => {
   const farms = await fetchFarms()

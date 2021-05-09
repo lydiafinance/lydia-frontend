@@ -94,7 +94,7 @@ const Home: React.FC = () => {
           </Cards>
         </Cards>
         <Cards column={isMobile}>
-          <PoolCard key={pools[0]?.sousId} pool={pools[0]} account={account} />
+          <PoolCard key={pools[0]?.sousId} pool={pools[0]} account={account} isHomeCard />
           <LydStats />
         </Cards>
       </DesktopSupportCard>
@@ -108,7 +108,7 @@ const Home: React.FC = () => {
           </Cards>
         </Cards>
         <Cards column={isMobile}>
-          <PoolCard key={pools[0]?.sousId} pool={pools[0]} account={account} />
+          <PoolCard key={pools[0]?.sousId} pool={pools[0]} account={account} isHomeCard />
           <FarmStakingCard />
         </Cards>
       </MobileSupportCard>

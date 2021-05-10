@@ -18,8 +18,8 @@ const useGetVaultBountyInfo = () => {
   useEffect(() => {
     const fetchRewards = async () => {
       const [estimatedClaimableLydReward, pendingTotalLydHarvest] = await makeBatchRequest([
-        lydVaultContract?.methods?.calculateHarvestCakeRewards().call,
-        lydVaultContract?.methods?.calculateHarvestCakeRewards().call,
+        lydVaultContract?.methods?.calculateHarvestLydRewards().call,
+        lydVaultContract?.methods?.calculateHarvestLydRewards().call,
       ])
       if (lydPrice) {
         const dollarValueOfClaimableReward = new BigNumber(estimatedClaimableLydReward as string).multipliedBy(lydPrice)

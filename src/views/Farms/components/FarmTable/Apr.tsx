@@ -59,7 +59,7 @@ const Apr: React.FC<AprProps> = ({
         <>
           <AprWrapper>{value}%</AprWrapper>
           {!hideButton && (
-            <ApyButton lpLabel={lpLabel} lydPrice={lydPrice} apy={originalValue} addLiquidityUrl={addLiquidityUrl} />
+            <ApyButton lpLabel={lpLabel} lydPrice={lydPrice} apr={originalValue} addLiquidityUrl={addLiquidityUrl} />
           )}
         </>
       ) : (

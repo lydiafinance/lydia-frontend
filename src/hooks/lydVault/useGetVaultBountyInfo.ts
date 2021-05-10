@@ -13,7 +13,7 @@ const useGetVaultBountyInfo = () => {
   const [estimatedLydBountyReward, setEstimatedLydBountyReward] = useState(null)
   const [totalPendingLydHarvest, setTotalPendingLydHarvest] = useState(null)
 
-  const lydPrice = useGetApiPrice(getLydAddress())
+  const lydPrice = useGetApiPrice('lyd')
 
   useEffect(() => {
     const fetchRewards = async () => {

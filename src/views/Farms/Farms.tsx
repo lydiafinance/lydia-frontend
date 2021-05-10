@@ -175,7 +175,7 @@ const Farms: React.FC = () => {
 
   const farmsList = useCallback(
     (farmsToDisplay: Farm[]): FarmWithStakedValue[] => {
-      let farmsToDisplayWithAPY: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
+      let farmsToDisplayWithAPR: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
         if (!farm.lpTotalInQuoteToken || !prices) {
           return farm
         }
@@ -189,11 +189,11 @@ const Farms: React.FC = () => {
 
       if (query) {
         const lowercaseQuery = query.toLowerCase()
-        farmsToDisplayWithAPY = farmsToDisplayWithAPY.filter((farm: FarmWithStakedValue) => {
+        farmsToDisplayWithAPR = farmsToDisplayWithAPR.filter((farm: FarmWithStakedValue) => {
           return farm.lpSymbol.toLowerCase().includes(lowercaseQuery)
         })
       }
-      return farmsToDisplayWithAPY
+      return farmsToDisplayWithAPR
     },
     [lydPrice, prices, query, isActive],
   )

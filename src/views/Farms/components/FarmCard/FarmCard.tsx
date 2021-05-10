@@ -17,6 +17,7 @@ import ApyButton from './ApyButton'
 export interface FarmWithStakedValue extends Farm {
   apy?: number
   liquidity?: BigNumber
+  apr?: number
 }
 
 const RainbowLight = keyframes`
@@ -140,7 +141,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, lydPrice, account })
           <Text bold style={{ display: 'flex', alignItems: 'center' }}>
             {farm.apy ? (
               <>
-                <ApyButton lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} lydPrice={lydPrice} apy={farm.apy} />
+                <ApyButton lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} lydPrice={lydPrice} apr={farm.apr} />
                 {farmAPY}%
               </>
             ) : (

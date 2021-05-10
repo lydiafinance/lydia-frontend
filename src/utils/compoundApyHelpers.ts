@@ -22,7 +22,7 @@ export const apyModalRoi = ({ amountEarned, amountInvested }) => {
   return percentage.toFixed(2)
 }
 
-// TODO:?NEW CALCULATION
+// TODO:? NEW CALCULATION
 
 export const tokenEarnedPerThousandDollarsCompounding = ({
   numberOfDays,
@@ -35,12 +35,12 @@ export const tokenEarnedPerThousandDollarsCompounding = ({
   // Everything here is worked out relative to a year, with the asset compounding at the compoundFrequency rate. 1 = once per day
   const timesCompounded = 365 * compoundFrequency
   // We use decimal values rather than % in the math for both APY and the number of days being calculates as a proportion of the year
-  let aprAsDecimal = farmApr / 100
+  let aprAsDecimal = 1000 / 100
 
   if (performanceFee) {
     // Reduce the APR by the % performance fee
-    const feeRelativeToApr = (farmApr / 100) * performanceFee
-    const aprAfterFee = farmApr - feeRelativeToApr
+    const feeRelativeToApr = (1000 / 100) * performanceFee
+    const aprAfterFee = 1000 - feeRelativeToApr
     aprAsDecimal = aprAfterFee / 100
   }
 

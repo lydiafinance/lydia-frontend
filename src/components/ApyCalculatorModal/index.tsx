@@ -18,8 +18,8 @@ interface ApyCalculatorModalProps {
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(, 1fr);
-  grid-template-rows: repeat(, auto);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, auto);
   margin-bottom: 24px;
 `
 
@@ -33,7 +33,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   apr,
   linkLabel,
   linkHref,
-  earningTokenSymbol = 'LYD',
+  earningTokenSymbol = 'CAKE',
   roundingDecimals = 2,
   compoundFrequency = 1,
   performanceFee = 0,

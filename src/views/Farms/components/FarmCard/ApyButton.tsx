@@ -1,18 +1,25 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
 import { IconButton, useModal, CalculateIcon } from '@lydiafinance/uikit'
-import ApyCalculatorModal from './ApyCalculatorModal'
+import ApyCalculatorModal from 'components/ApyCalculatorModal'
+import { useTranslation } from 'contexts/Localization'
 
 export interface ApyButtonProps {
   lpLabel?: string
   lydPrice?: BigNumber
-  apy?: number
+  apr?: number
   addLiquidityUrl?: string
 }
 
-const ApyButton: React.FC<ApyButtonProps> = ({ lpLabel, lydPrice, apy, addLiquidityUrl }) => {
+const ApyButton: React.FC<ApyButtonProps> = ({ lpLabel, lydPrice, apr, addLiquidityUrl }) => {
+  const { t } = useTranslation()
   const [onPresentApyModal] = useModal(
-    <ApyCalculatorModal lpLabel={lpLabel} lydPrice={lydPrice} apy={apy} addLiquidityUrl={addLiquidityUrl} />,
+    <ApyCalculatorModal
+      linkLabel={`${t('Get')} ${lpLabel}`}
+      tokenPrice={lydPrice.toNumber()}
+      apr={apr}
+      linkHref={addLiquidityUrl}
+    />,
   )
 
   const handleClickButton = (event): void => {

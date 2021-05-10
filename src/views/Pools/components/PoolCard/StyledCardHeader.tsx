@@ -48,10 +48,10 @@ const StyledCardHeader: React.FC<{
     <Wrapper isFinished={isFinished} background={background}>
       <Flex alignItems="center" justifyContent="space-between">
         <Flex flexDirection="column">
-          <Heading color={isFinished ? 'textDisabled' : 'alwaysWhite'} size="lg">
+          <Heading color={isFinished ? 'textDisabled' : 'text'} size="lg">
             {`${getHeadingPrefix()} ${earningTokenSymbol}`}
           </Heading>
-          <Text color={isFinished ? 'textDisabled' : 'alwaysWhite'}>{getSubHeading()}</Text>
+          <Text color={isFinished ? 'textDisabled' : 'text'}>{getSubHeading()}</Text>
         </Flex>
         <Image src={`/images/pools/${poolImageSrc}`} alt={earningTokenSymbol} width={64} height={64} />
       </Flex>

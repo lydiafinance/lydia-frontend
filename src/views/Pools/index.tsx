@@ -44,13 +44,13 @@ const Pools: React.FC = () => {
       <PageHeader>
         <Flex justifyContent="space-between" flexDirection={['column', null, 'row']}>
           <Flex flexDirection="column" mr={['8px', 0]}>
-            <Heading as="h1" size="xxl" color="alwaysWhite" mb="24px">
+            <Heading as="h1" size="xxl" color="text" mb="24px">
               {t('Electrum Pools')}
             </Heading>
-            <Heading size="md" color="alwaysWhite">
+            <Heading size="md" color="text">
               {t('Simply stake tokens to earn.')}
             </Heading>
-            <Heading size="md" color="alwaysWhite">
+            <Heading size="md" color="text">
               {t('High APR, low risk.')}
             </Heading>
           </Flex>

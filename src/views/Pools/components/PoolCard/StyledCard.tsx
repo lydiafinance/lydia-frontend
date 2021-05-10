@@ -10,7 +10,7 @@ const StyledCard = styled(Card)<{ isStaking?: boolean; isFinished?: boolean; isH
   color: ${({ isFinished, theme }) => theme.colors[isFinished ? 'textDisabled' : 'secondary']};
   box-shadow: ${({ isStaking }) =>
     isStaking
-      ? '0px 0px 0px 2px #53DEE9;'
+      ? '0px 0px 0px 2px #f9d92e;'
       : '0px 2px 12px -8px rgba(25, 19, 38, 0.1), 0px 1px 1px rgba(25, 19, 38, 0.05)'};
   flex-direction: column;
   align-self: baseline;

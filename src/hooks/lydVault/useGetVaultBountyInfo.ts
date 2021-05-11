@@ -4,7 +4,6 @@ import { useGetApiPrice } from 'state/hooks'
 import { useLydVaultContract } from 'hooks/useContract'
 import useRefresh from 'hooks/useRefresh'
 import makeBatchRequest from 'utils/makeBatchRequest'
-import { getLydAddress } from 'utils/addressHelpers'
 
 const useGetVaultBountyInfo = () => {
   const { fastRefresh } = useRefresh()

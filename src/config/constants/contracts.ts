@@ -42,6 +42,6 @@ export default {
   },
   lydVault: {
     [ChainId.FUJI]: '0xaf8F7eB6A1263c7E0c6e3bA7Fd774E248EFc4953',
-    [ChainId.AVALANCHE]: '0xaf8F7eB6A1263c7E0c6e3bA7Fd774E248EFc4953',
+    [ChainId.AVALANCHE]: 'XXXX',
   },
 }

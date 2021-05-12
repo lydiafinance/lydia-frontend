@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tag, VerifiedIcon, CommunityIcon } from '@lydiafinance/uikit'
+import { Tag, VerifiedIcon, CommunityIcon, RefreshIcon, AutoRenewIcon } from '@lydiafinance/uikit'
 
 const CoreTag = (props) => (
   <Tag variant="secondary" outline startIcon={<VerifiedIcon color="secondary" />} {...props}>
@@ -25,4 +25,16 @@ const DualTag = (props) => (
   </Tag>
 )
 
-export { CoreTag, CommunityTag, AvaxTag, DualTag }
+const ManualPoolTag = (props) => (
+  <Tag variant="secondary" outline startIcon={<RefreshIcon width="18px" color="secondary" mr="4px" />} {...props}>
+    Manual
+  </Tag>
+)
+
+const CompoundingPoolTag = (props) => (
+  <Tag variant="success" outline startIcon={<AutoRenewIcon width="18px" color="success" mr="4px" />} {...props}>
+    Auto
+  </Tag>
+)
+
+export { CoreTag, CommunityTag, AvaxTag, DualTag, CompoundingPoolTag, ManualPoolTag }

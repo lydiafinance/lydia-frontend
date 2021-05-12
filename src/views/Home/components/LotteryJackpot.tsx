@@ -2,13 +2,13 @@ import React from 'react'
 import { Text } from '@lydiafinance/uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalRewards } from 'hooks/useTickets'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { useGetApiPrice } from 'state/hooks'
 import { BigNumber } from 'bignumber.js'
 import CardUsdValue from './CardUsdValue'
 
 const LotteryJackpot = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const lotteryPrizeAmount = useTotalRewards()
   const lydPriceUsdt = useGetApiPrice('lyd')
   const balance = getBalanceNumber(lotteryPrizeAmount)
@@ -20,7 +20,7 @@ const LotteryJackpot = () => {
   return (
     <>
       <Text bold fontSize="24px" style={{ lineHeight: '1.5' }}>
-        {TranslateString(999, `${lotteryPrizeAmountLyd} LYD`, { amount: lotteryPrizeAmountLyd })}
+        {t(`${lotteryPrizeAmountLyd} LYD`, { amount: lotteryPrizeAmountLyd })}
       </Text>
       {lotteryPrizeAmountBusd !== 0 && <CardUsdValue value={lotteryPrizeAmountBusd} />}
     </>

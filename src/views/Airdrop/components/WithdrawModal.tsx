@@ -3,7 +3,7 @@ import React, { useCallback, useMemo, useState } from 'react'
 import { Button, Modal } from '@lydiafinance/uikit'
 import ModalActions from 'components/ModalActions'
 import TokenInput from 'components/TokenInput'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 
 interface WithdrawModalProps {
@@ -23,7 +23,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
 }) => {
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(max, stakingTokenDecimals)
   }, [max, stakingTokenDecimals])
@@ -50,7 +50,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
       />
       <ModalActions>
         <Button variant="secondary" onClick={onDismiss}>
-          {TranslateString(462, 'Cancel')}
+          {t('Cancel')}
         </Button>
         <Button
           disabled={pendingTx}
@@ -61,7 +61,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
             onDismiss()
           }}
         >
-          {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
+          {pendingTx ? t('Pending Confirmation') : t('Confirm')}
         </Button>
       </ModalActions>
     </Modal>

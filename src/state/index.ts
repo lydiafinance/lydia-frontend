@@ -1,22 +1,34 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { useDispatch } from 'react-redux'
 import farmsReducer from './farms'
-import toastsReducer from './toasts'
 import poolsReducer from './pools'
 import pricesReducer from './prices'
+// import predictionsReducer from './predictions'
 // import profileReducer from './profile'
 import teamsReducer from './teams'
 import achievementsReducer from './achievements'
 import blockReducer from './block'
+// import collectiblesReducer from './collectibles'
 
-export default configureStore({
+const store = configureStore({
   devTools: process.env.NODE_ENV !== 'production',
   reducer: {
+    achievements: achievementsReducer,
+    block: blockReducer,
     farms: farmsReducer,
-    toasts: toastsReducer,
     pools: poolsReducer,
     prices: pricesReducer,
     teams: teamsReducer,
-    achievements: achievementsReducer,
-    block: blockReducer,
+    // profile: profileReducer,
+    // predictions: predictionsReducer,
+    // collectibles: {},
   },
 })
+
+/**
+ * @see https://redux-toolkit.js.org/usage/usage-with-typescript#getting-the-dispatch-type
+ */
+export type AppDispatch = typeof store.dispatch
+export const useAppDispatch = () => useDispatch<AppDispatch>()
+
+export default store

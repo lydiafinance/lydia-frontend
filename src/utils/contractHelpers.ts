@@ -17,6 +17,7 @@ import {
   getPointCenterIfoAddress,
   getClaimRefundAddress,
   getAirdropAddress,
+  getLydVaultAddress,
 } from 'utils/addressHelpers'
 
 // ABI
@@ -35,7 +36,8 @@ import masterChef from 'config/abi/masterchef.json'
 import sousChef from 'config/abi/sousChef.json'
 import sousChefAvax from 'config/abi/sousChefAvax.json'
 import claimRefundAbi from 'config/abi/claimRefund.json'
-import airDropAbi from 'config/abi/airdrop.json';
+import airDropAbi from 'config/abi/airdrop.json'
+import lydVaultAbi from 'config/abi/lydVaultAbi.json'
 
 const getContract = (abi: any, address: string, web3?: Web3) => {
   const _web3 = web3 ?? web3NoAccount
@@ -85,4 +87,7 @@ export const getClaimRefundContract = (web3?: Web3) => {
 }
 export const getAirdropContract = (web3?: Web3) => {
   return getContract(airDropAbi, getAirdropAddress(), web3)
+}
+export const getLydVaultContract = (web3?: Web3) => {
+  return getContract(lydVaultAbi, getLydVaultAddress(), web3)
 }

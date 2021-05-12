@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
 import { Card, CardBody, CardRibbon } from '@lydiafinance/uikit'
 import { Ifo, IfoStatus } from 'config/constants/types'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import useGetPublicIfoData from 'hooks/useGetPublicIfoData'
 import UnlockButton from 'components/UnlockButton'
 import IfoCardHeader from './IfoCardHeader'
@@ -26,13 +26,13 @@ const StyledIfoCard = styled(Card)<{ ifoId: string }>`
   max-width: 437px;
   width: 100%;
 `
-const getRibbonComponent = (status: IfoStatus, TranslateString: (translationId: number, fallback: string) => any) => {
+const getRibbonComponent = (status: IfoStatus, t: any) => {
   if (status === 'coming_soon') {
-    return <CardRibbon variantColor="textDisabled" text={TranslateString(999, 'Coming Soon')} />
+    return <CardRibbon variantColor="textDisabled" ribbonPosition="left" text={t('Coming Soon')} />
   }
 
   if (status === 'live') {
-    return <CardRibbon variantColor="primary" text={TranslateString(999, 'LIVE NOW!')} />
+    return <CardRibbon variantColor="primary" ribbonPosition="left" text={t('LIVE!')} />
   }
 
   return null
@@ -42,8 +42,8 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
   const { id, name, subTitle } = ifo
   const publicIfoData = useGetPublicIfoData(ifo)
   const { account } = useWeb3React()
-  const TranslateString = useI18n()
-  const Ribbon = getRibbonComponent(publicIfoData.status, TranslateString)
+  const { t } = useTranslation()
+  const Ribbon = getRibbonComponent(publicIfoData.status, t)
 
   return (
     <StyledIfoCard ifoId={id} ribbon={Ribbon} isActive={publicIfoData.status === 'live'}>

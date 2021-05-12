@@ -18,7 +18,7 @@ const tokens = {
     symbol: 'LYD',
     address: {
       [ChainId.AVALANCHE]: '0x4C9B4E1AC6F24CdE3660D5E4Ef1eBF77C710C084',
-      [ChainId.FUJI]: '0x12F81569Fe25657589628B4637d0F16095d87973',
+      [ChainId.FUJI]: '0xDe5D7A6484E885eDcCA237dFa93E970DA60F74Db',
     },
     decimals: 18,
     projectLink: 'https://lydia.finance/',

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
 import { Image, Card, CardBody } from '@lydiafinance/uikit'
 import { useWinningNumbers, useMatchingRewardLength } from 'hooks/useTickets'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import useGetLotteryHasDrawn from 'hooks/useGetLotteryHasDrawn'
 
 const WinningNumbers: React.FC = () => {
@@ -13,7 +13,7 @@ const WinningNumbers: React.FC = () => {
   const MatchedNumber4 = useMatchingRewardLength(4)
   const MatchedNumber3 = useMatchingRewardLength(3)
   const MatchedNumber2 = useMatchingRewardLength(2)
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   return (
     <CardWrapper>
@@ -22,9 +22,7 @@ const WinningNumbers: React.FC = () => {
           <StyledCardContentInner>
             <StyledCardHeader>
               <Title>
-                {account && lotteryHasDrawn
-                  ? `🥳${TranslateString(570, 'Winning Numbers This Round')}🥳`
-                  : TranslateString(440, 'Latest Winning Numbers')}
+                {account && lotteryHasDrawn ? `🥳${t('Winning Numbers This Round')}🥳` : t('Latest Winning Numbers')}
               </Title>
               <br />
             </StyledCardHeader>
@@ -82,26 +80,26 @@ const WinningNumbers: React.FC = () => {
             </RabbitRowSmall>
             <Column>
               <RowNoPadding>
-                <CenteredTextWithPadding>{TranslateString(442, 'Tickets matching 4 numbers:')}</CenteredTextWithPadding>
+                <CenteredTextWithPadding>{t('Tickets matching 4 numbers:')}</CenteredTextWithPadding>
                 <CenteredTextWithPadding>
                   <strong>{MatchedNumber4}</strong>
                 </CenteredTextWithPadding>
               </RowNoPadding>
               <RowNoPadding>
-                <CenteredTextWithPadding>{TranslateString(444, 'Tickets matching 3 numbers:')}</CenteredTextWithPadding>
+                <CenteredTextWithPadding>{t('Tickets matching 3 numbers:')}</CenteredTextWithPadding>
                 <CenteredTextWithPadding>
                   <strong>{MatchedNumber3}</strong>
                 </CenteredTextWithPadding>
               </RowNoPadding>
               <RowNoPadding>
-                <CenteredTextWithPadding>{TranslateString(446, 'Tickets matching 2 numbers:')}</CenteredTextWithPadding>
+                <CenteredTextWithPadding>{t('Tickets matching 2 numbers:')}</CenteredTextWithPadding>
                 <CenteredTextWithPadding>
                   <strong>{MatchedNumber2}</strong>
                 </CenteredTextWithPadding>
               </RowNoPadding>
             </Column>
             <Link href="https://api.lydiaswap.com/api/lottery?page=0&pageSize=25" target="_blank">
-              {TranslateString(448, 'Export recent winning numbers')}
+              {t('Export recent winning numbers')}
             </Link>
           </StyledCardContentInner>
         </CardBody>
@@ -185,7 +183,7 @@ const CenteredTextWithPadding = styled.div`
 const TicketNumberBox = styled.div`
   padding: 10px;
   border-radius: 12px;
-  background: linear-gradient(180deg, #54dade 0%, #24c7d6 76.22%);
+  background: linear-gradient(0deg, #54dade 0%, #24c7d6 76.22%);
   color: white;
   font-size: 20px;
   font-weight: 900;

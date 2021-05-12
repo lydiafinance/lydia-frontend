@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { Menu as UikitMenu } from '@lydiafinance/uikit'
 import { useWeb3React } from '@web3-react/core'
-import { allLanguages } from 'config/localisation/languageCodes'
-import { LanguageContext } from 'contexts/Localisation/languageContext'
+import { languageList } from 'config/localization/languages'
+import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import { useGetApiPrice } from 'state/hooks'
 import useAuth from 'hooks/useAuth'
@@ -12,7 +12,7 @@ import config from './config'
 const Menu = (props) => {
   const { account } = useWeb3React()
   const { login, logout } = useAuth()
-  const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
+  const { currentLanguage, setLanguage } = useTranslation()
   const { isDark, toggleTheme } = useTheme()
   const lydPrice = useGetApiPrice('lyd')
 
@@ -24,9 +24,9 @@ const Menu = (props) => {
       isDark={isDark}
       toggleTheme={toggleTheme}
       links={config}
-      currentLang={selectedLanguage && selectedLanguage.code}
-      langs={allLanguages}
-      setLang={setSelectedLanguage}
+      currentLang={currentLanguage.code}
+      langs={languageList}
+      setLang={setLanguage}
       lydPriceUsd={lydPrice}
       profile={null}
       {...props}

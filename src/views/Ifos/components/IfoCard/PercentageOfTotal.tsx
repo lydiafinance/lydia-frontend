@@ -2,7 +2,7 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import { Text } from '@lydiafinance/uikit'
 import { UserInfo } from 'hooks/useGetWalletIfoData'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 
 interface PercentageOfTotalProps {
   userAmount: UserInfo['amount']
@@ -10,13 +10,13 @@ interface PercentageOfTotalProps {
 }
 
 const PercentageOfTotal: React.FC<PercentageOfTotalProps> = ({ userAmount, totalAmount }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const percentOfUserContribution = userAmount.div(totalAmount).times(100).toNumber()
   const percentOfUserDisplay = percentOfUserContribution.toLocaleString(undefined, { maximumFractionDigits: 5 })
 
   return (
     <Text fontSize="14px" color="textSubtle">
-      {TranslateString(999, `${percentOfUserDisplay}% of total`, { num: percentOfUserDisplay })}
+      {t(`${percentOfUserDisplay}% of total`, { num: percentOfUserDisplay })}
     </Text>
   )
 }

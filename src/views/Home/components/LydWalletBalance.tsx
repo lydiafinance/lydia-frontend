@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Text } from '@lydiafinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import useTokenBalance from 'hooks/useTokenBalance'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { getLydAddress } from 'utils/addressHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useGetApiPrice } from 'state/hooks'
@@ -13,7 +13,7 @@ import CardUsdValue from './CardUsdValue'
 
 const LydWalletBalance = () => {
   const [usdtBalance, setUsdtBalance] = useState(0)
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const lydPrice = useGetApiPrice('lyd')
   const lydBalance = useTokenBalance(getLydAddress())
 
@@ -28,7 +28,7 @@ const LydWalletBalance = () => {
   if (!account) {
     return (
       <Text color="textDisabled" style={{ lineHeight: '54px' }}>
-        {TranslateString(298, 'Locked')}
+        {t('Locked')}
       </Text>
     )
   }

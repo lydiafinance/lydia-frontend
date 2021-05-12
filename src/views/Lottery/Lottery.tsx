@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { ButtonMenu, ButtonMenuItem } from '@lydiafinance/uikit'
 import PastLotteryDataContext from 'contexts/PastLotteryDataContext'
 import { getLotteryIssueIndex } from 'utils/lotteryUtils'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { useLottery } from 'hooks/useContract'
 import Page from 'components/layout/Page'
 import Hero from './components/Hero'
@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 
 const Lottery: React.FC = () => {
   const lotteryContract = useLottery()
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const [activeIndex, setActiveIndex] = useState(0)
   const [historyData, setHistoryData] = useState([])
   const [historyError, setHistoryError] = useState(false)
@@ -61,8 +61,8 @@ const Lottery: React.FC = () => {
       <Page>
         <Wrapper>
           <ButtonMenu activeIndex={activeIndex} onItemClick={handleClick} scale="sm" variant="subtle">
-            <ButtonMenuItem>{TranslateString(716, 'Next draw')}</ButtonMenuItem>
-            <ButtonMenuItem>{TranslateString(718, 'Past draws')}</ButtonMenuItem>
+            <ButtonMenuItem>{t('Next draw')}</ButtonMenuItem>
+            <ButtonMenuItem>{t('Past draws')}</ButtonMenuItem>
           </ButtonMenu>
         </Wrapper>
         <Divider />

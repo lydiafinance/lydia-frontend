@@ -15,7 +15,7 @@ const Ifos = () => {
       <Container>
         <IfoTabButtons />
         <Route exact path={`${path}`}>
-          <CurrentIfo />
+          {/* <CurrentIfo /> */}
         </Route>
         <Route path={`${path}/history`}>
           <PastIfo />

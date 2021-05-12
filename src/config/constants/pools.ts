@@ -2,6 +2,8 @@ import { ChainId } from '@lydiafinance/sdk'
 import tokens from './tokens'
 import { PoolConfig, PoolCategory } from './types'
 
+// enableEmergencyWithdraw: true,
+
 // TODO: add mainnet contracts
 const pools: PoolConfig[] = [
   {
@@ -17,6 +19,8 @@ const pools: PoolConfig[] = [
     tokenPerBlock: '2.5',
     sortOrder: 1,
     isFinished: false,
+    // TODO: Make SURE!!!!!!!!!!!!!!!!!!!
+    // enableEmergencyWithdraw: true,
   },
   {
     sousId: 1001,

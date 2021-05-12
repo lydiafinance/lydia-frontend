@@ -1,16 +1,17 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { Button, useModal, IconButton, AddIcon, MinusIcon } from '@lydiafinance/uikit'
+import { Button, useModal, IconButton, AddIcon, MinusIcon, Skeleton } from '@lydiafinance/uikit'
+import { useLocation } from 'react-router-dom'
 import UnlockButton from 'components/UnlockButton'
 import { useWeb3React } from '@web3-react/core'
 import { useFarmUser } from 'state/hooks'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { useApprove } from 'hooks/useApprove'
 import { getBep20Contract } from 'utils/contractHelpers'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
-import { getBalanceNumber } from 'utils/formatBalance'
+import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
 import useWeb3 from 'hooks/useWeb3'
@@ -23,14 +24,26 @@ const IconButtonWrapper = styled.div`
   display: flex;
 `
 
-const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, lpAddresses, quoteToken, token }) => {
-  const TranslateString = useI18n()
+interface StackedActionProps extends FarmWithStakedValue {
+  userDataReady: boolean
+}
+
+const Staked: React.FunctionComponent<StackedActionProps> = ({
+  pid,
+  lpSymbol,
+  lpAddresses,
+  quoteToken,
+  token,
+  userDataReady,
+}) => {
+  const { t } = useTranslation()
   const { account } = useWeb3React()
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { allowance, tokenBalance, stakedBalance } = useFarmUser(pid)
   const { onStake } = useStake(pid)
   const { onUnstake } = useUnstake(pid)
   const web3 = useWeb3()
+  const location = useLocation()
 
   const isApproved = account && allowance && allowance.isGreaterThan(0)
 
@@ -40,8 +53,14 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, l
     tokenAddress: token.address,
   })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
-  const rawStakedBalance = getBalanceNumber(stakedBalance)
-  const displayBalance = rawStakedBalance.toLocaleString()
+
+  const displayBalance = useCallback(() => {
+    const stakedBalanceNumber = getBalanceNumber(stakedBalance)
+    if (stakedBalanceNumber > 0 && stakedBalanceNumber < 0.0001) {
+      return getFullDisplayBalance(stakedBalance).toLocaleString()
+    }
+    return stakedBalanceNumber.toLocaleString()
+  }, [stakedBalance])
 
   const [onPresentDeposit] = useModal(
     <DepositModal max={tokenBalance} onConfirm={onStake} tokenName={lpSymbol} addLiquidityUrl={addLiquidityUrl} />,
@@ -66,7 +85,7 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, l
     return (
       <ActionContainer>
         <ActionTitles>
-          <Subtle>{TranslateString(999, 'START FARMING')}</Subtle>
+          <Subtle>{t('START FARMING')}</Subtle>
         </ActionTitles>
         <ActionContent>
           <UnlockButton width="100%" />
@@ -76,16 +95,16 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, l
   }
 
   if (isApproved) {
-    if (rawStakedBalance) {
+    if (stakedBalance.gt(0)) {
       return (
         <ActionContainer>
           <ActionTitles>
             <Title>{lpSymbol} </Title>
-            <Subtle>{TranslateString(999, 'STAKED')}</Subtle>
+            <Subtle>{t('STAKED')}</Subtle>
           </ActionTitles>
           <ActionContent>
             <div>
-              <Earned>{displayBalance}</Earned>
+              <Earned>{displayBalance()}</Earned>
             </div>
             <IconButtonWrapper>
               <IconButton variant="secondary" onClick={onPresentWithdraw} mr="6px">
@@ -103,13 +122,31 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, l
     return (
       <ActionContainer>
         <ActionTitles>
-          <Subtle>{TranslateString(999, 'STAKE')} </Subtle>
+          <Subtle>{t('STAKE')} </Subtle>
           <Title>{lpSymbol}</Title>
         </ActionTitles>
         <ActionContent>
-          <Button width="100%" onClick={onPresentDeposit} variant="secondary">
-            {TranslateString(999, 'Stake LP')}
+          <Button
+            width="100%"
+            onClick={onPresentDeposit}
+            variant="secondary"
+            disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
+          >
+            {t('Stake LP')}
           </Button>
+        </ActionContent>
+      </ActionContainer>
+    )
+  }
+
+  if (!userDataReady) {
+    return (
+      <ActionContainer>
+        <ActionTitles>
+          <Subtle>{t('START FARMING')}</Subtle>
+        </ActionTitles>
+        <ActionContent>
+          <Skeleton width={180} marginBottom={28} marginTop={14} />
         </ActionContent>
       </ActionContainer>
     )
@@ -118,11 +155,16 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, l
   return (
     <ActionContainer>
       <ActionTitles>
-        <Subtle>{TranslateString(999, 'ENABLE FARM')}</Subtle>
+        <Subtle>{t('ENABLE FARM')}</Subtle>
       </ActionTitles>
       <ActionContent>
-        <Button width="100%" disabled={requestedApproval} onClick={handleApprove} variant="secondary">
-          {TranslateString(999, 'Enable')}
+        <Button
+          width="100%"
+          disabled={requestedApproval || location.pathname.includes('archived')}
+          onClick={handleApprove}
+          variant="secondary"
+        >
+          {t('Enable')}
         </Button>
       </ActionContent>
     </ActionContainer>

@@ -4,7 +4,7 @@ import { Contract } from 'web3-eth-contract'
 import { Box, Button, Flex, Text, useModal } from '@lydiafinance/uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { Ifo } from 'config/constants/types'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { UserInfo } from 'hooks/useGetWalletIfoData'
 import { PublicIfoState } from 'hooks/useGetPublicIfoData'
 import { useToast } from 'state/hooks'
@@ -29,7 +29,7 @@ const Contribute: React.FC<ContributeProps> = ({
 }) => {
   const { currency, currencyAddress } = ifo
   const { totalAmount } = publicIfoData
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const contributedBalance = getBalanceNumber(userInfo.amount)
   const { toastSuccess } = useToast()
 
@@ -65,7 +65,7 @@ const Contribute: React.FC<ContributeProps> = ({
           </Text>
         </Box>
         <Button onClick={onPresentContributeModal} disabled={isPendingTx}>
-          {TranslateString(999, 'Contribute')}
+          {t('Contribute')}
         </Button>
       </Flex>
       <PercentageOfTotal userAmount={userInfo.amount} totalAmount={totalAmount} />

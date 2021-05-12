@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { HelpIcon } from '@lydiafinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 
 import Tooltip from '../Tooltip/Tooltip'
 
@@ -36,7 +36,7 @@ const Container = styled.div`
 
 const Multiplier: React.FunctionComponent<MultiplierProps> = ({ multiplier }) => {
   const displayMultiplier = multiplier ? multiplier.toLowerCase() : '-'
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   return (
     <Container>
@@ -44,11 +44,10 @@ const Multiplier: React.FunctionComponent<MultiplierProps> = ({ multiplier }) =>
       <Tooltip
         content={
           <div>
-            {TranslateString(999, 'The multiplier represents the amount of LYD rewards each farm gets.')}
+            {t('The multiplier represents the amount of LYD rewards each farm gets.')}
             <br />
             <br />
-            {TranslateString(
-              999,
+            {t(
               'For example, if a 1x farm was getting 1 LYD per second, a 40x farm would be getting 40 LYD per second.',
             )}
           </div>

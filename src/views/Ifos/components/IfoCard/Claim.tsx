@@ -4,7 +4,7 @@ import { useWeb3React } from '@web3-react/core'
 import { Contract } from 'web3-eth-contract'
 import { AutoRenewIcon, Box, Button, Flex, Text } from '@lydiafinance/uikit'
 import { useToast } from 'state/hooks'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { UserInfo, WalletIfoState } from 'hooks/useGetWalletIfoData'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { Ifo } from 'config/constants/types'
@@ -25,7 +25,7 @@ interface ClaimProps {
 const AmountGrid = styled.div`
   display: grid;
   grid-gap: 8px;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(fr);
   margin-bottom: 24px;
 `
 
@@ -41,7 +41,7 @@ const Claim: React.FC<ClaimProps> = ({
   refundingAmount,
   setIsClaimed,
 }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { account } = useWeb3React()
   const didContribute = userInfo.amount.gt(0)
   const canClaim = !userInfo.claimed
@@ -82,8 +82,8 @@ const Claim: React.FC<ClaimProps> = ({
           </Text>
           <MetaLabel>
             {canClaim
-              ? TranslateString(999, `${refundedBalance} to reclaim`, { num: refundedBalance })
-              : TranslateString(999, `${refundedBalance} reclaimed`, { num: refundedBalance })}
+              ? t(`${refundedBalance} to reclaim`, { num: refundedBalance })
+              : t(`${refundedBalance} reclaimed`, { num: refundedBalance })}
           </MetaLabel>
         </Box>
         <Box>
@@ -116,14 +116,14 @@ const Claim: React.FC<ClaimProps> = ({
           isLoading={isPendingTx}
           endIcon={isPendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
         >
-          {canClaim ? TranslateString(999, 'Claim') : TranslateString(999, 'Claimed')}
+          {canClaim ? t('Claim') : t('Claimed')}
         </Button>
       ) : (
         <Button disabled width="100%" mb="24px">
-          {TranslateString(999, 'Nothing to Claim')}
+          {t('Nothing to Claim')}
         </Button>
       )}
-      <Text mt="4px">{TranslateString(999, "You'll be refunded any excess tokens when you claim")}</Text>
+      <Text mt="4px">{t("You'll be refunded any excess tokens when you claim")}</Text>
     </>
   )
 }

@@ -5,8 +5,9 @@ import { CampaignType, FarmConfig, Nft, PoolConfig, Team } from 'config/constant
 export type TranslatableText =
   | string
   | {
-      id: number
-      fallback: string
+      key: string
+      fallback: any
+      id: any
       data?: {
         [key: string]: string | number
       }
@@ -16,13 +17,14 @@ export interface Farm extends FarmConfig {
   tokenAmount?: BigNumber
   quoteTokenAmount?: BigNumber
   lpTotalInQuoteToken?: BigNumber
+  lpTotalSupply?: BigNumber
   tokenPriceVsQuote?: BigNumber
   poolWeight?: BigNumber
   userData?: {
-    allowance: BigNumber
-    tokenBalance: BigNumber
-    stakedBalance: BigNumber
-    earnings: BigNumber
+    allowance: string
+    tokenBalance: string
+    stakedBalance: string
+    earnings: string
   }
 }
 
@@ -59,6 +61,8 @@ export interface ToastsState {
 
 export interface FarmsState {
   data: Farm[]
+  loadArchivedFarmsData: boolean
+  userDataLoaded: boolean
 }
 
 export interface PoolsState {

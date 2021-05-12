@@ -81,6 +81,7 @@ export interface PoolConfig {
   sortOrder?: number
   harvest?: boolean
   isFinished?: boolean
+  enableEmergencyWithdraw?: boolean
 }
 
 export type Images = {

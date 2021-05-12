@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Text, Progress } from '@lydiafinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import useGetLotteryHasDrawn from 'hooks/useGetLotteryHasDrawn'
 import { useCurrentTime } from 'hooks/useTimer'
 import {
@@ -35,7 +35,7 @@ const StyledPrimaryText = styled(Text)`
   margin-right: 16px;
 `
 const LotteryProgress = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const lotteryHasDrawn = useGetLotteryHasDrawn()
   const currentMillis = useCurrentTime()
   const timeUntilTicketSale = getTicketSaleTime(currentMillis)
@@ -49,13 +49,13 @@ const LotteryProgress = () => {
           {lotteryHasDrawn ? timeUntilTicketSale : timeUntilLotteryDraw}
         </StyledPrimaryText>
         <Text fontSize="20px" bold color="invertedContrast">
-          {lotteryHasDrawn ? TranslateString(0, 'Until ticket sale') : TranslateString(0, 'Until lottery draw')}
+          {lotteryHasDrawn ? t('Until ticket sale') : t('Until lottery draw')}
         </Text>
       </TopTextWrapper>
       {lotteryHasDrawn && (
         <BottomTextWrapper>
           <Text color="invertedContrast">
-            {timeUntilLotteryDraw} {TranslateString(0, 'Until lottery draw')}
+            {timeUntilLotteryDraw} {t('Until lottery draw')}
           </Text>
         </BottomTextWrapper>
       )}

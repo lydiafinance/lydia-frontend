@@ -12,7 +12,7 @@ import { useFarms, useGetApiPrices, usePriceLydUsdt } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import { Farm } from 'state/types'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getFarmApy } from 'utils/apy'
 import { orderBy } from 'lodash'
@@ -24,6 +24,7 @@ import { RowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
 import Select, { OptionProps } from './components/Select/Select'
+import useDeviceSize from '../../hooks/useWindowSize'
 
 const ControlContainer = styled.div`
   display: flex;
@@ -116,14 +117,16 @@ const Header = styled.div`
 const Farms: React.FC = () => {
   const { path } = useRouteMatch()
   const { pathname } = useLocation()
-  const TranslateString = useI18n()
-  const farmsLP = useFarms()
+  const { t } = useTranslation()
+  const { data: farmsLP, userDataLoaded } = useFarms()
   const lydPrice = usePriceLydUsdt()
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = useState(ViewMode.CARD)
   const { account } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
   const prices = useGetApiPrices()
+  const deviceSize = useDeviceSize()
+  const { isMobile } = deviceSize
 
   const dispatch = useDispatch()
   const { fastRefresh } = useRefresh()
@@ -135,6 +138,10 @@ const Farms: React.FC = () => {
 
   const [stakedOnly, setStakedOnly] = useState(false)
   const isActive = !pathname.includes('history')
+
+  // Users with no wallet connected should see 0 as Earned amount
+  // Connected users should see loading indicator until first userData has loaded
+  const userDataReady = !account || (!!account && userDataLoaded)
 
   const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X')
   const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X')
@@ -168,7 +175,7 @@ const Farms: React.FC = () => {
 
   const farmsList = useCallback(
     (farmsToDisplay: Farm[]): FarmWithStakedValue[] => {
-      let farmsToDisplayWithAPY: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
+      let farmsToDisplayWithAPR: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
         if (!farm.lpTotalInQuoteToken || !prices) {
           return farm
         }
@@ -182,11 +189,11 @@ const Farms: React.FC = () => {
 
       if (query) {
         const lowercaseQuery = query.toLowerCase()
-        farmsToDisplayWithAPY = farmsToDisplayWithAPY.filter((farm: FarmWithStakedValue) => {
+        farmsToDisplayWithAPR = farmsToDisplayWithAPR.filter((farm: FarmWithStakedValue) => {
           return farm.lpSymbol.toLowerCase().includes(lowercaseQuery)
         })
       }
-      return farmsToDisplayWithAPY
+      return farmsToDisplayWithAPR
     },
     [lydPrice, prices, query, isActive],
   )
@@ -268,7 +275,7 @@ const Farms: React.FC = () => {
         sortable: column.sortable,
       }))
 
-      return <Table data={rowData} columns={columns} />
+      return <Table data={rowData} columns={columns} userDataReady={userDataReady} />
     }
 
     return (
@@ -297,15 +304,15 @@ const Farms: React.FC = () => {
     <>
       <Header>
         <div>
-          <Heading as="h1" size="xxl" color="secondary" mb="24px">
-            {TranslateString(999, 'Farms')}
+          <Heading as="h1" size="xxl" color="text" mb="24px">
+            {t('Farms')}
           </Heading>
           <Heading size="lg" color="text">
-            {TranslateString(999, 'Stake Liquidity Pool (LP) tokens to earn.')}
+            {t('Stake Liquidity Pool (LP) tokens to earn.')}
           </Heading>
         </div>
 
-        <FarmerImage src="/images/farmer.png" alt="electrum" width={500} height={253} />
+        {!isMobile && <FarmerImage src="/images/farmer.png" alt="electrum" width={350} height={200} />}
       </Header>
       <Page>
         <ControlContainer>
@@ -313,7 +320,7 @@ const Farms: React.FC = () => {
             <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
             <ToggleWrapper>
               <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
-              <Text> {TranslateString(1116, 'Staked only')}</Text>
+              <Text> {t('Staked only')}</Text>
             </ToggleWrapper>
             {/* <FarmTabButtons /> */}
           </ViewControls>

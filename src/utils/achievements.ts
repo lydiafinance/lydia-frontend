@@ -13,14 +13,14 @@ interface IfoMapResponse {
 
 export const getAchievementTitle = (campaign: Campaign): TranslatableText => {
   switch (campaign.type) {
-    case 'ifo':
-      return {
-        id: 999,
-        fallback: `IFO Shopper: ${campaign.title}`,
-        data: {
-          name: campaign.title as string,
-        },
-      }
+    // case 'ifo':
+    //   return {
+    //     id: 999,
+    //     fallback: `IFO Shopper: ${campaign.title}`,
+    //     data: {
+    //       name: campaign.title as string,
+    //     },
+    //   }
     default:
       return campaign.title
   }
@@ -28,14 +28,14 @@ export const getAchievementTitle = (campaign: Campaign): TranslatableText => {
 
 export const getAchievementDescription = (campaign: Campaign): TranslatableText => {
   switch (campaign.type) {
-    case 'ifo':
-      return {
-        id: 999,
-        fallback: `Committed more than $5 worth of LP in the ${campaign.title} IFO`,
-        data: {
-          name: campaign.title as string,
-        },
-      }
+    // case 'ifo':
+    //   return {
+    //     id: 999,
+    //     fallback: `Committed more than $5 worth of LP in the ${campaign.title} IFO`,
+    //     data: {
+    //       name: campaign.title as string,
+    //     },
+    //   }
     default:
       return campaign.description
   }

@@ -6,7 +6,7 @@ import { Modal, LinkExternal, Box, Text } from '@lydiafinance/uikit'
 import BalanceInput from 'components/AvaxInput'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getBalanceNumber } from 'utils/formatBalance'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 // import ApproveConfirmButtons from 'views/Profile/components/ApproveConfirmButtons'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
 import { useERC20 } from 'hooks/useContract'
@@ -24,7 +24,7 @@ const ContributeModal: React.FC<Props> = ({ currency, contract, currencyAddress,
   const { account } = useWeb3React()
   const raisingTokenContract = useERC20(currencyAddress)
   const balance = getBalanceNumber(useTokenBalance(currencyAddress))
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const valueWithTokenDecimals = new BigNumber(value).times(new BigNumber(10).pow(18))
   const {
     isApproving,
@@ -61,7 +61,7 @@ const ContributeModal: React.FC<Props> = ({ currency, contract, currencyAddress,
     <Modal title={`Contribute ${currency}`} onDismiss={onDismiss}>
       <Box maxWidth="400px">
         <BalanceInput
-          title={TranslateString(999, 'Contribute')}
+          title={t('Contribute')}
           value={value}
           onChange={(e) => setValue(e.currentTarget.value)}
           symbol={currency}
@@ -70,8 +70,7 @@ const ContributeModal: React.FC<Props> = ({ currency, contract, currencyAddress,
           mb="24px"
         />
         <Text as="p" mb="24px">
-          {TranslateString(
-            999,
+          {t(
             "If you don't contribute enough LP tokens, you may not receive any IFO tokens at all and will only receive a full refund of your LP tokens.",
           )}
         </Text>

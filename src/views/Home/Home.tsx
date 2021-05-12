@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import { Heading, Text, BaseLayout } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
@@ -13,6 +13,7 @@ import LydStats from 'views/Home/components/LydStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
 import EarnAPYCard from 'views/Home/components/EarnAPYCard'
 import PoolCard from '../Pools/components/PoolCard'
+import LydVaultCard from '../Pools/components/LydVaultCard'
 import useDeviceSize from '../../hooks/useWindowSize'
 
 const Hero = styled.div`
@@ -75,6 +76,7 @@ const Home: React.FC = () => {
   const deviceSize = useDeviceSize()
   const { isMobile } = deviceSize
   const pools = usePools(account)
+  const autoPool = useMemo(() => pools.find((pool) => pool.sousId === 0), [pools])
 
   return (
     <Page>
@@ -94,7 +96,7 @@ const Home: React.FC = () => {
           </Cards>
         </Cards>
         <Cards column={isMobile}>
-          <PoolCard key={pools[0]?.sousId} pool={pools[0]} account={account} isHomeCard />
+          <LydVaultCard pool={autoPool} isHomeCard />
           <LydStats />
         </Cards>
       </DesktopSupportCard>
@@ -108,7 +110,7 @@ const Home: React.FC = () => {
           </Cards>
         </Cards>
         <Cards column={isMobile}>
-          <PoolCard key={pools[0]?.sousId} pool={pools[0]} account={account} isHomeCard />
+          <LydVaultCard pool={autoPool} isHomeCard />
           <FarmStakingCard />
         </Cards>
       </MobileSupportCard>

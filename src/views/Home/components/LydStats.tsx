@@ -16,6 +16,7 @@ import { LYD_PER_SECOND } from '../../../config/index'
 const StyledLydStats = styled(Card)`
   margin-left: auto;
   margin-right: auto;
+  height: 100%;
 `
 
 const Row = styled.div`
@@ -68,12 +69,15 @@ const LydStats = () => {
           <CardValue fontSize="14px" decimals={0} value={Number(LYD_PER_SECOND)} />
         </Row>
 
-        {isMobile && (
-          <Row>
-            <Text fontSize="14px">{t('LYD Price')}</Text>
-            <Text fontSize="14px">{t(`$${lydPrice?.toFixed(3)}`)}</Text>
-          </Row>
-        )}
+        <Row>
+          <Text fontSize="14px">{t('LYD Market Cap 💰')}</Text>
+          <CardValue fontSize="14px" decimals={0} prefix="$" value={Number(lydSupply * lydPrice)} />
+        </Row>
+
+        <Row>
+          <Text fontSize="14px">{t('LYD Price 💲')}</Text>
+          <Text fontSize="14px">{t(`$${lydPrice?.toFixed(3)}`)}</Text>
+        </Row>
 
         <Flex mb="4px">
           <TokenLink onClick={() => registerToken(tokenAddress, 'LYD', 18, imageSrc)}>Add LYD to Metamask</TokenLink>

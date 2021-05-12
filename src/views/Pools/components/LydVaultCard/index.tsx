@@ -25,10 +25,11 @@ const StyledCardBody = styled(CardBody)<{ isLoading: boolean }>`
 
 interface LydVaultProps {
   pool: Pool
-  showStakedOnly: boolean
+  showStakedOnly?: boolean
+  isHomeCard?: boolean
 }
 
-const LydVaultCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly }) => {
+const LydVaultCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHomeCard }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { lastUpdated, setLastUpdated } = useLastUpdated()
@@ -48,7 +49,7 @@ const LydVaultCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly }) => {
   }
 
   return (
-    <StyledCard isStaking={accountHasSharesStaked}>
+    <StyledCard isStaking={accountHasSharesStaked} isHomeCard={isHomeCard}>
       <StyledCardHeader isAutoVault earningTokenSymbol="LYD" stakingTokenSymbol="LYD" />
       <StyledCardBody isLoading={isLoading}>
         <AprRow

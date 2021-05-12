@@ -45,3 +45,6 @@ export const getPointCenterIfoAddress = () => {
 export const getAirdropAddress = () => {
   return getAddress(addresses.airdrop)
 }
+export const getLydVaultAddress = () => {
+  return getAddress(addresses.lydVault)
+}

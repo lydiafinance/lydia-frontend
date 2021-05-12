@@ -1,16 +1,16 @@
 import React from 'react'
 import { Heading, Card, CardBody } from '@lydiafinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import HistoryChart from './HistoryChart'
 import Legend from './Legend'
 
 const PastDrawsHistoryCard: React.FC = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   return (
     <Card>
       <CardBody>
-        <Heading size="md">{TranslateString(746, 'History')}</Heading>
+        <Heading size="md">{t('History')}</Heading>
         <Legend />
         <HistoryChart />
       </CardBody>

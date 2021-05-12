@@ -5,7 +5,7 @@ import { Flex, Text, Skeleton } from '@lydiafinance/uikit'
 import { communityFarms } from 'config/constants'
 import { Farm } from 'state/types'
 import { provider as ProviderType } from 'web3-core'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
@@ -17,6 +17,7 @@ import ApyButton from './ApyButton'
 export interface FarmWithStakedValue extends Farm {
   apy?: number
   liquidity?: BigNumber
+  apr?: number
 }
 
 const RainbowLight = keyframes`
@@ -99,7 +100,7 @@ interface FarmCardProps {
 }
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, lydPrice, account }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
@@ -136,11 +137,11 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, lydPrice, account })
       />
       {!removed && (
         <Flex justifyContent="space-between" alignItems="center">
-          <Text>{TranslateString(736, 'APR')}:</Text>
+          <Text>{t('APR')}:</Text>
           <Text bold style={{ display: 'flex', alignItems: 'center' }}>
             {farm.apy ? (
               <>
-                <ApyButton lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} lydPrice={lydPrice} apy={farm.apy} />
+                <ApyButton lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} lydPrice={lydPrice} apr={farm.apr} />
                 {farmAPY}%
               </>
             ) : (
@@ -150,7 +151,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, lydPrice, account })
         </Flex>
       )}
       <Flex justifyContent="space-between">
-        <Text>{TranslateString(318, 'Earn')}:</Text>
+        <Text>{t('Earn')}:</Text>
         <Text bold>{earnLabel}</Text>
       </Flex>
       <CardActionsContainer farm={farm} account={account} addLiquidityUrl={addLiquidityUrl} />

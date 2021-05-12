@@ -1,25 +1,28 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { useWeb3React } from '@web3-react/core'
-import { Button } from '@lydiafinance/uikit'
+import { Button, Skeleton } from '@lydiafinance/uikit'
 import BigNumber from 'bignumber.js'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useHarvest } from 'hooks/useHarvest'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { useGetApiPrice } from 'state/hooks'
 import { useCountUp } from 'react-countup'
 
 import { ActionContainer, ActionTitles, Title, Subtle, ActionContent, Earned, Staked } from './styles'
 
-const HarvestAction: React.FunctionComponent<FarmWithStakedValue> = ({ pid, userData }) => {
-  const { account } = useWeb3React()
-  const earningsBigNumber = userData && account ? new BigNumber(userData.earnings) : null
-  const lydPrice = useGetApiPrice('lyd')
-  let earnings = null
-  let earningsUsdt = 0
-  let displayBalance = '?'
+interface HarvestActionProps extends FarmWithStakedValue {
+  userDataReady: boolean
+}
 
-  if (earningsBigNumber) {
+const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userData, userDataReady }) => {
+  const earningsBigNumber = new BigNumber(userData.earnings)
+  const lydPrice = useGetApiPrice('lyd')
+  let earnings = 0
+  let earningsUsdt = 0
+  let displayBalance = userDataReady ? earnings.toLocaleString() : <Skeleton width={60} />
+
+  // If user didn't connect wallet default balance will be 0
+  if (!earningsBigNumber.isZero()) {
     earnings = getBalanceNumber(earningsBigNumber)
     earningsUsdt = new BigNumber(earnings).multipliedBy(lydPrice).toNumber()
     displayBalance = earnings.toLocaleString()
@@ -27,7 +30,7 @@ const HarvestAction: React.FunctionComponent<FarmWithStakedValue> = ({ pid, user
 
   const [pendingTx, setPendingTx] = useState(false)
   const { onReward } = useHarvest(pid)
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   const { countUp, update } = useCountUp({
     start: 0,
@@ -46,15 +49,15 @@ const HarvestAction: React.FunctionComponent<FarmWithStakedValue> = ({ pid, user
     <ActionContainer>
       <ActionTitles>
         <Title>LYD </Title>
-        <Subtle>{TranslateString(999, 'EARNED')}</Subtle>
+        <Subtle>{t('EARNED')}</Subtle>
       </ActionTitles>
       <ActionContent>
         <div>
           <Earned>{displayBalance}</Earned>
-          <Staked>~{countUp}USD</Staked>
+          {countUp > 0 && <Staked>~{countUp}USD</Staked>}
         </div>
         <Button
-          disabled={!earnings || pendingTx || !account}
+          disabled={!earnings || pendingTx || !userDataReady}
           onClick={async () => {
             setPendingTx(true)
             await onReward()
@@ -62,7 +65,7 @@ const HarvestAction: React.FunctionComponent<FarmWithStakedValue> = ({ pid, user
           }}
           ml="4px"
         >
-          {TranslateString(562, 'Harvest')}
+          {t('Harvest')}
         </Button>
       </ActionContent>
     </ActionContainer>

@@ -1,5 +1,5 @@
 import React from 'react'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import styled from 'styled-components'
 import { Text, Flex, Link, LinkExternal } from '@lydiafinance/uikit'
 
@@ -37,23 +37,23 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   lpLabel,
   addLiquidityUrl,
 }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   return (
     <Wrapper>
       <Flex justifyContent="space-between">
-        <Text>{TranslateString(316, 'Stake')}:</Text>
+        <Text>{t('Stake')}:</Text>
         <StyledLinkExternal href={addLiquidityUrl}>{lpLabel}</StyledLinkExternal>
       </Flex>
       {!removed && (
         <Flex justifyContent="space-between">
-          <Text>{TranslateString(354, 'Total Liquidity')}:</Text>
+          <Text>{t('Total Liquidity')}:</Text>
           <Text>{totalValueFormatted}</Text>
         </Flex>
       )}
       <Flex justifyContent="flex-start">
         <Link external href={cChainExplorer} bold={false}>
-          {TranslateString(356, 'View on C-Chain explorer')}
+          {t('View on C-Chain explorer')}
         </Link>
       </Flex>
     </Wrapper>

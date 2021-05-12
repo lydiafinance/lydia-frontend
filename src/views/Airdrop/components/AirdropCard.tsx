@@ -6,7 +6,7 @@ import styled, { keyframes } from 'styled-components'
 import UnlockButton from 'components/UnlockButton'
 import Label from 'components/Label'
 import { getLydAddress } from 'utils/addressHelpers'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import Balance from 'components/Balance'
 import { Pool } from 'state/types'
 import Card from './Card'
@@ -59,7 +59,7 @@ const StyledCardAccent = styled.div`
 `
 
 const AirdropCard: React.FC<HarvestProps> = ({ onClaim, amount, claimingAllowed }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { account } = useWeb3React()
   const userCanClaim = claimingAllowed && Number(amount) > 0
 
@@ -80,7 +80,7 @@ const AirdropCard: React.FC<HarvestProps> = ({ onClaim, amount, claimingAllowed 
         <Balance value={amount} isDisabled={!userCanClaim} />
         <Label
           isFinished={userCanClaim || !claimingAllowed}
-          text={TranslateString(330, userCanClaim ? 'No LYD to claim' : `Unclaimed LYD`)}
+          text={t(userCanClaim ? 'No LYD to claim' : `Unclaimed LYD`)}
         />
         <StyledCardActions>
           {!account && <UnlockButton />}

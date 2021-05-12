@@ -4,7 +4,7 @@ import { Heading, Card, CardBody, Button, useModal } from '@lydiafinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import { getLydAddress } from 'utils/addressHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import useGetLotteryHasDrawn from 'hooks/useGetLotteryHasDrawn'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { useMultiClaimLottery } from 'hooks/useBuyLottery'
@@ -49,7 +49,7 @@ const LotteryCard = () => {
   const { account } = useWeb3React()
   const lotteryHasDrawn = useGetLotteryHasDrawn()
   const [requestClaim, setRequestedClaim] = useState(false)
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const allowance = useLotteryAllowance()
   const [onPresentApprove] = useModal(<PurchaseWarningModal />)
   const { claimAmount } = useTotalClaim()
@@ -74,13 +74,13 @@ const LotteryCard = () => {
     if (!allowance.toNumber()) {
       return (
         <Button width="100%" disabled={requestedApproval} onClick={handleApprove}>
-          {TranslateString(494, 'Approve LYD')}
+          {t('Approve LYD')}
         </Button>
       )
     }
     return (
       <Button id="dashboard-buy-tickets" variant="secondary" onClick={onPresentBuy} disabled={lotteryHasDrawn}>
-        {TranslateString(558, 'Buy Tickets')}
+        {t('Buy Tickets')}
       </Button>
     )
   }
@@ -91,15 +91,15 @@ const LotteryCard = () => {
     <StyledLotteryCard>
       <CardBody>
         <Heading size="xl" mb="24px">
-          {TranslateString(550, 'Your Lottery Winnings')}
+          {t('Your Lottery Winnings')}
         </Heading>
         <CardImage src="/images/ticket.svg" alt="lyd logo" width={64} height={64} />
         <Block>
-          <Label>{TranslateString(552, 'LYD to Collect')}:</Label>
+          <Label>{t('LYD to Collect')}:</Label>
           <LydWinnings />
         </Block>
         <Block>
-          <Label>{TranslateString(554, 'Total jackpot this round')}:</Label>
+          <Label>{t('Total jackpot this round')}:</Label>
           <LotteryJackpot />
         </Block>
         {account ? (
@@ -110,7 +110,7 @@ const LotteryCard = () => {
               onClick={handleClaim}
               style={{ marginRight: '8px' }}
             >
-              {TranslateString(556, 'Collect Winnings')}
+              {t('Collect Winnings')}
             </Button>
             {renderLotteryTicketButtonBuyOrApprove()}
           </Actions>

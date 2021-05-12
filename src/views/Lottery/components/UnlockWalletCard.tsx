@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Heading, Card, CardBody, Ticket } from '@lydiafinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import UnlockButton from 'components/UnlockButton'
 
 const StyledCardBody = styled(CardBody)`
@@ -23,7 +23,7 @@ const IconWrapper = styled.div`
 `
 
 const UnlockWalletCard = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   return (
     <Card isActive>
@@ -31,7 +31,7 @@ const UnlockWalletCard = () => {
         <IconWrapper>
           <Ticket />
         </IconWrapper>
-        <StyledHeading size="md">{TranslateString(1080, 'Unlock wallet to access lottery')}</StyledHeading>
+        <StyledHeading size="md">{t('Unlock wallet to access lottery')}</StyledHeading>
         <UnlockButton />
       </StyledCardBody>
     </Card>

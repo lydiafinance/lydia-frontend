@@ -5,7 +5,7 @@ import { useWeb3React } from '@web3-react/core'
 import { Heading } from '@lydiafinance/uikit'
 import useWeb3 from 'hooks/useWeb3'
 
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
 import AirdropCard from './components/AirdropCard'
@@ -13,7 +13,7 @@ import Divider from './components/Divider'
 import { useAirdropContract } from '../../hooks/useContract'
 
 const Airdrop: React.FC = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { account } = useWeb3React()
   const airdropContract = useAirdropContract()
   const web3 = useWeb3()
@@ -58,16 +58,16 @@ const Airdrop: React.FC = () => {
       <Hero>
         <div>
           <Heading as="h1" size="xxl" mb="16px">
-            {TranslateString(738, 'Airdrop')}
+            {t('Airdrop')}
           </Heading>
           <Heading as="h6" size="md" mb="5px">
-            {TranslateString(580, 'Claim your airdrop.')}
+            {t('Claim your airdrop.')}
           </Heading>
           <Heading as="h6" size="md" mb="5px">
-            {TranslateString(486, 'Create LP or stake them to Electrum,')}
+            {t('Create LP or stake them to Electrum,')}
           </Heading>
           <Heading as="h6" size="md" mb="5px">
-            {TranslateString(406, 'And start to earn more LYD.')}
+            {t('And start to earn more LYD.')}
           </Heading>
         </div>
         <img src="/images/mascot_airdrop.png" alt="Electrum POOL icon" width={280} height={180} />

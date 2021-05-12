@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Flex, Link } from '@lydiafinance/uikit'
 import { IfoStatus } from 'config/constants/types'
 import getTimePeriods from 'utils/getTimePeriods'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 
 export interface IfoCardTimeProps {
   status: IfoStatus
@@ -28,7 +28,7 @@ const Countdown = styled.div`
 `
 
 const IfoCardTime: React.FC<IfoCardTimeProps> = ({ status, secondsUntilStart, secondsUntilEnd, block }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const countdownToUse = status === 'coming_soon' ? secondsUntilStart : secondsUntilEnd
   const timeUntil = getTimePeriods(countdownToUse)
   const suffix = status === 'coming_soon' ? 'start' : 'finish'
@@ -36,7 +36,7 @@ const IfoCardTime: React.FC<IfoCardTimeProps> = ({ status, secondsUntilStart, se
   if (status === 'idle') {
     return (
       <Flex alignItems="center" justifyContent="center" mb="24px" height="24px">
-        {TranslateString(656, 'Loading...')}
+        {t('Loading...')}
       </Flex>
     )
   }

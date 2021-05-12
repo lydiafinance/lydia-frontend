@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Text, Heading, Link, Image } from '@lydiafinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 
 const LayoutWrapper = styled.div`
   max-width: 500px;
@@ -24,21 +24,20 @@ const StyledLink = styled(Link)`
 `
 
 const HowItWorks = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   return (
     <LayoutWrapper>
       <StyledImage src="/images/lydia-lottery-bunny.png" alt="lottery bunny" width={163} height={140} />
       <StyledHeading size="lg" as="h3" color="secondary">
-        {TranslateString(632, 'How it works')}
+        {t('How it works')}
       </StyledHeading>
       <Text fontSize="16px">
-        {TranslateString(
-          426,
+        {t(
           'Spend LYD to buy tickets, contributing to the lottery pot. Win prizes if 2, 3, or 4 of your ticket numbers match the winning numbers and their exact order!',
         )}
       </Text>
-      <StyledLink href="https://docs.lydia.finance/lottery-1">{TranslateString(610, 'Read more')}</StyledLink>
+      <StyledLink href="https://docs.lydia.finance/lottery-1">{t('Read more')}</StyledLink>
     </LayoutWrapper>
   )
 }

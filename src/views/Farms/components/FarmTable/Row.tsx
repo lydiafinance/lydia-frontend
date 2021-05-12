@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useMatchBreakpoints } from '@lydiafinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
+import useDelayedUnmount from 'hooks/useDelayedUnmount'
+import { useFarmUser } from 'state/hooks'
 
 import Apr, { AprProps } from './Apr'
 import Farm, { FarmProps } from './Farm'
@@ -21,6 +23,10 @@ export interface RowProps {
   multiplier: MultiplierProps
   liquidity: LiquidityProps
   details: FarmWithStakedValue
+}
+
+interface RowPropsWithLoading extends RowProps {
+  userDataReady: boolean
 }
 
 const cells = {
@@ -62,14 +68,20 @@ const FarmMobileCell = styled.td`
   padding-top: 24px;
 `
 
-const Row: React.FunctionComponent<RowProps> = (props) => {
-  const { details } = props
-  const [actionPanelToggled, setActionPanelToggled] = useState(false)
-  const TranslateString = useI18n()
+const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
+  const { details, userDataReady } = props
+  const hasStakedAmount = !!useFarmUser(details.pid).stakedBalance.toNumber()
+  const [actionPanelExpanded, setActionPanelExpanded] = useState(hasStakedAmount)
+  const shouldRenderChild = useDelayedUnmount(actionPanelExpanded, 300)
+  const { t } = useTranslation()
 
   const toggleActionPanel = () => {
-    setActionPanelToggled(!actionPanelToggled)
+    setActionPanelExpanded(!actionPanelExpanded)
   }
+
+  useEffect(() => {
+    setActionPanelExpanded(hasStakedAmount)
+  }, [hasStakedAmount])
 
   const { isXl, isXs } = useMatchBreakpoints()
 
@@ -93,7 +105,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                   <td key={key}>
                     <CellInner>
                       <CellLayout>
-                        <Details actionPanelToggled={actionPanelToggled} />
+                        <Details actionPanelToggled={actionPanelExpanded} />
                       </CellLayout>
                     </CellInner>
                   </td>
@@ -102,7 +114,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                 return (
                   <td key={key}>
                     <CellInner>
-                      <CellLayout label={TranslateString(736, 'APR')}>
+                      <CellLayout label={t('APR')}>
                         <Apr {...props.apr} hideButton={isMobile} />
                       </CellLayout>
                     </CellInner>
@@ -112,10 +124,8 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                 return (
                   <td key={key}>
                     <CellInner>
-                      <CellLayout
-                        label={TranslateString(tableSchema[columnIndex].translationId, tableSchema[columnIndex].label)}
-                      >
-                        {React.createElement(cells[key], props[key])}
+                      <CellLayout label={t(tableSchema[columnIndex].label)}>
+                        {React.createElement(cells[key], { ...props[key], userDataReady })}
                       </CellLayout>
                     </CellInner>
                   </td>
@@ -138,12 +148,12 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
           </tr>
           <tr>
             <EarnedMobileCell>
-              <CellLayout label={TranslateString(1072, 'Earned')}>
-                <Earned {...props.earned} />
+              <CellLayout label={t('Earned')}>
+                <Earned {...props.earned} userDataReady={userDataReady} />
               </CellLayout>
             </EarnedMobileCell>
             <AprMobileCell>
-              <CellLayout label={TranslateString(736, 'APR')}>
+              <CellLayout label={t('APR')}>
                 <Apr {...props.apr} hideButton />
               </CellLayout>
             </AprMobileCell>
@@ -152,7 +162,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
         <td>
           <CellInner>
             <CellLayout>
-              <Details actionPanelToggled={actionPanelToggled} />
+              <Details actionPanelToggled={actionPanelExpanded} />
             </CellLayout>
           </CellInner>
         </td>
@@ -163,10 +173,10 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
   return (
     <>
       {handleRenderRow()}
-      {actionPanelToggled && details && (
+      {shouldRenderChild && (
         <tr>
           <td colSpan={6}>
-            <ActionPanel {...props} />
+            <ActionPanel {...props} expanded={actionPanelExpanded} />
           </td>
         </tr>
       )}

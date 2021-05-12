@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Text, LinkExternal, Link, Box, CardFooter, Button, ChevronDownIcon, ChevronUpIcon } from '@lydiafinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { PublicIfoState } from 'hooks/useGetPublicIfoData'
 import { Ifo } from 'config/constants/types'
 
@@ -22,7 +22,7 @@ const Display = styled(Text)`
 
 const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({ ifo, publicIfoData }) => {
   const [isOpen, setIsOpen] = useState(false)
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { description, lydToBurn, projectSiteUrl, launchDate, launchTime, saleAmount, raiseAmount } = ifo
   const { raisingAmount, totalAmount } = publicIfoData
   const handleToggle = () => setIsOpen(!isOpen)
@@ -37,7 +37,7 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({ ifo, publicIfoData }) =
           isOpen ? <ChevronUpIcon color="primary" width="24px" /> : <ChevronDownIcon color="primary" width="24px" />
         }
       >
-        {isOpen ? TranslateString(1066, 'Hide') : TranslateString(658, 'Details')}
+        {isOpen ? t('Hide') : t('Details')}
       </Button>
       {isOpen && (
         <>
@@ -46,7 +46,7 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({ ifo, publicIfoData }) =
           </Text>
           <Box mb="24px">
             <Item>
-              <Display>{TranslateString(582, 'Launch Time')}</Display>
+              <Display>{t('Launch Time')}</Display>
               <Text>
                 {launchDate},
                 <Link
@@ -61,24 +61,24 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({ ifo, publicIfoData }) =
               </Text>
             </Item>
             <Item>
-              <Display>{TranslateString(584, 'For Sale')}</Display>
+              <Display>{t('For Sale')}</Display>
               <Text>{saleAmount}</Text>
             </Item>
             <Item>
-              <Display>{TranslateString(999, 'To raise (USD)')}</Display>
+              <Display>{t('To raise (USD)')}</Display>
               <Text>{raiseAmount}</Text>
             </Item>
             <Item>
-              <Display>{TranslateString(586, 'LYD to burn (USD)')}</Display>
+              <Display>{t('LYD to burn (USD)')}</Display>
               <Text>{lydToBurn}</Text>
             </Item>
             <Item>
-              <Display>{TranslateString(999, 'Total raised (% of target)')}</Display>
+              <Display>{t('Total raised (% of target)')}</Display>
               <Text>{`${totalAmount.div(raisingAmount).times(100).toFixed(2)}%`}</Text>
             </Item>
           </Box>
           <LinkExternal href={projectSiteUrl} style={{ margin: 'auto' }}>
-            {TranslateString(412, 'View project site')}
+            {t('View project site')}
           </LinkExternal>
         </>
       )}

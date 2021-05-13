@@ -115,7 +115,9 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, lydPrice, account })
 
   return (
     <FCard>
-      {farm.token.symbol === 'LYD' && <StyledCardAccent />}
+      {(farm.token.symbol.toLowerCase() === 'lyd' || farm.quoteToken.symbol.toLowerCase() === 'lyd') && (
+        <StyledCardAccent />
+      )}
       <CardHeading
         lpLabel={lpLabel}
         multiplier={farm.multiplier}

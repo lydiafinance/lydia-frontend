@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
 import { Flex, Text, Skeleton } from '@lydiafinance/uikit'
-import { communityFarms } from 'config/constants'
 import { Farm } from 'state/types'
 import { provider as ProviderType } from 'web3-core'
 import { useTranslation } from 'contexts/Localization'
@@ -15,9 +14,8 @@ import CardActionsContainer from './CardActionsContainer'
 import ApyButton from './ApyButton'
 
 export interface FarmWithStakedValue extends Farm {
-  apy?: number
-  liquidity?: BigNumber
   apr?: number
+  liquidity?: BigNumber
 }
 
 const RainbowLight = keyframes`
@@ -32,27 +30,20 @@ const RainbowLight = keyframes`
 	}
 `
 
-// Yellow # F9D92E
-// Red # E60040
-// Blue # 15B0F8
-// Purple # 9027E2
-// Pink # D4008F
-// Dark blue # 2F1B6D
-
 const StyledCardAccent = styled.div`
   background: linear-gradient(
     45deg,
-    #e60040 0%,
-    #f9d92e 10%,
+    rgba(255, 0, 0, 1) 0%,
+    rgba(255, 154, 0, 1) 10%,
     rgba(208, 222, 33, 1) 20%,
     rgba(79, 220, 74, 1) 30%,
     rgba(63, 218, 216, 1) 40%,
-    #15b0f8 50%,
+    rgba(47, 201, 226, 1) 50%,
     rgba(28, 127, 238, 1) 60%,
-    #2f1b6d 70%,
+    rgba(95, 21, 242, 1) 70%,
     rgba(186, 12, 248, 1) 80%,
-    #d4008f 90%,
-    #e60040 100%
+    rgba(251, 7, 217, 1) 90%,
+    rgba(255, 0, 0, 1) 100%
   );
   background-size: 300% 300%;
   animation: ${RainbowLight} 2s linear infinite;
@@ -104,10 +95,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, lydPrice, account })
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
-  const isCommunityFarm = communityFarms.includes(farm.token.symbol)
-  // We assume the token name is coin pair + lp e.g. LYD-AVAX LP, LINK-AVAX LP,
-  // NAR-LYD LP. The images should be lyd-avax.svg, link-avax.svg, nar-lyd.svg
-  const farmImage = farm.lpSymbol.split(' ')[0].toLocaleLowerCase('en-US')
+  const farmImage = farm.lpSymbol.split(' ')[0].toLocaleLowerCase()
 
   const totalValueFormatted = farm.liquidity
     ? `$${farm.liquidity.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`
@@ -116,22 +104,22 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, lydPrice, account })
   const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('LYDIA', '')
   const earnLabel = farm.dual ? farm.dual.earnLabel : 'LYD'
 
-  const farmAPY = farm.apy && farm.apy.toLocaleString('en-US', { maximumFractionDigits: 2 })
+  const farmAPR = farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 })
 
   const liquidityUrlPathParts = getLiquidityUrlPathParts({
     quoteTokenAddress: farm.quoteToken.address,
     tokenAddress: farm.token.address,
   })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
 
   return (
     <FCard>
-      {(farm.token.symbol === 'LYD' || farm.quoteToken.symbol === 'LYD') && <StyledCardAccent />}
+      {farm.token.symbol === 'LYD' && <StyledCardAccent />}
       <CardHeading
-        targetTokenSymbol={farm.quoteToken.symbol}
         lpLabel={lpLabel}
         multiplier={farm.multiplier}
-        isCommunityFarm={isCommunityFarm}
+        isCommunityFarm={farm.isCommunity}
         farmImage={farmImage}
         tokenSymbol={farm.token.symbol}
       />
@@ -139,10 +127,10 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, lydPrice, account })
         <Flex justifyContent="space-between" alignItems="center">
           <Text>{t('APR')}:</Text>
           <Text bold style={{ display: 'flex', alignItems: 'center' }}>
-            {farm.apy ? (
+            {farm.apr ? (
               <>
                 <ApyButton lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} lydPrice={lydPrice} apr={farm.apr} />
-                {farmAPY}%
+                {farmAPR}%
               </>
             ) : (
               <Skeleton height={24} width={80} />
@@ -166,6 +154,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, lydPrice, account })
           cChainExplorer={`https://cchain.explorer.avax.network/address/${
             farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
           }`}
+          infoAddress={`https://info.lydia.finance/pair/${lpAddress}`}
           totalValueFormatted={totalValueFormatted}
           lpLabel={lpLabel}
           addLiquidityUrl={addLiquidityUrl}

@@ -13,6 +13,7 @@ import PageLoader from './components/PageLoader'
 import EasterEgg from './components/EasterEgg'
 import Pools from './views/Pools'
 import ComingSoon from './views/ComingSoon'
+import Maximus from './views/Maximus'
 import Airdrop from './views/Airdrop'
 import history from './routerHistory'
 
@@ -70,7 +71,7 @@ const App: React.FC = () => {
               <Redirect to="/pools" />
             </Route>
             <Route path="/maximus">
-              <Redirect to="/coming-soon" />
+              <Maximus />
             </Route>
             <Route path="/coming-soon">
               <ComingSoon />

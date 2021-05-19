@@ -21,6 +21,15 @@ const config: MenuEntry[] = [
     ],
   },
   {
+    label: 'Maximus',
+    icon: 'CrownIcon',
+    href: '/maximus',
+    status: {
+      text: 'BETA',
+      color: 'success',
+    },
+  },
+  {
     label: 'Farms',
     icon: 'FarmIcon',
     href: '/farms',
@@ -30,15 +39,7 @@ const config: MenuEntry[] = [
     icon: 'PoolIcon',
     href: '/pools',
   },
-  {
-    label: 'Maximus',
-    icon: 'CrownIcon',
-    href: '/maximus',
-    status: {
-      text: 'SOON',
-      color: 'warning',
-    },
-  },
+
   // {
   //   label: 'Airdrop',
   //   icon: 'AirdropIcon',

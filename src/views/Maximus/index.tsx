@@ -14,7 +14,6 @@ import PageHeader from 'components/PageHeader'
 import PoolCard from './components/PoolCard'
 import LydVaultCard from './components/LydVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
-import BountyCard from './components/BountyCard'
 
 const Pools: React.FC = () => {
   const { path } = useRouteMatch()
@@ -54,9 +53,6 @@ const Pools: React.FC = () => {
               {t('High APY, low risk, no effort, no fee.')}
             </Heading>
           </Flex>
-          {/* <Flex height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
-            <BountyCard />
-          </Flex> */}
         </Flex>
       </PageHeader>
       <Page>
@@ -67,22 +63,13 @@ const Pools: React.FC = () => {
         />
         <FlexLayout>
           <Route exact path={`${path}`}>
-            <>
-              <LydVaultCard pool={lydPoolData} showStakedOnly={stakedOnly} />
-              {stakedOnly
-                ? orderBy(stakedOnlyPools, ['sortOrder']).map((pool) => (
-                    <PoolCard key={pool.sousId} pool={pool} account={account} />
-                  ))
-                : orderBy(openPools, ['sortOrder']).map((pool) => (
-                    <PoolCard key={pool.sousId} pool={pool} account={account} />
-                  ))}
-            </>
+            <LydVaultCard pool={lydPoolData} showStakedOnly={stakedOnly} />
           </Route>
-          <Route path={`${path}/history`}>
+          {/* <Route path={`${path}/history`}>
             {orderBy(finishedPools, ['sortOrder']).map((pool) => (
               <PoolCard key={pool.sousId} pool={pool} account={account} />
             ))}
-          </Route>
+          </Route> */}
         </FlexLayout>
       </Page>
     </>

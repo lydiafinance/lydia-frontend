@@ -74,7 +74,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
       </Flex>
     ) : (
       <Button disabled={isFinished} onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}>
-        {t('Stake')}
+        {t('Stake LP')}
       </Button>
     )
   }

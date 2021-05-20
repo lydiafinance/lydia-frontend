@@ -28,8 +28,8 @@ const PoolCard: React.FC<{ pool: Pool; account: string; isHomeCard?: boolean }> 
       isHomeCard={isHomeCard}
     >
       <StyledCardHeader
-        earningTokenSymbol={earningToken.symbol}
-        stakingTokenSymbol={stakingToken.symbol}
+        token={earningToken.symbol}
+        quoteToken={stakingToken.symbol}
         isFinished={isFinished && sousId !== 0}
       />
       <CardBody>

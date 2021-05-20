@@ -9,39 +9,22 @@ const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }
 `
 
 const StyledCardHeader: React.FC<{
-  earningTokenSymbol: string
-  stakingTokenSymbol: string
+  token: string
+  quoteToken: string
   isAutoVault?: boolean
   isFinished?: boolean
-}> = ({ earningTokenSymbol, stakingTokenSymbol, isFinished = false, isAutoVault = false }) => {
+}> = ({ token, quoteToken, isFinished = false, isAutoVault = false }) => {
   const { t } = useTranslation()
-  const poolImageSrc = isAutoVault
-    ? `lyd-lydvault.svg`
-    : `${earningTokenSymbol}-${stakingTokenSymbol}.svg`.toLocaleLowerCase()
-  const isLydPool = earningTokenSymbol === 'LYD' && stakingTokenSymbol === 'LYD'
+  const poolImageSrc = isAutoVault ? `lyd-lydvault.svg` : `${token}-${quoteToken}.svg`.toLocaleLowerCase()
+  const isLydPool = token === 'LYD' && quoteToken === 'LYD'
   const background = isLydPool ? 'bubblegum' : 'cardHeader'
-
-  const getHeadingPrefix = () => {
-    if (isAutoVault) {
-      // vault
-      return `${t('Auto')}`
-    }
-    if (isLydPool) {
-      // manual lyd
-      return `${t('Manual')}`
-    }
-    // all other pools
-    return `${t('Earn')}`
-  }
 
   const getSubHeading = () => {
     if (isAutoVault) {
       return `${t('Automatic restaking')}`
     }
-    if (isLydPool) {
-      return `${t('Earn LYD, stake LYD')}`
-    }
-    return `${t('Stake')} ${stakingTokenSymbol}`
+
+    return `${t('Stake')} ${quoteToken}`
   }
 
   return (
@@ -49,11 +32,11 @@ const StyledCardHeader: React.FC<{
       <Flex alignItems="center" justifyContent="space-between">
         <Flex flexDirection="column">
           <Heading color={isFinished ? 'textDisabled' : 'text'} size="lg">
-            {`${getHeadingPrefix()} ${earningTokenSymbol}`}
+            {`${token}-${quoteToken}`}
           </Heading>
           <Text color={isFinished ? 'textDisabled' : 'text'}>{getSubHeading()}</Text>
         </Flex>
-        <Image src={`/images/pools/${poolImageSrc}`} alt={earningTokenSymbol} width={64} height={64} />
+        <Image src={`/images/pools/${poolImageSrc}`} alt={token} width={64} height={64} />
       </Flex>
     </Wrapper>
   )

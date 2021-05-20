@@ -50,7 +50,7 @@ const LydVaultCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHomeCar
 
   return (
     <StyledCard isStaking={accountHasSharesStaked} isHomeCard={isHomeCard}>
-      <StyledCardHeader isAutoVault earningTokenSymbol="LYD" stakingTokenSymbol="LYD" />
+      <StyledCardHeader isAutoVault quoteToken="LYD" token="USDT" />
       <StyledCardBody isLoading={isLoading}>
         <AprRow
           pool={pool}

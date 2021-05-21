@@ -73,7 +73,9 @@ const Hero = () => {
     <StyledHero>
       <StyledContainer>
         <LeftWrapper>
-          <Title>{t('The LYD Lottery')}</Title>
+          <Heading as="h3" size="xl" color="text" mb="15px">
+            {t('The LYD Lottery')}
+          </Heading>
           <Blurb>{t('Buy tickets with LYD')}</Blurb>
           <Blurb>{t('Win if 2, 3, or 4 of your ticket numbers match!')}</Blurb>
         </LeftWrapper>

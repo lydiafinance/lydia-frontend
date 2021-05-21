@@ -204,7 +204,7 @@ const TicketNumberBox = styled.div`
 const RabbitBox = styled.div`
   /* padding: 10px; */
   border-radius: 12px;
-  margin: 0px 0px;
+  margin: 11px 0px;
   width: 100px;
 `
 

@@ -56,7 +56,7 @@ const WinningNumbers: React.FC = () => {
                 </CardImage>
               </RabbitBox>
             </RabbitRow>
-            <RabbitRowSmall>
+            {/* <RabbitRowSmall>
               <RabbitBoxSmall>
                 <CardImageFirst>
                   <Image src="/images/lottery-girl.png" alt="Number 1" width={150} height={190} responsive />
@@ -77,7 +77,7 @@ const WinningNumbers: React.FC = () => {
                   <Image src="/images/lottery-girl.png" alt="Number 4" width={150} height={190} responsive />
                 </CardImage>
               </RabbitBoxSmall>
-            </RabbitRowSmall>
+            </RabbitRowSmall> */}
             <Column>
               <RowNoPadding>
                 <CenteredTextWithPadding>{t('Tickets matching 4 numbers:')}</CenteredTextWithPadding>
@@ -121,10 +121,12 @@ const Row = styled.div`
 `
 
 const RabbitRow = styled.div`
-  margin-top: -2.3em;
+  margin-top: -3.5em;
   align-items: center;
   display: flex;
   flex-direction: row;
+  margin-left: 61px;
+  z-index: 0;
 
   @media (max-width: 768px) {
     display: none;
@@ -132,7 +134,7 @@ const RabbitRow = styled.div`
 `
 
 const RabbitRowSmall = styled.div`
-  margin-top: -2.3em;
+  margin-top: -3.5em;
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -190,6 +192,7 @@ const TicketNumberBox = styled.div`
   margin: 10px;
   margin-bottom: 7px;
   width: 40px;
+  z-index: 99;
 
   @media (min-width: 768px) {
     font-size: 40px;
@@ -201,8 +204,8 @@ const TicketNumberBox = styled.div`
 const RabbitBox = styled.div`
   /* padding: 10px; */
   border-radius: 12px;
-  margin: 16px 20px;
-  width: 60px;
+  margin: 0px 0px;
+  width: 100px;
 `
 
 const RabbitBoxSmall = styled.div`

@@ -47,6 +47,8 @@ const TicketCountWrapper = styled.div`
   flex-direction: column;
 `
 
+const CardImage = styled.img``
+
 const TicketCard: React.FC<CardProps> = ({ isSecondCard = false }) => {
   const { t } = useTranslation()
   const lotteryHasDrawn = useGetLotteryHasDrawn()
@@ -62,7 +64,7 @@ const TicketCard: React.FC<CardProps> = ({ isSecondCard = false }) => {
       <CardBody>
         <CardHeader>
           <IconWrapper>
-            <TicketRound />
+            <CardImage src="/images/ticket.png" alt="lyd logo" width={94} height={84} />
           </IconWrapper>
           {lotteryHasDrawn ? (
             <TicketCountWrapper>

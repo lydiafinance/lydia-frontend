@@ -37,44 +37,44 @@ const WinningNumbers: React.FC = () => {
             <RabbitRow>
               <RabbitBox>
                 <CardImageFirst>
-                  <Image src="/images/sign bunny 1@2x.png" alt="Number 1" width={200} height={150} responsive />
+                  <Image src="/images/lottery-girl.png" alt="Number 1" width={150} height={190} responsive />
                 </CardImageFirst>
               </RabbitBox>
               <RabbitBox>
-                <CardImage style={{ marginLeft: '-1.2em' }}>
-                  <Image src="/images/sign bunny 2@2x.png" alt="Number 2" width={200} height={150} responsive />
+                <CardImage style={{ marginLeft: '-1.4em' }}>
+                  <Image src="/images/lottery-girl.png" alt="Number 2" width={150} height={190} responsive />
                 </CardImage>
               </RabbitBox>
               <RabbitBox>
-                <CardImage style={{ marginLeft: '-1.2em' }}>
-                  <Image src="/images/sign bunny 3@2x.png" alt="Number 3" width={200} height={150} responsive />
+                <CardImage style={{ marginLeft: '-1.4em' }}>
+                  <Image src="/images/lottery-girl.png" alt="Number 3" width={150} height={190} responsive />
                 </CardImage>
               </RabbitBox>
               <RabbitBox>
-                <CardImage style={{ marginLeft: '-1.2em' }}>
-                  <Image src="/images/sign bunny 4@2x.png" alt="Number 4" width={200} height={150} responsive />
+                <CardImage style={{ marginLeft: '-1.4em' }}>
+                  <Image src="/images/lottery-girl.png" alt="Number 4" width={150} height={190} responsive />
                 </CardImage>
               </RabbitBox>
             </RabbitRow>
             <RabbitRowSmall>
               <RabbitBoxSmall>
                 <CardImageFirst>
-                  <Image src="/images/sign bunny 1@2x.png" alt="Number 1" width={200} height={150} responsive />
+                  <Image src="/images/lottery-girl.png" alt="Number 1" width={150} height={190} responsive />
                 </CardImageFirst>
               </RabbitBoxSmall>
               <RabbitBoxSmall>
-                <CardImage style={{ marginLeft: '-1.2em' }}>
-                  <Image src="/images/sign bunny 2@2x.png" alt="Number 2" width={200} height={150} responsive />
+                <CardImage style={{ marginLeft: '-1.4em' }}>
+                  <Image src="/images/lottery-girl.png" alt="Number 2" width={150} height={190} responsive />
                 </CardImage>
               </RabbitBoxSmall>
               <RabbitBoxSmall>
-                <CardImage style={{ marginLeft: '-1.2em' }}>
-                  <Image src="/images/sign bunny 3@2x.png" alt="Number 3" width={200} height={150} responsive />
+                <CardImage style={{ marginLeft: '-1.4em' }}>
+                  <Image src="/images/lottery-girl.png" alt="Number 3" width={150} height={190} responsive />
                 </CardImage>
               </RabbitBoxSmall>
               <RabbitBoxSmall>
-                <CardImage style={{ marginLeft: '-1.2em' }}>
-                  <Image src="/images/sign bunny 4@2x.png" alt="Number 4" width={200} height={150} responsive />
+                <CardImage style={{ marginLeft: '-1.4em' }}>
+                  <Image src="/images/lottery-girl.png" alt="Number 4" width={150} height={190} responsive />
                 </CardImage>
               </RabbitBoxSmall>
             </RabbitRowSmall>
@@ -148,7 +148,7 @@ const CardImage = styled.div`
 
 const CardImageFirst = styled.div`
   text-align: center;
-  margin-left: -1.2em;
+  margin-left: -1.4em;
 
   @media (max-width: 600) {
     margin-left: -0.2em;

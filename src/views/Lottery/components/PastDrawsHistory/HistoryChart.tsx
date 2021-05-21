@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Text } from '@lydiafinance/uikit'
 import PastLotteryDataContext from 'contexts/PastLotteryDataContext'
 import { useTranslation } from 'contexts/Localization'
-
 import useTheme from 'hooks/useTheme'
 import Loading from '../Loading'
 
@@ -52,7 +51,7 @@ const HistoryChart: React.FC<HistoryChartProps> = ({ showLast }) => {
         label: 'Pool Size',
         data: getDataArray('poolSize'),
         yAxisID: 'y-axis-pool',
-        ...lineStyles({ color: '#2F1B6D' }),
+        ...lineStyles({ color: '#15B0F8' }),
       },
       {
         label: 'Burned',
@@ -95,7 +94,7 @@ const HistoryChart: React.FC<HistoryChartProps> = ({ showLast }) => {
             type: 'linear',
             position: 'left',
             id: 'y-axis-pool',
-            ...axesStyles({ color: '#2F1B6D', lineHeight: 1.6 }),
+            ...axesStyles({ color: '#15B0F8', lineHeight: 1.6 }),
           },
           {
             type: 'linear',

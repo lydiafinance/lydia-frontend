@@ -32,7 +32,6 @@ const PastRoundCardDetails: React.FC<PastRoundCardDetailsProps> = ({ data }) => 
     lotteryDate,
     lotteryNumber,
     lotteryNumbers,
-    match1Ticket,
     match2Ticket,
     match3Ticket,
     poolSize,
@@ -54,19 +53,15 @@ const PastRoundCardDetails: React.FC<PastRoundCardDetailsProps> = ({ data }) => 
             >
               {t('Winning numbers')}
             </TopLotteryCardHeading>
-            {/* <LotteryCardHeading
-              valueToDisplay={t(`${poolSize.toLocaleString()} LYD`)}
-              Icon={LydiaRoundIcon}
-            >
+            <LotteryCardHeading valueToDisplay={t(`${poolSize.toLocaleString()} LYD`)} Icon={LydiaRoundIcon}>
               {t('Total prizes')}
-            </LotteryCardHeading> */}
+            </LotteryCardHeading>
           </CardHeading>
         </CardBody>
         <CardFooter>
           <PrizeGrid
             lotteryPrizeAmount={poolSize}
             jackpotMatches={jackpotTicket}
-            oneTicketMatches={match1Ticket}
             twoTicketMatches={match2Ticket}
             threeTicketMatches={match3Ticket}
             pastDraw

@@ -98,7 +98,7 @@ const WinningNumbers: React.FC = () => {
                 </CenteredTextWithPadding>
               </RowNoPadding>
             </Column>
-            <Link href="https://api.lydiaswap.com/api/lottery?page=0&pageSize=25" target="_blank">
+            <Link href="https://api.pancakeswap.com/api/lottery?page=0&pageSize=25" target="_blank">
               {t('Export recent winning numbers')}
             </Link>
           </StyledCardContentInner>
@@ -110,7 +110,7 @@ const WinningNumbers: React.FC = () => {
 const Link = styled.a`
   margin-top: 1em;
   text-decoration: none;
-  color: #25beca;
+  color: #15b0f8;
 `
 
 const Row = styled.div`
@@ -183,7 +183,7 @@ const CenteredTextWithPadding = styled.div`
 const TicketNumberBox = styled.div`
   padding: 10px;
   border-radius: 12px;
-  background: linear-gradient(0deg, #54dade 0%, #24c7d6 76.22%);
+  background: linear-gradient(0deg, #f5eaab 0%, #f9d92e 76.22%);
   color: white;
   font-size: 20px;
   font-weight: 900;

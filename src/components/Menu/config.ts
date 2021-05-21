@@ -44,11 +44,11 @@ const config: MenuEntry[] = [
   //   icon: 'AirdropIcon',
   //   href: '/airdrop',
   // },
-  // {
-  //   label: 'Lottery',
-  //   icon: 'TicketIcon',
-  //   href: '/lottery',
-  // },
+  {
+    label: 'Lottery',
+    icon: 'TicketIcon',
+    href: '/lottery',
+  },
   // {
   //   label: 'Collectibles',
   //   icon: 'NftIcon',

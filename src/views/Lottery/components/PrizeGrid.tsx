@@ -2,12 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import { Heading, Text } from '@lydiafinance/uikit'
+import { BigNumber } from 'bignumber.js'
+import { usePriceLydUsdt } from 'state/hooks'
+import CardUsdValue from '../../Home/components/CardUsdValue'
 
 export interface PrizeGridProps {
   lotteryPrizeAmount?: number
   pastDraw?: boolean
   jackpotMatches?: number
-  oneTicketMatches?: number
   twoTicketMatches?: number
   threeTicketMatches?: number
 }
@@ -15,7 +17,7 @@ export interface PrizeGridProps {
 const Grid = styled.div<{ pastDraw?: boolean }>`
   display: grid;
   grid-template-columns: repeat(${(props) => (props.pastDraw ? 3 : 2)}, 1fr);
-  grid-template-rows: repeat(, auto);
+  grid-template-rows: repeat(4, auto);
 `
 
 const RightAlignedText = styled(Text)`
@@ -46,6 +48,11 @@ const PrizeGrid: React.FC<PrizeGridProps> = ({
   const twoMatchesAmount = +((lotteryPrizeAmount / 100) * 10).toFixed(0)
   const burnAmount = +((lotteryPrizeAmount / 100) * 20).toFixed(0)
   const { t } = useTranslation()
+  const lydUsdtPrice = usePriceLydUsdt()
+
+  const getLydUsdtValue = (amount: number) => {
+    return new BigNumber(amount).multipliedBy(lydUsdtPrice).toNumber()
+  }
 
   return (
     <Grid pastDraw={pastDraw}>
@@ -76,7 +83,10 @@ const PrizeGrid: React.FC<PrizeGridProps> = ({
         </PastDrawGridItem>
       )}
       <GridItem>
-        <RightAlignedHeading size="md">{fourMatchesAmount.toLocaleString()}</RightAlignedHeading>
+        <RightAlignedHeading size="md">
+          {fourMatchesAmount.toLocaleString()}
+          {!pastDraw && !lydUsdtPrice.eq(0) && <CardUsdValue value={getLydUsdtValue(fourMatchesAmount)} />}
+        </RightAlignedHeading>
       </GridItem>
       {/* 3 matches row */}
       <GridItem>
@@ -88,7 +98,10 @@ const PrizeGrid: React.FC<PrizeGridProps> = ({
         </PastDrawGridItem>
       )}
       <GridItem>
-        <RightAlignedText>{threeMatchesAmount.toLocaleString()}</RightAlignedText>
+        <RightAlignedText>
+          {threeMatchesAmount.toLocaleString()}
+          {!pastDraw && !lydUsdtPrice.eq(0) && <CardUsdValue value={getLydUsdtValue(threeMatchesAmount)} />}
+        </RightAlignedText>
       </GridItem>
       {/* 2 matches row */}
       <GridItem>
@@ -100,7 +113,10 @@ const PrizeGrid: React.FC<PrizeGridProps> = ({
         </PastDrawGridItem>
       )}
       <GridItem>
-        <RightAlignedText>{twoMatchesAmount.toLocaleString()}</RightAlignedText>
+        <RightAlignedText>
+          {twoMatchesAmount.toLocaleString()}
+          {!pastDraw && !lydUsdtPrice.eq(0) && <CardUsdValue value={getLydUsdtValue(twoMatchesAmount)} />}
+        </RightAlignedText>
       </GridItem>
       {/* Burn row */}
       <GridItem marginBottom="0">

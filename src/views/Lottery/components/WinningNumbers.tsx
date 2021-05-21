@@ -41,17 +41,17 @@ const WinningNumbers: React.FC = () => {
                 </CardImageFirst>
               </RabbitBox>
               <RabbitBox>
-                <CardImage style={{ marginLeft: '-1.4em' }}>
+                <CardImage style={{ marginLeft: '-1em' }}>
                   <Image src="/images/lottery-girl.png" alt="Number 2" width={150} height={190} responsive />
                 </CardImage>
               </RabbitBox>
               <RabbitBox>
-                <CardImage style={{ marginLeft: '-1.4em' }}>
+                <CardImage style={{ marginLeft: '-1em' }}>
                   <Image src="/images/lottery-girl.png" alt="Number 3" width={150} height={190} responsive />
                 </CardImage>
               </RabbitBox>
               <RabbitBox>
-                <CardImage style={{ marginLeft: '-1.4em' }}>
+                <CardImage style={{ marginLeft: '-1em' }}>
                   <Image src="/images/lottery-girl.png" alt="Number 4" width={150} height={190} responsive />
                 </CardImage>
               </RabbitBox>
@@ -63,17 +63,17 @@ const WinningNumbers: React.FC = () => {
                 </CardImageFirst>
               </RabbitBoxSmall>
               <RabbitBoxSmall>
-                <CardImage style={{ marginLeft: '-1.4em' }}>
+                <CardImage style={{ marginLeft: '-1em' }}>
                   <Image src="/images/lottery-girl.png" alt="Number 2" width={150} height={190} responsive />
                 </CardImage>
               </RabbitBoxSmall>
               <RabbitBoxSmall>
-                <CardImage style={{ marginLeft: '-1.4em' }}>
+                <CardImage style={{ marginLeft: '-1em' }}>
                   <Image src="/images/lottery-girl.png" alt="Number 3" width={150} height={190} responsive />
                 </CardImage>
               </RabbitBoxSmall>
               <RabbitBoxSmall>
-                <CardImage style={{ marginLeft: '-1.4em' }}>
+                <CardImage style={{ marginLeft: '-1em' }}>
                   <Image src="/images/lottery-girl.png" alt="Number 4" width={150} height={190} responsive />
                 </CardImage>
               </RabbitBoxSmall>
@@ -121,7 +121,7 @@ const Row = styled.div`
 `
 
 const RabbitRow = styled.div`
-  margin-top: -3.5em;
+  margin-top: -3.6em;
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -150,7 +150,7 @@ const CardImage = styled.div`
 
 const CardImageFirst = styled.div`
   text-align: center;
-  margin-left: -1.4em;
+  margin-left: -1em;
 
   @media (max-width: 600) {
     margin-left: -0.2em;
@@ -204,8 +204,8 @@ const TicketNumberBox = styled.div`
 const RabbitBox = styled.div`
   /* padding: 10px; */
   border-radius: 12px;
-  margin: 11px 0px;
-  width: 100px;
+  margin: 10px -15px;
+  width: 130px;
 `
 
 const RabbitBoxSmall = styled.div`

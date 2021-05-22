@@ -51,7 +51,7 @@ const HistoryChart: React.FC<HistoryChartProps> = ({ showLast }) => {
         label: 'Pool Size',
         data: getDataArray('poolSize'),
         yAxisID: 'y-axis-pool',
-        ...lineStyles({ color: '#0000FF' }),
+        ...lineStyles({ color: '#15B0F8' }),
       },
       {
         label: 'Burned',
@@ -94,7 +94,7 @@ const HistoryChart: React.FC<HistoryChartProps> = ({ showLast }) => {
             type: 'linear',
             position: 'left',
             id: 'y-axis-pool',
-            ...axesStyles({ color: '#0000FF', lineHeight: 1.6 }),
+            ...axesStyles({ color: '#15B0F8', lineHeight: 1.6 }),
           },
           {
             type: 'linear',

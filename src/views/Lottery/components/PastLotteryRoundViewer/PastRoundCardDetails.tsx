@@ -23,6 +23,8 @@ const TopLotteryCardHeading = styled(LotteryCardHeading)`
   margin-bottom: ${(props) => props.theme.spacing[4]}px;
 `
 
+const CardImage = styled.img``
+
 const PastRoundCardDetails: React.FC<PastRoundCardDetailsProps> = ({ data }) => {
   const { t } = useTranslation()
 
@@ -37,6 +39,8 @@ const PastRoundCardDetails: React.FC<PastRoundCardDetailsProps> = ({ data }) => 
     poolSize,
   } = data
 
+  const xx = () => <CardImage src="/images/ticket.png" alt="lyd logo" width={50} height={50} />
+
   return (
     !data.error &&
     data && (
@@ -49,7 +53,7 @@ const PastRoundCardDetails: React.FC<PastRoundCardDetailsProps> = ({ data }) => 
             </Heading>
             <TopLotteryCardHeading
               valueToDisplay={`${lotteryNumbers[0]}, ${lotteryNumbers[1]}, ${lotteryNumbers[2]}, ${lotteryNumbers[3]}`}
-              Icon={TicketRound}
+              Icon={xx}
             >
               {t('Winning numbers')}
             </TopLotteryCardHeading>

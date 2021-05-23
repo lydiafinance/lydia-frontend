@@ -1,7 +1,7 @@
 import getTimePeriods from 'utils/getTimePeriods'
 
 // lottery draws UTC: 02:00 (10:00 SGT), 14:00 (22:00 SGT)
-const lotteryDrawHoursUtc = [2, 14]
+const lotteryDrawHoursUtc = [18, 18]
 
 const getClosestLotteryHour = (currentHour) => {
   switch (true) {
@@ -58,7 +58,7 @@ export const getLotteryDrawTime = (currentMillis): string => {
 export const getTicketSaleStep = () => (1 / 12) * 100
 
 export const getLotteryDrawStep = (currentMillis) => {
-  const msBetweenLotteries = 43200000
+  const msBetweenLotteries = 86400000
   const endTime = getNextLotteryDrawTime(currentMillis)
   const msUntilLotteryDraw = endTime - currentMillis
   const percentageRemaining = (msUntilLotteryDraw / msBetweenLotteries) * 100

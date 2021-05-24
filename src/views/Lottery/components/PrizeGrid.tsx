@@ -43,10 +43,10 @@ const PrizeGrid: React.FC<PrizeGridProps> = ({
   twoTicketMatches,
   threeTicketMatches,
 }) => {
-  const fourMatchesAmount = +((lotteryPrizeAmount / 100) * 50).toFixed(0)
+  const fourMatchesAmount = +((lotteryPrizeAmount / 100) * 45).toFixed(0)
   const threeMatchesAmount = +((lotteryPrizeAmount / 100) * 20).toFixed(0)
   const twoMatchesAmount = +((lotteryPrizeAmount / 100) * 10).toFixed(0)
-  const burnAmount = +((lotteryPrizeAmount / 100) * 20).toFixed(0)
+  const burnAmount = +((lotteryPrizeAmount / 100) * 25).toFixed(0)
   const { t } = useTranslation()
   const lydUsdtPrice = usePriceLydUsdt()
 

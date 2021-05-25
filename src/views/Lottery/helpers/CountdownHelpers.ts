@@ -20,7 +20,8 @@ const getNextLotteryDrawTime = (currentMillis) => {
   const nextLotteryHour = getClosestLotteryHour(currentHour)
   // next lottery is tomorrow if the next lottery is at 2am UTC...
   // ...and current time is between 02:00am & 23:59pm UTC
-  const nextLotteryIsTomorrow = nextLotteryHour === 2 && currentHour >= 2 && currentHour <= 23
+  // const nextLotteryIsTomorrow = nextLotteryHour === 2 && currentHour >= 2 && currentHour <= 23
+  const nextLotteryIsTomorrow = currentHour <= 23
   let millisTimeOfNextDraw
 
   if (nextLotteryIsTomorrow) {

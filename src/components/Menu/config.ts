@@ -39,16 +39,15 @@ const config: MenuEntry[] = [
       color: 'warning',
     },
   },
-  // {
-  //   label: 'Airdrop',
-  //   icon: 'AirdropIcon',
-  //   href: '/airdrop',
-  // },
-  // {
-  //   label: 'Lottery',
-  //   icon: 'TicketIcon',
-  //   href: '/lottery',
-  // },
+  {
+    label: 'Lottery',
+    icon: 'TicketIcon',
+    href: '/lottery',
+    status: {
+      text: 'BETA',
+      color: 'success',
+    },
+  },
   // {
   //   label: 'Collectibles',
   //   icon: 'NftIcon',

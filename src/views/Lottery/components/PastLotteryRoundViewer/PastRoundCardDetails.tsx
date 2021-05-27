@@ -23,6 +23,8 @@ const TopLotteryCardHeading = styled(LotteryCardHeading)`
   margin-bottom: ${(props) => props.theme.spacing[4]}px;
 `
 
+const CardImage = styled.img``
+
 const PastRoundCardDetails: React.FC<PastRoundCardDetailsProps> = ({ data }) => {
   const { t } = useTranslation()
 
@@ -32,11 +34,12 @@ const PastRoundCardDetails: React.FC<PastRoundCardDetailsProps> = ({ data }) => 
     lotteryDate,
     lotteryNumber,
     lotteryNumbers,
-    match1Ticket,
     match2Ticket,
     match3Ticket,
     poolSize,
   } = data
+
+  const xx = () => <CardImage src="/images/ticket.png" alt="lyd logo" width={50} height={50} />
 
   return (
     !data.error &&
@@ -50,23 +53,19 @@ const PastRoundCardDetails: React.FC<PastRoundCardDetailsProps> = ({ data }) => 
             </Heading>
             <TopLotteryCardHeading
               valueToDisplay={`${lotteryNumbers[0]}, ${lotteryNumbers[1]}, ${lotteryNumbers[2]}, ${lotteryNumbers[3]}`}
-              Icon={TicketRound}
+              Icon={xx}
             >
               {t('Winning numbers')}
             </TopLotteryCardHeading>
-            {/* <LotteryCardHeading
-              valueToDisplay={t(`${poolSize.toLocaleString()} LYD`)}
-              Icon={LydiaRoundIcon}
-            >
+            <LotteryCardHeading valueToDisplay={t(`${poolSize.toLocaleString()} LYD`)} Icon={LydiaRoundIcon}>
               {t('Total prizes')}
-            </LotteryCardHeading> */}
+            </LotteryCardHeading>
           </CardHeading>
         </CardBody>
         <CardFooter>
           <PrizeGrid
             lotteryPrizeAmount={poolSize}
             jackpotMatches={jackpotTicket}
-            oneTicketMatches={match1Ticket}
             twoTicketMatches={match2Ticket}
             threeTicketMatches={match3Ticket}
             pastDraw

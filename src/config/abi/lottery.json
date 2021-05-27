@@ -220,19 +220,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "lyd",
-    "outputs": [
-      {
-        "internalType": "contract IERC20",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -523,6 +510,19 @@
   },
   {
     "inputs": [],
+    "name": "lyd",
+    "outputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "maxNumber",
     "outputs": [
       {
@@ -633,11 +633,6 @@
       {
         "internalType": "uint8",
         "name": "_allcation3",
-        "type": "uint8"
-      },
-      {
-        "internalType": "uint8",
-        "name": "_allcation4",
         "type": "uint8"
       }
     ],

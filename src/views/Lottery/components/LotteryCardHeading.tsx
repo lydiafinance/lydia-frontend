@@ -5,7 +5,7 @@ import { Flex, Heading, Text } from '@lydiafinance/uikit'
 interface HeadingProps {
   valueToDisplay?: string
   children?: string
-  Icon?: React.ComponentType
+  Icon?: any
 }
 
 const IconWrapper = styled.div`

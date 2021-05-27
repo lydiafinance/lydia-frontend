@@ -6,7 +6,7 @@ import Page from 'components/layout/Page'
 import { useWeb3React } from '@web3-react/core'
 import { usePools } from 'state/hooks'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
-// import LotteryCard from 'views/Home/components/LotteryCard'
+import LotteryCard from 'views/Home/components/LotteryCard'
 // import EarnAssetCard from 'views/Home/components/EarnAssetCard'
 // import WinCard from 'views/Home/components/WinCard'
 import LydStats from 'views/Home/components/LydStats'
@@ -96,7 +96,7 @@ const Home: React.FC = () => {
           </Cards>
         </Cards>
         <Cards column={isMobile}>
-          <LydVaultCard pool={autoPool} isHomeCard />
+          <LotteryCard />
           <LydStats />
         </Cards>
       </DesktopSupportCard>
@@ -106,11 +106,12 @@ const Home: React.FC = () => {
           <LydStats />
           <Cards column>
             <EarnAPYCard />
+
             <TotalValueLockedCard />
           </Cards>
         </Cards>
         <Cards column={isMobile}>
-          <LydVaultCard pool={autoPool} isHomeCard />
+          <LotteryCard />
           <FarmStakingCard />
         </Cards>
       </MobileSupportCard>

@@ -44,4 +44,12 @@ export default {
     [ChainId.FUJI]: '0xaf8F7eB6A1263c7E0c6e3bA7Fd774E248EFc4953',
     [ChainId.AVALANCHE]: '0xA456bB3a9905D56A9b40D6361EDA931ed52d5bED',
   },
+  lottery: {
+    [ChainId.FUJI]: 'x',
+    [ChainId.AVALANCHE]: 'x',
+  },
+  lotteryNFT: {
+    [ChainId.FUJI]: 'x',
+    [ChainId.AVALANCHE]: 'x',
+  },
 }

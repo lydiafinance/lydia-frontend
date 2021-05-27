@@ -18,7 +18,7 @@ import LydWinnings from './LydWinnings'
 import LotteryJackpot from './LotteryJackpot'
 
 const StyledLotteryCard = styled(Card)`
-  background-image: url('/images/ticket-bg.svg');
+  background-image: url('/images/ticket-bg.png');
   background-repeat: no-repeat;
   background-position: top right;
   min-height: 376px;
@@ -93,7 +93,7 @@ const LotteryCard = () => {
         <Heading size="xl" mb="24px">
           {t('Your Lottery Winnings')}
         </Heading>
-        <CardImage src="/images/ticket.svg" alt="lyd logo" width={64} height={64} />
+        <CardImage src="/images/ticket.png" alt="lyd logo" width={64} height={64} />
         <Block>
           <Label>{t('LYD to Collect')}:</Label>
           <LydWinnings />

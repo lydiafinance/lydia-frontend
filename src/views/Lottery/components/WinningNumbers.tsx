@@ -37,47 +37,47 @@ const WinningNumbers: React.FC = () => {
             <RabbitRow>
               <RabbitBox>
                 <CardImageFirst>
-                  <Image src="/images/sign bunny 1@2x.png" alt="Number 1" width={200} height={150} responsive />
+                  <Image src="/images/lottery-girl.png" alt="Number 1" width={150} height={190} responsive />
                 </CardImageFirst>
               </RabbitBox>
               <RabbitBox>
-                <CardImage style={{ marginLeft: '-1.2em' }}>
-                  <Image src="/images/sign bunny 2@2x.png" alt="Number 2" width={200} height={150} responsive />
+                <CardImage style={{ marginLeft: '-1em' }}>
+                  <Image src="/images/lottery-girl.png" alt="Number 2" width={150} height={190} responsive />
                 </CardImage>
               </RabbitBox>
               <RabbitBox>
-                <CardImage style={{ marginLeft: '-1.2em' }}>
-                  <Image src="/images/sign bunny 3@2x.png" alt="Number 3" width={200} height={150} responsive />
+                <CardImage style={{ marginLeft: '-1em' }}>
+                  <Image src="/images/lottery-girl.png" alt="Number 3" width={150} height={190} responsive />
                 </CardImage>
               </RabbitBox>
               <RabbitBox>
-                <CardImage style={{ marginLeft: '-1.2em' }}>
-                  <Image src="/images/sign bunny 4@2x.png" alt="Number 4" width={200} height={150} responsive />
+                <CardImage style={{ marginLeft: '-1em' }}>
+                  <Image src="/images/lottery-girl.png" alt="Number 4" width={150} height={190} responsive />
                 </CardImage>
               </RabbitBox>
             </RabbitRow>
-            <RabbitRowSmall>
+            {/* <RabbitRowSmall>
               <RabbitBoxSmall>
                 <CardImageFirst>
-                  <Image src="/images/sign bunny 1@2x.png" alt="Number 1" width={200} height={150} responsive />
+                  <Image src="/images/lottery-girl.png" alt="Number 1" width={150} height={190} responsive />
                 </CardImageFirst>
               </RabbitBoxSmall>
               <RabbitBoxSmall>
-                <CardImage style={{ marginLeft: '-1.2em' }}>
-                  <Image src="/images/sign bunny 2@2x.png" alt="Number 2" width={200} height={150} responsive />
+                <CardImage style={{ marginLeft: '-1em' }}>
+                  <Image src="/images/lottery-girl.png" alt="Number 2" width={150} height={190} responsive />
                 </CardImage>
               </RabbitBoxSmall>
               <RabbitBoxSmall>
-                <CardImage style={{ marginLeft: '-1.2em' }}>
-                  <Image src="/images/sign bunny 3@2x.png" alt="Number 3" width={200} height={150} responsive />
+                <CardImage style={{ marginLeft: '-1em' }}>
+                  <Image src="/images/lottery-girl.png" alt="Number 3" width={150} height={190} responsive />
                 </CardImage>
               </RabbitBoxSmall>
               <RabbitBoxSmall>
-                <CardImage style={{ marginLeft: '-1.2em' }}>
-                  <Image src="/images/sign bunny 4@2x.png" alt="Number 4" width={200} height={150} responsive />
+                <CardImage style={{ marginLeft: '-1em' }}>
+                  <Image src="/images/lottery-girl.png" alt="Number 4" width={150} height={190} responsive />
                 </CardImage>
               </RabbitBoxSmall>
-            </RabbitRowSmall>
+            </RabbitRowSmall> */}
             <Column>
               <RowNoPadding>
                 <CenteredTextWithPadding>{t('Tickets matching 4 numbers:')}</CenteredTextWithPadding>
@@ -98,7 +98,7 @@ const WinningNumbers: React.FC = () => {
                 </CenteredTextWithPadding>
               </RowNoPadding>
             </Column>
-            <Link href="https://api.lydiaswap.com/api/lottery?page=0&pageSize=25" target="_blank">
+            <Link href="https://api.lydia.finance/api/lottery?page=0&pageSize=25" target="_blank">
               {t('Export recent winning numbers')}
             </Link>
           </StyledCardContentInner>
@@ -110,7 +110,7 @@ const WinningNumbers: React.FC = () => {
 const Link = styled.a`
   margin-top: 1em;
   text-decoration: none;
-  color: #25beca;
+  color: #15b0f8;
 `
 
 const Row = styled.div`
@@ -121,10 +121,12 @@ const Row = styled.div`
 `
 
 const RabbitRow = styled.div`
-  margin-top: -2.3em;
+  margin-top: -3.6em;
   align-items: center;
   display: flex;
   flex-direction: row;
+  margin-left: 61px;
+  z-index: 0;
 
   @media (max-width: 768px) {
     display: none;
@@ -132,7 +134,7 @@ const RabbitRow = styled.div`
 `
 
 const RabbitRowSmall = styled.div`
-  margin-top: -2.3em;
+  margin-top: -3.5em;
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -148,7 +150,7 @@ const CardImage = styled.div`
 
 const CardImageFirst = styled.div`
   text-align: center;
-  margin-left: -1.2em;
+  margin-left: -1em;
 
   @media (max-width: 600) {
     margin-left: -0.2em;
@@ -183,13 +185,14 @@ const CenteredTextWithPadding = styled.div`
 const TicketNumberBox = styled.div`
   padding: 10px;
   border-radius: 12px;
-  background: linear-gradient(0deg, #54dade 0%, #24c7d6 76.22%);
+  background: linear-gradient(0deg, #f5eaab 0%, #f9d92e 76.22%);
   color: white;
   font-size: 20px;
   font-weight: 900;
   margin: 10px;
   margin-bottom: 7px;
   width: 40px;
+  z-index: 99;
 
   @media (min-width: 768px) {
     font-size: 40px;
@@ -201,8 +204,8 @@ const TicketNumberBox = styled.div`
 const RabbitBox = styled.div`
   /* padding: 10px; */
   border-radius: 12px;
-  margin: 16px 20px;
-  width: 60px;
+  margin: 10px -15px;
+  width: 130px;
 `
 
 const RabbitBoxSmall = styled.div`

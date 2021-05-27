@@ -22,10 +22,10 @@ export const getWavaxAddress = () => {
   return getAddress(tokens.wavax.address)
 }
 export const getLotteryAddress = () => {
-  return getAddress(addresses.mulltiCall)
+  return getAddress(addresses.lottery)
 }
 export const getLotteryTicketAddress = () => {
-  return getAddress(addresses.mulltiCall)
+  return getAddress(addresses.lotteryNFT)
 }
 export const getLydiaProfileAddress = () => {
   return getAddress(addresses.lydiaProfile)

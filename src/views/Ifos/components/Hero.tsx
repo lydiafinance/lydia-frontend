@@ -5,12 +5,12 @@ import Container from 'components/layout/Container'
 import { useTranslation } from 'contexts/Localization'
 
 const Title = styled(Heading).attrs({ as: 'h1', size: 'xl' })`
-  color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.text};
   margin-bottom: 24px;
 `
 
 const Blurb = styled(Text)`
-  color: #ffffff;
+  color: #6b041d !important;
   font-size: 20px;
   font-weight: 600;
 `

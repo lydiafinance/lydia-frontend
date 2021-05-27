@@ -11,13 +11,16 @@ const Title = styled(Heading).attrs({ as: 'h1', size: 'xl' })`
 `
 
 const Blurb = styled(Text)`
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.text};
   font-size: 20px;
   font-weight: 600;
 `
 
 const StyledHero = styled.div`
-  background-image: linear-gradient(0deg, #53dee9 0%, #1fc7d4 100%);
+  background: ${({ theme }) => theme.colors.gradients.bubblegum};
+  /* linear-gradient(139.73deg, #d4008f4a 0%, #d4008f00 100%)
+  bubblegum: "linear-gradient(139.73deg, #fff9da 0%, #f9dae2 100%)", */
+
   padding-bottom: 40px;
   padding-top: 40px;
 `
@@ -70,7 +73,9 @@ const Hero = () => {
     <StyledHero>
       <StyledContainer>
         <LeftWrapper>
-          <Title>{t('The LYD Lottery')}</Title>
+          <Heading as="h3" size="xl" color="text" mb="15px">
+            {t('The LYD Lottery')}
+          </Heading>
           <Blurb>{t('Buy tickets with LYD')}</Blurb>
           <Blurb>{t('Win if 2, 3, or 4 of your ticket numbers match!')}</Blurb>
         </LeftWrapper>

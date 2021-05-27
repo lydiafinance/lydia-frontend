@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Card, CardBody } from '@lydiafinance/uikit'
-import { getBalanceNumber } from 'utils/formatBalance'
-import { useTotalClaim } from 'hooks/useTickets'
 import PrizesWonContent from './PrizesWonContent'
 import NoPrizesContent from './NoPrizesContent'
 
@@ -26,15 +24,15 @@ const StyledCard = styled(Card)`
       : ``}
 `
 
-const YourPrizesCard: React.FC = () => {
-  const { claimAmount } = useTotalClaim()
+interface YourPrizesCardProps {
+  isAWin: boolean
+  onSuccess: () => void
+}
 
-  const winnings = getBalanceNumber(claimAmount)
-  const isAWin = winnings > 0
-
+const YourPrizesCard: React.FC<YourPrizesCardProps> = ({ isAWin, onSuccess }) => {
   return (
     <StyledCard isDisabled={!isAWin} isActive={isAWin}>
-      <CardBody>{isAWin ? <PrizesWonContent /> : <NoPrizesContent />}</CardBody>
+      <CardBody>{isAWin ? <PrizesWonContent onSuccess={onSuccess} /> : <NoPrizesContent />}</CardBody>
     </StyledCard>
   )
 }

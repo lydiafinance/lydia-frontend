@@ -7,7 +7,10 @@ import { useTranslation } from 'contexts/Localization'
 import { useTotalRewards } from 'hooks/useTickets'
 import PastLotteryDataContext from 'contexts/PastLotteryDataContext'
 import ExpandableSectionButton from 'components/ExpandableSectionButton/ExpandableSectionButton'
+import { BigNumber } from 'bignumber.js'
+import { useGetApiPrice } from 'state/hooks'
 import PrizeGrid from '../PrizeGrid'
+import CardBusdValue from '../../../Home/components/CardUsdValue'
 
 const CardHeading = styled.div`
   position: relative;
@@ -53,6 +56,7 @@ const TotalPrizesCard = () => {
   const { account } = useWeb3React()
   const [showFooter, setShowFooter] = useState(false)
   const lotteryPrizeAmount = +getBalanceNumber(useTotalRewards()).toFixed(0)
+  const lotteryPrizeAmountUsdt = new BigNumber(lotteryPrizeAmount).multipliedBy(useGetApiPrice('lyd')).toNumber()
   const lotteryPrizeWithCommaSeparators = lotteryPrizeAmount.toLocaleString()
   const { currentLotteryNumber } = useContext(PastLotteryDataContext)
 
@@ -63,11 +67,9 @@ const TotalPrizesCard = () => {
           <Flex mb="16px" alignItems="center" justifyContent="space-between" style={{ height: '20px' }}>
             {currentLotteryNumber === 0 && <Skeleton height={20} width={56} />}
             {currentLotteryNumber > 0 && (
-              <>
-                <Text fontSize="12px" style={{ fontWeight: 600 }}>
-                  {t(`Round #${currentLotteryNumber}`, { num: currentLotteryNumber })}
-                </Text>
-              </>
+              <Text fontSize="12px" style={{ fontWeight: 600 }}>
+                {t(`Round #${currentLotteryNumber}`, { num: currentLotteryNumber })}
+              </Text>
             )}
           </Flex>
         )}
@@ -81,6 +83,7 @@ const TotalPrizesCard = () => {
                 {t('Total Pot:')}
               </Text>
               <Heading size="lg">{lotteryPrizeWithCommaSeparators} LYD</Heading>
+              {lotteryPrizeAmountUsdt !== 0 && <CardBusdValue value={lotteryPrizeAmountUsdt} />}
             </PrizeCountWrapper>
           </Left>
           <Right>

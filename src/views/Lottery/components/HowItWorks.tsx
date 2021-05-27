@@ -37,7 +37,7 @@ const HowItWorks = () => {
           'Spend LYD to buy tickets, contributing to the lottery pot. Win prizes if 2, 3, or 4 of your ticket numbers match the winning numbers and their exact order!',
         )}
       </Text>
-      <StyledLink href="https://docs.lydia.finance/lottery-1">{t('Read more')}</StyledLink>
+      <StyledLink href="https://docs.lydia.finance/guides/lottery/lottery-1">{t('Read more')}</StyledLink>
     </LayoutWrapper>
   )
 }

@@ -87,7 +87,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({
           )}
         </Flex>
       </Flex>
-      {shouldShowBlockCountdown && (
+      {/* {shouldShowBlockCountdown && (
         <Flex mb="2px" justifyContent="space-between" alignItems="center">
           <Text small>{hasPoolStarted ? t('End') : t('Start')}:</Text>
           <Flex alignItems="center">
@@ -107,7 +107,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({
             <TimerIcon ml="4px" color="primary" />
           </Flex>
         </Flex>
-      )}
+      )} */}
       {isAutoVault && (
         <Flex mb="2px" justifyContent="space-between" alignItems="center">
           {tooltipVisible && tooltip}

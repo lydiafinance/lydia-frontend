@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Text, Progress } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
@@ -36,26 +36,48 @@ const StyledPrimaryText = styled(Text)`
 `
 const LotteryProgress = () => {
   const { t } = useTranslation()
+  const [lotteryStatus, setLotteryStatus] = useState({
+    timeUntilLotteryDraw: '',
+    timeUntilTicketSale: '',
+    until_ts: 0,
+    state: 'buy',
+  })
   const lotteryHasDrawn = useGetLotteryHasDrawn()
   const currentMillis = useCurrentTime()
-  const timeUntilTicketSale = getTicketSaleTime(currentMillis)
-  const timeUntilLotteryDraw = getLotteryDrawTime(currentMillis)
+
+  useEffect(() => {
+    if (!lotteryStatus?.until_ts)
+      fetch(`https://api.lydia.finance/api/lotteryStatus`)
+        .then((response) => response.json())
+        .then((data) => {
+          const timeUntilTicketSale = getTicketSaleTime(currentMillis)
+          const timeUntilLotteryDraw = getLotteryDrawTime(currentMillis, data?.until_ts)
+          setLotteryStatus({ ...data, timeUntilTicketSale, timeUntilLotteryDraw })
+        })
+        .catch(() => {
+          setLotteryStatus(null)
+        })
+  }, [currentMillis, lotteryStatus])
 
   return (
     <ProgressWrapper>
-      <Progress primaryStep={getLotteryDrawStep(currentMillis)} secondaryStep={getTicketSaleStep()} showProgressBunny />
+      <Progress
+        primaryStep={getLotteryDrawStep(currentMillis, lotteryStatus?.until_ts, lotteryStatus?.state)}
+        secondaryStep={getTicketSaleStep()}
+        showProgressBunny
+      />
       <TopTextWrapper>
         <StyledPrimaryText fontSize="20px" bold color="contrast">
-          {lotteryHasDrawn ? timeUntilTicketSale : timeUntilLotteryDraw}
+          {lotteryHasDrawn ? lotteryStatus?.timeUntilTicketSale : lotteryStatus?.timeUntilLotteryDraw}
         </StyledPrimaryText>
         <Text fontSize="20px" bold color="text">
           {lotteryHasDrawn ? t('Until ticket sale') : t('Until lottery draw')}
         </Text>
       </TopTextWrapper>
-      {lotteryHasDrawn && (
+      {lotteryHasDrawn && lotteryStatus?.state !== 'wait' && (
         <BottomTextWrapper>
           <Text color="text">
-            {timeUntilLotteryDraw} {t('Until lottery draw')}
+            {lotteryStatus?.timeUntilLotteryDraw} {t('Until lottery draw')}
           </Text>
         </BottomTextWrapper>
       )}

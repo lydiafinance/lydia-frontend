@@ -63,7 +63,7 @@ const LotteryProgress = () => {
   return (
     <ProgressWrapper>
       <Progress
-        primaryStep={getLotteryDrawStep(currentMillis, lotteryStatus?.until_ts)}
+        primaryStep={getLotteryDrawStep(currentMillis, lotteryStatus?.until_ts, lotteryStatus?.state)}
         secondaryStep={getTicketSaleStep()}
         showProgressBunny
       />

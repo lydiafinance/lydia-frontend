@@ -38,10 +38,15 @@ export const getLotteryDrawTime = (currentMillis, untilMs): string => {
 
 export const getTicketSaleStep = () => (1 / 12) * 100
 
-export const getLotteryDrawStep = (currentMillis, untilMs) => {
+export const getLotteryDrawStep = (currentMillis, untilMs, status) => {
   const msBetweenLotteries = 86400000 * 2
-  const endTime = untilMs
-  const msUntilLotteryDraw = endTime - currentMillis
+  const isWaitTime = status === 'wait'
+
+  if (isWaitTime) {
+    return 0
+  }
+
+  const msUntilLotteryDraw = untilMs - currentMillis
   const percentageRemaining = (msUntilLotteryDraw / msBetweenLotteries) * 100
   return 100 - percentageRemaining
 }

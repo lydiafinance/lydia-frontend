@@ -48,5 +48,5 @@ export const getLotteryDrawStep = (currentMillis, untilMs, status) => {
 
   const msUntilLotteryDraw = untilMs - currentMillis
   const percentageRemaining = (msUntilLotteryDraw / msBetweenLotteries) * 100
-  return 100 - percentageRemaining
+  return 100 - (percentageRemaining - 7)
 }

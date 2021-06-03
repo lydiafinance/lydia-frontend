@@ -44,7 +44,7 @@ const config: MenuEntry[] = [
     icon: 'TicketIcon',
     href: '/lottery',
     status: {
-      text: 'BETA',
+      text: 'NEW',
       color: 'success',
     },
   },

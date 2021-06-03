@@ -59,7 +59,6 @@ const LotteryProgress = () => {
         })
   }, [currentMillis, lotteryStatus])
 
-  console.log(lotteryStatus)
   return (
     <ProgressWrapper>
       <Progress

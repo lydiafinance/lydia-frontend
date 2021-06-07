@@ -157,4 +157,5 @@ export interface State {
   teams: TeamsState
   achievements: AchievementState
   block: BlockState
+  maximus: MaximusState
 }

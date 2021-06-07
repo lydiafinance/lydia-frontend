@@ -15,14 +15,13 @@ import {
   Button,
 } from '@lydiafinance/uikit'
 import { BASE_AVAX_SCAN_URL, BASE_URL } from 'config'
-import { useBlock } from 'state/hooks'
-import { Pool } from 'state/types'
+import { Maximus } from 'state/types'
 import { getAddress, getLydVaultAddress } from 'utils/addressHelpers'
 import { registerToken } from 'utils/wallet'
 import Balance from 'components/Balance'
 
 interface ExpandedFooterProps {
-  pool: Pool
+  pool: Maximus
   account: string
   performanceFee?: number
   isAutoVault?: boolean
@@ -44,8 +43,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({
   totalLydInVault,
 }) => {
   const { t } = useTranslation()
-  const { currentBlock } = useBlock()
-  const { stakingToken, earningToken, totalStaked, startBlock, endBlock, isFinished, contractAddress } = pool
+  const { stakingToken, earningToken, totalStaked, isFinished, contractAddress } = pool
 
   const tokenAddress = earningToken.address ? getAddress(earningToken.address) : ''
   const poolContractAddress = getAddress(contractAddress)
@@ -53,10 +51,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({
   const imageSrc = `${BASE_URL}/images/tokens/${earningToken.symbol.toLowerCase()}.png`
   const isMetaMaskInScope = !!(window as WindowChain).ethereum?.isMetaMask
 
-  const shouldShowBlockCountdown = Boolean(!isFinished && startBlock && endBlock)
-  const blocksUntilStart = Math.max(startBlock - currentBlock, 0)
-  const blocksRemaining = Math.max(endBlock - currentBlock, 0)
-  const hasPoolStarted = blocksUntilStart === 0 && blocksRemaining > 0
+  const shouldShowBlockCountdown = Boolean(!isFinished)
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     t('Subtracted automatically from each yield harvest and burned.'),
@@ -89,18 +84,8 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({
       </Flex>
       {shouldShowBlockCountdown && (
         <Flex mb="2px" justifyContent="space-between" alignItems="center">
-          <Text small>{hasPoolStarted ? t('End') : t('Start')}:</Text>
           <Flex alignItems="center">
-            {blocksRemaining || blocksUntilStart ? (
-              <Balance
-                color="primary"
-                fontSize="14px"
-                value={hasPoolStarted ? blocksRemaining : blocksUntilStart}
-                decimals={0}
-              />
-            ) : (
-              <Skeleton width="54px" height="21px" />
-            )}
+            <Skeleton width="54px" height="21px" />
             <Text ml="4px" color="primary" small>
               {t('blocks')}
             </Text>

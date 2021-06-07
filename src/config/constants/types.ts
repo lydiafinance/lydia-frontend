@@ -76,6 +76,11 @@ export interface MaximusConfig {
   contractAddress: Address
   earningToken: Token
   stakingToken: Token
+  isFinished?: boolean
+  stakingLimit?: number
+  enableEmergencyWithdraw?: boolean
+  sortOrder?: number
+  harvest?: boolean
 }
 
 export interface PoolConfig {

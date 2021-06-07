@@ -1,9 +1,10 @@
 import React, { useMemo } from 'react'
 import { Route, useRouteMatch } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
+import orderBy from 'lodash/orderBy'
 import { useWeb3React } from '@web3-react/core'
 import { Heading, Flex } from '@lydiafinance/uikit'
-import partition from 'lodash/partition'
+
 import { useTranslation } from 'contexts/Localization'
 import usePersistState from 'hooks/usePersistState'
 import { useMaximusPools, useBlock } from 'state/hooks'
@@ -18,23 +19,14 @@ const Pools: React.FC = () => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const pools = useMaximusPools(account)
+  console.log(`pools`, pools)
   const { currentBlock } = useBlock()
   const [stakedOnly, setStakedOnly] = usePersistState(false, 'lydia_pool_staked')
 
-  const [finishedPools, openPools] = useMemo(
-    () => partition(pools, (pool) => pool.isFinished || currentBlock > pool.endBlock),
-    [currentBlock, pools],
-  )
   const stakedOnlyPools = useMemo(
-    () => openPools.filter((pool) => pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0)),
-    [openPools],
+    () => pools.filter((pool) => pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0)),
+    [pools],
   )
-  const hasStakeInFinishedPools = useMemo(
-    () => finishedPools.some((pool) => pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0)),
-    [finishedPools],
-  )
-  // This pool is passed explicitly to the lyd vault
-  const lydPoolData = useMemo(() => openPools.find((pool) => pool.sousId === 0), [openPools])
 
   return (
     <>
@@ -54,14 +46,14 @@ const Pools: React.FC = () => {
         </Flex>
       </PageHeader>
       <Page>
-        <PoolTabButtons
-          stakedOnly={stakedOnly}
-          setStakedOnly={setStakedOnly}
-          hasStakeInFinishedPools={hasStakeInFinishedPools}
-        />
+        <PoolTabButtons stakedOnly={stakedOnly} setStakedOnly={setStakedOnly} />
         <FlexLayout>
           <Route exact path={`${path}`}>
-            <LydVaultCard pool={lydPoolData} showStakedOnly={stakedOnly} />
+            {stakedOnly
+              ? orderBy(stakedOnlyPools, ['sortOrder']).map((pool) => (
+                  <LydVaultCard pool={pool} showStakedOnly={stakedOnly} />
+                ))
+              : orderBy(pools, ['sortOrder']).map((pool) => <LydVaultCard pool={pool} showStakedOnly={stakedOnly} />)}
           </Route>
         </FlexLayout>
       </Page>

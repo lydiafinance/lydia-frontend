@@ -19,7 +19,7 @@ import {
   setBlock,
 } from './actions'
 import { QuoteToken } from '../config/constants/types'
-import { State, Farm, Pool, ProfileState, TeamsState, AchievementState, PriceState, FarmsState } from './types'
+import { State, Farm, Pool, ProfileState, TeamsState, AchievementState, PriceState, FarmsState, Maximus } from './types'
 // import { fetchProfile } from './profile'
 import { fetchTeam, fetchTeams } from './teams'
 import { fetchAchievements } from './achievements'
@@ -112,7 +112,7 @@ export const usePoolFromPid = (sousId): Pool => {
 
 // Maximus
 
-export const useMaximusPools = (account): Pool[] => {
+export const useMaximusPools = (account): Maximus[] => {
   const { fastRefresh } = useRefresh()
   const dispatch = useDispatch()
   useEffect(() => {
@@ -121,8 +121,8 @@ export const useMaximusPools = (account): Pool[] => {
     }
   }, [account, dispatch, fastRefresh])
 
-  const pools = useSelector((state: State) => state.pools.data)
-  return pools
+  const maximus = useSelector((state: State) => state.maximus.data)
+  return maximus
 }
 
 // Toasts

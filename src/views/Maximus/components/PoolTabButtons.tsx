@@ -1,17 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useRouteMatch, Link } from 'react-router-dom'
-import {
-  ButtonMenu,
-  ButtonMenuItem,
-  Button,
-  HelpIcon,
-  Toggle,
-  Text,
-  Flex,
-  NotificationDot,
-  Link as UiKitLink,
-} from '@lydiafinance/uikit'
+import { Button, HelpIcon, Toggle, Text, Flex, Link as UiKitLink } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 const ButtonText = styled(Text)`
@@ -29,23 +18,12 @@ const StyledLink = styled(UiKitLink)`
   }
 `
 
-const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools }) => {
-  const { url, isExact } = useRouteMatch()
+const PoolTabButtons = ({ stakedOnly, setStakedOnly }) => {
   const { t } = useTranslation()
 
   return (
     <Flex alignItems="center" justifyContent="center" mb="32px">
       <Flex alignItems="center" flexDirection={['column', null, 'row', null]}>
-        {/* <ButtonMenu activeIndex={isExact ? 0 : 1} scale="sm" variant="subtle">
-          <ButtonMenuItem as={Link} to={`${url}`}>
-            {t('Live')}
-          </ButtonMenuItem>
-          <NotificationDot show={hasStakeInFinishedPools}>
-            <ButtonMenuItem as={Link} to={`${url}/history`}>
-              {t('Finished')}
-            </ButtonMenuItem>
-          </NotificationDot>
-        </ButtonMenu> */}
         <Flex mt={['4px', null, 0, null]} ml={[0, null, '24px', null]} justifyContent="center" alignItems="center">
           <Toggle scale="sm" checked={stakedOnly} onChange={() => setStakedOnly((prev) => !prev)} />
           <Text ml="8px">{t('Staked only')}</Text>

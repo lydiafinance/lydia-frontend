@@ -12,13 +12,13 @@ import { VaultFees } from 'hooks/maximus/useGetMaximusFees'
 import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/formatBalance'
 import useToast from 'hooks/useToast'
-import { Pool } from 'state/types'
+import { Maximus } from 'state/types'
 import { VaultUser } from 'views/Pools/types'
 import { convertLydToShares } from '../../helpers'
 import FeeSummary from './FeeSummary'
 
 interface VaultStakeModalProps {
-  pool: Pool
+  pool: Maximus
   stakingMax: BigNumber
   stakingTokenPrice: number
   userInfo: VaultUser

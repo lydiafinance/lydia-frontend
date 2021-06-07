@@ -3,14 +3,14 @@ import styled from 'styled-components'
 import { Box, CardBody, Flex, Text } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
+
 import UnlockButton from 'components/UnlockButton'
-import { getAddress } from 'utils/addressHelpers'
 import { useGetApiPrice } from 'state/hooks'
 import useLastUpdated from 'hooks/useLastUpdate'
 import useGetMaximusUserInfo from 'hooks/maximus/useGetMaximusUserInfo'
 import useGetMaximusSharesInfo from 'hooks/maximus/useGetMaximusSharesInfo'
 import useGetMaximusFees from 'hooks/maximus/useGetMaximusFees'
-import { Pool } from 'state/types'
+import { Maximus } from 'state/types'
 import AprRow from '../PoolCard/AprRow'
 import StyledCard from '../PoolCard/StyledCard'
 import CardFooter from '../PoolCard/CardFooter'
@@ -24,7 +24,7 @@ const StyledCardBody = styled(CardBody)<{ isLoading: boolean }>`
 `
 
 interface LydVaultProps {
-  pool: Pool
+  pool: Maximus
   showStakedOnly?: boolean
   isHomeCard?: boolean
 }
@@ -36,11 +36,12 @@ const LydVaultCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHomeCar
   const userInfo = useGetMaximusUserInfo(lastUpdated)
   const vaultFees = useGetMaximusFees()
   const { totalLydInVault, pricePerFullShare } = useGetMaximusSharesInfo()
-  const { stakingToken } = pool
+  const { stakingToken, lpSymbol } = pool
   //   Estimate & manual for now. 288 = once every 5 mins. We can change once we have a better sense of this
   const timesCompoundedDaily = 288
   const accountHasSharesStaked = userInfo.shares && userInfo.shares.gt(0)
-  const stakingTokenPrice = useGetApiPrice(stakingToken?.symbol?.toLowerCase())
+  // const stakingTokenPrice = useGetApiPrice(stakingToken?.symbol?.toLowerCase())
+  const stakingTokenPrice = 1
   const isLoading = !pool.userData || !userInfo.shares
   const performanceFeeAsDecimal = vaultFees.performanceFee && parseInt(vaultFees.performanceFee, 10) / 100
 
@@ -50,7 +51,7 @@ const LydVaultCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHomeCar
 
   return (
     <StyledCard isStaking={accountHasSharesStaked} isHomeCard={isHomeCard}>
-      <StyledCardHeader isAutoVault quoteToken="LYD" token="USDT" />
+      <StyledCardHeader stackingToken={lpSymbol} />
       <StyledCardBody isLoading={isLoading}>
         <AprRow
           pool={pool}

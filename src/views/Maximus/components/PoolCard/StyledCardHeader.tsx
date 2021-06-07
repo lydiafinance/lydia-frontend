@@ -9,34 +9,22 @@ const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }
 `
 
 const StyledCardHeader: React.FC<{
-  token: string
-  quoteToken: string
-  isAutoVault?: boolean
+  stackingToken: string
   isFinished?: boolean
-}> = ({ token, quoteToken, isFinished = false, isAutoVault = false }) => {
+}> = ({ stackingToken, isFinished = false }) => {
   const { t } = useTranslation()
-  const poolImageSrc = isAutoVault ? `lyd-lydvault.svg` : `${token}-${quoteToken}.svg`.toLocaleLowerCase()
-  const isLydPool = token === 'LYD' && quoteToken === 'LYD'
-  const background = isLydPool ? 'bubblegum' : 'cardHeader'
-
-  const getSubHeading = () => {
-    if (isAutoVault) {
-      return `${t('Automatic restaking')}`
-    }
-
-    return `${t('Stake')} ${quoteToken}`
-  }
+  const poolImageSrc = `${stackingToken}-automatic.svg`.toLocaleLowerCase()
 
   return (
-    <Wrapper isFinished={isFinished} background={background}>
+    <Wrapper isFinished={isFinished} background="cardHeader">
       <Flex alignItems="center" justifyContent="space-between">
         <Flex flexDirection="column">
           <Heading color={isFinished ? 'textDisabled' : 'text'} size="lg">
-            {`${token}-${quoteToken}`}
+            {`${stackingToken}`}
           </Heading>
-          <Text color={isFinished ? 'textDisabled' : 'text'}>{getSubHeading()}</Text>
+          <Text color={isFinished ? 'textDisabled' : 'text'}>{t('Automatic restaking')}</Text>
         </Flex>
-        <Image src={`/images/pools/${poolImageSrc}`} alt={token} width={64} height={64} />
+        <Image src={`/images/pools/${poolImageSrc}`} alt={stackingToken} width={64} height={64} />
       </Flex>
     </Wrapper>
   )

@@ -3,12 +3,12 @@ import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import { Flex, CardFooter, ExpandableLabel, HelpIcon, useTooltip, Box } from '@lydiafinance/uikit'
-import { Pool } from 'state/types'
+import { Maximus } from 'state/types'
 import { CompoundingPoolTag, ManualPoolTag } from 'components/Tags'
 import ExpandedFooter from './ExpandedFooter'
 
 interface FooterProps {
-  pool: Pool
+  pool: Maximus
   account: string
   performanceFee?: number
   isAutoVault?: boolean

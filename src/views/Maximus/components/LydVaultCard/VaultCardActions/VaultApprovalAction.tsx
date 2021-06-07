@@ -5,10 +5,10 @@ import { ethers } from 'ethers'
 import { useTranslation } from 'contexts/Localization'
 import { useLyd, useLydVaultContract } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
-import { Pool } from 'state/types'
+import { Maximus } from 'state/types'
 
 interface ApprovalActionProps {
-  pool: Pool
+  pool: Maximus
   setLastUpdated: () => void
   isLoading?: boolean
 }

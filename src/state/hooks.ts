@@ -11,6 +11,8 @@ import {
   fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
+  fetchMaximusPublicDataAsync,
+  fetchMaximusUserDataAsync,
   push as pushToast,
   remove as removeToast,
   clear as clearToast,
@@ -29,6 +31,7 @@ export const useFetchPublicData = () => {
   useEffect(() => {
     dispatch(fetchFarmsPublicDataAsync())
     dispatch(fetchPoolsPublicDataAsync())
+    dispatch(fetchMaximusPublicDataAsync())
   }, [dispatch, slowRefresh])
 
   useEffect(() => {
@@ -105,6 +108,21 @@ export const usePools = (account): Pool[] => {
 export const usePoolFromPid = (sousId): Pool => {
   const pool = useSelector((state: State) => state.pools.data.find((p) => p.sousId === sousId))
   return pool
+}
+
+// Maximus
+
+export const useMaximusPools = (account): Pool[] => {
+  const { fastRefresh } = useRefresh()
+  const dispatch = useDispatch()
+  useEffect(() => {
+    if (account) {
+      dispatch(fetchMaximusUserDataAsync(account))
+    }
+  }, [account, dispatch, fastRefresh])
+
+  const pools = useSelector((state: State) => state.pools.data)
+  return pools
 }
 
 // Toasts

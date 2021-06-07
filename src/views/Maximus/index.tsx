@@ -2,16 +2,14 @@ import React, { useMemo } from 'react'
 import { Route, useRouteMatch } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Flex, Image } from '@lydiafinance/uikit'
-import orderBy from 'lodash/orderBy'
+import { Heading, Flex } from '@lydiafinance/uikit'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
 import usePersistState from 'hooks/usePersistState'
-import { usePools, useBlock } from 'state/hooks'
+import { useMaximusPools, useBlock } from 'state/hooks'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
 import PageHeader from 'components/PageHeader'
-import PoolCard from './components/PoolCard'
 import LydVaultCard from './components/LydVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
 
@@ -19,7 +17,7 @@ const Pools: React.FC = () => {
   const { path } = useRouteMatch()
   const { t } = useTranslation()
   const { account } = useWeb3React()
-  const pools = usePools(account)
+  const pools = useMaximusPools(account)
   const { currentBlock } = useBlock()
   const [stakedOnly, setStakedOnly] = usePersistState(false, 'lydia_pool_staked')
 
@@ -65,11 +63,6 @@ const Pools: React.FC = () => {
           <Route exact path={`${path}`}>
             <LydVaultCard pool={lydPoolData} showStakedOnly={stakedOnly} />
           </Route>
-          {/* <Route path={`${path}/history`}>
-            {orderBy(finishedPools, ['sortOrder']).map((pool) => (
-              <PoolCard key={pool.sousId} pool={pool} account={account} />
-            ))}
-          </Route> */}
         </FlexLayout>
       </Page>
     </>

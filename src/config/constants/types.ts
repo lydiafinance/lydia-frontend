@@ -73,32 +73,9 @@ export interface FarmConfig {
 export interface MaximusConfig {
   pid: number
   lpSymbol: string
-  lpAddresses: Address
-  token: Token
-  quoteToken: Token
-  lpTokenBalanceMC?: any
-  multiplier?: string
-  isCommunity?: any
-  quoteTokenSymbol?: any
-  isTokenOnly?: any
-  tokenSymbol?: any
-  quoteTokenAdresses?: any
-  dual?: {
-    rewardPerBlock: number
-    earnLabel: string
-    endBlock: number
-  }
-  sousId: number
+  contractAddress: Address
   earningToken: Token
   stakingToken: Token
-  stakingLimit?: number
-  contractAddress: Address
-  poolCategory: PoolCategory
-  tokenPerBlock: string
-  sortOrder?: number
-  harvest?: boolean
-  isFinished?: boolean
-  enableEmergencyWithdraw?: boolean
 }
 
 export interface PoolConfig {

@@ -3,7 +3,7 @@ import { Flex, Text, IconButton, AddIcon, MinusIcon, Heading, useModal, Skeleton
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber, formatNumber } from 'utils/formatBalance'
 import { Pool } from 'state/types'
-import { VaultFees } from 'hooks/lydVault/useGetVaultFees'
+import { VaultFees } from 'hooks/maximus/useGetMaximusFees'
 import { VaultUser } from 'views/Pools/types'
 import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
 import { convertSharesToLyd } from '../../../helpers'

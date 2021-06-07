@@ -7,8 +7,8 @@ import { BASE_EXCHANGE_URL } from 'config'
 import { BIG_TEN } from 'utils/bigNumber'
 import { useLydVaultContract } from 'hooks/useContract'
 import useTheme from 'hooks/useTheme'
-import useWithdrawalFeeTimer from 'hooks/lydVault/useWithdrawalFeeTimer'
-import { VaultFees } from 'hooks/lydVault/useGetVaultFees'
+import useMaximusWithdrawalFeeTimer from 'hooks/maximus/useMaximusWithdrawalFeeTimer'
+import { VaultFees } from 'hooks/maximus/useGetMaximusFees'
 import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/formatBalance'
 import useToast from 'hooks/useToast'
@@ -53,7 +53,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
   const [pendingTx, setPendingTx] = useState(false)
   const [stakeAmount, setStakeAmount] = useState('')
   const [percent, setPercent] = useState(0)
-  const { hasUnstakingFee } = useWithdrawalFeeTimer(parseInt(userInfo.lastDepositedTime))
+  const { hasUnstakingFee } = useMaximusWithdrawalFeeTimer(parseInt(userInfo.lastDepositedTime))
   const usdValueStaked = stakeAmount && formatNumber(new BigNumber(stakeAmount).times(stakingTokenPrice).toNumber())
 
   const handleStakeInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

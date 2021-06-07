@@ -2,7 +2,7 @@ import React from 'react'
 import { Flex, Text, TooltipText, useTooltip } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
-import useWithdrawalFeeTimer from 'hooks/lydVault/useWithdrawalFeeTimer'
+import useMaximusWithdrawalFeeTimer from 'hooks/maximus/useMaximusWithdrawalFeeTimer'
 import WithdrawalFeeTimer from './WithdrawalFeeTimer'
 
 interface UnstakingFeeCountdownRowProps {
@@ -33,7 +33,7 @@ const UnstakingFeeCountdownRow: React.FC<UnstakingFeeCountdownRowProps> = ({
     { placement: 'bottom-start' },
   )
 
-  const { secondsRemaining, hasUnstakingFee } = useWithdrawalFeeTimer(
+  const { secondsRemaining, hasUnstakingFee } = useMaximusWithdrawalFeeTimer(
     parseInt(lastDepositedTime, 10),
     parseInt(withdrawalFeePeriod, 10),
   )
@@ -51,7 +51,7 @@ const UnstakingFeeCountdownRow: React.FC<UnstakingFeeCountdownRowProps> = ({
     if (shouldShowTimer) {
       return t('unstaking fee until')
     }
-    return t('unstaking fee if withdrawn within 120h')
+    return t('unstaking fee if withdrawn within 168h')
   }
 
   return (

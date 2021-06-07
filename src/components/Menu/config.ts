@@ -26,7 +26,7 @@ const config: MenuEntry[] = [
     href: '/maximus',
     status: {
       text: 'BETA',
-      color: 'success',
+      color: 'warning',
     },
   },
   {
@@ -39,17 +39,15 @@ const config: MenuEntry[] = [
     icon: 'PoolIcon',
     href: '/pools',
   },
-
-  // {
-  //   label: 'Airdrop',
-  //   icon: 'AirdropIcon',
-  //   href: '/airdrop',
-  // },
-  // {
-  //   label: 'Lottery',
-  //   icon: 'TicketIcon',
-  //   href: '/lottery',
-  // },
+  {
+    label: 'Lottery',
+    icon: 'TicketIcon',
+    href: '/lottery',
+    status: {
+      text: 'NEW',
+      color: 'success',
+    },
+  },
   // {
   //   label: 'Collectibles',
   //   icon: 'NftIcon',

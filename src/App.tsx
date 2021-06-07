@@ -22,7 +22,7 @@ import history from './routerHistory'
 const Home = lazy(() => import('./views/Home'))
 const Farms = lazy(() => import('./views/Farms'))
 const NotFound = lazy(() => import('./views/NotFound'))
-// const Lottery = lazy(() => import('./views/Lottery'))
+const Lottery = lazy(() => import('./views/Lottery'))
 // const Ifos = lazy(() => import('./views/Ifos'))
 // const Collectibles = lazy(() => import('./views/Collectibles'))
 // const Teams = lazy(() => import('./views/Teams'))
@@ -79,9 +79,9 @@ const App: React.FC = () => {
             {/* <Route path="/airdrop">
               <Airdrop />
             </Route> */}
-            {/* <Route path="/lottery">
+            <Route path="/lottery">
               <Lottery />
-            </Route> */}
+            </Route>
             {/* <Route path="/ifo">
               <Ifos />
             </Route> */}

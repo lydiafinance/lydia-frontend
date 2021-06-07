@@ -104,6 +104,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://snowball.network/',
   },
+  xava: {
+    symbol: 'XAVA',
+    address: {
+      [ChainId.AVALANCHE]: '0xd1c3f94DE7e5B45fa4eDBBA472491a9f4B166FC4',
+      [ChainId.FUJI]: '0xd1c3f94DE7e5B45fa4eDBBA472491a9f4B166FC4',
+    },
+    decimals: 18,
+    projectLink: 'https://avalaunch.app/',
+  },
 }
 
 export default tokens

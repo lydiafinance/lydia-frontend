@@ -14,11 +14,11 @@ const LegendItem = styled.div`
   align-items: center;
 `
 
-const Circle = styled.div<{ isPoolSize?: boolean }>`
+const Circle = styled.div<{ isPoolSize?: any }>`
   width: 20px;
   height: 20px;
   border-radius: 10px;
-  background-color: ${({ isPoolSize, theme }) => theme.colors[isPoolSize ? 'textSubtle' : 'primary']};
+  background-color: ${({ isPoolSize, theme }) => (isPoolSize ? '#15B0F8' : '#D4068E')};
   margin-right: 6px;
 `
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, Flex, useTooltip, TooltipText } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
-import { VaultFees } from 'hooks/lydVault/useGetVaultFees'
+import { VaultFees } from 'hooks/maximus/useGetMaximusFees'
 import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
 
 interface FeeSummaryProps {

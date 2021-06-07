@@ -7,9 +7,9 @@ import UnlockButton from 'components/UnlockButton'
 import { getAddress } from 'utils/addressHelpers'
 import { useGetApiPrice } from 'state/hooks'
 import useLastUpdated from 'hooks/useLastUpdate'
-import useGetVaultUserInfo from 'hooks/lydVault/useGetVaultUserInfo'
-import useGetVaultSharesInfo from 'hooks/lydVault/useGetVaultSharesInfo'
-import useGetVaultFees from 'hooks/lydVault/useGetVaultFees'
+import useGetMaximusUserInfo from 'hooks/maximus/useGetMaximusUserInfo'
+import useGetMaximusSharesInfo from 'hooks/maximus/useGetMaximusSharesInfo'
+import useGetMaximusFees from 'hooks/maximus/useGetMaximusFees'
 import { Pool } from 'state/types'
 import AprRow from '../PoolCard/AprRow'
 import StyledCard from '../PoolCard/StyledCard'
@@ -33,9 +33,9 @@ const LydVaultCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHomeCar
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { lastUpdated, setLastUpdated } = useLastUpdated()
-  const userInfo = useGetVaultUserInfo(lastUpdated)
-  const vaultFees = useGetVaultFees()
-  const { totalLydInVault, pricePerFullShare } = useGetVaultSharesInfo()
+  const userInfo = useGetMaximusUserInfo(lastUpdated)
+  const vaultFees = useGetMaximusFees()
+  const { totalLydInVault, pricePerFullShare } = useGetMaximusSharesInfo()
   const { stakingToken } = pool
   //   Estimate & manual for now. 288 = once every 5 mins. We can change once we have a better sense of this
   const timesCompoundedDaily = 288

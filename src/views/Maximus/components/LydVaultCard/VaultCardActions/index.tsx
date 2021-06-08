@@ -38,14 +38,12 @@ const LydVaultCardActions: React.FC<{
   setLastUpdated,
 }) => {
   const { account } = useWeb3React()
-  const { stakingToken, userData, lpSymbol } = pool
+  const { stakingToken, userData, lpSymbol, pid } = pool
   const [isVaultApproved, setIsVaultApproved] = useState(false)
   const lydContract = useLyd()
   const lydVaultContract = useLydVaultContract()
   const { t } = useTranslation()
-  console.log(`userData?.stakingTokenBalance`, userData?.stakingTokenBalance)
   const stakingTokenBalance = userData?.stakingTokenBalance ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO
-  console.log(`stakingTokenBalance`, stakingTokenBalance.toString())
   useEffect(() => {
     const checkApprovalStatus = async () => {
       try {
@@ -72,7 +70,7 @@ const LydVaultCardActions: React.FC<{
             {t('Earned')}
           </Text>
         </Flex>
-        <HarvestAction earnings={userData?.pendingReward} pid={0} />
+        <HarvestAction earnings={userData?.pendingReward} pid={pid} />
         <Box display="inline">
           <InlineText
             color={accountHasSharesStaked ? 'secondary' : 'textSubtle'}

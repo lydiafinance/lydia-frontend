@@ -49,7 +49,6 @@ export const useFetchPublicData = () => {
 
 export const useFarms = (): FarmsState => {
   const farms = useSelector((state: State) => {
-    console.log(state)
     return state.farms
   })
   return farms

@@ -15,6 +15,7 @@ import {
   getClaimRefundContract,
   getAirdropContract,
   getLydVaultContract,
+  getMaximusFeeManagerContract,
 } from 'utils/contractHelpers'
 
 /**
@@ -87,4 +88,9 @@ export const useAirdropContract = () => {
 export const useLydVaultContract = () => {
   const web3 = useWeb3()
   return useMemo(() => getLydVaultContract(web3), [web3])
+}
+
+export const useMaximusFeeManagerContract = () => {
+  const web3 = useWeb3()
+  return useMemo(() => getMaximusFeeManagerContract(web3), [web3])
 }

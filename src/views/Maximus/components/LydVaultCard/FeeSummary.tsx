@@ -15,6 +15,9 @@ const FeeSummary: React.FC<FeeSummaryProps> = ({ stakingTokenSymbol, lastDeposit
   const { t } = useTranslation()
   const feeAsDecimal = parseInt(vaultFees.withdrawalFee) / 100
   const feeInLyd = (parseFloat(stakeAmount) * (feeAsDecimal / 100)).toFixed(4)
+
+  const withdrawalFeePeriod = parseInt(vaultFees.withdrawalFeePeriod) / 86400
+
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     <>
       <Text bold mb="4px">
@@ -22,7 +25,7 @@ const FeeSummary: React.FC<FeeSummaryProps> = ({ stakingTokenSymbol, lastDeposit
       </Text>
       <Text>
         {t(
-          'Only applies within 5 days of staking. Unstaking after 5 days will not include a fee. Timer resets every time you stake new LYD in the pool.',
+          `Only applies within ${withdrawalFeePeriod} days of staking. Unstaking after 5 days will not include a fee. Timer resets every time you stake new LYD in the pool.`,
         )}
       </Text>
     </>,

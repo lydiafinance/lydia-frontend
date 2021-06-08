@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-curly-brace-presence */
 import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
@@ -14,10 +15,9 @@ import {
   useTooltip,
   Button,
 } from '@lydiafinance/uikit'
-import { BASE_AVAX_SCAN_URL, BASE_URL } from 'config'
+import { BASE_AVAX_SCAN_URL } from 'config'
 import { Maximus } from 'state/types'
-import { getAddress, getLydVaultAddress } from 'utils/addressHelpers'
-import { registerToken } from 'utils/wallet'
+import { getAddress } from 'utils/addressHelpers'
 import Balance from 'components/Balance'
 
 interface ExpandedFooterProps {
@@ -35,6 +35,10 @@ const ExpandedWrapper = styled(Flex)`
   }
 `
 
+const StyledLinkExternal = styled(LinkExternal)`
+  font-weight: 400;
+`
+
 const ExpandedFooter: React.FC<ExpandedFooterProps> = ({
   pool,
   account,
@@ -47,11 +51,6 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({
 
   const tokenAddress = earningToken.address ? getAddress(earningToken.address) : ''
   const poolContractAddress = getAddress(contractAddress)
-  const lydVaultContractAddress = getLydVaultAddress()
-  const imageSrc = `${BASE_URL}/images/tokens/${earningToken.symbol.toLowerCase()}.png`
-  const isMetaMaskInScope = !!(window as WindowChain).ethereum?.isMetaMask
-
-  const shouldShowBlockCountdown = Boolean(!isFinished)
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     t('Subtracted automatically from each yield harvest and burned.'),
@@ -82,61 +81,42 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({
           )}
         </Flex>
       </Flex>
-      {shouldShowBlockCountdown && (
-        <Flex mb="2px" justifyContent="space-between" alignItems="center">
-          <Flex alignItems="center">
-            <Skeleton width="54px" height="21px" />
-            <Text ml="4px" color="primary" small>
-              {t('blocks')}
-            </Text>
-            <TimerIcon ml="4px" color="primary" />
-          </Flex>
+
+      <Flex mb="2px" justifyContent="space-between" alignItems="center">
+        {tooltipVisible && tooltip}
+        <TooltipText ref={targetRef} small>
+          {t('Performance Fee')}
+        </TooltipText>
+        <Flex alignItems="center">
+          <Text ml="4px" small>
+            {performanceFee / 100}%
+          </Text>
         </Flex>
-      )}
-      {isAutoVault && (
-        <Flex mb="2px" justifyContent="space-between" alignItems="center">
-          {tooltipVisible && tooltip}
-          <TooltipText ref={targetRef} small>
-            {t('Performance Fee')}
-          </TooltipText>
-          <Flex alignItems="center">
-            <Text ml="4px" small>
-              {performanceFee / 100}%
-            </Text>
-          </Flex>
-        </Flex>
-      )}
+      </Flex>
+
       <Flex mb="2px" justifyContent="flex-end">
-        <LinkExternal bold={false} small href={earningToken.projectLink}>
-          {t('View Project Site')}
+        <LinkExternal
+          bold={false}
+          small
+          href={`https://exchange.lydia.finance/#/add/AVAX/0x4C9B4E1AC6F24CdE3660D5E4Ef1eBF77C710C084`}
+        >
+          {t(`Get  ${pool.lpSymbol}`)}
         </LinkExternal>
       </Flex>
+
       {poolContractAddress && (
         <Flex mb="2px" justifyContent="flex-end">
-          <LinkExternal
-            bold={false}
-            small
-            href={`${BASE_AVAX_SCAN_URL}/address/${isAutoVault ? lydVaultContractAddress : poolContractAddress}`}
-          >
+          <LinkExternal bold={false} small href={`${BASE_AVAX_SCAN_URL}/address/${poolContractAddress}`}>
             {t('View Contract')}
           </LinkExternal>
         </Flex>
       )}
-      {account && isMetaMaskInScope && tokenAddress && (
-        <Flex justifyContent="flex-end">
-          <Button
-            variant="text"
-            p="0"
-            height="auto"
-            onClick={() => registerToken(tokenAddress, earningToken.symbol, earningToken.decimals, imageSrc)}
-          >
-            <Text color="primary" fontSize="14px">
-              Add to Metamask
-            </Text>
-            <MetamaskIcon ml="4px" />
-          </Button>
-        </Flex>
-      )}
+
+      <Flex mb="2px" justifyContent="flex-end">
+        <LinkExternal bold={false} small href={`${BASE_AVAX_SCAN_URL}/address/${poolContractAddress}`}>
+          {t('See Pair Info')}
+        </LinkExternal>
+      </Flex>
     </ExpandedWrapper>
   )
 }

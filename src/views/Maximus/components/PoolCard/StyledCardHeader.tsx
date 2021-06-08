@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-curly-brace-presence */
 import React from 'react'
 import { CardHeader, Heading, Text, Flex, Image } from '@lydiafinance/uikit'
 import styled from 'styled-components'
@@ -8,12 +9,27 @@ const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }
     isFinished ? theme.colors.backgroundDisabled : theme.colors.gradients[background]};
 `
 
+const ImagesWrapper = styled.div`
+  width: 100%;
+  max-width: 55px;
+  * {
+    border-radius: 30px;
+  }
+  .target-token-symbol {
+    top: -12px;
+    left: 16px;
+  }
+  .token-symbol {
+  }
+`
+
 const StyledCardHeader: React.FC<{
   stackingToken: string
   isFinished?: boolean
 }> = ({ stackingToken, isFinished = false }) => {
   const { t } = useTranslation()
   const poolImageSrc = `${stackingToken}-automatic.svg`.toLocaleLowerCase()
+  const tokens = stackingToken?.split('-')
 
   return (
     <Wrapper isFinished={isFinished} background="cardHeader">
@@ -24,7 +40,24 @@ const StyledCardHeader: React.FC<{
           </Heading>
           <Text color={isFinished ? 'textDisabled' : 'text'}>{t('Automatic restaking')}</Text>
         </Flex>
-        <Image src={`/images/pools/${poolImageSrc}`} alt={stackingToken} width={64} height={64} />
+        {/* <Image src={`/images/pools/${poolImageSrc}`} alt={stackingToken} width={64} height={64} /> */}
+
+        <ImagesWrapper>
+          <Image
+            className="token-symbol"
+            key="axaa"
+            src={`/images/tokens/${tokens[0]?.toLowerCase()}.png`}
+            width={32}
+            height={32}
+          />
+          <Image
+            className="target-token-symbol"
+            key="axaa"
+            src={`/images/tokens/${tokens[1]?.toLowerCase()}.png`}
+            width={42}
+            height={42}
+          />
+        </ImagesWrapper>
       </Flex>
     </Wrapper>
   )

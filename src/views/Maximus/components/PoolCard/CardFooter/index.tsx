@@ -29,7 +29,7 @@ const Footer: React.FC<FooterProps> = ({ pool, account, performanceFee = 0, isAu
 
   const manualTooltipText = t('You must harvest and compound your earnings from this pool manually.')
   const autoTooltipText = t(
-    'Any funds you stake in this pool will be automagically harvested and restaked (compounded) for you.',
+    'Any funds you stake in this farm will be automatically harvested and staked to Auto LYD pool for you.',
   )
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(isAutoVault ? autoTooltipText : manualTooltipText, {

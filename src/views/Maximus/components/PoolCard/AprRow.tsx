@@ -42,7 +42,7 @@ const AprRow: React.FC<AprRowProps> = ({
 
   const selectedFarm = farms?.length > 0 && farms.find((item) => item.pid === pool.pid)
 
-  const apr = getPoolApr(stakingTokenPrice, _lydPrice, getBalanceNumber(totalStaked, stakingToken.decimals), 1)
+  // const apr = getPoolApr(stakingTokenPrice, _lydPrice, getBalanceNumber(totalStaked, stakingToken.decimals), 1)
 
   const quoteTokenPriceUsd = selectedFarm && prices[selectedFarm?.quoteToken?.symbol?.toLowerCase()]
   const totalLiquidity = new BigNumber(selectedFarm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
@@ -76,7 +76,7 @@ const AprRow: React.FC<AprRowProps> = ({
     <ApyCalculatorModal
       tokenPrice={_lydPrice}
       apr={farmApr}
-      linkLabel={`${t('Get')} ${stakingToken.symbol}`}
+      linkLabel={`${t('Get')} ${selectedFarm?.quoteToken?.symbol}`}
       linkHref={apyModalLink || BASE_EXCHANGE_URL}
       earningTokenSymbol={earningToken.symbol}
       roundingDecimals={isHighValueToken ? 4 : 2}

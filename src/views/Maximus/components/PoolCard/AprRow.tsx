@@ -5,7 +5,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { getPoolApr } from 'utils/apr'
 import { getAddress } from 'utils/addressHelpers'
 import { tokenEarnedPerThousandDollarsCompounding, getRoi } from 'utils/compoundApyHelpers'
-import { useGetApiPrice } from 'state/hooks'
+import { useGetApiPrice, useGetApiPrices } from 'state/hooks'
 import Balance from 'components/Balance'
 import ApyCalculatorModal from 'components/ApyCalculatorModal'
 import { Maximus } from 'state/types'
@@ -28,7 +28,7 @@ const AprRow: React.FC<AprRowProps> = ({
 }) => {
   const { t } = useTranslation()
   const { stakingToken, earningToken, totalStaked, isFinished } = pool
-
+  const prices = useGetApiPrices()
   const tooltipContent = isAutoVault
     ? t('APY includes compounding, APR doesn’t. This pool’s LYD is compounded automatically, so we show APY.')
     : t('This pool’s rewards aren’t compounded automatically, so we show APR')
@@ -38,27 +38,28 @@ const AprRow: React.FC<AprRowProps> = ({
   const earningTokenPrice = useGetApiPrice(earningToken?.symbol?.toLowerCase())
   const apr = getPoolApr(stakingTokenPrice, earningTokenPrice, getBalanceNumber(totalStaked, stakingToken.decimals), 1)
 
+  // const quoteTokenPriceUsd = prices[stakingToken?.symbol?.toLowerCase()]
+  // const totalLiquidity = new BigNumber(lpTotalInQuoteToken).times(quoteTokenPriceUsd)
+  // const farmApr = getFarmApr(farm.poolWeight, lydPrice, totalLiquidity)
+
   // special handling for tokens like tBTC or BIFI where the daily token rewards for $1000 dollars will be less than 0.001 of that token
   const isHighValueToken = Math.round(earningTokenPrice / 1000) > 0
   const roundingDecimals = isHighValueToken ? 4 : 2
 
   const earningsPercentageToDisplay = () => {
-    if (isAutoVault) {
-      const oneThousandDollarsWorthOfToken = 1000 / earningTokenPrice
-      const tokenEarnedPerThousand365D = tokenEarnedPerThousandDollarsCompounding({
-        numberOfDays: 365,
-        farmApr: apr,
-        tokenPrice: earningTokenPrice,
-        roundingDecimals,
-        compoundFrequency,
-        performanceFee,
-      })
-      return getRoi({
-        amountEarned: tokenEarnedPerThousand365D,
-        amountInvested: oneThousandDollarsWorthOfToken,
-      })
-    }
-    return apr
+    const oneThousandDollarsWorthOfToken = 1000 / earningTokenPrice
+    const tokenEarnedPerThousand365D = tokenEarnedPerThousandDollarsCompounding({
+      numberOfDays: 365,
+      farmApr: apr,
+      tokenPrice: earningTokenPrice,
+      roundingDecimals,
+      compoundFrequency,
+      performanceFee,
+    })
+    return getRoi({
+      amountEarned: tokenEarnedPerThousand365D,
+      amountInvested: oneThousandDollarsWorthOfToken,
+    })
   }
 
   const apyModalLink =
@@ -81,7 +82,7 @@ const AprRow: React.FC<AprRowProps> = ({
   return (
     <Flex alignItems="center" justifyContent="space-between">
       {tooltipVisible && tooltip}
-      <TooltipText ref={targetRef}>{isAutoVault ? t('APY') : t('APR')}:</TooltipText>
+      <TooltipText ref={targetRef}>{t('APY')}:</TooltipText>
       {isFinished || !apr ? (
         <Skeleton width="82px" height="32px" />
       ) : (

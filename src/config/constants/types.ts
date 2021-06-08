@@ -81,6 +81,9 @@ export interface MaximusConfig {
   enableEmergencyWithdraw?: boolean
   sortOrder?: number
   harvest?: boolean
+  token?: any
+  quoteToken?: any
+  quoteTokenSymbol?: any
 }
 
 export interface PoolConfig {

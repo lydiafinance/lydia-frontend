@@ -47,7 +47,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({
   totalLydInVault,
 }) => {
   const { t } = useTranslation()
-  const { stakingToken, earningToken, totalStaked, isFinished, contractAddress } = pool
+  const { earningToken, totalStaked, isFinished, contractAddress, lpSymbol } = pool
 
   const tokenAddress = earningToken.address ? getAddress(earningToken.address) : ''
   const poolContractAddress = getAddress(contractAddress)
@@ -66,14 +66,10 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({
             <>
               <Balance
                 fontSize="14px"
-                value={
-                  isAutoVault
-                    ? getBalanceNumber(totalLydInVault, stakingToken.decimals)
-                    : getBalanceNumber(totalStaked, stakingToken.decimals)
-                }
+                value={isAutoVault ? getBalanceNumber(totalLydInVault, 18) : getBalanceNumber(totalStaked, 18)}
               />
               <Text ml="4px" fontSize="14px">
-                {stakingToken.symbol}
+                {lpSymbol}
               </Text>
             </>
           ) : (
@@ -100,7 +96,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({
           small
           href={`https://exchange.lydia.finance/#/add/AVAX/0x4C9B4E1AC6F24CdE3660D5E4Ef1eBF77C710C084`}
         >
-          {t(`Get  ${pool.lpSymbol}`)}
+          {t(`Get  ${lpSymbol}`)}
         </LinkExternal>
       </Flex>
 

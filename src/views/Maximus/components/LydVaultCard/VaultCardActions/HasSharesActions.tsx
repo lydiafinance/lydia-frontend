@@ -27,15 +27,12 @@ const HasSharesActions: React.FC<HasStakeActionProps> = ({
   vaultFees,
   setLastUpdated,
 }) => {
-  const { stakingToken } = pool
-  console.log(`userInfo.stakedBalance`, userInfo.stakedBalance)
+  const { lpSymbol } = pool
   const stackedTokenBalance = getBalanceNumber(userInfo.stakedBalance, 18)
 
-  const stakedDollarValue = formatNumber(
-    getBalanceNumber(userInfo.stakedBalance.multipliedBy(stakingTokenPrice), stakingToken.decimals),
-  )
+  const stakedDollarValue = formatNumber(getBalanceNumber(userInfo.stakedBalance.multipliedBy(stakingTokenPrice), 18))
 
-  const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal tokenSymbol={stakingToken.symbol} />)
+  const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal tokenSymbol={lpSymbol} />)
 
   const [onPresentStake] = useModal(
     <VaultStakeModal

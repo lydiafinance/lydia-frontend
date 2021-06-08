@@ -27,7 +27,7 @@ const AprRow: React.FC<AprRowProps> = ({
   performanceFee = 0,
 }) => {
   const { t } = useTranslation()
-  const { stakingToken, earningToken, totalStaked, isFinished } = pool
+  const { stakingToken, earningToken, totalStaked, isFinished, lpSymbol } = pool
   const prices = useGetApiPrices()
   const tooltipContent = isAutoVault
     ? t('APY includes compounding, APR doesn’t. This pool’s LYD is compounded automatically, so we show APY.')
@@ -36,7 +36,7 @@ const AprRow: React.FC<AprRowProps> = ({
   const { targetRef, tooltip, tooltipVisible } = useTooltip(tooltipContent, { placement: 'bottom-end' })
 
   const earningTokenPrice = useGetApiPrice(earningToken?.symbol?.toLowerCase())
-  const apr = getPoolApr(stakingTokenPrice, earningTokenPrice, getBalanceNumber(totalStaked, stakingToken.decimals), 1)
+  const apr = getPoolApr(stakingTokenPrice, earningTokenPrice, getBalanceNumber(totalStaked, 18), 1)
 
   // const quoteTokenPriceUsd = prices[stakingToken?.symbol?.toLowerCase()]
   // const totalLiquidity = new BigNumber(lpTotalInQuoteToken).times(quoteTokenPriceUsd)
@@ -63,14 +63,13 @@ const AprRow: React.FC<AprRowProps> = ({
   }
 
   const apyModalLink =
-    stakingToken.address &&
-    `${BASE_EXCHANGE_URL}/#/swap?outputCurrency=${stakingToken.address[process.env.REACT_APP_CHAIN_ID]}`
+    getAddress(stakingToken) && `${BASE_EXCHANGE_URL}/#/swap?outputCurrency=${getAddress(stakingToken)}`
 
   const [onPresentApyModal] = useModal(
     <ApyCalculatorModal
       tokenPrice={earningTokenPrice}
       apr={apr}
-      linkLabel={`${t('Get')} ${stakingToken.symbol}`}
+      linkLabel={`${t('Get')} ${lpSymbol}`}
       linkHref={apyModalLink || BASE_EXCHANGE_URL}
       earningTokenSymbol={earningToken.symbol}
       roundingDecimals={isHighValueToken ? 4 : 2}

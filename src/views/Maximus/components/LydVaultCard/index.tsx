@@ -19,7 +19,6 @@ import CardFooter from '../PoolCard/CardFooter'
 import StyledCardHeader from '../PoolCard/StyledCardHeader'
 import VaultCardActions from './VaultCardActions'
 import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
-import RecentLydProfitRow from './RecentLydProfitRow'
 
 const StyledCardBody = styled(CardBody)<{ isLoading: boolean }>`
   min-height: ${({ isLoading }) => (isLoading ? '0' : '254px')};
@@ -39,7 +38,7 @@ const LydVaultCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHomeCar
   const vaultFees = useGetMaximusFees()
   const { pricePerFullShare } = useGetMaximusSharesInfo()
   const { stakingToken, lpSymbol, totalStaked, userData } = pool
-  const { pendingReward = BIG_ZERO, depositAt, stakedBalance } = userData || {}
+  const { depositAt, stakedBalance } = userData || {}
   //   Estimate & manual for now. 288 = once every 5 mins. We can change once we have a better sense of this
   const timesCompoundedDaily = 288
   const accountHasSharesStaked = stakedBalance && stakedBalance.gt(0)
@@ -63,9 +62,6 @@ const LydVaultCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHomeCar
           compoundFrequency={timesCompoundedDaily}
           performanceFee={performanceFeeAsDecimal}
         />
-        <Box mt="24px">
-          <RecentLydProfitRow pendingReward={pendingReward} />
-        </Box>
         <Box mt="8px">
           <UnstakingFeeCountdownRow
             withdrawalFee={vaultFees.withdrawalFee}

@@ -15,7 +15,7 @@ interface ApprovalActionProps {
 
 const ApprovalAction: React.FC<ApprovalActionProps> = ({ pool, isLoading = false, setLastUpdated }) => {
   const { account } = useWeb3React()
-  const { stakingToken } = pool
+  const { lpSymbol } = pool
   const lydVaultContract = useLydVaultContract()
   const lydContract = useLyd()
   const { t } = useTranslation()
@@ -32,7 +32,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ pool, isLoading = false
       .on('receipt', () => {
         toastSuccess(
           `${t('Contract Enabled')}`,
-          `${t(`You can now stake in the %symbol% vault!`, { symbol: stakingToken.symbol })}`,
+          `${t(`You can now stake in the %symbol% vault!`, { symbol: lpSymbol })}`,
         )
         setLastUpdated()
         setRequestedApproval(false)

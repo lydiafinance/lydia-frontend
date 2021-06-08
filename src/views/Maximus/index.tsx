@@ -22,8 +22,6 @@ const Pools: React.FC = () => {
   const { data: farms, userDataLoaded } = useFarms()
   const _lydPrice = useGetApiPrice('lyd')
   const lydPrice = useMemo(() => new BigNumber(_lydPrice), [_lydPrice])
-  console.log(`pools`, pools)
-  console.log('@@@@@@@@@@', farms)
   // const { currentBlock } = useBlock()
   const [stakedOnly, setStakedOnly] = usePersistState(false, 'lydia_pool_staked')
 

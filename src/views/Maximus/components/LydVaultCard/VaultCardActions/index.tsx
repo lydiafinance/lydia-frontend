@@ -10,6 +10,7 @@ import { VaultFees } from 'hooks/maximus/useGetMaximusFees'
 import { Maximus, MaximusUserData } from 'state/types'
 import VaultApprovalAction from './VaultApprovalAction'
 import VaultStakeActions from './VaultStakeActions'
+import HarvestAction from './HarvestAction'
 
 const InlineText = styled(Text)`
   display: inline;
@@ -42,8 +43,9 @@ const LydVaultCardActions: React.FC<{
   const lydContract = useLyd()
   const lydVaultContract = useLydVaultContract()
   const { t } = useTranslation()
+  console.log(`userData?.stakingTokenBalance`, userData?.stakingTokenBalance)
   const stakingTokenBalance = userData?.stakingTokenBalance ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO
-
+  console.log(`stakingTokenBalance`, stakingTokenBalance.toString())
   useEffect(() => {
     const checkApprovalStatus = async () => {
       try {
@@ -58,10 +60,19 @@ const LydVaultCardActions: React.FC<{
     checkApprovalStatus()
   }, [account, lydContract, lydVaultContract, lastUpdated])
 
-  console.log(`stakingToken`, stakingToken)
   return (
     <Flex flexDirection="column">
       <Flex flexDirection="column">
+        <Flex>
+          <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="3px">
+            {/* TODO: Is there a way to get a dynamic value here from useFarmFromSymbol? */}
+            LYD
+          </Text>
+          <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+            {t('Earned')}
+          </Text>
+        </Flex>
+        <HarvestAction earnings={userData?.pendingReward} pid={0} />
         <Box display="inline">
           <InlineText
             color={accountHasSharesStaked ? 'secondary' : 'textSubtle'}
@@ -80,6 +91,7 @@ const LydVaultCardActions: React.FC<{
             {accountHasSharesStaked ? t(`staked (compounding)`) : `${lpSymbol} LP`}
           </InlineText>
         </Box>
+
         {isVaultApproved ? (
           <VaultStakeActions
             isLoading={isLoading}

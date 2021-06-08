@@ -1,7 +1,7 @@
 import Web3 from 'web3'
 import { AbiItem } from 'web3-utils'
 import web3NoAccount from 'utils/web3'
-import { poolsConfig } from 'config/constants'
+import { poolsConfig, maximusConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
 
 // Addresses
@@ -39,6 +39,7 @@ import claimRefundAbi from 'config/abi/claimRefund.json'
 import airDropAbi from 'config/abi/airdrop.json'
 import lydVaultAbi from 'config/abi/lydVaultAbi.json'
 import maximusFeeManagerAbi from 'config/abi/maximusFeeManagerAbi.json'
+import maximusAbi from 'config/abi/maximusAbi.json'
 
 const getContract = (abi: any, address: string, web3?: Web3) => {
   const _web3 = web3 ?? web3NoAccount
@@ -94,4 +95,9 @@ export const getLydVaultContract = (web3?: Web3) => {
 }
 export const getMaximusFeeManagerContract = (web3?: Web3) => {
   return getContract(maximusFeeManagerAbi, getMaximusFeeManagerAddress(), web3)
+}
+export const getMaximusContract = (id: number, web3?: Web3) => {
+  const config = maximusConfig.find((pool) => pool.pid === id)
+  const abi = maximusAbi
+  return getContract(abi, getAddress(config.contractAddress), web3)
 }

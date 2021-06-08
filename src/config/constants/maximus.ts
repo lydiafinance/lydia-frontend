@@ -12,7 +12,7 @@ const pools: MaximusConfig[] = [
     },
     stakingToken: {
       [ChainId.FUJI]: '0x4570BD3910c64095F6C0f5e6405BE7Cb30E2bdd7',
-      [ChainId.AVALANCHE]: '0xEAC3778e5658667B72aEbe8C71F97ed8b3b5887b',
+      [ChainId.AVALANCHE]: '0xfba4edaad3248b03f1a3261ad06ad846a8e50765',
     },
     earningToken: tokens.lyd,
   },
@@ -25,7 +25,7 @@ const pools: MaximusConfig[] = [
     },
     stakingToken: {
       [ChainId.FUJI]: '0x4570BD3910c64095F6C0f5e6405BE7Cb30E2bdd7',
-      [ChainId.AVALANCHE]: '0xEAC3778e5658667B72aEbe8C71F97ed8b3b5887b',
+      [ChainId.AVALANCHE]: '0xfba4edaad3248b03f1a3261ad06ad846a8e50765',
     },
     earningToken: tokens.lyd,
   },

@@ -1,8 +1,10 @@
-import React from 'react'
+/* eslint-disable import/newline-after-import */
+import React, { useMemo } from 'react'
 import { Flex, TooltipText, IconButton, useModal, CalculateIcon, Skeleton, useTooltip } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { getPoolApr } from 'utils/apr'
+import { getPoolApr, getFarmApr } from 'utils/apr'
+import BigNumber from 'bignumber.js'
 import { getAddress } from 'utils/addressHelpers'
 import { tokenEarnedPerThousandDollarsCompounding, getRoi } from 'utils/compoundApyHelpers'
 import { useGetApiPrice, useGetApiPrices } from 'state/hooks'
@@ -10,13 +12,13 @@ import Balance from 'components/Balance'
 import ApyCalculatorModal from 'components/ApyCalculatorModal'
 import { Maximus } from 'state/types'
 import { BASE_EXCHANGE_URL } from 'config'
-
 interface AprRowProps {
   pool: Maximus
   stakingTokenPrice: number
   isAutoVault?: boolean
   compoundFrequency?: number
   performanceFee?: number
+  farms?: any
 }
 
 const AprRow: React.FC<AprRowProps> = ({
@@ -25,6 +27,7 @@ const AprRow: React.FC<AprRowProps> = ({
   isAutoVault = false,
   compoundFrequency = 1,
   performanceFee = 0,
+  farms,
 }) => {
   const { t } = useTranslation()
   const { stakingToken, earningToken, totalStaked, isFinished } = pool
@@ -34,24 +37,28 @@ const AprRow: React.FC<AprRowProps> = ({
     : t('This pool’s rewards aren’t compounded automatically, so we show APR')
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(tooltipContent, { placement: 'bottom-end' })
+  const _lydPrice = useGetApiPrice('lyd')
+  const lydPrice = useMemo(() => new BigNumber(_lydPrice), [_lydPrice])
 
-  const earningTokenPrice = useGetApiPrice(earningToken?.symbol?.toLowerCase())
-  const apr = getPoolApr(stakingTokenPrice, earningTokenPrice, getBalanceNumber(totalStaked, stakingToken.decimals), 1)
+  const selectedFarm = farms?.length > 0 && farms.find((item) => item.pid === pool.pid)
 
-  // const quoteTokenPriceUsd = prices[stakingToken?.symbol?.toLowerCase()]
-  // const totalLiquidity = new BigNumber(lpTotalInQuoteToken).times(quoteTokenPriceUsd)
-  // const farmApr = getFarmApr(farm.poolWeight, lydPrice, totalLiquidity)
+  const apr = getPoolApr(stakingTokenPrice, _lydPrice, getBalanceNumber(totalStaked, stakingToken.decimals), 1)
+
+  const quoteTokenPriceUsd = selectedFarm && prices[selectedFarm?.quoteToken?.symbol?.toLowerCase()]
+  const totalLiquidity = new BigNumber(selectedFarm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
+  const farmApr = getFarmApr(selectedFarm.poolWeight, lydPrice, totalLiquidity)
 
   // special handling for tokens like tBTC or BIFI where the daily token rewards for $1000 dollars will be less than 0.001 of that token
-  const isHighValueToken = Math.round(earningTokenPrice / 1000) > 0
+  const isHighValueToken = Math.round(_lydPrice / 1000) > 0
   const roundingDecimals = isHighValueToken ? 4 : 2
 
+  console.log('================|||||||||', farmApr)
   const earningsPercentageToDisplay = () => {
-    const oneThousandDollarsWorthOfToken = 1000 / earningTokenPrice
+    const oneThousandDollarsWorthOfToken = 1000 / _lydPrice
     const tokenEarnedPerThousand365D = tokenEarnedPerThousandDollarsCompounding({
       numberOfDays: 365,
-      farmApr: apr,
-      tokenPrice: earningTokenPrice,
+      farmApr,
+      tokenPrice: _lydPrice,
       roundingDecimals,
       compoundFrequency,
       performanceFee,
@@ -68,8 +75,8 @@ const AprRow: React.FC<AprRowProps> = ({
 
   const [onPresentApyModal] = useModal(
     <ApyCalculatorModal
-      tokenPrice={earningTokenPrice}
-      apr={apr}
+      tokenPrice={_lydPrice}
+      apr={farmApr}
       linkLabel={`${t('Get')} ${stakingToken.symbol}`}
       linkHref={apyModalLink || BASE_EXCHANGE_URL}
       earningTokenSymbol={earningToken.symbol}
@@ -83,7 +90,7 @@ const AprRow: React.FC<AprRowProps> = ({
     <Flex alignItems="center" justifyContent="space-between">
       {tooltipVisible && tooltip}
       <TooltipText ref={targetRef}>{t('APY')}:</TooltipText>
-      {isFinished || !apr ? (
+      {isFinished || !farmApr ? (
         <Skeleton width="82px" height="32px" />
       ) : (
         <Flex alignItems="center">

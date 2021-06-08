@@ -55,9 +55,11 @@ const Pools: React.FC = () => {
           <Route exact path={`${path}`}>
             {stakedOnly
               ? orderBy(stakedOnlyPools, ['sortOrder']).map((pool) => (
-                  <LydVaultCard pool={pool} showStakedOnly={stakedOnly} />
+                  <LydVaultCard pool={pool} showStakedOnly={stakedOnly} farms={farms} />
                 ))
-              : orderBy(pools, ['sortOrder']).map((pool) => <LydVaultCard pool={pool} showStakedOnly={stakedOnly} />)}
+              : orderBy(pools, ['sortOrder']).map((pool) => (
+                  <LydVaultCard pool={pool} showStakedOnly={stakedOnly} farms={farms} />
+                ))}
           </Route>
         </FlexLayout>
       </Page>

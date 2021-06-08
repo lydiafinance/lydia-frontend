@@ -36,7 +36,7 @@ const StyledCardHeader: React.FC<{
       <Flex alignItems="center" justifyContent="space-between">
         <Flex flexDirection="column">
           <Heading color={isFinished ? 'textDisabled' : 'text'} size="lg">
-            {`${stackingToken}`}
+            {`${stackingToken} LP`}
           </Heading>
           <Text color={isFinished ? 'textDisabled' : 'text'}>{t('Automatic restaking')}</Text>
         </Flex>

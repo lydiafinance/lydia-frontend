@@ -29,9 +29,10 @@ interface LydVaultProps {
   pool: Maximus
   showStakedOnly?: boolean
   isHomeCard?: boolean
+  farms?: any
 }
 
-const LydVaultCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHomeCard }) => {
+const LydVaultCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHomeCard, farms }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { lastUpdated, setLastUpdated } = useLastUpdated()
@@ -41,7 +42,7 @@ const LydVaultCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHomeCar
   const { stakingToken, lpSymbol, totalStaked, userData } = pool
   const { pendingReward = BIG_ZERO, depositAt, stakedBalance } = userData || {}
   //   Estimate & manual for now. 288 = once every 5 mins. We can change once we have a better sense of this
-  const timesCompoundedDaily = 288
+  const timesCompoundedDaily = 12
   const accountHasSharesStaked = stakedBalance && stakedBalance.gt(0)
   // const stakingTokenPrice = useGetApiPrice(stakingToken?.symbol?.toLowerCase())
   const stakingTokenPrice = 1
@@ -57,6 +58,7 @@ const LydVaultCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHomeCar
       <StyledCardHeader stackingToken={lpSymbol} />
       <StyledCardBody isLoading={isLoading}>
         <AprRow
+          farms={farms}
           pool={pool}
           stakingTokenPrice={stakingTokenPrice}
           isAutoVault

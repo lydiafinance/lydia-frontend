@@ -3,7 +3,9 @@ import styled from 'styled-components'
 import { Box, CardBody, Flex, Text } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
+import BigNumber from 'bignumber.js'
 
+import { BIG_ZERO } from 'utils/bigNumber'
 import UnlockButton from 'components/UnlockButton'
 import { useGetApiPrice } from 'state/hooks'
 import useLastUpdated from 'hooks/useLastUpdate'
@@ -35,11 +37,12 @@ const LydVaultCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHomeCar
   const { lastUpdated, setLastUpdated } = useLastUpdated()
   const userInfo = useGetMaximusUserInfo(lastUpdated)
   const vaultFees = useGetMaximusFees()
-  const { totalLydInVault, pricePerFullShare } = useGetMaximusSharesInfo()
-  const { stakingToken, lpSymbol } = pool
+  const { pricePerFullShare } = useGetMaximusSharesInfo()
+  const { stakingToken, lpSymbol, totalStaked, userData } = pool
+  const { pendingReward = BIG_ZERO, depositAt, stakedBalance } = userData || {}
   //   Estimate & manual for now. 288 = once every 5 mins. We can change once we have a better sense of this
   const timesCompoundedDaily = 288
-  const accountHasSharesStaked = userInfo.shares && userInfo.shares.gt(0)
+  const accountHasSharesStaked = stakedBalance && stakedBalance.gt(0)
   // const stakingTokenPrice = useGetApiPrice(stakingToken?.symbol?.toLowerCase())
   const stakingTokenPrice = 1
   const isLoading = !pool.userData || !userInfo.shares
@@ -61,24 +64,20 @@ const LydVaultCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHomeCar
           performanceFee={performanceFeeAsDecimal}
         />
         <Box mt="24px">
-          <RecentLydProfitRow
-            lydAtLastUserAction={userInfo.lydAtLastUserAction}
-            userShares={userInfo.shares}
-            pricePerFullShare={pricePerFullShare}
-          />
+          <RecentLydProfitRow pendingReward={pendingReward} />
         </Box>
         <Box mt="8px">
           <UnstakingFeeCountdownRow
             withdrawalFee={vaultFees.withdrawalFee}
             withdrawalFeePeriod={vaultFees.withdrawalFeePeriod}
-            lastDepositedTime={accountHasSharesStaked && userInfo.lastDepositedTime}
+            lastDepositedTime={accountHasSharesStaked && depositAt}
           />
         </Box>
         <Flex mt="24px" flexDirection="column">
           {account ? (
             <VaultCardActions
               pool={pool}
-              userInfo={userInfo}
+              userInfo={userData}
               pricePerFullShare={pricePerFullShare}
               vaultFees={vaultFees}
               stakingTokenPrice={stakingTokenPrice}
@@ -102,7 +101,7 @@ const LydVaultCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHomeCar
         account={account}
         performanceFee={vaultFees.performanceFee}
         isAutoVault
-        totalLydInVault={totalLydInVault}
+        totalLydInVault={totalStaked}
       />
     </StyledCard>
   )

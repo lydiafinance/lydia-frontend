@@ -12,8 +12,7 @@ import { VaultFees } from 'hooks/maximus/useGetMaximusFees'
 import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/formatBalance'
 import useToast from 'hooks/useToast'
-import { Maximus } from 'state/types'
-import { VaultUser } from 'views/Pools/types'
+import { Maximus, MaximusUserData } from 'state/types'
 import { convertLydToShares } from '../../helpers'
 import FeeSummary from './FeeSummary'
 
@@ -21,7 +20,7 @@ interface VaultStakeModalProps {
   pool: Maximus
   stakingMax: BigNumber
   stakingTokenPrice: number
-  userInfo: VaultUser
+  userInfo: MaximusUserData
   isRemovingStake?: boolean
   pricePerFullShare?: BigNumber
   vaultFees?: VaultFees
@@ -53,7 +52,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
   const [pendingTx, setPendingTx] = useState(false)
   const [stakeAmount, setStakeAmount] = useState('')
   const [percent, setPercent] = useState(0)
-  const { hasUnstakingFee } = useMaximusWithdrawalFeeTimer(parseInt(userInfo.lastDepositedTime))
+  const { hasUnstakingFee } = useMaximusWithdrawalFeeTimer(parseInt(userInfo.depositAt))
   const usdValueStaked = stakeAmount && formatNumber(new BigNumber(stakeAmount).times(stakingTokenPrice).toNumber())
 
   const handleStakeInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -76,7 +75,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
     const shareStakeToWithdraw = convertLydToShares(convertedStakeAmount, pricePerFullShare)
     // trigger withdrawAll function if the withdrawal will leave 0.000001 LYD or less
     const triggerWithdrawAllThreshold = new BigNumber(1000000000000)
-    const sharesRemaining = userInfo.shares.minus(shareStakeToWithdraw.sharesAsBigNumber)
+    const sharesRemaining = userInfo.stakedBalance.minus(shareStakeToWithdraw.sharesAsBigNumber)
     const isWithdrawingAll = sharesRemaining.lte(triggerWithdrawAllThreshold)
 
     if (isWithdrawingAll) {
@@ -211,7 +210,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
       {isRemovingStake && hasUnstakingFee && (
         <FeeSummary
           stakingTokenSymbol={stakingToken.symbol}
-          lastDepositedTime={userInfo.lastDepositedTime}
+          lastDepositedTime={userInfo.depositAt}
           vaultFees={vaultFees}
           stakeAmount={stakeAmount}
         />

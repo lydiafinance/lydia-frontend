@@ -48,3 +48,6 @@ export const getAirdropAddress = () => {
 export const getLydVaultAddress = () => {
   return getAddress(addresses.lydVault)
 }
+export const getMaximusFeeManagerAddress = () => {
+  return getAddress(addresses.maximusFeeManager)
+}

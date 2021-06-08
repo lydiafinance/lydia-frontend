@@ -40,14 +40,17 @@ export interface Pool extends PoolConfig {
   }
 }
 
+export interface MaximusUserData {
+  allowance: BigNumber
+  stakingTokenBalance: BigNumber
+  stakedBalance: BigNumber
+  pendingReward: BigNumber
+  depositAt?: string
+}
+
 export interface Maximus extends MaximusConfig {
   totalStaked?: BigNumber
-  userData?: {
-    allowance: BigNumber
-    stakingTokenBalance: BigNumber
-    stakedBalance: BigNumber
-    pendingReward: BigNumber
-  }
+  userData?: MaximusUserData
 }
 
 export interface Profile {

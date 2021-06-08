@@ -7,8 +7,7 @@ import { useWeb3React } from '@web3-react/core'
 import { useLyd, useLydVaultContract } from 'hooks/useContract'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { VaultFees } from 'hooks/maximus/useGetMaximusFees'
-import { Maximus } from 'state/types'
-import { VaultUser } from 'views/Pools/types'
+import { Maximus, MaximusUserData } from 'state/types'
 import VaultApprovalAction from './VaultApprovalAction'
 import VaultStakeActions from './VaultStakeActions'
 
@@ -18,7 +17,7 @@ const InlineText = styled(Text)`
 
 const LydVaultCardActions: React.FC<{
   pool: Maximus
-  userInfo: VaultUser
+  userInfo: MaximusUserData
   pricePerFullShare: BigNumber
   stakingTokenPrice: number
   accountHasSharesStaked: boolean

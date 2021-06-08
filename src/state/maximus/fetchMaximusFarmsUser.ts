@@ -7,6 +7,7 @@ import multicall from 'utils/multicall'
 import { getAddress } from 'utils/addressHelpers'
 import { getLydVaultContract } from 'utils/contractHelpers'
 import { getWeb3NoAccount } from 'utils/web3'
+import { BIG_TEN } from 'utils/bigNumber'
 
 // Pool 0, LYD / LYD is a different kind of contract (master chef)
 // AVAX pools use the native AVAX token (wrapping ? unwrapping is done at the contract level)
@@ -62,7 +63,7 @@ export const fetchUserStakeBalances = async (account) => {
   const stakedBalances = poolsConfig.reduce(
     (acc, pool, index) => ({
       ...acc,
-      [pool.pid]: new BigNumber(balances[index]).toJSON(),
+      [pool.pid]: new BigNumber(balances[index]),
     }),
     {},
   )
@@ -97,13 +98,15 @@ export const fetchUserPendingRewards = async (account) => {
   const res = await multicall(maximusAbi, calls)
   const priceShare = await lydVaultContract.methods.getPricePerFullShare().call()
 
-  const pendingRewards = poolsConfig.reduce(
-    (acc, pool, index) => ({
+  const pendingRewards = poolsConfig.reduce((acc, pool, index) => {
+    const _priceShare = new BigNumber(priceShare).dividedBy(BIG_TEN.pow(18))
+    const _earned = new BigNumber(new BigNumber(res[index]).toJSON()).dividedBy(BIG_TEN.pow(18))
+
+    return {
       ...acc,
-      [pool.pid]: new BigNumber(res[index] * priceShare).toJSON(),
-    }),
-    {},
-  )
+      [pool.pid]: _earned.multipliedBy(_priceShare),
+    }
+  }, {})
 
   return { ...pendingRewards }
 }

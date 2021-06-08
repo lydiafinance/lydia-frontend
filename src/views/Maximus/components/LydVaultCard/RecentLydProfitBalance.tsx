@@ -2,23 +2,13 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import { TooltipText, useTooltip } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
-import { getFullDisplayBalance } from 'utils/formatBalance'
-import { convertSharesToLyd } from '../../helpers'
 
 interface RecentLydProfitBalanceProps {
-  lydAtLastUserAction: BigNumber
-  userShares: BigNumber
-  pricePerFullShare: BigNumber
+  pendingReward: BigNumber
 }
 
-const RecentLydProfitBalance: React.FC<RecentLydProfitBalanceProps> = ({
-  lydAtLastUserAction,
-  userShares,
-  pricePerFullShare,
-}) => {
-  const currentSharesAsLyd = convertSharesToLyd(userShares, pricePerFullShare)
-  const lydProfit = currentSharesAsLyd.lydAsBigNumber.minus(lydAtLastUserAction)
-  const lydToDisplay = lydProfit.gte(0) ? getFullDisplayBalance(lydProfit, 18, 5) : '0'
+const RecentLydProfitBalance: React.FC<RecentLydProfitBalanceProps> = ({ pendingReward }) => {
+  const lydToDisplay = pendingReward.gte(0) ? pendingReward.toNumber().toFixed(5) : '0'
 
   const { t } = useTranslation()
 

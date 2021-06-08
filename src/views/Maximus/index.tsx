@@ -19,7 +19,6 @@ const Pools: React.FC = () => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const pools = useMaximusPools(account)
-  console.log(`pools`, pools)
   const { currentBlock } = useBlock()
   const [stakedOnly, setStakedOnly] = usePersistState(false, 'lydia_pool_staked')
 

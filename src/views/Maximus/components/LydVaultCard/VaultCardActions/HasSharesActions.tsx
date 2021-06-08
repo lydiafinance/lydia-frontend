@@ -2,9 +2,8 @@ import React from 'react'
 import { Flex, Text, IconButton, AddIcon, MinusIcon, Heading, useModal, Skeleton } from '@lydiafinance/uikit'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber, formatNumber } from 'utils/formatBalance'
-import { Maximus } from 'state/types'
+import { Maximus, MaximusUserData } from 'state/types'
 import { VaultFees } from 'hooks/maximus/useGetMaximusFees'
-import { VaultUser } from 'views/Pools/types'
 import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
 import { convertSharesToLyd } from '../../../helpers'
 import VaultStakeModal from '../VaultStakeModal'
@@ -13,7 +12,7 @@ interface HasStakeActionProps {
   pool: Maximus
   stakingTokenBalance: BigNumber
   stakingTokenPrice: number
-  userInfo: VaultUser
+  userInfo: MaximusUserData
   pricePerFullShare: BigNumber
   vaultFees: VaultFees
   setLastUpdated: () => void
@@ -29,7 +28,7 @@ const HasSharesActions: React.FC<HasStakeActionProps> = ({
   setLastUpdated,
 }) => {
   const { stakingToken } = pool
-  const { lydAsBigNumber, lydAsDisplayBalance } = convertSharesToLyd(userInfo.shares, pricePerFullShare)
+  const { lydAsBigNumber, lydAsDisplayBalance } = convertSharesToLyd(userInfo.stakedBalance, pricePerFullShare)
 
   const stakedDollarValue = formatNumber(
     getBalanceNumber(lydAsBigNumber.multipliedBy(stakingTokenPrice), stakingToken.decimals),

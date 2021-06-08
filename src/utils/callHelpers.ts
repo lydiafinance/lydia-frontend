@@ -140,3 +140,12 @@ export const soushHarvestAvax = async (sousChefContract, account) => {
       return tx.transactionHash
     })
 }
+
+export const maximusClaimReward = async (maximusContract, account) => {
+  return maximusContract.methods
+    .getReward()
+    .send({ from: account, gas: 200000, value: new BigNumber(0) })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}

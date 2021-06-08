@@ -11,14 +11,12 @@ import { BIG_TEN } from 'utils/bigNumber'
 
 // Pool 0, LYD / LYD is a different kind of contract (master chef)
 // AVAX pools use the native AVAX token (wrapping ? unwrapping is done at the contract level)
-const nonAvaxPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'AVAX')
-const avaxPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'AVAX')
 const web3 = getWeb3NoAccount()
 const lydVaultContract = getLydVaultContract(web3)
 
 export const fetchPoolsAllowance = async (account) => {
   const calls = poolsConfig.map((p) => ({
-    address: getAddress(p.stakingToken.address),
+    address: getAddress(p.stakingToken),
     name: 'allowance',
     params: [account, getAddress(p.contractAddress)],
   }))
@@ -32,25 +30,18 @@ export const fetchPoolsAllowance = async (account) => {
 
 export const fetchUserBalances = async (account) => {
   // Non AVAX pools
-  const calls = nonAvaxPools.map((p) => ({
-    address: getAddress(p.stakingToken.address),
+  const calls = poolsConfig.map((p) => ({
+    address: getAddress(p.stakingToken),
     name: 'balanceOf',
     params: [account],
   }))
   const tokenBalancesRaw = await multicall(erc20ABI, calls)
-  const tokenBalances = nonAvaxPools.reduce(
+  const tokenBalances = poolsConfig.reduce(
     (acc, pool, index) => ({ ...acc, [pool.pid]: new BigNumber(tokenBalancesRaw[index]).toJSON() }),
     {},
   )
 
-  // AVAX pools
-  const avaxBalance = await web3.eth.getBalance(account)
-  const avaxBalances = avaxPools.reduce(
-    (acc, pool) => ({ ...acc, [pool.pid]: new BigNumber(avaxBalance).toJSON() }),
-    {},
-  )
-
-  return { ...tokenBalances, ...avaxBalances }
+  return { ...tokenBalances }
 }
 
 export const fetchUserStakeBalances = async (account) => {

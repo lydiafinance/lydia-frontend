@@ -5,7 +5,7 @@ import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
 import { BASE_EXCHANGE_URL } from 'config'
 import { BIG_TEN } from 'utils/bigNumber'
-import { useLydVaultContract } from 'hooks/useContract'
+import { useMaximusContact } from 'hooks/useContract'
 import useTheme from 'hooks/useTheme'
 import useMaximusWithdrawalFeeTimer from 'hooks/maximus/useMaximusWithdrawalFeeTimer'
 import { VaultFees } from 'hooks/maximus/useGetMaximusFees'
@@ -36,7 +36,6 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
   pool,
   stakingMax,
   stakingTokenPrice,
-  pricePerFullShare,
   userInfo,
   isRemovingStake = false,
   vaultFees,
@@ -44,8 +43,8 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
   setLastUpdated,
 }) => {
   const { account } = useWeb3React()
-  const { stakingToken } = pool
-  const lydVaultContract = useLydVaultContract()
+  const { stakingToken, lpSymbol } = pool
+  const maximusContract = useMaximusContact(pool.pid)
   const { t } = useTranslation()
   const { theme } = useTheme()
   const { toastSuccess, toastError } = useToast()
@@ -57,7 +56,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
 
   const handleStakeInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value || '0'
-    const convertedInput = new BigNumber(inputValue).multipliedBy(BIG_TEN.pow(stakingToken.decimals))
+    const convertedInput = new BigNumber(inputValue).multipliedBy(BIG_TEN.pow(18))
     const percentage = Math.floor(convertedInput.dividedBy(stakingMax).multipliedBy(100).toNumber())
     setStakeAmount(inputValue)
     setPercent(percentage > 100 ? 100 : percentage)
@@ -65,21 +64,21 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
 
   const handleChangePercent = (sliderPercent: number) => {
     const percentageOfStakingMax = stakingMax.dividedBy(100).multipliedBy(sliderPercent)
-    const amountToStake = getFullDisplayBalance(percentageOfStakingMax, stakingToken.decimals, stakingToken.decimals)
+    const amountToStake = getFullDisplayBalance(percentageOfStakingMax, 18, 18)
     setStakeAmount(amountToStake)
     setPercent(sliderPercent)
   }
 
   const handleWithdrawal = async (convertedStakeAmount: BigNumber) => {
     setPendingTx(true)
-    const shareStakeToWithdraw = convertLydToShares(convertedStakeAmount, pricePerFullShare)
+    const shareStakeToWithdraw = convertLydToShares(convertedStakeAmount, new BigNumber(1000000000000000000))
     // trigger withdrawAll function if the withdrawal will leave 0.000001 LYD or less
     const triggerWithdrawAllThreshold = new BigNumber(1000000000000)
-    const sharesRemaining = userInfo.stakedBalance.minus(shareStakeToWithdraw.sharesAsBigNumber)
+    const sharesRemaining = userInfo.stakedBalance.minus(convertedStakeAmount)
     const isWithdrawingAll = sharesRemaining.lte(triggerWithdrawAllThreshold)
 
     if (isWithdrawingAll) {
-      lydVaultContract.methods
+      maximusContract.methods
         .withdrawAll()
         .send({ from: account })
         .on('sending', () => {
@@ -98,7 +97,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
           setPendingTx(false)
         })
     } else {
-      lydVaultContract.methods
+      maximusContract.methods
         .withdraw(shareStakeToWithdraw.sharesAsBigNumber.toString())
         // .toString() being called to fix a BigNumber error in prod
         // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
@@ -122,7 +121,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
   }
 
   const handleDeposit = async (convertedStakeAmount: BigNumber) => {
-    lydVaultContract.methods
+    maximusContract.methods
       .deposit(convertedStakeAmount.toString())
       // .toString() being called to fix a BigNumber error in prod
       // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
@@ -145,7 +144,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
   }
 
   const handleConfirmClick = async () => {
-    const convertedStakeAmount = getDecimalAmount(new BigNumber(stakeAmount), stakingToken.decimals)
+    const convertedStakeAmount = getDecimalAmount(new BigNumber(stakeAmount), 18)
     setPendingTx(true)
     // unstaking
     if (isRemovingStake) {
@@ -165,14 +164,9 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
         <Text bold>{isRemovingStake ? t('Unstake') : t('Stake')}:</Text>
         <Flex alignItems="center" minWidth="70px">
-          <Image
-            src={`/images/tokens/${stakingToken?.symbol?.toLowerCase()}.png`}
-            width={24}
-            height={24}
-            alt={stakingToken.symbol}
-          />
+          <Image src={`/images/tokens/${lpSymbol?.toLowerCase()}.png`} width={24} height={24} alt={lpSymbol} />
           <Text ml="4px" bold>
-            {stakingToken.symbol}
+            {lpSymbol}
           </Text>
         </Flex>
       </Flex>
@@ -182,7 +176,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
         currencyValue={`~${usdValueStaked || 0} USD`}
       />
       <Text mt="8px" ml="auto" color="textSubtle" fontSize="12px" mb="8px">
-        Balance: {getFullDisplayBalance(stakingMax, stakingToken.decimals)}
+        Balance: {getFullDisplayBalance(stakingMax, 18)}
       </Text>
       <Slider
         min={0}
@@ -209,7 +203,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
       </Flex>
       {isRemovingStake && hasUnstakingFee && (
         <FeeSummary
-          stakingTokenSymbol={stakingToken.symbol}
+          stakingTokenSymbol={lpSymbol}
           lastDepositedTime={userInfo.depositAt}
           vaultFees={vaultFees}
           stakeAmount={stakeAmount}
@@ -226,7 +220,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
       </Button>
       {!isRemovingStake && (
         <Button mt="8px" as="a" external href={BASE_EXCHANGE_URL} variant="secondary">
-          {t('Get')} {stakingToken.symbol}
+          {t('Get')} {lpSymbol}
         </Button>
       )}
     </Modal>

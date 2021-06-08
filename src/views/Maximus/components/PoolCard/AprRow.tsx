@@ -30,7 +30,7 @@ const AprRow: React.FC<AprRowProps> = ({
   farms,
 }) => {
   const { t } = useTranslation()
-  const { stakingToken, earningToken, totalStaked, isFinished } = pool
+  const { stakingToken, earningToken, totalStaked, isFinished, lpSymbol } = pool
   const prices = useGetApiPrices()
   const tooltipContent = isAutoVault
     ? t('APY includes compounding, APR doesn’t. This pool’s LYD is compounded automatically, so we show APY.')
@@ -70,8 +70,7 @@ const AprRow: React.FC<AprRowProps> = ({
   }
 
   const apyModalLink =
-    stakingToken.address &&
-    `${BASE_EXCHANGE_URL}/#/swap?outputCurrency=${stakingToken.address[process.env.REACT_APP_CHAIN_ID]}`
+    getAddress(stakingToken) && `${BASE_EXCHANGE_URL}/#/swap?outputCurrency=${getAddress(stakingToken)}`
 
   const [onPresentApyModal] = useModal(
     <ApyCalculatorModal

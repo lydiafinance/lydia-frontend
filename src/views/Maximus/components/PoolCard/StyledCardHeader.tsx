@@ -52,7 +52,7 @@ const StyledCardHeader: React.FC<{
           />
           <Image
             className="target-token-symbol"
-            key="axaa"
+            key="axaa1"
             src={`/images/tokens/${tokens[1]?.toLowerCase()}.png`}
             width={42}
             height={42}

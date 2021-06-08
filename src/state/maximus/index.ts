@@ -57,6 +57,7 @@ export const fetchMaximusPublicDataAsync = () => async (dispatch) => {
 }
 
 export const fetchMaximusUserDataAsync = (account) => async (dispatch) => {
+  console.log(`account`, account)
   const calls = [
     fetchPoolsAllowance(account),
     fetchUserBalances(account),
@@ -64,6 +65,7 @@ export const fetchMaximusUserDataAsync = (account) => async (dispatch) => {
     fetchUserPendingRewards(account),
     fetchUserDepositAt(account),
   ]
+  console.log(`calls`, calls)
 
   const responses = await Promise.all(calls)
 
@@ -75,6 +77,7 @@ export const fetchMaximusUserDataAsync = (account) => async (dispatch) => {
     pendingReward: responses[3][pool.pid],
     depositAt: responses[4][pool.pid],
   }))
+  console.log(`userData`, userData)
 
   dispatch(setMaximusFarmsUserData(userData))
 }

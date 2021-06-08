@@ -37,7 +37,7 @@ const LydVaultCardActions: React.FC<{
   setLastUpdated,
 }) => {
   const { account } = useWeb3React()
-  const { stakingToken, userData } = pool
+  const { stakingToken, userData, lpSymbol } = pool
   const [isVaultApproved, setIsVaultApproved] = useState(false)
   const lydContract = useLyd()
   const lydVaultContract = useLydVaultContract()
@@ -58,6 +58,7 @@ const LydVaultCardActions: React.FC<{
     checkApprovalStatus()
   }, [account, lydContract, lydVaultContract, lastUpdated])
 
+  console.log(`stakingToken`, stakingToken)
   return (
     <Flex flexDirection="column">
       <Flex flexDirection="column">
@@ -68,7 +69,7 @@ const LydVaultCardActions: React.FC<{
             bold
             fontSize="12px"
           >
-            {accountHasSharesStaked ? stakingToken.symbol : t(`stake`)}{' '}
+            {accountHasSharesStaked ? `${lpSymbol} LP` : t(`stake`)}{' '}
           </InlineText>
           <InlineText
             color={accountHasSharesStaked ? 'textSubtle' : 'secondary'}
@@ -76,7 +77,7 @@ const LydVaultCardActions: React.FC<{
             bold
             fontSize="12px"
           >
-            {accountHasSharesStaked ? t(`staked (compounding)`) : `${stakingToken.symbol}`}
+            {accountHasSharesStaked ? t(`staked (compounding)`) : `${lpSymbol} LP`}
           </InlineText>
         </Box>
         {isVaultApproved ? (

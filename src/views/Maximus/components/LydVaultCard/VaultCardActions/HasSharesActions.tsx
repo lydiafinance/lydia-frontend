@@ -28,10 +28,11 @@ const HasSharesActions: React.FC<HasStakeActionProps> = ({
   setLastUpdated,
 }) => {
   const { stakingToken } = pool
-  const { lydAsBigNumber, lydAsDisplayBalance } = convertSharesToLyd(userInfo.stakedBalance, pricePerFullShare)
+  console.log(`userInfo.stakedBalance`, userInfo.stakedBalance)
+  const stackedTokenBalance = getBalanceNumber(userInfo.stakedBalance, 18)
 
   const stakedDollarValue = formatNumber(
-    getBalanceNumber(lydAsBigNumber.multipliedBy(stakingTokenPrice), stakingToken.decimals),
+    getBalanceNumber(userInfo.stakedBalance.multipliedBy(stakingTokenPrice), stakingToken.decimals),
   )
 
   const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal tokenSymbol={stakingToken.symbol} />)
@@ -48,7 +49,7 @@ const HasSharesActions: React.FC<HasStakeActionProps> = ({
 
   const [onPresentUnstake] = useModal(
     <VaultStakeModal
-      stakingMax={lydAsBigNumber}
+      stakingMax={userInfo.stakedBalance}
       pool={pool}
       stakingTokenPrice={stakingTokenPrice}
       pricePerFullShare={pricePerFullShare}
@@ -62,7 +63,7 @@ const HasSharesActions: React.FC<HasStakeActionProps> = ({
   return (
     <Flex justifyContent="space-between" alignItems="center">
       <Flex flexDirection="column">
-        <Heading>{lydAsDisplayBalance}</Heading>
+        <Heading>{stackedTokenBalance}</Heading>
         <Text fontSize="12px" color="textSubtle">{`~${
           stakingTokenPrice ? stakedDollarValue : <Skeleton mt="1px" height={16} width={64} />
         } USD`}</Text>

@@ -4,10 +4,12 @@ import { Flex, TooltipText, IconButton, useModal, CalculateIcon, Skeleton, useTo
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getPoolApr, getFarmApr } from 'utils/apr'
+import { useWeb3React } from '@web3-react/core'
+
 import BigNumber from 'bignumber.js'
 import { getAddress } from 'utils/addressHelpers'
 import { tokenEarnedPerThousandDollarsCompounding, getRoi } from 'utils/compoundApyHelpers'
-import { useGetApiPrice, useGetApiPrices } from 'state/hooks'
+import { usePools, useGetApiPrice, useGetApiPrices } from 'state/hooks'
 import Balance from 'components/Balance'
 import ApyCalculatorModal from 'components/ApyCalculatorModal'
 import { useCompoundingApy } from 'hooks/maximus/maximusActions'
@@ -31,7 +33,9 @@ const AprRow: React.FC<AprRowProps> = ({
   farms,
 }) => {
   const { t } = useTranslation()
-  const { stakingToken, earningToken, totalStaked, isFinished, lpSymbol } = pool
+  const { stakingToken, earningToken, totalStaked, isFinished, lpSymbol, tokenPerBlock } = pool
+  const { account } = useWeb3React()
+  const lydPools = usePools(account)
   const prices = useGetApiPrices()
   const tooltipContent = isAutoVault
     ? t('APY includes compounding, APR doesn’t. This pool’s LYD is compounded automatically, so we show APY.')
@@ -43,8 +47,14 @@ const AprRow: React.FC<AprRowProps> = ({
 
   const selectedFarm = farms?.length > 0 && farms.find((item) => item.pid === pool.pid)
 
-  // const apr = getPoolApr(stakingTokenPrice, _lydPrice, getBalanceNumber(totalStaked, stakingToken.decimals), 1)
+  const apr = getPoolApr(
+    _lydPrice,
+    _lydPrice,
+    getBalanceNumber(lydPools[0]?.totalStaked, 18),
+    parseFloat(tokenPerBlock),
+  )
 
+  console.log('@@@@@@@@@@@@@@@@-->', apr)
   const quoteTokenPriceUsd = selectedFarm && prices && prices[selectedFarm?.quoteToken?.symbol?.toLowerCase()]
   const totalLiquidity = new BigNumber(selectedFarm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
   const farmApr = getFarmApr(selectedFarm.poolWeight, lydPrice, totalLiquidity)

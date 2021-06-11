@@ -84,6 +84,7 @@ export interface MaximusConfig {
   token?: any
   quoteToken?: any
   quoteTokenSymbol?: any
+  tokenPerBlock?: any
 }
 
 export interface PoolConfig {

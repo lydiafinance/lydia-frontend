@@ -3,9 +3,11 @@ import { Button, AutoRenewIcon, Skeleton } from '@lydiafinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import { ethers } from 'ethers'
 import { useTranslation } from 'contexts/Localization'
-import { useLyd, useLydVaultContract } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
 import { Maximus } from 'state/types'
+import { getAddress } from 'utils/addressHelpers'
+import { getBep20Contract } from 'utils/contractHelpers'
+import useWeb3 from 'hooks/useWeb3'
 
 interface ApprovalActionProps {
   pool: Maximus
@@ -16,15 +18,15 @@ interface ApprovalActionProps {
 const ApprovalAction: React.FC<ApprovalActionProps> = ({ pool, isLoading = false, setLastUpdated }) => {
   const { account } = useWeb3React()
   const { lpSymbol } = pool
-  const lydVaultContract = useLydVaultContract()
-  const lydContract = useLyd()
   const { t } = useTranslation()
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { toastSuccess, toastError } = useToast()
+  const web3 = useWeb3()
+  const lpContract = getBep20Contract(getAddress(pool.stakingToken), web3)
 
   const handleApprove = () => {
-    lydContract.methods
-      .approve(lydVaultContract.options.address, ethers.constants.MaxUint256)
+    lpContract.methods
+      .approve(getAddress(pool.contractAddress), ethers.constants.MaxUint256)
       .send({ from: account })
       .on('sending', () => {
         setRequestedApproval(true)

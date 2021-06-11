@@ -57,7 +57,7 @@ const fetchMaximusFarms = async () => {
       rewardRate: new BigNumber(maximusFarmsTotalStacked[index][3]).toJSON(),
       rewardsDuration: new BigNumber(maximusFarmsTotalStacked[index][4]).toJSON(),
       rewardsToken: maximusFarmsTotalStacked[index][5][0],
-      stakingToken: maximusFarmsTotalStacked[index][6][0],
+      // stakingToken: maximusFarmsTotalStacked[index][6][0],
     })),
   ]
 }

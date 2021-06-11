@@ -29,7 +29,6 @@ export const fetchPoolsAllowance = async (account) => {
 }
 
 export const fetchUserBalances = async (account) => {
-  // Non AVAX pools
   const calls = poolsConfig.map((p) => ({
     address: getAddress(p.stakingToken),
     name: 'balanceOf',
@@ -54,7 +53,7 @@ export const fetchUserStakeBalances = async (account) => {
   const stakedBalances = poolsConfig.reduce(
     (acc, pool, index) => ({
       ...acc,
-      [pool.pid]: new BigNumber(balances[index]),
+      [pool.pid]: new BigNumber(balances[index]).toJSON(),
     }),
     {},
   )
@@ -90,12 +89,12 @@ export const fetchUserPendingRewards = async (account) => {
   const priceShare = await lydVaultContract.methods.getPricePerFullShare().call()
 
   const pendingRewards = poolsConfig.reduce((acc, pool, index) => {
-    const _priceShare = new BigNumber(priceShare).dividedBy(BIG_TEN.pow(18))
+    const _priceShare = new BigNumber(priceShare).dividedBy(BIG_TEN.pow(18)).toJSON()
     const _earned = new BigNumber(new BigNumber(res[index]).toJSON()).dividedBy(BIG_TEN.pow(18))
 
     return {
       ...acc,
-      [pool.pid]: _earned.multipliedBy(_priceShare),
+      [pool.pid]: _earned.multipliedBy(_priceShare).toJSON(),
     }
   }, {})
 

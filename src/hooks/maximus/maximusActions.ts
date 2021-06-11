@@ -25,9 +25,11 @@ export const useCompoundingApy = (farmApr: string, poolApr: string, compound: nu
 
   useEffect(() => {
     const getCompoundingApy = async () => {
-      const apy = await maximusDashboardContract.methods.compoundingAPY(farmApr, poolApr, compound).call()
+      if (farmApr !== '0' && poolApr !== '0') {
+        const apy = await maximusDashboardContract.methods.compoundingAPY(farmApr, poolApr, compound).call()
 
-      setCompoundingApy(apy / 1e16)
+        setCompoundingApy(apy / 1e16)
+      }
     }
 
     getCompoundingApy()

@@ -7,7 +7,7 @@ import { Heading, Flex } from '@lydiafinance/uikit'
 
 import { useTranslation } from 'contexts/Localization'
 import usePersistState from 'hooks/usePersistState'
-import { useMaximusPools, useBlock, useFarms, useGetApiPrices, useGetApiPrice } from 'state/hooks'
+import { useMaximusPools, useFarms } from 'state/hooks'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
 import PageHeader from 'components/PageHeader'
@@ -19,12 +19,8 @@ const Pools: React.FC = () => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const pools = useMaximusPools(account)
-  const { data: farms, userDataLoaded } = useFarms()
-  const _lydPrice = useGetApiPrice('lyd')
-  const lydPrice = useMemo(() => new BigNumber(_lydPrice), [_lydPrice])
-  // const { currentBlock } = useBlock()
+  const { data: farms } = useFarms()
   const [stakedOnly, setStakedOnly] = usePersistState(false, 'lydia_pool_staked')
-
   const stakedOnlyPools = useMemo(
     () => pools.filter((pool) => pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0)),
     [pools],

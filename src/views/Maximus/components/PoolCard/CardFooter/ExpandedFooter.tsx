@@ -91,11 +91,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({
       </Flex>
 
       <Flex mb="2px" justifyContent="flex-end">
-        <LinkExternal
-          bold={false}
-          small
-          href={`https://exchange.lydia.finance/#/add/AVAX/0x4C9B4E1AC6F24CdE3660D5E4Ef1eBF77C710C084`}
-        >
+        <LinkExternal bold={false} small href={`https://exchange.lydia.finance/#/pool`}>
           {t(`Get  ${lpSymbol}`)}
         </LinkExternal>
       </Flex>

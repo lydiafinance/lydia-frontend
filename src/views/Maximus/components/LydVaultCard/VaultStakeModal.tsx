@@ -157,7 +157,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
 
   return (
     <Modal
-      title={isRemovingStake ? t('Unstake') : t('Stake LP in Pool')}
+      title={isRemovingStake ? t('Unstake') : t('Stake LP in Maximus Pool')}
       onDismiss={onDismiss}
       headerBackground={theme.colors.gradients.cardHeader}
     >
@@ -219,7 +219,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
         {pendingTx ? t('Confirming') : t('Confirm')}
       </Button>
       {!isRemovingStake && (
-        <Button mt="8px" as="a" external href={BASE_EXCHANGE_URL} variant="secondary">
+        <Button mt="8px" as="a" external href="https://exchange.lydia.finance/#/pool" variant="secondary">
           {t('Get')} {lpSymbol}
         </Button>
       )}

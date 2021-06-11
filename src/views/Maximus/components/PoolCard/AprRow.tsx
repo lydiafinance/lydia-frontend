@@ -26,7 +26,6 @@ interface AprRowProps {
 
 const AprRow: React.FC<AprRowProps> = ({
   pool,
-  stakingTokenPrice,
   isAutoVault = false,
   compoundFrequency = 1,
   performanceFee = 0,
@@ -54,38 +53,11 @@ const AprRow: React.FC<AprRowProps> = ({
     parseFloat(tokenPerBlock),
   )
 
-  console.log('@@@@@@@@@@@@@@@@-->', apr)
   const quoteTokenPriceUsd = selectedFarm && prices && prices[selectedFarm?.quoteToken?.symbol?.toLowerCase()]
   const totalLiquidity = new BigNumber(selectedFarm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
   const farmApr = getFarmApr(selectedFarm.poolWeight, lydPrice, totalLiquidity)
-
-  // special handling for tokens like tBTC or BIFI where the daily token rewards for $1000 dollars will be less than 0.001 of that token
   const isHighValueToken = Math.round(_lydPrice / 1000) > 0
-  const roundingDecimals = isHighValueToken ? 4 : 2
-
-  console.log('================|||||||||', farmApr)
-  const earningsPercentageToDisplay = () => {
-    const oneThousandDollarsWorthOfToken = 1000 / _lydPrice
-    const tokenEarnedPerThousand365D = tokenEarnedPerThousandDollarsCompounding({
-      numberOfDays: 365,
-      farmApr,
-      tokenPrice: _lydPrice,
-      roundingDecimals,
-      compoundFrequency,
-      performanceFee,
-    })
-    return getRoi({
-      amountEarned: tokenEarnedPerThousand365D,
-      amountInvested: oneThousandDollarsWorthOfToken,
-    })
-  }
-
-  console.log(`(farmApr * 1e16).toString()`, (farmApr * 1e16).toString())
-  console.log(`(apr * 1e16).toString()`, (apr * 1e16).toString())
-
   const compoundingApy = useCompoundingApy((farmApr * 1e16).toString(), (apr * 1e16).toString(), 2190)
-  console.log(`compoundingApy`, compoundingApy)
-
   const apyModalLink =
     getAddress(stakingToken) && `${BASE_EXCHANGE_URL}/#/swap?outputCurrency=${getAddress(stakingToken)}`
 
@@ -110,14 +82,7 @@ const AprRow: React.FC<AprRowProps> = ({
         <Skeleton width="82px" height="32px" />
       ) : (
         <Flex alignItems="center">
-          <Balance
-            fontSize="16px"
-            isDisabled={isFinished}
-            value={earningsPercentageToDisplay()}
-            decimals={2}
-            unit="%"
-            bold
-          />
+          <Balance fontSize="16px" isDisabled={isFinished} value={compoundingApy} decimals={2} unit="%" bold />
           <IconButton onClick={onPresentApyModal} variant="text" scale="sm">
             <CalculateIcon color="textSubtle" width="18px" />
           </IconButton>

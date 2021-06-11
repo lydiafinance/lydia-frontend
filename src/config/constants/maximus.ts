@@ -15,6 +15,7 @@ const pools: MaximusConfig[] = [
       [ChainId.AVALANCHE]: '0xfba4edaad3248b03f1a3261ad06ad846a8e50765',
     },
     earningToken: tokens.lyd,
+    tokenPerBlock: '2.5',
   },
 ]
 

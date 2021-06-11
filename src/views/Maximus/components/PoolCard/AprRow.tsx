@@ -80,7 +80,10 @@ const AprRow: React.FC<AprRowProps> = ({
     })
   }
 
-  const compoundingApy = useCompoundingApy('26900000000000000000', '4200000000000000000', 2190)
+  console.log(`(farmApr * 1e16).toString()`, (farmApr * 1e16).toString())
+  console.log(`(apr * 1e16).toString()`, (apr * 1e16).toString())
+
+  const compoundingApy = useCompoundingApy((farmApr * 1e16).toString(), (apr * 1e16).toString(), 2190)
   console.log(`compoundingApy`, compoundingApy)
 
   const apyModalLink =

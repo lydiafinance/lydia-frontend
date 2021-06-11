@@ -27,7 +27,7 @@ export const useCompoundingApy = (farmApr: string, poolApr: string, compound: nu
     const getCompoundingApy = async () => {
       const apy = await maximusDashboardContract.methods.compoundingAPY(farmApr, poolApr, compound).call()
 
-      setCompoundingApy(apy / 1e18)
+      setCompoundingApy(apy / 1e16)
     }
 
     getCompoundingApy()

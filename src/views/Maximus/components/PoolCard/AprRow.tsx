@@ -10,6 +10,7 @@ import { tokenEarnedPerThousandDollarsCompounding, getRoi } from 'utils/compound
 import { useGetApiPrice, useGetApiPrices } from 'state/hooks'
 import Balance from 'components/Balance'
 import ApyCalculatorModal from 'components/ApyCalculatorModal'
+import { useCompoundingApy } from 'hooks/maximus/maximusActions'
 import { Maximus } from 'state/types'
 import { BASE_EXCHANGE_URL } from 'config'
 interface AprRowProps {
@@ -68,6 +69,9 @@ const AprRow: React.FC<AprRowProps> = ({
       amountInvested: oneThousandDollarsWorthOfToken,
     })
   }
+
+  const compoundingApy = useCompoundingApy('26900000000000000000', '4200000000000000000', 2190)
+  console.log(`compoundingApy`, compoundingApy)
 
   const apyModalLink =
     getAddress(stakingToken) && `${BASE_EXCHANGE_URL}/#/swap?outputCurrency=${getAddress(stakingToken)}`

@@ -1,9 +1,9 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { useDispatch } from 'react-redux'
 import { fetchMaximusUserDataAsync } from 'state/actions'
 import { maximusClaimReward } from 'utils/callHelpers'
-import { useMaximusContact } from '../useContract'
+import { useMaximusContact, useMaximusDashboardContract } from '../useContract'
 
 export const useClaimReward = (farmPid: number) => {
   const dispatch = useDispatch()
@@ -19,6 +19,19 @@ export const useClaimReward = (farmPid: number) => {
   return { onReward: handleClaimReward }
 }
 
-export const useUnstake = () => {
-  return null
+export const useCompoundingApy = (farmApr: string, poolApr: string, compound: number) => {
+  const maximusDashboardContract = useMaximusDashboardContract()
+  const [compoundingApy, setCompoundingApy] = useState(0)
+
+  useEffect(() => {
+    const getCompoundingApy = async () => {
+      const apy = await maximusDashboardContract.methods.compoundingAPY(farmApr, poolApr, compound).call()
+
+      setCompoundingApy(apy / 1e18)
+    }
+
+    getCompoundingApy()
+  }, [compound, farmApr, maximusDashboardContract, poolApr])
+
+  return compoundingApy
 }

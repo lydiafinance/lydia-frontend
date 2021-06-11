@@ -19,6 +19,7 @@ import {
   getAirdropAddress,
   getLydVaultAddress,
   getMaximusFeeManagerAddress,
+  getMaximusDashboardAddress,
 } from 'utils/addressHelpers'
 
 // ABI
@@ -40,6 +41,7 @@ import airDropAbi from 'config/abi/airdrop.json'
 import lydVaultAbi from 'config/abi/lydVaultAbi.json'
 import maximusFeeManagerAbi from 'config/abi/maximusFeeManagerAbi.json'
 import maximusAbi from 'config/abi/maximusAbi.json'
+import maximusDashboardAbi from 'config/abi/maximusDashboardAbi.json'
 
 const getContract = (abi: any, address: string, web3?: Web3) => {
   const _web3 = web3 ?? web3NoAccount
@@ -100,4 +102,7 @@ export const getMaximusContract = (id: number, web3?: Web3) => {
   const config = maximusConfig.find((pool) => pool.pid === id)
   const abi = maximusAbi
   return getContract(abi, getAddress(config.contractAddress), web3)
+}
+export const getMaximusDashboardContract = (web3?: Web3) => {
+  return getContract(maximusDashboardAbi, getMaximusDashboardAddress(), web3)
 }

@@ -56,4 +56,8 @@ export default {
     [ChainId.FUJI]: '0x26C5c9BaFa0d19aa85Cc1cfD77d1536A59Be40D8',
     [ChainId.AVALANCHE]: '0x26C5c9BaFa0d19aa85Cc1cfD77d1536A59Be40D8',
   },
+  maximusDashboard: {
+    [ChainId.FUJI]: '0x86467285a3103C9bEfe415804589A9d19FAA552c',
+    [ChainId.AVALANCHE]: '0x86467285a3103C9bEfe415804589A9d19FAA552c',
+  },
 }

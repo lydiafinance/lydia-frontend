@@ -51,3 +51,6 @@ export const getLydVaultAddress = () => {
 export const getMaximusFeeManagerAddress = () => {
   return getAddress(addresses.maximusFeeManager)
 }
+export const getMaximusDashboardAddress = () => {
+  return getAddress(addresses.maximusDashboard)
+}

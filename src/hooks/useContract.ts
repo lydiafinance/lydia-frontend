@@ -17,6 +17,7 @@ import {
   getLydVaultContract,
   getMaximusFeeManagerContract,
   getMaximusContract,
+  getMaximusDashboardContract,
 } from 'utils/contractHelpers'
 
 /**
@@ -96,4 +97,8 @@ export const useMaximusFeeManagerContract = () => {
 export const useMaximusContact = (id) => {
   const web3 = useWeb3()
   return useMemo(() => getMaximusContract(id, web3), [id, web3])
+}
+export const useMaximusDashboardContract = () => {
+  const web3 = useWeb3()
+  return useMemo(() => getMaximusDashboardContract(web3), [web3])
 }

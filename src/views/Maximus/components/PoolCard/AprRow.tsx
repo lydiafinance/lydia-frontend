@@ -1,4 +1,3 @@
-/* eslint-disable import/newline-after-import */
 import React, { useMemo } from 'react'
 import { Flex, TooltipText, IconButton, useModal, CalculateIcon, Skeleton, useTooltip } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
@@ -8,13 +7,13 @@ import { useWeb3React } from '@web3-react/core'
 
 import BigNumber from 'bignumber.js'
 import { getAddress } from 'utils/addressHelpers'
-import { tokenEarnedPerThousandDollarsCompounding, getRoi } from 'utils/compoundApyHelpers'
 import { usePools, useGetApiPrice, useGetApiPrices } from 'state/hooks'
 import Balance from 'components/Balance'
 import ApyCalculatorModal from 'components/ApyCalculatorModal'
 import { useCompoundingApy } from 'hooks/maximus/maximusActions'
 import { Maximus } from 'state/types'
 import { BASE_EXCHANGE_URL } from 'config'
+
 interface AprRowProps {
   pool: Maximus
   stakingTokenPrice: number
@@ -32,7 +31,7 @@ const AprRow: React.FC<AprRowProps> = ({
   farms,
 }) => {
   const { t } = useTranslation()
-  const { stakingToken, earningToken, totalStaked, isFinished, lpSymbol, tokenPerBlock } = pool
+  const { stakingToken, earningToken, isFinished, tokenPerBlock } = pool
   const { account } = useWeb3React()
   const lydPools = usePools(account)
   const prices = useGetApiPrices()

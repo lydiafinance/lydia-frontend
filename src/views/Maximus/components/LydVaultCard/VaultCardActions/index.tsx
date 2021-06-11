@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Flex, Text, Box } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
-import { useWeb3React } from '@web3-react/core'
-import { useLyd, useLydVaultContract } from 'hooks/useContract'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { VaultFees } from 'hooks/maximus/useGetMaximusFees'
 import { Maximus, MaximusUserData } from 'state/types'
@@ -32,31 +30,23 @@ const LydVaultCardActions: React.FC<{
   pricePerFullShare,
   stakingTokenPrice,
   accountHasSharesStaked,
-  lastUpdated,
   vaultFees,
   isLoading,
   setLastUpdated,
 }) => {
-  const { account } = useWeb3React()
-  const { stakingToken, userData, lpSymbol, pid } = pool
+  const { userData, lpSymbol, pid } = pool
   const [isVaultApproved, setIsVaultApproved] = useState(false)
-  const lydContract = useLyd()
-  const lydVaultContract = useLydVaultContract()
   const { t } = useTranslation()
   const stakingTokenBalance = userData?.stakingTokenBalance ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO
   useEffect(() => {
     const checkApprovalStatus = async () => {
-      try {
-        const response = await lydContract.methods.allowance(account, lydVaultContract.options.address).call()
-        const currentAllowance = new BigNumber(response)
-        setIsVaultApproved(currentAllowance.gt(0))
-      } catch (error) {
-        setIsVaultApproved(false)
+      if (userData.allowance) {
+        setIsVaultApproved(userData.allowance.gt(0))
       }
     }
 
     checkApprovalStatus()
-  }, [account, lydContract, lydVaultContract, lastUpdated])
+  }, [userData])
 
   return (
     <Flex flexDirection="column">

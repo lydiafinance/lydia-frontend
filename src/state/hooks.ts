@@ -120,7 +120,18 @@ export const useMaximusPools = (account): Maximus[] => {
     }
   }, [account, dispatch, fastRefresh])
 
-  const maximus = useSelector((state: State) => state.maximus.data)
+  const maximus = useSelector((state: State) => state.maximus.data).map((farm) => {
+    return {
+      ...farm,
+      userData: {
+        ...farm.userData,
+        stakedBalance: farm.userData ? new BigNumber(farm.userData.stakedBalance) : new BigNumber(0),
+        pendingReward: farm.userData ? new BigNumber(farm.userData.pendingReward) : new BigNumber(0),
+        allowance: farm.userData ? new BigNumber(farm.userData.allowance) : new BigNumber(0),
+      },
+    }
+  })
+
   return maximus
 }
 

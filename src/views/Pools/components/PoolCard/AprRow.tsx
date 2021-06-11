@@ -42,7 +42,6 @@ const AprRow: React.FC<AprRowProps> = ({
     getBalanceNumber(totalStaked, stakingToken.decimals),
     parseFloat(tokenPerBlock),
   )
-  console.log('@@@@@@@@@@@@@@@@==================>', apr)
 
   // special handling for tokens like tBTC or BIFI where the daily token rewards for $1000 dollars will be less than 0.001 of that token
   const isHighValueToken = Math.round(earningTokenPrice / 1000) > 0

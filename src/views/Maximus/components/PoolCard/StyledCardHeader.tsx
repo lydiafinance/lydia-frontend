@@ -28,7 +28,6 @@ const StyledCardHeader: React.FC<{
   isFinished?: boolean
 }> = ({ stackingToken, isFinished = false }) => {
   const { t } = useTranslation()
-  const poolImageSrc = `${stackingToken}-automatic.svg`.toLocaleLowerCase()
   const tokens = stackingToken?.split('-')
 
   return (
@@ -40,7 +39,6 @@ const StyledCardHeader: React.FC<{
           </Heading>
           <Text color={isFinished ? 'textDisabled' : 'text'}>{t('Automatic restaking')}</Text>
         </Flex>
-        {/* <Image src={`/images/pools/${poolImageSrc}`} alt={stackingToken} width={64} height={64} /> */}
 
         <ImagesWrapper>
           <Image

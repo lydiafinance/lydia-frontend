@@ -37,7 +37,7 @@ const StyledCardHeader: React.FC<{
           <Heading color={isFinished ? 'textDisabled' : 'text'} size="lg">
             {`${stackingToken} LP`}
           </Heading>
-          <Text color={isFinished ? 'textDisabled' : 'text'}>{t('Automatic restaking')}</Text>
+          <Text color={isFinished ? 'textDisabled' : 'text'}>{t('Maximizer')}</Text>
         </Flex>
 
         <ImagesWrapper>

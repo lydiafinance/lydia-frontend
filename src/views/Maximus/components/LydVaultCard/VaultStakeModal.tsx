@@ -32,10 +32,21 @@ const StyledButton = styled(Button)`
   flex-grow: 1;
 `
 
+const ImagesWrapper = styled.div`
+  width: 100%;
+  width: 50px;
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+
+  * {
+    border-radius: 30px;
+  }
+`
+
 const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
   pool,
   stakingMax,
-  stakingTokenPrice,
   userInfo,
   isRemovingStake = false,
   vaultFees,
@@ -160,6 +171,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
       handleDeposit(convertedStakeAmount)
     }
   }
+  const tokens = lpSymbol?.split('-')
 
   return (
     <Modal
@@ -170,7 +182,22 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
         <Text bold>{isRemovingStake ? t('Unstake') : t('Stake')}:</Text>
         <Flex alignItems="center" minWidth="70px">
-          <Image src={`/images/tokens/${lpSymbol?.toLowerCase()}.png`} width={24} height={24} alt={lpSymbol} />
+          <ImagesWrapper>
+            <Image
+              className="token-symbol"
+              key="axaa"
+              src={`/images/tokens/${tokens[0]?.toLowerCase()}.png`}
+              width={25}
+              height={25}
+            />
+            <Image
+              className="target-token-symbol"
+              key="axaa1"
+              src={`/images/tokens/${tokens[1]?.toLowerCase()}.png`}
+              width={25}
+              height={25}
+            />
+          </ImagesWrapper>
           <Text ml="4px" bold>
             {lpSymbol}
           </Text>

@@ -27,10 +27,16 @@ const HasSharesActions: React.FC<HasStakeActionProps> = ({
   vaultFees,
   setLastUpdated,
 }) => {
-  const { lpSymbol } = pool
+  const { lpSymbol, userData } = pool
   const stackedTokenBalance = getBalanceNumber(userInfo.stakedBalance, 18)
 
   const stakedDollarValue = formatNumber(getBalanceNumber(userInfo.stakedBalance.multipliedBy(stakingTokenPrice), 18))
+
+  const rawStakedUsd = getBalanceNumber(userData?.stakedUsd, 0)
+  const displayBalanceUsd = rawStakedUsd.toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })
 
   const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal tokenSymbol={lpSymbol} />)
 
@@ -62,7 +68,7 @@ const HasSharesActions: React.FC<HasStakeActionProps> = ({
       <Flex flexDirection="column">
         <Heading>{stackedTokenBalance}</Heading>
         <Text fontSize="12px" color="textSubtle">{`~${
-          stakingTokenPrice ? stakedDollarValue : <Skeleton mt="1px" height={16} width={64} />
+          stakingTokenPrice ? displayBalanceUsd : <Skeleton mt="1px" height={16} width={64} />
         } USD`}</Text>
       </Flex>
       <Flex>

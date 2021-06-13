@@ -14,6 +14,7 @@ import useGetMaximusSharesInfo from 'hooks/maximus/useGetMaximusSharesInfo'
 import useGetMaximusFees from 'hooks/maximus/useGetMaximusFees'
 import { Maximus } from 'state/types'
 import AprRow from '../PoolCard/AprRow'
+import AprRowCompare from '../PoolCard/AprRowCompare'
 import StyledCard from '../PoolCard/StyledCard'
 import CardFooter from '../PoolCard/CardFooter'
 import StyledCardHeader from '../PoolCard/StyledCardHeader'
@@ -57,6 +58,14 @@ const LydVaultCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHomeCar
       <StyledCardHeader stackingToken={lpSymbol} />
       <StyledCardBody isLoading={isLoading}>
         <AprRow
+          farms={farms}
+          pool={pool}
+          stakingTokenPrice={stakingTokenPrice}
+          isAutoVault
+          compoundFrequency={timesCompoundedDaily}
+          performanceFee={performanceFeeAsDecimal}
+        />
+        <AprRowCompare
           farms={farms}
           pool={pool}
           stakingTokenPrice={stakingTokenPrice}

@@ -5,6 +5,7 @@ import poolsConfig from 'config/constants/maximus'
 import maximusAbi from 'config/abi/maximusAbi.json'
 import multicall from 'utils/multicall'
 import { getAddress } from 'utils/addressHelpers'
+import { DEFAULT_TOKEN_DECIMAL } from 'config'
 
 const fetchMaximusFarms = async () => {
   const calls = poolsConfig.reduce((multiCalls, poolConfig) => {
@@ -46,7 +47,15 @@ const fetchMaximusFarms = async () => {
 
   let maximusFarmsTotalStacked = await multicall(maximusAbi, calls)
 
+  const [lpTokenBalanceMC, quoteTokenBalanceLP, lpTotalSupply] = await multicall(maximusAbi, calls)
+  const lpTokenRatio = new BigNumber(lpTokenBalanceMC).div(new BigNumber(lpTotalSupply))
+
   maximusFarmsTotalStacked = chunk(maximusFarmsTotalStacked, 7)
+
+  const lpTotalInQuoteToken = new BigNumber(quoteTokenBalanceLP)
+    .div(DEFAULT_TOKEN_DECIMAL)
+    .times(new BigNumber(2))
+    .times(lpTokenRatio)
 
   return [
     ...poolsConfig.map((p, index) => ({
@@ -57,6 +66,9 @@ const fetchMaximusFarms = async () => {
       rewardRate: new BigNumber(maximusFarmsTotalStacked[index][3]).toJSON(),
       rewardsDuration: new BigNumber(maximusFarmsTotalStacked[index][4]).toJSON(),
       rewardsToken: maximusFarmsTotalStacked[index][5][0],
+      lpTokenBalanceMC: new BigNumber(lpTokenBalanceMC).toJSON(),
+      lpTotalInQuoteToken: lpTotalInQuoteToken.toJSON(),
+      lpTotalSupply: new BigNumber(lpTotalSupply).toJSON(),
       // stakingToken: maximusFarmsTotalStacked[index][6][0],
     })),
   ]

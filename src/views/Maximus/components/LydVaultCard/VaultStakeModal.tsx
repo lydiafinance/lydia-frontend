@@ -12,6 +12,7 @@ import { VaultFees } from 'hooks/maximus/useGetMaximusFees'
 import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/formatBalance'
 import useToast from 'hooks/useToast'
+import { usePools, useGetApiPrice, useGetApiPrices } from 'state/hooks'
 import { Maximus, MaximusUserData } from 'state/types'
 import { convertLydToShares } from '../../helpers'
 import FeeSummary from './FeeSummary'
@@ -43,7 +44,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
   setLastUpdated,
 }) => {
   const { account } = useWeb3React()
-  const { stakingToken, lpSymbol } = pool
+  const { lpSymbol } = pool
   const maximusContract = useMaximusContact(pool.pid)
   const { t } = useTranslation()
   const { theme } = useTheme()
@@ -52,7 +53,18 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
   const [stakeAmount, setStakeAmount] = useState('')
   const [percent, setPercent] = useState(0)
   const { hasUnstakingFee } = useMaximusWithdrawalFeeTimer(parseInt(userInfo.depositAt))
-  const usdValueStaked = stakeAmount && formatNumber(new BigNumber(stakeAmount).times(stakingTokenPrice).toNumber())
+  const _lydPrice = useGetApiPrice('lyd')
+
+  console.log('@@@@@@@@@@@@@@@@@', pool)
+  // let stakedUsd = new BigNumber(0)
+
+  // if (farm.quoteTokenSymbol === QuoteToken.AVAX) {
+  //   stakedUsd = avaxPrice.times(stakedInQuoteToken)
+  // } else if (farm.quoteTokenSymbol === QuoteToken.LYD) {
+  //   stakedUsd = lydPrice.times(stakedInQuoteToken)
+  // }
+
+  const usdValueStaked = stakeAmount && formatNumber(new BigNumber(stakeAmount).times(_lydPrice).toNumber())
 
   const handleStakeInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value || '0'
@@ -155,6 +167,23 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
     }
   }
 
+  const ImagesWrapper = styled.div`
+    width: 100%;
+    max-width: 55px;
+
+    * {
+      border-radius: 30px;
+    }
+    .target-token-symbol {
+      top: -12px;
+      left: 16px;
+    }
+    .token-symbol {
+    }
+  `
+
+  const tokens = lpSymbol?.split('-')
+
   return (
     <Modal
       title={isRemovingStake ? t('Unstake') : t('Stake LP in Maximus Pool')}
@@ -164,8 +193,23 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
         <Text bold>{isRemovingStake ? t('Unstake') : t('Stake')}:</Text>
         <Flex alignItems="center" minWidth="70px">
-          <Image src={`/images/tokens/${lpSymbol?.toLowerCase()}.png`} width={24} height={24} alt={lpSymbol} />
-          <Text ml="4px" bold>
+          <ImagesWrapper>
+            <Image
+              className="token-symbol"
+              key="axaa"
+              src={`/images/tokens/${tokens[0]?.toLowerCase()}.png`}
+              width={22}
+              height={22}
+            />
+            <Image
+              className="target-token-symbol"
+              key="axaa1"
+              src={`/images/tokens/${tokens[1]?.toLowerCase()}.png`}
+              width={32}
+              height={32}
+            />
+          </ImagesWrapper>
+          <Text ml="30px" bold>
             {lpSymbol}
           </Text>
         </Flex>

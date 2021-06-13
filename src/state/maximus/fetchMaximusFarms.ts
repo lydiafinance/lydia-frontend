@@ -4,10 +4,11 @@ import chunk from 'lodash/chunk'
 import poolsConfig from 'config/constants/maximus'
 import maximusAbi from 'config/abi/maximusAbi.json'
 import multicall from 'utils/multicall'
-import { getAddress } from 'utils/addressHelpers'
+import { getAddress, getMasterChefAddress } from 'utils/addressHelpers'
+import { DEFAULT_TOKEN_DECIMAL } from 'config'
 
 const fetchMaximusFarms = async () => {
-  const calls = poolsConfig.reduce((multiCalls, poolConfig) => {
+  const maximusCalls = poolsConfig.reduce((multiCalls, poolConfig) => {
     const contractAddress = getAddress(poolConfig.contractAddress)
 
     const currentPoolCals = [
@@ -35,30 +36,64 @@ const fetchMaximusFarms = async () => {
         address: contractAddress,
         name: 'rewardsToken',
       },
+    ]
+
+    return [...multiCalls, ...currentPoolCals]
+  }, [])
+
+  const erc20Cals = poolsConfig.reduce((multiCalls, poolConfig) => {
+    const currentPoolCals = [
       {
-        address: contractAddress,
-        name: 'stakingToken',
+        address: getAddress(poolConfig.stakingToken),
+        name: 'balanceOf',
+        params: [getMasterChefAddress()],
+      },
+      {
+        address: getAddress(poolConfig.quoteToken.address),
+        name: 'balanceOf',
+        params: [getAddress(poolConfig.stakingToken)],
+      },
+      {
+        address: getAddress(poolConfig.stakingToken),
+        name: 'totalSupply',
       },
     ]
 
     return [...multiCalls, ...currentPoolCals]
   }, [])
 
-  let maximusFarmsTotalStacked = await multicall(maximusAbi, calls)
+  let maximusFarmsTotalStacked = await multicall(maximusAbi, maximusCalls)
+  let erc20Responses = await multicall(maximusAbi, erc20Cals)
 
-  maximusFarmsTotalStacked = chunk(maximusFarmsTotalStacked, 7)
+  maximusFarmsTotalStacked = chunk(maximusFarmsTotalStacked, 6)
+  erc20Responses = chunk(erc20Responses, 3)
 
   return [
-    ...poolsConfig.map((p, index) => ({
-      pid: p.pid,
-      totalStaked: new BigNumber(maximusFarmsTotalStacked[index][0]).toJSON(),
-      priceShare: new BigNumber(maximusFarmsTotalStacked[index][1]).toJSON(),
-      rewardPerToken: new BigNumber(maximusFarmsTotalStacked[index][2]).toJSON(),
-      rewardRate: new BigNumber(maximusFarmsTotalStacked[index][3]).toJSON(),
-      rewardsDuration: new BigNumber(maximusFarmsTotalStacked[index][4]).toJSON(),
-      rewardsToken: maximusFarmsTotalStacked[index][5][0],
-      // stakingToken: maximusFarmsTotalStacked[index][6][0],
-    })),
+    ...poolsConfig.map((p, index) => {
+      const [lpTokenBalanceMC, quoteTokenBalanceLP, lpTotalSupply] = erc20Responses[index]
+      const [totalStaked, priceShare, rewardPerToken, rewardRate, rewardsDuration, rewardsToken] =
+        maximusFarmsTotalStacked[index]
+
+      const lpTokenRatio = new BigNumber(lpTokenBalanceMC).div(new BigNumber(lpTotalSupply))
+
+      const lpTotalInQuoteToken = new BigNumber(quoteTokenBalanceLP)
+        .div(DEFAULT_TOKEN_DECIMAL)
+        .times(new BigNumber(2))
+        .times(lpTokenRatio)
+
+      return {
+        pid: p.pid,
+        totalStaked: new BigNumber(totalStaked).toJSON(),
+        priceShare: new BigNumber(priceShare).toJSON(),
+        rewardPerToken: new BigNumber(rewardPerToken).toJSON(),
+        rewardRate: new BigNumber(rewardRate).toJSON(),
+        rewardsDuration: new BigNumber(rewardsDuration).toJSON(),
+        rewardsToken,
+        lpTokenBalanceMC: new BigNumber(lpTokenBalanceMC).toJSON(),
+        lpTotalInQuoteToken: lpTotalInQuoteToken.toJSON(),
+        lpTotalSupply: new BigNumber(lpTotalSupply).toJSON(),
+      }
+    }),
   ]
 }
 

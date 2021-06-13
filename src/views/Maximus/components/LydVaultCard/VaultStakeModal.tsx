@@ -10,7 +10,7 @@ import useTheme from 'hooks/useTheme'
 import useMaximusWithdrawalFeeTimer from 'hooks/maximus/useMaximusWithdrawalFeeTimer'
 import { VaultFees } from 'hooks/maximus/useGetMaximusFees'
 import BigNumber from 'bignumber.js'
-import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/formatBalance'
+import { getFullDisplayBalance, formatNumber, getDecimalAmount, getBalanceNumber } from 'utils/formatBalance'
 import useToast from 'hooks/useToast'
 import { Maximus, MaximusUserData } from 'state/types'
 import { convertLydToShares } from '../../helpers'
@@ -43,7 +43,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
   setLastUpdated,
 }) => {
   const { account } = useWeb3React()
-  const { stakingToken, lpSymbol } = pool
+  const { stakingToken, lpSymbol, userData } = pool
   const maximusContract = useMaximusContact(pool.pid)
   const { t } = useTranslation()
   const { theme } = useTheme()
@@ -52,8 +52,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
   const [stakeAmount, setStakeAmount] = useState('')
   const [percent, setPercent] = useState(0)
   const { hasUnstakingFee } = useMaximusWithdrawalFeeTimer(parseInt(userInfo.depositAt))
-  const usdValueStaked = stakeAmount && formatNumber(new BigNumber(stakeAmount).times(stakingTokenPrice).toNumber())
-
+  // stakedUsd
   const handleStakeInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value || '0'
     const convertedInput = new BigNumber(inputValue).multipliedBy(BIG_TEN.pow(18))
@@ -61,6 +60,13 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
     setStakeAmount(inputValue)
     setPercent(percentage > 100 ? 100 : percentage)
   }
+
+  const totalStakedUsd = getBalanceNumber(userData?.stakedUsd, 0)
+  const rawStakedUsd = (totalStakedUsd * percent) / 100
+  const displayBalanceUsd = rawStakedUsd.toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })
 
   const handleChangePercent = (sliderPercent: number) => {
     const percentageOfStakingMax = stakingMax.dividedBy(100).multipliedBy(sliderPercent)
@@ -173,7 +179,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
       <BalanceInput
         value={stakeAmount}
         onChange={handleStakeInputChange}
-        currencyValue={`~${usdValueStaked || 0} USD`}
+        currencyValue={`~${displayBalanceUsd || 0} USD`}
       />
       <Text mt="8px" ml="auto" color="textSubtle" fontSize="12px" mb="8px">
         Balance: {getFullDisplayBalance(stakingMax, 18)}

@@ -46,11 +46,14 @@ export interface MaximusUserData {
   stakedBalance: BigNumber
   pendingReward: BigNumber
   depositAt?: string
+  stakedUsd?: any
 }
 
 export interface Maximus extends MaximusConfig {
   totalStaked?: BigNumber
   userData?: MaximusUserData
+  lpTotalInQuoteToken?: any
+  stakedUsd?: any
 }
 
 export interface Profile {

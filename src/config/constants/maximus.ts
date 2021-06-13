@@ -17,7 +17,7 @@ const pools: MaximusConfig[] = [
     earningToken: tokens.lyd,
     tokenPerBlock: '2.5',
     quoteToken: tokens.wavax,
-    quoteTokenSymbol: 'LYD',
+    quoteTokenSymbol: 'AVAX',
   },
   {
     pid: 2,

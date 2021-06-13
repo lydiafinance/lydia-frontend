@@ -16,7 +16,7 @@ const pools: MaximusConfig[] = [
     },
     earningToken: tokens.lyd,
     tokenPerBlock: '2.5',
-    quoteToken: tokens.lyd,
+    quoteToken: tokens.wavax,
     quoteTokenSymbol: 'LYD',
   },
   {
@@ -32,7 +32,7 @@ const pools: MaximusConfig[] = [
     },
     earningToken: tokens.lyd,
     tokenPerBlock: '2.5',
-    quoteToken: tokens.avax,
+    quoteToken: tokens.wavax,
     quoteTokenSymbol: 'AVAX',
   },
 ]

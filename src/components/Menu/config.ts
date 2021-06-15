@@ -73,6 +73,37 @@ const config: MenuEntry[] = [
   //   ],
   // },
   {
+    label: 'Audit',
+    icon: 'ShieldIcon',
+    href: 'https://docs.lydia.finance/security/certik-audit',
+  },
+  {
+    label: 'Listings',
+    icon: 'ListingIcon',
+    items: [
+      {
+        label: 'CoinGecko',
+        href: 'https://www.coingecko.com/en/coins/lydia-finance',
+      },
+      {
+        label: 'LiveCoinWatch',
+        href: 'https://www.livecoinwatch.com/price/LydiaFinance-_LYD',
+      },
+      {
+        label: 'Markr.io',
+        href: 'https://markr.io/#/applications/LydiaFinance',
+      },
+      {
+        label: 'DefiLama',
+        href: 'https://defillama.com/protocol/lydia',
+      },
+      {
+        label: 'AvaxProjects',
+        href: 'https://www.avax-projects.com/',
+      },
+    ],
+  },
+  {
     label: 'Info',
     icon: 'InfoIcon',
     items: [

@@ -73,6 +73,11 @@ const config: MenuEntry[] = [
   //   ],
   // },
   {
+    label: 'Audit',
+    icon: 'ShieldIcon',
+    href: 'https://docs.lydia.finance/security/certik-audit',
+  },
+  {
     label: 'Info',
     icon: 'InfoIcon',
     items: [

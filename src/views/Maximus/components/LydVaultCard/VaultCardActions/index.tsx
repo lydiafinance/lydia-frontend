@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import styled from 'styled-components'
 import { Flex, Text, Box } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
@@ -37,16 +37,20 @@ const LydVaultCardActions: React.FC<{
   const { userData, lpSymbol, pid } = pool
   const [isVaultApproved, setIsVaultApproved] = useState(false)
   const { t } = useTranslation()
-  const stakingTokenBalance = userData?.stakingTokenBalance ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO
+
+  const stakingTokenBalance = useMemo(() => {
+    return userData?.stakingTokenBalance ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO
+  }, [userData.stakingTokenBalance])
+
   useEffect(() => {
     const checkApprovalStatus = async () => {
       if (userData.allowance) {
-        setIsVaultApproved(userData.allowance.gt(0))
+        setIsVaultApproved(userData.allowance.gt(stakingTokenBalance))
       }
     }
 
     checkApprovalStatus()
-  }, [userData])
+  }, [userData, stakingTokenBalance])
 
   return (
     <Flex flexDirection="column">

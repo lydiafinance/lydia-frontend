@@ -27,8 +27,8 @@ const pools: MaximusConfig[] = [
       [ChainId.AVALANCHE]: '0xEF29710BDfCa533D35F3Acc461D79f781398E5D2',
     },
     stakingToken: {
-      [ChainId.FUJI]: '0x4570BD3910c64095F6C0f5e6405BE7Cb30E2bdd7',
-      [ChainId.AVALANCHE]: '0xfba4edaad3248b03f1a3261ad06ad846a8e50765',
+      [ChainId.FUJI]: '0x1ccd24def23a742d56a976810ca5bda37b43744d',
+      [ChainId.AVALANCHE]: '0x58128ab3ecbf703682ede72f341944bffe3524b9',
     },
     earningToken: tokens.lyd,
     tokenPerBlock: '2.5',

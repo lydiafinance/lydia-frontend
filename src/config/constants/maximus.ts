@@ -23,8 +23,8 @@ const pools: MaximusConfig[] = [
     pid: 2,
     lpSymbol: 'AVAX-ETH',
     contractAddress: {
-      [ChainId.FUJI]: '0xEF29710BDfCa533D35F3Acc461D79f781398E5D2',
-      [ChainId.AVALANCHE]: '0xEF29710BDfCa533D35F3Acc461D79f781398E5D2',
+      [ChainId.FUJI]: '0x60096143052e7b0A1466D4B10f8Efe614ba83B26',
+      [ChainId.AVALANCHE]: '0x60096143052e7b0A1466D4B10f8Efe614ba83B26',
     },
     stakingToken: {
       [ChainId.FUJI]: '0x1ccd24def23a742d56a976810ca5bda37b43744d',

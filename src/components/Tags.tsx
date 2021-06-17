@@ -33,7 +33,7 @@ const ManualPoolTag = (props) => (
 
 const CompoundingPoolTag = (props) => (
   <Tag variant="success" outline startIcon={<AutoRenewIcon width="18px" color="success" mr="4px" />} {...props}>
-    Maximizer
+    Auto
   </Tag>
 )
 

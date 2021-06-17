@@ -31,11 +31,11 @@ const config: MenuEntry[] = [
     href: '/pools',
   },
   {
-    label: 'Maximus',
+    label: 'Maximus Farm',
     icon: 'CrownIcon',
     href: '/maximus',
     status: {
-      text: 'SOON',
+      text: 'BETA',
       color: 'warning',
     },
   },

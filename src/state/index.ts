@@ -3,12 +3,10 @@ import { useDispatch } from 'react-redux'
 import farmsReducer from './farms'
 import poolsReducer from './pools'
 import pricesReducer from './prices'
-// import predictionsReducer from './predictions'
-// import profileReducer from './profile'
 import teamsReducer from './teams'
 import achievementsReducer from './achievements'
 import blockReducer from './block'
-// import collectiblesReducer from './collectibles'
+import maximusReducer from './maximus'
 
 const store = configureStore({
   devTools: process.env.NODE_ENV !== 'production',
@@ -19,9 +17,7 @@ const store = configureStore({
     pools: poolsReducer,
     prices: pricesReducer,
     teams: teamsReducer,
-    // profile: profileReducer,
-    // predictions: predictionsReducer,
-    // collectibles: {},
+    maximus: maximusReducer,
   },
 })
 

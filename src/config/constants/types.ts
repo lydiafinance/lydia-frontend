@@ -70,6 +70,25 @@ export interface FarmConfig {
   }
 }
 
+export interface MaximusConfig {
+  pid: number
+  lpSymbol: string
+  contractAddress: Address
+  earningToken: Token
+  stakingToken: Address
+  isFinished?: boolean
+  stakingLimit?: number
+  enableEmergencyWithdraw?: boolean
+  sortOrder?: number
+  harvest?: boolean
+  token?: any
+  quoteToken?: any
+  quoteTokenSymbol?: any
+  tokenPerBlock?: any
+  lpTokenBalanceMC?: any
+  lpTotalInQuoteToken?: any
+}
+
 export interface PoolConfig {
   sousId: number
   earningToken: Token

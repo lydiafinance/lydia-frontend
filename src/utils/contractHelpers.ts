@@ -1,7 +1,7 @@
 import Web3 from 'web3'
 import { AbiItem } from 'web3-utils'
 import web3NoAccount from 'utils/web3'
-import { poolsConfig } from 'config/constants'
+import { poolsConfig, maximusConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
 
 // Addresses
@@ -18,13 +18,14 @@ import {
   getClaimRefundAddress,
   getAirdropAddress,
   getLydVaultAddress,
+  getMaximusFeeManagerAddress,
+  getMaximusDashboardAddress,
 } from 'utils/addressHelpers'
 
 // ABI
 import profileABI from 'config/abi/lydiaProfile.json'
 import lydiaLionsAbi from 'config/abi/lydiaLions.json'
 import bunnyFactoryAbi from 'config/abi/bunnyFactory.json'
-import bunnySpecialAbi from 'config/abi/bunnySpecial.json'
 import bep20Abi from 'config/abi/erc20.json'
 import lpTokenAbi from 'config/abi/lpToken.json'
 import lydAbi from 'config/abi/lyd.json'
@@ -38,10 +39,13 @@ import sousChefAvax from 'config/abi/sousChefAvax.json'
 import claimRefundAbi from 'config/abi/claimRefund.json'
 import airDropAbi from 'config/abi/airdrop.json'
 import lydVaultAbi from 'config/abi/lydVaultAbi.json'
+import maximusFeeManagerAbi from 'config/abi/maximusFeeManagerAbi.json'
+import maximusAbi from 'config/abi/maximusAbi.json'
+import maximusDashboardAbi from 'config/abi/maximusDashboardAbi.json'
 
 const getContract = (abi: any, address: string, web3?: Web3) => {
   const _web3 = web3 ?? web3NoAccount
-  return new _web3.eth.Contract((abi as unknown) as AbiItem, address)
+  return new _web3.eth.Contract(abi as unknown as AbiItem, address)
 }
 
 export const getBep20Contract = (address: string, web3?: Web3) => {
@@ -90,4 +94,15 @@ export const getAirdropContract = (web3?: Web3) => {
 }
 export const getLydVaultContract = (web3?: Web3) => {
   return getContract(lydVaultAbi, getLydVaultAddress(), web3)
+}
+export const getMaximusFeeManagerContract = (web3?: Web3) => {
+  return getContract(maximusFeeManagerAbi, getMaximusFeeManagerAddress(), web3)
+}
+export const getMaximusContract = (id: number, web3?: Web3) => {
+  const config = maximusConfig.find((pool) => pool.pid === id)
+  const abi = maximusAbi
+  return getContract(abi, getAddress(config.contractAddress), web3)
+}
+export const getMaximusDashboardContract = (web3?: Web3) => {
+  return getContract(maximusDashboardAbi, getMaximusDashboardAddress(), web3)
 }

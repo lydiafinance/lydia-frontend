@@ -11,13 +11,15 @@ import {
   fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
+  fetchMaximusPublicDataAsync,
+  fetchMaximusUserDataAsync,
   push as pushToast,
   remove as removeToast,
   clear as clearToast,
   setBlock,
 } from './actions'
 import { QuoteToken } from '../config/constants/types'
-import { State, Farm, Pool, ProfileState, TeamsState, AchievementState, PriceState, FarmsState } from './types'
+import { State, Farm, Pool, ProfileState, TeamsState, AchievementState, PriceState, FarmsState, Maximus } from './types'
 // import { fetchProfile } from './profile'
 import { fetchTeam, fetchTeams } from './teams'
 import { fetchAchievements } from './achievements'
@@ -29,6 +31,7 @@ export const useFetchPublicData = () => {
   useEffect(() => {
     dispatch(fetchFarmsPublicDataAsync())
     dispatch(fetchPoolsPublicDataAsync())
+    dispatch(fetchMaximusPublicDataAsync())
   }, [dispatch, slowRefresh])
 
   useEffect(() => {
@@ -46,7 +49,6 @@ export const useFetchPublicData = () => {
 
 export const useFarms = (): FarmsState => {
   const farms = useSelector((state: State) => {
-    console.log(state)
     return state.farms
   })
   return farms
@@ -105,6 +107,46 @@ export const usePools = (account): Pool[] => {
 export const usePoolFromPid = (sousId): Pool => {
   const pool = useSelector((state: State) => state.pools.data.find((p) => p.sousId === sousId))
   return pool
+}
+
+// Maximus
+
+export const useMaximusPools = (account): Maximus[] => {
+  const { fastRefresh } = useRefresh()
+  const dispatch = useDispatch()
+  const avaxPrice = useAvaxPriceUsdt()
+  const lydPrice = usePriceLydUsdt()
+  useEffect(() => {
+    if (account) {
+      dispatch(fetchMaximusUserDataAsync(account))
+    }
+  }, [account, dispatch, fastRefresh])
+
+  const maximus = useSelector((state: State) => state.maximus.data).map((farm) => {
+    let stakedUsd = new BigNumber(0)
+    const stakedBalance = farm.userData ? new BigNumber(farm.userData.stakedBalance) : new BigNumber(0)
+
+    const stakedInQuoteToken = stakedBalance.dividedBy(farm?.lpTokenBalanceMC).multipliedBy(farm.lpTotalInQuoteToken)
+
+    if (farm.quoteTokenSymbol === QuoteToken.AVAX) {
+      stakedUsd = avaxPrice.times(stakedInQuoteToken)
+    } else if (farm.quoteTokenSymbol === QuoteToken.LYD) {
+      stakedUsd = lydPrice.times(stakedInQuoteToken)
+    }
+
+    return {
+      ...farm,
+      userData: {
+        ...farm.userData,
+        stakedBalance,
+        pendingReward: farm.userData ? new BigNumber(farm.userData.pendingReward) : new BigNumber(0),
+        allowance: farm.userData ? new BigNumber(farm.userData.allowance) : new BigNumber(0),
+        stakedUsd,
+      },
+    }
+  })
+
+  return maximus
 }
 
 // Toasts

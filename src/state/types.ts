@@ -1,6 +1,6 @@
 import { Toast } from '@lydiafinance/uikit'
 import BigNumber from 'bignumber.js'
-import { CampaignType, FarmConfig, Nft, PoolConfig, Team } from 'config/constants/types'
+import { CampaignType, FarmConfig, Nft, PoolConfig, Team, MaximusConfig } from 'config/constants/types'
 
 export type TranslatableText =
   | string
@@ -40,6 +40,22 @@ export interface Pool extends PoolConfig {
   }
 }
 
+export interface MaximusUserData {
+  allowance: BigNumber
+  stakingTokenBalance: BigNumber
+  stakedBalance: BigNumber
+  pendingReward: BigNumber
+  depositAt?: string
+  stakedUsd?: any
+}
+
+export interface Maximus extends MaximusConfig {
+  totalStaked?: BigNumber
+  userData?: MaximusUserData
+  lpTotalInQuoteToken?: any
+  stakedUsd?: any
+}
+
 export interface Profile {
   userId: number
   points: number
@@ -67,6 +83,10 @@ export interface FarmsState {
 
 export interface PoolsState {
   data: Pool[]
+}
+
+export interface MaximusState {
+  data: Maximus[]
 }
 
 export interface ProfileState {
@@ -143,4 +163,5 @@ export interface State {
   teams: TeamsState
   achievements: AchievementState
   block: BlockState
+  maximus: MaximusState
 }

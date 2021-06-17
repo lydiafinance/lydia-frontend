@@ -52,4 +52,12 @@ export default {
     [ChainId.FUJI]: '0x2D48E0C7c0fd30541AEFFF0197BfD5C26C4d7351',
     [ChainId.AVALANCHE]: '0xDE75633aDBed27cE2660bE6598a4C3f32434f676',
   },
+  maximusFeeManager: {
+    [ChainId.FUJI]: '0x26C5c9BaFa0d19aa85Cc1cfD77d1536A59Be40D8',
+    [ChainId.AVALANCHE]: '0x26C5c9BaFa0d19aa85Cc1cfD77d1536A59Be40D8',
+  },
+  maximusDashboard: {
+    [ChainId.FUJI]: '0x86467285a3103C9bEfe415804589A9d19FAA552c',
+    [ChainId.AVALANCHE]: '0x86467285a3103C9bEfe415804589A9d19FAA552c',
+  },
 }

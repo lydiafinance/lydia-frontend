@@ -35,6 +35,22 @@ const pools: MaximusConfig[] = [
     quoteToken: tokens.wavax,
     quoteTokenSymbol: 'AVAX',
   },
+  {
+    pid: 1,
+    lpSymbol: 'USDT-AVAX',
+    contractAddress: {
+      [ChainId.FUJI]: '0x4fAE2067785ED460408670dc01A3d2A8a416bb6F',
+      [ChainId.AVALANCHE]: '0x4fAE2067785ED460408670dc01A3d2A8a416bb6F',
+    },
+    stakingToken: {
+      [ChainId.FUJI]: '0xe22a65204726f102d9e3539b85d3999dee2e421f',
+      [ChainId.AVALANCHE]: '0xe22a65204726f102d9e3539b85d3999dee2e421f',
+    },
+    earningToken: tokens.lyd,
+    tokenPerBlock: '2.5',
+    quoteToken: tokens.wavax,
+    quoteTokenSymbol: 'AVAX',
+  },
 ]
 
 export default pools

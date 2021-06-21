@@ -1,11 +1,10 @@
 import React from 'react'
 import { Flex, Text, IconButton, AddIcon, MinusIcon, Heading, useModal, Skeleton } from '@lydiafinance/uikit'
 import BigNumber from 'bignumber.js'
-import { getBalanceNumber, formatNumber } from 'utils/formatBalance'
+import { getBalanceNumber } from 'utils/formatBalance'
 import { Maximus, MaximusUserData } from 'state/types'
 import { VaultFees } from 'hooks/maximus/useGetMaximusFees'
 import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
-import { convertSharesToLyd } from '../../../helpers'
 import VaultStakeModal from '../VaultStakeModal'
 
 interface HasStakeActionProps {

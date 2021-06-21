@@ -81,11 +81,23 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({
       <Flex mb="2px" justifyContent="space-between" alignItems="center">
         {tooltipVisible && tooltip}
         <TooltipText ref={targetRef} small>
-          {t('Performance Fee')}
+          {t('Performance Fee (Maximus)')}
         </TooltipText>
         <Flex alignItems="center">
           <Text ml="4px" small>
             {performanceFee / 100}%
+          </Text>
+        </Flex>
+      </Flex>
+
+      <Flex mb="2px" justifyContent="space-between" alignItems="center">
+        {tooltipVisible && tooltip}
+        <TooltipText ref={targetRef} small>
+          {t('Performance Fee (Auto-LYD)')}
+        </TooltipText>
+        <Flex alignItems="center">
+          <Text ml="4px" small>
+            6%
           </Text>
         </Flex>
       </Flex>

@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react'
+import styled from 'styled-components'
 import { Flex, TooltipText, IconButton, useModal, CalculateIcon, Skeleton, useTooltip } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -21,7 +22,16 @@ interface AprRowProps {
   compoundFrequency?: number
   performanceFee?: number
   farms?: any
+  isAprCompare?: any
 }
+
+const PreviewWrapper = styled.div`
+  opacity: 0.5;
+
+  * {
+    font-size: 14px !important;
+  }
+`
 
 const AprRow: React.FC<AprRowProps> = ({
   pool,
@@ -29,15 +39,13 @@ const AprRow: React.FC<AprRowProps> = ({
   compoundFrequency = 1,
   performanceFee = 0,
   farms,
+  isAprCompare,
 }) => {
   const { t } = useTranslation()
-  const { stakingToken, earningToken, isFinished, tokenPerBlock } = pool
+  const isFinished = false
   const { account } = useWeb3React()
-  const lydPools = usePools(account)
   const prices = useGetApiPrices()
-  const tooltipContent = isAutoVault
-    ? t('APY includes compounding, APR doesn’t. This pool’s LYD is compounded automatically, so we show APY.')
-    : t('This pool’s rewards aren’t compounded automatically, so we show APR')
+  const tooltipContent = t('This APR Calculated according to the old method regular farming')
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(tooltipContent, { placement: 'bottom-end' })
   const _lydPrice = useGetApiPrice('lyd')
@@ -45,49 +53,21 @@ const AprRow: React.FC<AprRowProps> = ({
 
   const selectedFarm = farms?.length > 0 && farms.find((item) => item.pid === pool.pid)
 
-  const apr = getPoolApr(
-    _lydPrice,
-    _lydPrice,
-    getBalanceNumber(lydPools[0]?.totalStaked, 18),
-    parseFloat(tokenPerBlock),
-  )
-
   const quoteTokenPriceUsd = selectedFarm && prices && prices[selectedFarm?.quoteToken?.symbol?.toLowerCase()]
   const totalLiquidity = new BigNumber(selectedFarm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
   const farmApr = getFarmApr(selectedFarm.poolWeight, lydPrice, totalLiquidity)
-  const isHighValueToken = Math.round(_lydPrice / 1000) > 0
-  const compoundingApy = useCompoundingApy((farmApr * 1e16).toString(), (apr * 1e16).toString(), 2190)
-  const apyModalLink =
-    getAddress(stakingToken) && `${BASE_EXCHANGE_URL}/#/swap?outputCurrency=${getAddress(stakingToken)}`
-
-  const [onPresentApyModal] = useModal(
-    <ApyCalculatorModal
-      tokenPrice={_lydPrice}
-      apr={farmApr}
-      linkLabel={`${t('Get')} ${selectedFarm?.quoteToken?.symbol}`}
-      linkHref={apyModalLink || BASE_EXCHANGE_URL}
-      earningTokenSymbol={earningToken.symbol}
-      roundingDecimals={isHighValueToken ? 4 : 2}
-      compoundFrequency={compoundFrequency}
-      performanceFee={performanceFee}
-    />,
-  )
 
   return (
-    <Flex alignItems="center" justifyContent="space-between">
-      {tooltipVisible && tooltip}
-      <TooltipText ref={targetRef}>{t('APY (Compound)')}:</TooltipText>
-      {!farmApr ? (
-        <Skeleton width="82px" height="32px" />
-      ) : (
+    <PreviewWrapper>
+      <Flex alignItems="center" justifyContent="space-between">
+        {tooltipVisible && tooltip}
+        <TooltipText ref={targetRef}>{t('APR (Normal)')}</TooltipText>
+
         <Flex alignItems="center">
-          <Balance fontSize="16px" value={compoundingApy} decimals={2} unit="%" bold />
-          <IconButton onClick={onPresentApyModal} variant="text" scale="sm">
-            <CalculateIcon color="textSubtle" width="18px" />
-          </IconButton>
+          <Balance fontSize="14px" isDisabled={isFinished} value={farmApr} decimals={2} unit="%" />
         </Flex>
-      )}
-    </Flex>
+      </Flex>
+    </PreviewWrapper>
   )
 }
 

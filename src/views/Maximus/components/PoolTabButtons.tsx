@@ -30,7 +30,7 @@ const PoolTabButtons = ({ stakedOnly, setStakedOnly }) => {
         </Flex>
       </Flex>
       <Flex ml="24px" alignItems="center" justifyContent="flex-end">
-        <StyledLink external href="https://docs.lydia.finance/guides/electrum-pool">
+        <StyledLink external href="https://docs.lydia.finance/guides/maximus/maximus-2">
           <Button px={['14px', null, null, null, '20px']} variant="subtle">
             <ButtonText color="backgroundAlt" bold fontSize="16px">
               {t('Help')}

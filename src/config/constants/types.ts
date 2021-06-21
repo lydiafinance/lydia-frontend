@@ -86,7 +86,6 @@ export interface MaximusConfig {
   quoteToken?: any
   quoteTokenSymbol?: any
   tokenPerBlock?: any
-  lpTokenBalanceMC?: any
   lpTotalInQuoteToken?: any
 }
 

@@ -43,7 +43,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
   setLastUpdated,
 }) => {
   const { account } = useWeb3React()
-  const { lpSymbol } = pool
+  const { lpSymbol, userData } = pool
   const maximusContract = useMaximusContact(pool.pid)
   const { t } = useTranslation()
   const { theme } = useTheme()

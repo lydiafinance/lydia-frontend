@@ -81,6 +81,8 @@ const fetchMaximusFarms = async () => {
         .times(new BigNumber(2))
         .times(lpTokenRatio)
 
+      const vaultLpTotalInQuoteToken = lpTotalInQuoteToken.times(totalStaked).div(lpTokenBalanceMC)
+
       return {
         pid: p.pid,
         totalStaked: new BigNumber(totalStaked).toJSON(),
@@ -89,9 +91,7 @@ const fetchMaximusFarms = async () => {
         rewardRate: new BigNumber(rewardRate).toJSON(),
         rewardsDuration: new BigNumber(rewardsDuration).toJSON(),
         rewardsToken,
-        lpTokenBalanceMC: new BigNumber(lpTokenBalanceMC).toJSON(),
-        lpTotalInQuoteToken: lpTotalInQuoteToken.toJSON(),
-        lpTotalSupply: new BigNumber(lpTotalSupply).toJSON(),
+        lpTotalInQuoteToken: vaultLpTotalInQuoteToken.toJSON(),
       }
     }),
   ]

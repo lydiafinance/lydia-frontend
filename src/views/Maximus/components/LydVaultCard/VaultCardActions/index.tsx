@@ -58,11 +58,11 @@ const LydVaultCardActions: React.FC<{
         <Flex>
           <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="3px">
             {/* TODO: Is there a way to get a dynamic value here from useFarmFromSymbol? */}
-            LYD
+            Recent LYD profit:
           </Text>
-          <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+          {/* <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
             {t('Earned')}
-          </Text>
+          </Text> */}
         </Flex>
         <HarvestAction earnings={userData?.pendingReward} pid={pid} />
         <Box display="inline">

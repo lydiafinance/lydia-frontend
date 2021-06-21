@@ -54,15 +54,6 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
   const { hasUnstakingFee } = useMaximusWithdrawalFeeTimer(parseInt(userInfo.depositAt))
   const _lydPrice = useGetApiPrice('lyd')
 
-  console.log('@@@@@@@@@@@@@@@@@', pool)
-  // let stakedUsd = new BigNumber(0)
-
-  // if (farm.quoteTokenSymbol === QuoteToken.AVAX) {
-  //   stakedUsd = avaxPrice.times(stakedInQuoteToken)
-  // } else if (farm.quoteTokenSymbol === QuoteToken.LYD) {
-  //   stakedUsd = lydPrice.times(stakedInQuoteToken)
-  // }
-
   const usdValueStaked = stakeAmount && formatNumber(new BigNumber(stakeAmount).times(_lydPrice).toNumber())
 
   const handleStakeInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

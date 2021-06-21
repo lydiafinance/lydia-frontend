@@ -16,6 +16,7 @@ import {
   Button,
 } from '@lydiafinance/uikit'
 import { BASE_AVAX_SCAN_URL } from 'config'
+import { useGetApiPrices, useGetApiPrice } from 'state/hooks'
 import { Maximus } from 'state/types'
 import { getAddress } from 'utils/addressHelpers'
 import Balance from 'components/Balance'
@@ -51,11 +52,21 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({
 
   const tokenAddress = earningToken.address ? getAddress(earningToken.address) : ''
   const poolContractAddress = getAddress(contractAddress)
-
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     t('Subtracted automatically from each yield harvest and burned.'),
     { placement: 'bottom-end' },
   )
+
+  const quoteTokenPriceUsd = useGetApiPrice('wavax')
+  const totalLiquidity = new BigNumber(pool.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
+
+  const totalValueFormatted = totalLiquidity
+    ? `$${totalLiquidity.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+    : '-'
+
+  console.log(getBalanceNumber(totalStaked, 18))
+  console.log(totalValueFormatted)
+  console.log('totalStaked', totalStaked)
 
   return (
     <ExpandedWrapper flexDirection="column">
@@ -64,10 +75,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({
         <Flex alignItems="flex-start">
           {totalStaked ? (
             <>
-              <Balance
-                fontSize="14px"
-                value={isAutoVault ? getBalanceNumber(totalLydInVault, 18) : getBalanceNumber(totalStaked, 18)}
-              />
+              {totalValueFormatted}
               <Text ml="4px" fontSize="14px">
                 {lpSymbol}
               </Text>

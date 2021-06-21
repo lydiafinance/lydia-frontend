@@ -30,8 +30,6 @@ const HasSharesActions: React.FC<HasStakeActionProps> = ({
   const { lpSymbol, userData } = pool
   const stackedTokenBalance = getBalanceNumber(userInfo.stakedBalance, 18)
 
-  const stakedDollarValue = formatNumber(getBalanceNumber(userInfo.stakedBalance.multipliedBy(stakingTokenPrice), 18))
-
   const rawStakedUsd = getBalanceNumber(userData?.stakedUsd, 0)
   const displayBalanceUsd = rawStakedUsd.toLocaleString(undefined, {
     minimumFractionDigits: 2,

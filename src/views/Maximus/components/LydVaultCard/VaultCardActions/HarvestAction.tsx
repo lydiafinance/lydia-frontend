@@ -57,16 +57,16 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
 
   const [onHarvestRequest, closeOnOverlayClick] = useModal(
     <Modal
-      title="Are you sure you want to stop auto compounder for this profit?"
+      title="Are you sure you want to stop auto compounding?"
       headerBackground={theme.colors.gradients.cardHeader}
     >
       <ModalWrapper>
         <Description color="contrast" bold={false}>
-          Your current profit already compounds automatically every 5 mins for maximize your profit.
+          Your current profit already compounds automatically every 5 mins to maximize it.
         </Description>
 
         <Description color="contrast" bold={false}>
-          Are you sure want to stop auto compounded for recent profit and harvest your recent profit?
+          Are you sure want to stop auto compounding for current profit and harvest it?
         </Description>
 
         <ButtonsGroup>
@@ -76,7 +76,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
               onClick={() => closeOnOverlayClick()}
               variant="primary"
             >
-              {t('No, keep it same')}
+              {t('No, keep it compounding')}
             </Button>
           </ButtonWrapperMargin>
 

@@ -36,9 +36,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
   }
 
   const ButtonWrapper = styled.div``
-  const ModalWrapper = styled.div`
-    max-width: 500px;
-  `
+  const ModalWrapper = styled.div``
 
   const Description = styled(Text)`
     color: ${theme.colors.textSubtle};
@@ -91,10 +89,10 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
   )
 
   useEffect(() => {
-    if (rawEarningsBalance === 0 || pendingTx) {
+    if (pendingTx) {
       closeOnOverlayClick()
     }
-  }, [rawEarningsBalance, pendingTx, closeOnOverlayClick])
+  }, [pendingTx, closeOnOverlayClick])
 
   // _harvestOnClick
 

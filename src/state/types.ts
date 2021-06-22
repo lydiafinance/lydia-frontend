@@ -52,6 +52,7 @@ export interface MaximusUserData {
 export interface Maximus extends MaximusConfig {
   quoteTokenAmount?: BigNumber
   lpTotalInQuoteToken?: BigNumber
+  lpTotalInQuoteTokenNew?: BigNumber
   totalStaked?: BigNumber
   userData?: MaximusUserData
   stakedUsd?: any

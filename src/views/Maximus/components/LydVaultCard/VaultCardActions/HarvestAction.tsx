@@ -76,13 +76,13 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
               onClick={() => closeOnOverlayClick()}
               variant="primary"
             >
-              {t('No, keep it auto compounding')}
+              {t('No, keep it compounding')}
             </Button>
           </ButtonWrapperMargin>
 
           <ButtonWrapperMargin>
             <Button disabled={rawEarningsBalance === 0 || pendingTx} onClick={_harvestOnClick} variant="secondary">
-              {t('Yes, harvest my recent profit')}
+              {t('Yes, harvest')}
             </Button>
           </ButtonWrapperMargin>
         </ButtonsGroup>

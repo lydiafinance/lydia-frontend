@@ -76,7 +76,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
               onClick={() => closeOnOverlayClick()}
               variant="primary"
             >
-              {t('No, keep it compounding')}
+              {t('No, keep it auto-compounding')}
             </Button>
           </ButtonWrapperMargin>
 

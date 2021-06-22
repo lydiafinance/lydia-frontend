@@ -91,8 +91,9 @@ const fetchMaximusFarms = async () => {
         rewardRate: new BigNumber(rewardRate).toJSON(),
         rewardsDuration: new BigNumber(rewardsDuration).toJSON(),
         rewardsToken,
-        lpTotalInQuoteToken: vaultLpTotalInQuoteToken.toJSON(),
+        lpTotalInQuoteTokenNew: vaultLpTotalInQuoteToken.toJSON(),
         lpTokenBalanceMC: new BigNumber(lpTokenBalanceMC).toJSON(),
+        lpTotalInQuoteToken: lpTotalInQuoteToken.toJSON(),
         lpTotalSupply: new BigNumber(lpTotalSupply).toJSON(),
       }
     }),

@@ -75,6 +75,7 @@ export interface MaximusConfig {
   lpSymbol: string
   contractAddress: Address
   earningToken: Token
+  lpTokenBalanceMC?: any
   stakingToken: Address
   isFinished?: boolean
   stakingLimit?: number
@@ -85,7 +86,6 @@ export interface MaximusConfig {
   quoteToken?: any
   quoteTokenSymbol?: any
   tokenPerBlock?: any
-  lpTokenBalanceMC?: any
   lpTotalInQuoteToken?: any
 }
 

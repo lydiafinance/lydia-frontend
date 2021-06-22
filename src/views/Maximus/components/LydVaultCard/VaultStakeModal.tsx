@@ -12,6 +12,7 @@ import { VaultFees } from 'hooks/maximus/useGetMaximusFees'
 import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance, formatNumber, getDecimalAmount, getBalanceNumber } from 'utils/formatBalance'
 import useToast from 'hooks/useToast'
+import { usePools, useGetApiPrice, useGetApiPrices } from 'state/hooks'
 import { Maximus, MaximusUserData } from 'state/types'
 import { convertLydToShares } from '../../helpers'
 import FeeSummary from './FeeSummary'
@@ -30,18 +31,6 @@ interface VaultStakeModalProps {
 
 const StyledButton = styled(Button)`
   flex-grow: 1;
-`
-
-const ImagesWrapper = styled.div`
-  width: 100%;
-  width: 50px;
-  display: flex;
-  flex-direction: row;
-  margin: 5px;
-
-  * {
-    border-radius: 30px;
-  }
 `
 
 const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
@@ -63,7 +52,10 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
   const [stakeAmount, setStakeAmount] = useState('')
   const [percent, setPercent] = useState(0)
   const { hasUnstakingFee } = useMaximusWithdrawalFeeTimer(parseInt(userInfo.depositAt))
-  // stakedUsd
+  const _lydPrice = useGetApiPrice('lyd')
+
+  const usdValueStaked = stakeAmount && formatNumber(new BigNumber(stakeAmount).times(_lydPrice).toNumber())
+
   const handleStakeInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value || '0'
     const convertedInput = new BigNumber(inputValue).multipliedBy(BIG_TEN.pow(18))
@@ -173,6 +165,21 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
   }
   const tokens = lpSymbol?.split('-')
 
+  const ImagesWrapper = styled.div`
+    width: 100%;
+    max-width: 55px;
+
+    * {
+      border-radius: 30px;
+    }
+    .target-token-symbol {
+      top: -12px;
+      left: 16px;
+    }
+    .token-symbol {
+    }
+  `
+
   return (
     <Modal
       title={isRemovingStake ? t('Unstake') : t('Stake LP in Maximus Pool')}
@@ -187,18 +194,18 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
               className="token-symbol"
               key="axaa"
               src={`/images/tokens/${tokens[0]?.toLowerCase()}.png`}
-              width={25}
-              height={25}
+              width={22}
+              height={22}
             />
             <Image
               className="target-token-symbol"
               key="axaa1"
               src={`/images/tokens/${tokens[1]?.toLowerCase()}.png`}
-              width={25}
-              height={25}
+              width={32}
+              height={32}
             />
           </ImagesWrapper>
-          <Text ml="4px" bold>
+          <Text ml="30px" bold>
             {lpSymbol}
           </Text>
         </Flex>

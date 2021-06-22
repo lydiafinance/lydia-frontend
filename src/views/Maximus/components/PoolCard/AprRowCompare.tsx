@@ -54,7 +54,7 @@ const AprRow: React.FC<AprRowProps> = ({
   const selectedFarm = farms?.length > 0 && farms.find((item) => item.pid === pool.pid)
 
   const quoteTokenPriceUsd = selectedFarm && prices && prices[selectedFarm?.quoteToken?.symbol?.toLowerCase()]
-  const totalLiquidity = new BigNumber(selectedFarm.lpTotalInQuoteTokenNew).times(quoteTokenPriceUsd)
+  const totalLiquidity = new BigNumber(selectedFarm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
   const farmApr = getFarmApr(selectedFarm.poolWeight, lydPrice, totalLiquidity)
 
   return (

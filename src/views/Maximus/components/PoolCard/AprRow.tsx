@@ -53,7 +53,7 @@ const AprRow: React.FC<AprRowProps> = ({
   )
 
   const quoteTokenPriceUsd = selectedFarm && prices && prices[selectedFarm?.quoteToken?.symbol?.toLowerCase()]
-  const totalLiquidity = new BigNumber(selectedFarm.lpTotalInQuoteTokenNew).times(quoteTokenPriceUsd)
+  const totalLiquidity = new BigNumber(selectedFarm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
   const farmApr = getFarmApr(selectedFarm.poolWeight, lydPrice, totalLiquidity)
   const isHighValueToken = Math.round(_lydPrice / 1000) > 0
   const compoundingApy = useCompoundingApy((farmApr * 1e16).toString(), (apr * 1e16).toString(), 2190)

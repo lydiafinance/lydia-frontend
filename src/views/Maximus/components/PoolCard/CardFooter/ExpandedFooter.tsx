@@ -57,9 +57,9 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({
     { placement: 'bottom-end' },
   )
 
-  const quoteTokenPriceUsd = useGetApiPrice('wavax')
+  const quoteTokenPriceUsd = useGetApiPrice(pool.quoteTokenSymbol)
   const totalLiquidity = new BigNumber(pool.lpTotalInQuoteTokenNew).times(quoteTokenPriceUsd)
-
+  console.log('totalLiquidity', totalLiquidity)
   const totalValueFormatted = totalLiquidity
     ? `$${totalLiquidity.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'

@@ -59,14 +59,9 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({
 
   const quoteTokenPriceUsd = useGetApiPrice(pool.quoteTokenSymbol)
   const totalLiquidity = new BigNumber(pool.lpTotalInQuoteTokenNew).times(quoteTokenPriceUsd)
-  console.log('totalLiquidity', totalLiquidity)
   const totalValueFormatted = totalLiquidity
     ? `$${totalLiquidity.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
-
-  console.log(getBalanceNumber(totalStaked, 18))
-  console.log(totalValueFormatted)
-  console.log('totalStaked', totalStaked)
 
   return (
     <ExpandedWrapper flexDirection="column">

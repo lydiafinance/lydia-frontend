@@ -52,11 +52,11 @@ const pools: PoolConfig[] = [
   },
 
   {
-    sousId: 1002,
+    sousId: 1003,
     stakingToken: tokens.lyd,
     earningToken: tokens.olive,
     contractAddress: {
-      [ChainId.FUJI]: '0xFf5d4b8Fd9a73978E0064c8Dd44a2FcAf7b33781',
+      [ChainId.FUJI]: '0xEe37D6533cFBcC25f841d9677c60e205e2aEa0b7',
       [ChainId.AVALANCHE]: '0xEe37D6533cFBcC25f841d9677c60e205e2aEa0b7',
     },
     poolCategory: PoolCategory.CORE,

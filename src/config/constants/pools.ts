@@ -57,7 +57,7 @@ const pools: PoolConfig[] = [
     earningToken: tokens.olive,
     contractAddress: {
       [ChainId.FUJI]: '0xFf5d4b8Fd9a73978E0064c8Dd44a2FcAf7b33781',
-      [ChainId.AVALANCHE]: '0x6069CFBFc168c4555175fcd6cbB803170A52856B',
+      [ChainId.AVALANCHE]: '0xEe37D6533cFBcC25f841d9677c60e205e2aEa0b7',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,

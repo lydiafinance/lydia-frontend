@@ -37,11 +37,7 @@ const AprRow: React.FC<AprRowProps> = ({
 
   const _symbol = earningToken?.symbol?.toLowerCase()
 
-  let earningTokenPrice = useGetApiPrice(_symbol)
-
-  if (_symbol === 'olive') {
-    earningTokenPrice = 0.158
-  }
+  const earningTokenPrice = useGetApiPrice(_symbol)
 
   const apr = getPoolApr(
     stakingTokenPrice,

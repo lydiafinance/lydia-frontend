@@ -1,27 +1,9 @@
 import { ChainId } from '@lydiafinance/sdk'
 import { TranslatableText } from 'state/types'
 
-export type IfoStatus = 'idle' | 'coming_soon' | 'live' | 'finished'
-
-export interface Ifo {
-  id: string
-  isActive: boolean
-  address: string
-  name: string
-  subTitle?: string
-  description?: string
-  launchDate: string
-  launchTime: string
-  saleAmount: string
-  raiseAmount: string
-  lydToBurn: string
-  projectSiteUrl: string
-  currency: string
-  currencyAddress: string
-  tokenDecimals: number
-  tokenSymbol: string
-  releaseBlockNumber: number
-  campaignId?: string
+export enum PoolIds {
+  poolBasic = 'poolBasic',
+  poolUnlimited = 'poolUnlimited',
 }
 
 export enum QuoteToken {
@@ -48,6 +30,7 @@ export interface Token {
   address?: Address
   decimals?: number
   projectLink?: string
+  usdtPrice?: string
 }
 
 export interface FarmConfig {
@@ -70,6 +53,30 @@ export interface FarmConfig {
   }
 }
 
+export type IfoStatus = 'idle' | 'coming_soon' | 'live' | 'finished'
+
+interface IfoPoolInfo {
+  saleAmount: string
+  raiseAmount: string
+  lydToBurn: string
+  distributionRatio: number // Range [0-1]
+}
+
+export interface Ifo {
+  id: string
+  isActive: boolean
+  address: string
+  name: string
+  currency: Token
+  token: Token
+  releaseBlockNumber: number
+  articleUrl: string
+  campaignId: string
+  tokenOfferingPrice: number
+  version: number
+  [PoolIds.poolBasic]?: IfoPoolInfo
+  [PoolIds.poolUnlimited]: IfoPoolInfo
+}
 export interface MaximusConfig {
   pid: number
   lpSymbol: string

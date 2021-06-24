@@ -7,6 +7,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Team } from 'config/constants/types'
 import { getWeb3NoAccount } from 'utils/web3'
 import useRefresh from 'hooks/useRefresh'
+import { BIG_ZERO } from 'utils/bigNumber'
+import { getBalanceAmount } from 'utils/formatBalance'
+
 import {
   fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
@@ -286,4 +289,33 @@ export const useBlock = () => {
 
 export const useInitialBlock = () => {
   return useSelector((state: State) => state.block.initialBlock)
+}
+
+// Return the base token price for a farm, from a given pid
+export const useUsdtPriceFromPid = (pid: number): BigNumber => {
+  const farm = useFarmFromPid(pid)
+  return farm && new BigNumber(farm.token.usdtPrice)
+}
+
+export const useFarmFromLpSymbol = (lpSymbol: string): Farm => {
+  const farm = useSelector((state: State) => state.farms.data.find((f) => f.lpSymbol === lpSymbol))
+  return farm
+}
+
+export const useLpTokenPrice = (symbol: string) => {
+  const farm = useFarmFromLpSymbol(symbol)
+  const farmTokenPriceInUsd = useUsdtPriceFromPid(farm.pid)
+  let lpTokenPrice = BIG_ZERO
+
+  if (farm.lpTotalSupply && farm.lpTotalInQuoteToken) {
+    // Total value of base token in LP
+    const valueOfBaseTokenInFarm = farmTokenPriceInUsd.times(farm.tokenAmountTotal)
+    // Double it to get overall value in LP
+    const overallValueOfAllTokensInFarm = valueOfBaseTokenInFarm.times(2)
+    // Divide total value of all tokens, by the number of LP tokens
+    const totalLpTokens = getBalanceAmount(new BigNumber(farm.lpTotalSupply))
+    lpTokenPrice = overallValueOfAllTokensInFarm.div(totalLpTokens)
+  }
+
+  return lpTokenPrice
 }

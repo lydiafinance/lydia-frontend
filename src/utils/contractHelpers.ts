@@ -20,6 +20,7 @@ import {
   getLydVaultAddress,
   getMaximusFeeManagerAddress,
   getMaximusDashboardAddress,
+  getMulticallAddress,
 } from 'utils/addressHelpers'
 
 // ABI
@@ -42,6 +43,7 @@ import lydVaultAbi from 'config/abi/lydVaultAbi.json'
 import maximusFeeManagerAbi from 'config/abi/maximusFeeManagerAbi.json'
 import maximusAbi from 'config/abi/maximusAbi.json'
 import maximusDashboardAbi from 'config/abi/maximusDashboardAbi.json'
+import MultiCallAbi from 'config/abi/Multicall.json'
 
 const getContract = (abi: any, address: string, web3?: Web3) => {
   const _web3 = web3 ?? web3NoAccount
@@ -55,6 +57,12 @@ export const getLpContract = (address: string, web3?: Web3) => {
   return getContract(lpTokenAbi, address, web3)
 }
 export const getIfoContract = (address: string, web3?: Web3) => {
+  return getContract(ifoAbi, address, web3)
+}
+export const getIfoV1Contract = (address: string, web3?: Web3) => {
+  return getContract(ifoAbi, address, web3)
+}
+export const getIfoV2Contract = (address: string, web3?: Web3) => {
   return getContract(ifoAbi, address, web3)
 }
 export const getSouschefContract = (id: number, web3?: Web3) => {
@@ -105,4 +113,7 @@ export const getMaximusContract = (id: number, web3?: Web3) => {
 }
 export const getMaximusDashboardContract = (web3?: Web3) => {
   return getContract(maximusDashboardAbi, getMaximusDashboardAddress(), web3)
+}
+export const getMulticallContract = (web3?: Web3) => {
+  return getContract(MultiCallAbi, getMulticallAddress(), web3)
 }

@@ -1,21 +1,32 @@
 import React from 'react'
-import { Route, useRouteMatch } from 'react-router-dom'
+import { useTranslation } from 'contexts/Localization'
+import { Route, useRouteMatch, Link } from 'react-router-dom'
+import { ButtonMenu, ButtonMenuItem, Flex } from '@lydiafinance/uikit'
 import Container from 'components/layout/Container'
-import IfoTabButtons from './components/IfoTabButtons'
 import Hero from './components/Hero'
 import CurrentIfo from './CurrentIfo'
 import PastIfo from './PastIfo'
 
 const Ifos = () => {
-  const { path } = useRouteMatch()
+  const { t } = useTranslation()
+  const { path, url, isExact } = useRouteMatch()
 
   return (
     <>
       <Hero />
       <Container>
-        <IfoTabButtons />
+        <Flex justifyContent="center" alignItems="center" mb="32px">
+          <ButtonMenu activeIndex={!isExact ? 1 : 0} scale="sm" variant="subtle">
+            <ButtonMenuItem as={Link} to={`${url}`}>
+              {t('Next IFO')}
+            </ButtonMenuItem>
+            <ButtonMenuItem as={Link} to={`${url}/history`}>
+              {t('Past IFOs')}
+            </ButtonMenuItem>
+          </ButtonMenu>
+        </Flex>
         <Route exact path={`${path}`}>
-          {/* <CurrentIfo /> */}
+          <CurrentIfo />
         </Route>
         <Route path={`${path}/history`}>
           <PastIfo />

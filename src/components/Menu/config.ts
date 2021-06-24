@@ -48,6 +48,15 @@ const config: MenuEntry[] = [
       color: 'success',
     },
   },
+  {
+    label: 'Ifo',
+    icon: 'IfoIcon',
+    href: '/ifo',
+    status: {
+      text: 'NEW',
+      color: 'success',
+    },
+  },
   // {
   //   label: 'Collectibles',
   //   icon: 'NftIcon',

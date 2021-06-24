@@ -1,36 +1,47 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Text } from '@lydiafinance/uikit'
+import { Box, Heading, Text } from '@lydiafinance/uikit'
 import Container from 'components/layout/Container'
 import { useTranslation } from 'contexts/Localization'
 
-const Title = styled(Heading).attrs({ as: 'h1', size: 'xl' })`
-  color: ${({ theme }) => theme.colors.text};
-  margin-bottom: 24px;
-`
+const getGradient = (isDark: boolean) => {
+  if (isDark) {
+    return 'repeating-linear-gradient(to right, #332453, #332453 40px, #281D44 40px, #281D44 80px)'
+  }
 
-const Blurb = styled(Text)`
-  color: #6b041d !important;
-  font-size: 20px;
-  font-weight: 600;
-`
+  return 'repeating-linear-gradient(to right, #21d4e2, #21d4e2 40px, #53dee9 40px, #53dee9 80px)'
+}
 
 const StyledHero = styled.div`
-  background-image: linear-gradient(0deg, #53dee9 0%, #1fc7d4 100%);
+  background: ${({ theme }) => getGradient(theme.isDark)};
   padding-bottom: 40px;
   padding-top: 40px;
-  margin-bottom: 32px;
 `
+
+const CurtainBottom = styled.div`
+  background-image: url('/images/curtain-bottom-${({ theme }) => (theme.isDark ? 'dark' : 'light')}.png');
+  background-repeat: repeat-x;
+  background-size: contain;
+  height: 20px;
+`
+
 const Hero = () => {
   const { t } = useTranslation()
 
   return (
-    <StyledHero>
-      <Container>
-        <Title>{t('IFO: Initial Farm Offerings')}</Title>
-        <Blurb>{t('Buy new tokens with a brand new token sale model.')}</Blurb>
-      </Container>
-    </StyledHero>
+    <Box mb="32px">
+      <StyledHero>
+        <Container>
+          <Heading as="h1" size="xxl" color="secondary" mb="24px">
+            {t('IFO: Initial Farm Offerings')}
+          </Heading>
+          <Text bold fontSize="20px">
+            {t('Buy new tokens with a brand new token sale model.')}
+          </Text>
+        </Container>
+      </StyledHero>
+      <CurtainBottom />
+    </Box>
   )
 }
 

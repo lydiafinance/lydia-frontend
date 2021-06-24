@@ -35,7 +35,14 @@ const AprRow: React.FC<AprRowProps> = ({
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(tooltipContent, { placement: 'bottom-end' })
 
-  const earningTokenPrice = useGetApiPrice(earningToken?.symbol?.toLowerCase())
+  const _symbol = earningToken?.symbol?.toLowerCase()
+
+  let earningTokenPrice = useGetApiPrice(_symbol)
+
+  if (_symbol === 'olive') {
+    earningTokenPrice = 0.158
+  }
+
   const apr = getPoolApr(
     stakingTokenPrice,
     earningTokenPrice,

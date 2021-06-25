@@ -47,12 +47,15 @@ const StakeModal: React.FC<StakeModalProps> = ({
 
   const usdValueStaked = stakeAmount && formatNumber(new BigNumber(stakeAmount).times(stakingTokenPrice).toNumber())
 
-  const handleStakeInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = event.target.value || '0'
-    const convertedInput = getDecimalAmount(new BigNumber(inputValue), stakingToken.decimals)
-    const percentage = Math.floor(convertedInput.dividedBy(stakingMax).multipliedBy(100).toNumber())
-    setStakeAmount(inputValue)
-    setPercent(Math.min(percentage, 100))
+  const handleStakeInputChange = (input: string) => {
+    if (input) {
+      const convertedInput = getDecimalAmount(new BigNumber(input), stakingToken.decimals)
+      const percentage = Math.floor(convertedInput.dividedBy(stakingMax).multipliedBy(100).toNumber())
+      setPercent(percentage > 100 ? 100 : percentage)
+    } else {
+      setPercent(0)
+    }
+    setStakeAmount(input)
   }
 
   const handleChangePercent = (sliderPercent: number) => {
@@ -115,7 +118,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
       </Flex>
       <BalanceInput
         value={stakeAmount}
-        onChange={handleStakeInputChange}
+        onUserInput={handleStakeInputChange}
         currencyValue={`~${usdValueStaked || 0} USD`}
       />
       <Text mt="8px" ml="auto" color="textSubtle" fontSize="12px" mb="8px">

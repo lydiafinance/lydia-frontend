@@ -49,7 +49,7 @@ const LydStats = () => {
   return (
     <StyledLydStats>
       <CardBody>
-        <Heading size="xl" mb="24px">
+        <Heading scale="xl" mb="24px">
           {t('LYD Stats')}
         </Heading>
         {/* <Row>

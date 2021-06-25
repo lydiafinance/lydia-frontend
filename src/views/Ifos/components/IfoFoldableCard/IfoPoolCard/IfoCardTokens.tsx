@@ -23,6 +23,7 @@ import { SkeletonCardTokens } from './Skeletons'
 
 interface TokenSectionProps extends FlexProps {
   img: string
+  mb?: string
 }
 
 const TokenSection: React.FC<TokenSectionProps> = ({ img, children, ...props }) => {

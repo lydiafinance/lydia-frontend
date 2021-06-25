@@ -31,13 +31,13 @@ const Pools: React.FC = () => {
       <PageHeader>
         <Flex justifyContent="space-between" flexDirection={['column', null, 'row']}>
           <Flex flexDirection="column" mr={['8px', 0]}>
-            <Heading as="h1" size="xxl" color="text" mb="24px">
+            <Heading as="h1" scale="xxl" color="text" mb="24px">
               {t('Maximus Farm ✨')}
             </Heading>
-            <Heading size="md" color="text">
+            <Heading scale="md" color="text">
               {t('Stake LP token to earn automatically.')}
             </Heading>
-            <Heading size="md" color="text">
+            <Heading scale="md" color="text">
               {t('High APY, low risk, no effort, no fee.')}
             </Heading>
           </Flex>

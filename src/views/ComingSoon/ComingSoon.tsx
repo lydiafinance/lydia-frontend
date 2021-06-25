@@ -1,9 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { useWeb3React } from '@web3-react/core'
 import { Heading } from '@lydiafinance/uikit'
-import useWeb3 from 'hooks/useWeb3'
 
 import { useTranslation } from 'contexts/Localization'
 import Page from 'components/layout/Page'
@@ -15,7 +12,7 @@ const Airdrop: React.FC = () => {
     <Page>
       <Hero>
         <img src="/images/white_king.png" alt="Electrum POOL icon" width={300} height={300} />
-        <Heading as="h1" size="xxl" mb="16px">
+        <Heading as="h1" scale="xxl" mb="16px">
           {t('Coming Soon')}
         </Heading>
       </Hero>

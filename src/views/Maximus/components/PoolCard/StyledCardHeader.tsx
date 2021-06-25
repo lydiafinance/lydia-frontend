@@ -34,7 +34,7 @@ const StyledCardHeader: React.FC<{
     <Wrapper isFinished={isFinished} background="cardHeader">
       <Flex alignItems="center" justifyContent="space-between">
         <Flex flexDirection="column">
-          <Heading color={isFinished ? 'textDisabled' : 'text'} size="lg">
+          <Heading color={isFinished ? 'textDisabled' : 'text'} scale="lg">
             {`${stackingToken} LP`}
           </Heading>
           <Text color={isFinished ? 'textDisabled' : 'text'}>{t('Maximizer')}</Text>

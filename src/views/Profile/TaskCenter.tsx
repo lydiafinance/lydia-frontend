@@ -2,7 +2,6 @@ import React from 'react'
 import { Card, CardBody, CardHeader, Flex, Heading, Text } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import AchievementsList from './components/AchievementsList'
-import ClaimPointsCallout from './components/ClaimPointsCallout '
 import ComingSoon from './components/ComingSoon'
 import Menu from './components/Menu'
 
@@ -12,7 +11,6 @@ const TaskCenter = () => {
   return (
     <>
       <Menu />
-      <ClaimPointsCallout />
       <Card mb="32px">
         <CardHeader>
           <Flex alignItems="center" justifyContent="space-between">

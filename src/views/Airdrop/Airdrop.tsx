@@ -57,16 +57,16 @@ const Airdrop: React.FC = () => {
     <Page>
       <Hero>
         <div>
-          <Heading as="h1" size="xxl" mb="16px">
+          <Heading as="h1" scale="xxl" mb="16px">
             {t('Airdrop')}
           </Heading>
-          <Heading as="h6" size="md" mb="5px">
+          <Heading as="h6" scale="md" mb="5px">
             {t('Claim your airdrop.')}
           </Heading>
-          <Heading as="h6" size="md" mb="5px">
+          <Heading as="h6" scale="md" mb="5px">
             {t('Create LP or stake them to Electrum,')}
           </Heading>
-          <Heading as="h6" size="md" mb="5px">
+          <Heading as="h6" scale="md" mb="5px">
             {t('And start to earn more LYD.')}
           </Heading>
         </div>

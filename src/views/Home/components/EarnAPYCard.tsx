@@ -56,14 +56,14 @@ const EarnAPRCard = () => {
     <StyledFarmStakingCard>
       <NavLink exact activeClassName="active" to="/farms" id="farm-apr-cta">
         <CardBody>
-          <Heading color="contrast" size="lg">
+          <Heading color="contrast" scale="lg">
             Earn up to
           </Heading>
           <CardMidContent color="#E60C41">
             {highestApr ? `${highestApr}% ${t('APR')} 🚀` : <Skeleton animation="pulse" variant="rect" height="44px" />}
           </CardMidContent>
           <Flex justifyContent="space-between">
-            <Heading color="contrast" size="lg">
+            <Heading color="contrast" scale="lg">
               in Farms
             </Heading>
             <ArrowForwardIcon mt={30} color="primary" />

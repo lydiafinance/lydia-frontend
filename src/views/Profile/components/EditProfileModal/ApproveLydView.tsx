@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { AutoRenewIcon, Button, Flex, InjectedModalProps, Text } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
-import { useCake } from 'hooks/useContract'
+import { useLyd } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
 import { useProfile } from 'state/hooks'
-import { getPancakeProfileAddress } from 'utils/addressHelpers'
+import { getProfileAddress } from 'utils/addressHelpers'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import useGetProfileCosts from 'hooks/useGetProfileCosts'
 import { UseEditProfileResponse } from './reducer'
@@ -20,13 +20,13 @@ const ApproveCakePage: React.FC<ApproveCakePageProps> = ({ goToChange, onDismiss
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { numberCakeToUpdate, numberCakeToReactivate } = useGetProfileCosts()
-  const cakeContract = useCake()
+  const cakeContract = useLyd()
   const { toastError } = useToast()
   const cost = profile.isActive ? numberCakeToUpdate : numberCakeToReactivate
 
   const handleApprove = () => {
     cakeContract.methods
-      .approve(getPancakeProfileAddress(), cost.times(2).toJSON())
+      .approve(getProfileAddress(), cost.times(2).toJSON())
       .send({ from: account })
       .on('sending', () => {
         setIsApproving(true)

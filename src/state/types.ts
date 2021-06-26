@@ -168,4 +168,13 @@ export interface State {
   achievements: AchievementState
   block: BlockState
   maximus: MaximusState
+  collectibles: CollectiblesState
+}
+
+export interface CollectiblesState {
+  isInitialized: boolean
+  isLoading: boolean
+  data: {
+    [key: string]: number[]
+  }
 }

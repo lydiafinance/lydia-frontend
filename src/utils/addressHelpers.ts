@@ -57,3 +57,6 @@ export const getMaximusDashboardAddress = () => {
 export const getMulticallContract = () => {
   return getAddress(addresses.mulltiCall)
 }
+export const getProfileAddress = () => {
+  return getAddress(addresses.profile)
+}

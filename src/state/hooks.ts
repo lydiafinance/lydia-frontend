@@ -4,11 +4,14 @@ import { kebabCase } from 'lodash'
 import { useWeb3React } from '@web3-react/core'
 import { Toast, toastTypes } from '@lydiafinance/uikit'
 import { useSelector, useDispatch } from 'react-redux'
+import { useAppDispatch } from 'state'
 import { Team } from 'config/constants/types'
 import { getWeb3NoAccount } from 'utils/web3'
 import useRefresh from 'hooks/useRefresh'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getBalanceAmount } from 'utils/formatBalance'
+import Nfts from 'config/constants/nfts'
+import { fetchWalletNfts } from './collectibles'
 
 import {
   fetchFarmsPublicDataAsync,
@@ -318,4 +321,26 @@ export const useLpTokenPrice = (symbol: string) => {
   }
 
   return lpTokenPrice
+}
+
+// Collectibles
+export const useGetCollectibles = () => {
+  const { account } = useWeb3React()
+  const dispatch = useAppDispatch()
+  const { isInitialized, isLoading, data } = useSelector((state: State) => state.collectibles)
+  const identifiers = Object.keys(data)
+
+  useEffect(() => {
+    // Fetch nfts only if we have not done so already
+    if (!isInitialized) {
+      dispatch(fetchWalletNfts(account))
+    }
+  }, [isInitialized, account, dispatch])
+
+  return {
+    isInitialized,
+    isLoading,
+    tokenIds: data,
+    nftsInWallet: Nfts.filter((nft) => identifiers.includes(nft.identifier)),
+  }
 }

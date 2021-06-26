@@ -44,6 +44,7 @@ import maximusFeeManagerAbi from 'config/abi/maximusFeeManagerAbi.json'
 import maximusAbi from 'config/abi/maximusAbi.json'
 import maximusDashboardAbi from 'config/abi/maximusDashboardAbi.json'
 import MultiCallAbi from 'config/abi/Multicall.json'
+import erc721Abi from 'config/abi/erc721.json'
 
 const getContract = (abi: any, address: string, web3?: Web3) => {
   const _web3 = web3 ?? web3NoAccount
@@ -116,4 +117,7 @@ export const getMaximusDashboardContract = (web3?: Web3) => {
 }
 export const getMulticallContract = (web3?: Web3) => {
   return getContract(MultiCallAbi, getMulticallAddress(), web3)
+}
+export const getErc721Contract = (address: string, web3?: Web3) => {
+  return getContract(erc721Abi, address, web3)
 }

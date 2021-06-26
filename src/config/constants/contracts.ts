@@ -60,4 +60,8 @@ export default {
     [ChainId.FUJI]: '0x86467285a3103C9bEfe415804589A9d19FAA552c',
     [ChainId.AVALANCHE]: '0x86467285a3103C9bEfe415804589A9d19FAA552c',
   },
+  profile: {
+    [ChainId.FUJI]: '',
+    [ChainId.AVALANCHE]: '',
+  },
 }

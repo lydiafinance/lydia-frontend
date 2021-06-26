@@ -38,6 +38,7 @@ const EarnAPRCard = () => {
     const aprs = farmsLP
       // Filter inactive farms, because their theoretical APR is super high. In practice, it's 0.
       .filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X')
+        .filter((farm) => !farm.hide)
       .map((farm) => {
         if (farm.lpTotalInQuoteToken && prices) {
           const quoteSymbol = farm?.quoteToken?.symbol
@@ -60,7 +61,7 @@ const EarnAPRCard = () => {
             Earn up to
           </Heading>
           <CardMidContent color="#E60C41">
-            {`+1000% ${t('APR')} 🚀`}
+            {highestApr ? `${highestApr}% ${t('APR')} 🚀` : <Skeleton animation="pulse" variant="rect" height="44px" />}
           </CardMidContent>
           <Flex justifyContent="space-between">
             <Heading color="contrast" size="lg">

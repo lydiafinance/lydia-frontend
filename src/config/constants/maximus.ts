@@ -67,6 +67,22 @@ const pools: MaximusConfig[] = [
     quoteToken: tokens.png,
     quoteTokenSymbol: 'PNG',
   },
+  {
+    pid: 12,
+    lpSymbol: 'USDT-DAI',
+    contractAddress: {
+      [ChainId.FUJI]: '0x4fAE2067785ED460408670dc01A3d2A8a416bb6F',
+      [ChainId.AVALANCHE]: '0xd21f2B655E3bD698365207B54bB44088E2555119',
+    },
+    stakingToken: {
+      [ChainId.FUJI]: '0x4570BD3910c64095F6C0f5e6405BE7Cb30E2bdd7',
+      [ChainId.AVALANCHE]: '0x3cebc2b0febf521494f06318bbe202ae7ee799c9',
+    },
+    earningToken: tokens.lyd,
+    tokenPerBlock: '2.5',
+    quoteToken: tokens.usdt,
+    quoteTokenSymbol: 'USDT',
+  },
 ]
 
 export default pools

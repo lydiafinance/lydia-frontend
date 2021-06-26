@@ -126,6 +126,18 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wavax,
     quoteTokenSymbol: 'AVAX',
   },
+  {
+    pid: 12,
+    lpSymbol: 'USDT-DAI LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x1ccd24def23a742d56a976810ca5bda37b43744d',
+      [ChainId.AVALANCHE]: '0x3cebc2b0febf521494f06318bbe202ae7ee799c9',
+    },
+    token: tokens.dai,
+    quoteToken: tokens.usdt,
+    quoteTokenSymbol: 'USDT',
+    hide: false,
+  },
 ]
 
 export default farms

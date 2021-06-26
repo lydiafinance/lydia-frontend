@@ -246,6 +246,12 @@ export const useFetchPriceList = () => {
 
 export const useGetApiPrices = () => {
   const prices: PriceState['data'] = useSelector((state: State) => state.prices.data)
+
+  if (prices) {
+    // Workaround for olive electrum pool
+    return { ...prices, olive: 0.158 }
+  }
+
   return prices
 }
 

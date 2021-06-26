@@ -107,7 +107,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
       {tooltipVisible && tooltip}
       <ButtonWrapper>
         <Button disabled={pendingTx} onClick={onHarvestRequest} variant="secondary">
-          {t('Manuel Harvest')}
+          {t('Manual Harvest')}
         </Button>
       </ButtonWrapper>
     </Flex>

@@ -1,11 +1,11 @@
 import BigNumber from 'bignumber.js'
 import chunk from 'lodash/chunk'
 
+import { BIG_TEN } from 'utils/bigNumber'
 import poolsConfig from 'config/constants/maximus'
 import maximusAbi from 'config/abi/maximusAbi.json'
 import multicall from 'utils/multicall'
 import { getAddress, getMasterChefAddress } from 'utils/addressHelpers'
-import { DEFAULT_TOKEN_DECIMAL } from 'config'
 
 const fetchMaximusFarms = async () => {
   const maximusCalls = poolsConfig.reduce((multiCalls, poolConfig) => {
@@ -77,7 +77,7 @@ const fetchMaximusFarms = async () => {
       const lpTokenRatio = new BigNumber(lpTokenBalanceMC).div(new BigNumber(lpTotalSupply))
 
       const lpTotalInQuoteToken = new BigNumber(quoteTokenBalanceLP)
-        .div(DEFAULT_TOKEN_DECIMAL)
+        .div(BIG_TEN.pow(p.quoteToken.decimals))
         .times(new BigNumber(2))
         .times(lpTokenRatio)
 

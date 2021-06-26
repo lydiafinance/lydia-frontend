@@ -62,10 +62,10 @@ const pools: MaximusConfig[] = [
       [ChainId.FUJI]: '0x4570BD3910c64095F6C0f5e6405BE7Cb30E2bdd7',
       [ChainId.AVALANCHE]: '0x161f750b753c7120599d07c352607F458ecB918e',
     },
-    earningToken: tokens.lyd,
+    earningToken: tokens.png,
     tokenPerBlock: '2.5',
-    quoteToken: tokens.png,
-    quoteTokenSymbol: 'PNG',
+    quoteToken: tokens.lyd,
+    quoteTokenSymbol: 'LYD',
   },
   {
     pid: 12,

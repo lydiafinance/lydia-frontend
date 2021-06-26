@@ -17,7 +17,6 @@ const pools: MaximusConfig[] = [
     earningToken: tokens.lyd,
     tokenPerBlock: '2.5',
     quoteToken: tokens.wavax,
-    quoteTokenSymbol: 'AVAX',
   },
   {
     pid: 1,
@@ -33,7 +32,6 @@ const pools: MaximusConfig[] = [
     earningToken: tokens.lyd,
     tokenPerBlock: '2.5',
     quoteToken: tokens.wavax,
-    quoteTokenSymbol: 'AVAX',
   },
   {
     pid: 4,
@@ -49,7 +47,6 @@ const pools: MaximusConfig[] = [
     earningToken: tokens.lyd,
     tokenPerBlock: '2.5',
     quoteToken: tokens.wavax,
-    quoteTokenSymbol: 'AVAX',
   },
   {
     pid: 7,
@@ -62,10 +59,9 @@ const pools: MaximusConfig[] = [
       [ChainId.FUJI]: '0x4570BD3910c64095F6C0f5e6405BE7Cb30E2bdd7',
       [ChainId.AVALANCHE]: '0x161f750b753c7120599d07c352607F458ecB918e',
     },
-    earningToken: tokens.png,
+    earningToken: tokens.lyd,
     tokenPerBlock: '2.5',
     quoteToken: tokens.lyd,
-    quoteTokenSymbol: 'LYD',
   },
   {
     pid: 12,
@@ -81,7 +77,6 @@ const pools: MaximusConfig[] = [
     earningToken: tokens.lyd,
     tokenPerBlock: '2.5',
     quoteToken: tokens.usdt,
-    quoteTokenSymbol: 'USDT',
   },
 ]
 

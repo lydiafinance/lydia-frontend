@@ -65,15 +65,15 @@ export const fetchMaximusUserDataAsync = (account) => async (dispatch) => {
     fetchUserDepositAt(account),
   ]
 
-  const responses = await Promise.all(calls)
+  const [allowance, stakingTokenBalance, stakedBalance, pendingReward, depositAt] = await Promise.all(calls)
 
   const userData = poolsConfig.map((pool) => ({
     pid: pool.pid,
-    allowance: responses[0][pool.pid],
-    stakingTokenBalance: responses[1][pool.pid],
-    stakedBalance: responses[2][pool.pid],
-    pendingReward: responses[3][pool.pid],
-    depositAt: responses[4][pool.pid],
+    allowance: allowance[pool.pid],
+    stakingTokenBalance: stakingTokenBalance[pool.pid],
+    stakedBalance: stakedBalance[pool.pid],
+    pendingReward: pendingReward[pool.pid],
+    depositAt: depositAt[pool.pid],
   }))
 
   dispatch(setMaximusFarmsUserData(userData))

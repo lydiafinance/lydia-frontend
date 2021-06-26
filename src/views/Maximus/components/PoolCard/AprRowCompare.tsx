@@ -1,19 +1,13 @@
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
-import { Flex, TooltipText, IconButton, useModal, CalculateIcon, Skeleton, useTooltip } from '@lydiafinance/uikit'
+import { Flex, TooltipText, useTooltip } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
-import { getBalanceNumber } from 'utils/formatBalance'
-import { getPoolApr, getFarmApr } from 'utils/apr'
-import { useWeb3React } from '@web3-react/core'
+import { getFarmApr } from 'utils/apr'
 
 import BigNumber from 'bignumber.js'
-import { getAddress } from 'utils/addressHelpers'
-import { usePools, useGetApiPrice, useGetApiPrices } from 'state/hooks'
+import { useGetApiPrice, useGetApiPrices } from 'state/hooks'
 import Balance from 'components/Balance'
-import ApyCalculatorModal from 'components/ApyCalculatorModal'
-import { useCompoundingApy } from 'hooks/maximus/maximusActions'
 import { Maximus } from 'state/types'
-import { BASE_EXCHANGE_URL } from 'config'
 
 interface AprRowProps {
   pool: Maximus
@@ -33,17 +27,9 @@ const PreviewWrapper = styled.div`
   }
 `
 
-const AprRow: React.FC<AprRowProps> = ({
-  pool,
-  isAutoVault = false,
-  compoundFrequency = 1,
-  performanceFee = 0,
-  farms,
-  isAprCompare,
-}) => {
+const AprRow: React.FC<AprRowProps> = ({ pool, farms }) => {
   const { t } = useTranslation()
   const isFinished = false
-  const { account } = useWeb3React()
   const prices = useGetApiPrices()
   const tooltipContent = t('This APR Calculated according to the old method regular farming')
 
@@ -55,7 +41,7 @@ const AprRow: React.FC<AprRowProps> = ({
 
   const quoteTokenPriceUsd = selectedFarm && prices && prices[selectedFarm?.quoteToken?.symbol?.toLowerCase()]
   const totalLiquidity = new BigNumber(selectedFarm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
-  const farmApr = selectedFarm.pid === 12 ? 13.22 : getFarmApr(selectedFarm.poolWeight, lydPrice, totalLiquidity)
+  const farmApr = getFarmApr(selectedFarm.poolWeight, lydPrice, totalLiquidity)
 
   return (
     <PreviewWrapper>

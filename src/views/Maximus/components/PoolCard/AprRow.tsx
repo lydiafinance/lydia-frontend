@@ -31,7 +31,7 @@ const AprRow: React.FC<AprRowProps> = ({
   farms,
 }) => {
   const { t } = useTranslation()
-  const { stakingToken, earningToken, isFinished, tokenPerBlock } = pool
+  const { stakingToken, earningToken, tokenPerBlock } = pool
   const { account } = useWeb3React()
   const lydPools = usePools(account)
   const prices = useGetApiPrices()
@@ -54,7 +54,7 @@ const AprRow: React.FC<AprRowProps> = ({
 
   const quoteTokenPriceUsd = selectedFarm && prices && prices[selectedFarm?.quoteToken?.symbol?.toLowerCase()]
   const totalLiquidity = new BigNumber(selectedFarm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
-  const farmApr = selectedFarm.pid === 12 ? 13.22 : getFarmApr(selectedFarm.poolWeight, lydPrice, totalLiquidity)
+  const farmApr = getFarmApr(selectedFarm.poolWeight, lydPrice, totalLiquidity)
   const isHighValueToken = Math.round(_lydPrice / 1000) > 0
   const compoundingApy = useCompoundingApy((farmApr * 1e16).toString(), (apr * 1e16).toString(), 2190)
   const apyModalLink =

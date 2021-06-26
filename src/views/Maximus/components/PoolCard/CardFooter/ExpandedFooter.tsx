@@ -2,24 +2,12 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
-import { getBalanceNumber } from 'utils/formatBalance'
 import { useTranslation } from 'contexts/Localization'
-import {
-  Flex,
-  MetamaskIcon,
-  Text,
-  TooltipText,
-  LinkExternal,
-  TimerIcon,
-  Skeleton,
-  useTooltip,
-  Button,
-} from '@lydiafinance/uikit'
+import { Flex, Text, TooltipText, LinkExternal, Skeleton, useTooltip } from '@lydiafinance/uikit'
 import { BASE_AVAX_SCAN_URL } from 'config'
-import { useGetApiPrices, useGetApiPrice } from 'state/hooks'
+import { useGetApiPrice } from 'state/hooks'
 import { Maximus } from 'state/types'
 import { getAddress } from 'utils/addressHelpers'
-import Balance from 'components/Balance'
 
 interface ExpandedFooterProps {
   pool: Maximus
@@ -36,37 +24,22 @@ const ExpandedWrapper = styled(Flex)`
   }
 `
 
-const StyledLinkExternal = styled(LinkExternal)`
-  font-weight: 400;
-`
-
-const ExpandedFooter: React.FC<ExpandedFooterProps> = ({
-  pool,
-  account,
-  performanceFee = 0,
-  isAutoVault = false,
-  totalLydInVault,
-}) => {
+const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, performanceFee = 0 }) => {
   const { t } = useTranslation()
-  const { earningToken, totalStaked, isFinished, contractAddress, lpSymbol } = pool
+  const { totalStaked, contractAddress, lpSymbol, quoteToken, lpTotalInQuoteTokenNew } = pool
 
-  const tokenAddress = earningToken.address ? getAddress(earningToken.address) : ''
   const poolContractAddress = getAddress(contractAddress)
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     t('Subtracted automatically from each yield harvest and burned.'),
     { placement: 'bottom-end' },
   )
 
-  const quoteTokenPriceUsd = useGetApiPrice('wavax')
-  const totalLiquidity = new BigNumber(pool.lpTotalInQuoteTokenNew).times(quoteTokenPriceUsd)
+  const quoteTokenPriceUsd = useGetApiPrice(quoteToken.symbol.toLowerCase())
+  const totalLiquidity = new BigNumber(lpTotalInQuoteTokenNew).times(quoteTokenPriceUsd)
 
   const totalValueFormatted = totalLiquidity
     ? `$${totalLiquidity.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
-
-  console.log(getBalanceNumber(totalStaked, 18))
-  console.log(totalValueFormatted)
-  console.log('totalStaked', totalStaked)
 
   return (
     <ExpandedWrapper flexDirection="column">

@@ -56,6 +56,7 @@ export interface Maximus extends MaximusConfig {
   totalStaked?: BigNumber
   userData?: MaximusUserData
   stakedUsd?: any
+  tokenAmount?: any
 }
 
 export interface Profile {

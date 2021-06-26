@@ -1,5 +1,6 @@
 import BigNumber from 'bignumber.js'
 import chunk from 'lodash/chunk'
+import { BIG_TEN } from 'utils/bigNumber'
 
 import poolsConfig from 'config/constants/maximus'
 import maximusAbi from 'config/abi/maximusAbi.json'
@@ -75,6 +76,7 @@ const fetchMaximusFarms = async () => {
         maximusFarmsTotalStacked[index]
 
       const lpTokenRatio = new BigNumber(lpTokenBalanceMC).div(new BigNumber(lpTotalSupply))
+      const tokenAmount = new BigNumber(quoteTokenBalanceLP).div(BIG_TEN.pow(18)).times(lpTokenRatio)
 
       const lpTotalInQuoteToken = new BigNumber(quoteTokenBalanceLP)
         .div(DEFAULT_TOKEN_DECIMAL)
@@ -85,6 +87,7 @@ const fetchMaximusFarms = async () => {
 
       return {
         pid: p.pid,
+        tokenAmount,
         totalStaked: new BigNumber(totalStaked).toJSON(),
         priceShare: new BigNumber(priceShare).toJSON(),
         rewardPerToken: new BigNumber(rewardPerToken).toJSON(),

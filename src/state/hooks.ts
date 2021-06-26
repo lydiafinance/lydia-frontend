@@ -119,10 +119,6 @@ export const useMaximusPools = (account): Maximus[] => {
   const dispatch = useDispatch()
   const avaxPrice = useAvaxPriceUsdt()
   const lydPrice = usePriceLydUsdt()
-  const regularFarms = useFarms()
-  const _regularFarms = regularFarms.data
-  console.log('@@@@@@@@@@@@@', regularFarms.data)
-
   useEffect(() => {
     if (account) {
       dispatch(fetchMaximusUserDataAsync(account))
@@ -134,15 +130,13 @@ export const useMaximusPools = (account): Maximus[] => {
     const stakedBalance = farm.userData ? new BigNumber(farm.userData.stakedBalance) : new BigNumber(0)
 
     const stakedInQuoteToken = stakedBalance.dividedBy(farm?.lpTokenBalanceMC).multipliedBy(farm.lpTotalInQuoteToken)
-    const selectedFarmRegular = _regularFarms.find((item) => item.pid === farm.pid)
-    console.log('____________', selectedFarmRegular)
 
     if (farm.quoteTokenSymbol === QuoteToken.AVAX) {
       stakedUsd = avaxPrice.times(stakedInQuoteToken)
     } else if (farm.quoteTokenSymbol === QuoteToken.LYD) {
       stakedUsd = lydPrice.times(stakedInQuoteToken)
     } else if (farm.quoteTokenSymbol === QuoteToken.USDT) {
-      stakedUsd = new BigNumber(selectedFarmRegular.tokenAmount)
+      stakedUsd = farm.tokenAmount
     }
 
     return {

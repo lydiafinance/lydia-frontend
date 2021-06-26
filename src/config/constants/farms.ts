@@ -136,7 +136,7 @@ const farms: FarmConfig[] = [
     token: tokens.dai,
     quoteToken: tokens.usdt,
     quoteTokenSymbol: 'USDT',
-    hide: false,
+    hide: true,
   },
 ]
 

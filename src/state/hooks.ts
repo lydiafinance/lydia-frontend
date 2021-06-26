@@ -68,6 +68,7 @@ export const useFarmUser = (pid) => {
   const farm = useFarmFromPid(pid)
   const avaxPrice = useAvaxPriceUsdt()
   const lydPrice = usePriceLydUsdt()
+  const usdtPrice = new BigNumber(1)
 
   const stakedBalance = farm.userData ? new BigNumber(farm.userData.stakedBalance) : new BigNumber(0)
 
@@ -78,6 +79,8 @@ export const useFarmUser = (pid) => {
     stakedUsd = avaxPrice.times(stakedInQuoteToken)
   } else if (farm.quoteTokenSymbol === QuoteToken.LYD) {
     stakedUsd = lydPrice.times(stakedInQuoteToken)
+  } else if (farm.quoteTokenSymbol === QuoteToken.USDT) {
+    stakedUsd = new BigNumber(farm.tokenAmount)
   }
 
   return {
@@ -132,6 +135,8 @@ export const useMaximusPools = (account): Maximus[] => {
       stakedUsd = avaxPrice.times(stakedInQuoteToken)
     } else if (farm.quoteTokenSymbol === QuoteToken.LYD) {
       stakedUsd = lydPrice.times(stakedInQuoteToken)
+    } else if (farm.quoteTokenSymbol === QuoteToken.USDT) {
+      stakedUsd = new BigNumber(farm.lpTotalInQuoteToken)
     }
 
     return {

@@ -74,7 +74,7 @@ export const useFarmUser = (pid) => {
   let stakedUsd = new BigNumber(0)
   let tokenPrice = new BigNumber(0)
   if (prices) {
-    tokenPrice = new BigNumber(prices[farm.quoteTokenSymbol.toLowerCase()])
+    tokenPrice = new BigNumber(prices[farm.quoteToken.symbol.toLowerCase()])
   }
 
   stakedUsd = tokenPrice.times(stakedInQuoteToken)

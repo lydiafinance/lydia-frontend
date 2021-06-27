@@ -31,7 +31,7 @@ const AprRow: React.FC<AprRowProps> = ({
   farms,
 }) => {
   const { t } = useTranslation()
-  const { stakingToken, earningToken, isFinished, tokenPerBlock } = pool
+  const { stakingToken, earningToken, tokenPerBlock } = pool
   const { account } = useWeb3React()
   const lydPools = usePools(account)
   const prices = useGetApiPrices()

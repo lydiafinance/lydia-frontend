@@ -38,6 +38,7 @@ const EarnAPRCard = () => {
     const aprs = farmsLP
       // Filter inactive farms, because their theoretical APR is super high. In practice, it's 0.
       .filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X')
+        .filter((farm) => !farm.hide)
       .map((farm) => {
         if (farm.lpTotalInQuoteToken && prices) {
           const quoteSymbol = farm?.quoteToken?.symbol

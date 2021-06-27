@@ -72,19 +72,18 @@ export const useFarmFromSymbol = (lpSymbol: string): Farm => {
 
 export const useFarmUser = (pid) => {
   const farm = useFarmFromPid(pid)
-  const avaxPrice = useAvaxPriceUsdt()
-  const lydPrice = usePriceLydUsdt()
+  const prices = useGetApiPrices()
 
   const stakedBalance = farm.userData ? new BigNumber(farm.userData.stakedBalance) : new BigNumber(0)
 
   const stakedInQuoteToken = stakedBalance.dividedBy(farm?.lpTokenBalanceMC).multipliedBy(farm.lpTotalInQuoteToken)
   let stakedUsd = new BigNumber(0)
-
-  if (farm.quoteTokenSymbol === QuoteToken.AVAX) {
-    stakedUsd = avaxPrice.times(stakedInQuoteToken)
-  } else if (farm.quoteTokenSymbol === QuoteToken.LYD) {
-    stakedUsd = lydPrice.times(stakedInQuoteToken)
+  let tokenPrice = new BigNumber(0)
+  if (prices) {
+    tokenPrice = new BigNumber(prices[farm.quoteTokenSymbol.toLowerCase()])
   }
+
+  stakedUsd = tokenPrice.times(stakedInQuoteToken)
 
   return {
     allowance: farm.userData ? new BigNumber(farm.userData.allowance) : new BigNumber(0),
@@ -120,8 +119,8 @@ export const usePoolFromPid = (sousId): Pool => {
 export const useMaximusPools = (account): Maximus[] => {
   const { fastRefresh } = useRefresh()
   const dispatch = useDispatch()
-  const avaxPrice = useAvaxPriceUsdt()
-  const lydPrice = usePriceLydUsdt()
+  const prices = useGetApiPrices()
+
   useEffect(() => {
     if (account) {
       dispatch(fetchMaximusUserDataAsync(account))
@@ -130,15 +129,15 @@ export const useMaximusPools = (account): Maximus[] => {
 
   const maximus = useSelector((state: State) => state.maximus.data).map((farm) => {
     let stakedUsd = new BigNumber(0)
+    let tokenPrice = new BigNumber(0)
+    if (prices) {
+      tokenPrice = new BigNumber(prices[farm.quoteToken.symbol.toLowerCase()])
+    }
     const stakedBalance = farm.userData ? new BigNumber(farm.userData.stakedBalance) : new BigNumber(0)
 
     const stakedInQuoteToken = stakedBalance.dividedBy(farm?.lpTokenBalanceMC).multipliedBy(farm.lpTotalInQuoteToken)
 
-    if (farm.quoteTokenSymbol === QuoteToken.AVAX) {
-      stakedUsd = avaxPrice.times(stakedInQuoteToken)
-    } else if (farm.quoteTokenSymbol === QuoteToken.LYD) {
-      stakedUsd = lydPrice.times(stakedInQuoteToken)
-    }
+    stakedUsd = tokenPrice.times(stakedInQuoteToken)
 
     return {
       ...farm,
@@ -252,6 +251,12 @@ export const useFetchPriceList = () => {
 
 export const useGetApiPrices = () => {
   const prices: PriceState['data'] = useSelector((state: State) => state.prices.data)
+
+  if (prices) {
+    // Workaround for olive electrum pool
+    return { ...prices, olive: 0.158 }
+  }
+
   return prices
 }
 

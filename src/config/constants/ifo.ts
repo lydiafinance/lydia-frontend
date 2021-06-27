@@ -11,7 +11,7 @@ const lydAvaxLPToken: Token = {
 const ifos: Ifo[] = [
   {
     id: 'kalmar',
-    address: '0x1aFB32b76696CdF05593Ca3f3957AEFB23a220FB',
+    address: '',
     isActive: true,
     name: 'Kalmar (KALM)',
     poolBasic: {

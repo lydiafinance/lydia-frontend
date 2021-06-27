@@ -19,7 +19,7 @@ import { WalletIfoData } from 'hooks/ifo/types'
 import { useTranslation } from 'contexts/Localization'
 import useTokenBalance from 'hooks/useTokenBalance'
 import Container from 'components/layout/Container'
-import { useProfile } from 'state/hooks'
+// import { useProfile } from 'state/hooks'
 import { getAddress } from 'utils/addressHelpers'
 
 interface Props {
@@ -42,26 +42,26 @@ const Wrapper = styled(Container)`
 
 const IfoSteps: React.FC<Props> = ({ ifo, walletIfoData }) => {
   const { poolBasic, poolUnlimited } = walletIfoData
-  const { hasProfile } = useProfile()
+  // const { hasProfile } = useProfile()
   const { t } = useTranslation()
   const { balance } = useTokenBalance(getAddress(ifo.currency.address))
   const stepsValidationStatus = [
-    hasProfile,
+    true,
     balance.isGreaterThan(0),
     poolBasic.amountTokenCommittedInLP.isGreaterThan(0) || poolUnlimited.amountTokenCommittedInLP.isGreaterThan(0),
     poolBasic.hasClaimed || poolUnlimited.hasClaimed,
   ]
 
-  const getStatusProp = (index: number): StepStatus => {
-    const arePreviousValid = index === 0 ? true : every(stepsValidationStatus.slice(0, index), Boolean)
-    if (stepsValidationStatus[index]) {
-      return arePreviousValid ? 'past' : 'future'
-    }
-    return arePreviousValid ? 'current' : 'future'
-  }
+  // const getStatusProp = (index: number): StepStatus => {
+  //   const arePreviousValid = index === 0 ? true : every(stepsValidationStatus.slice(0, index), Boolean)
+  //   if (stepsValidationStatus[index]) {
+  //     return arePreviousValid ? 'past' : 'future'
+  //   }
+  //   return arePreviousValid ? 'current' : 'future'
+  // }
 
   const renderCardBody = (step: number) => {
-    const isStepValid = stepsValidationStatus[step]
+    const isStepValid = true
     switch (step) {
       case 0:
         return (
@@ -142,7 +142,7 @@ const IfoSteps: React.FC<Props> = ({ ifo, walletIfoData }) => {
       <Stepper>
         {stepsValidationStatus.map((_, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <Step key={index} index={index} status={getStatusProp(index)}>
+          <Step key={index} index={index} status="future">
             <Card>{renderCardBody(index)}</Card>
           </Step>
         ))}

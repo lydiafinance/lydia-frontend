@@ -4,7 +4,7 @@ import { AutoRenewIcon, Button, Card, CardBody, Heading, Skeleton, Text } from '
 import { Link as RouterLink } from 'react-router-dom'
 import { useWeb3React } from '@web3-react/core'
 import { getAddressByType } from 'utils/collectibles'
-import { getPancakeProfileAddress } from 'utils/addressHelpers'
+import { getProfileAddress } from 'utils/addressHelpers'
 import { useTranslation } from 'contexts/Localization'
 import { useGetCollectibles } from 'state/hooks'
 import useToast from 'hooks/useToast'
@@ -33,7 +33,7 @@ const ProfilePicture: React.FC = () => {
 
   const handleApprove = () => {
     contract.methods
-      .approve(getPancakeProfileAddress(), selectedNft.tokenId)
+      .approve(getProfileAddress(), selectedNft.tokenId)
       .send({ from: account })
       .once('sending', () => {
         setIsApproving(true)

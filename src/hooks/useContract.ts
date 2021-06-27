@@ -20,6 +20,7 @@ import {
   getMaximusDashboardContract,
   getIfoV2Contract,
   getIfoV1Contract,
+  getErc721Contract,
 } from 'utils/contractHelpers'
 
 /**
@@ -90,27 +91,38 @@ export const usePointCenterIfoContract = () => {
   const web3 = useWeb3()
   return useMemo(() => getPointCenterIfoContract(web3), [web3])
 }
+
 export const useClaimRefundContract = () => {
   const web3 = useWeb3()
   return useMemo(() => getClaimRefundContract(web3), [web3])
 }
+
 export const useAirdropContract = () => {
   const web3 = useWeb3()
   return useMemo(() => getAirdropContract(web3), [web3])
 }
+
 export const useLydVaultContract = () => {
   const web3 = useWeb3()
   return useMemo(() => getLydVaultContract(web3), [web3])
 }
+
 export const useMaximusFeeManagerContract = () => {
   const web3 = useWeb3()
   return useMemo(() => getMaximusFeeManagerContract(web3), [web3])
 }
+
 export const useMaximusContact = (id) => {
   const web3 = useWeb3()
   return useMemo(() => getMaximusContract(id, web3), [id, web3])
 }
+
 export const useMaximusDashboardContract = () => {
   const web3 = useWeb3()
   return useMemo(() => getMaximusDashboardContract(web3), [web3])
+}
+
+export const useERC721 = (address: string) => {
+  const web3 = useWeb3()
+  return useMemo(() => getErc721Contract(address, web3), [address, web3])
 }

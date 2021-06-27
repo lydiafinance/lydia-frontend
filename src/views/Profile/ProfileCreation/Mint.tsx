@@ -5,9 +5,9 @@ import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
 import { DEFAULT_TOKEN_DECIMAL } from 'config'
-import { useCake, useBunnyFactory } from 'hooks/useContract'
+import { useLyd, useBunnyFactory } from 'hooks/useContract'
 import { Nft } from 'config/constants/types'
-import useHasCakeBalance from 'hooks/useHasCakeBalance'
+import useHasLydBalance from 'hooks/useHasLydBalance'
 import nftList from 'config/constants/nfts'
 import SelectionCard from '../components/SelectionCard'
 import NextStepButton from '../components/NextStepButton'
@@ -23,10 +23,10 @@ const Mint: React.FC = () => {
   const { actions, minimumCakeRequired, allowance } = useProfileCreation()
 
   const { account } = useWeb3React()
-  const cakeContract = useCake()
+  const cakeContract = useLyd()
   const bunnyFactoryContract = useBunnyFactory()
   const { t } = useTranslation()
-  const hasMinimumCakeRequired = useHasCakeBalance(minimumCakeBalanceToMint)
+  const hasMinimumCakeRequired = useHasLydBalance(minimumCakeBalanceToMint)
   const { isApproving, isApproved, isConfirmed, isConfirming, handleApprove, handleConfirm } =
     useApproveConfirmTransaction({
       onRequiresApproval: async () => {

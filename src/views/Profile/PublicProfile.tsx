@@ -19,7 +19,7 @@ import {
 import { useTranslation } from 'contexts/Localization'
 import { useProfile } from 'state/hooks'
 import usePersistState from 'hooks/usePersistState'
-import { getBscScanAddressUrl } from 'utils/bscscan'
+// import { getBscScanAddressUrl } from 'utils/bscscan'
 import Menu from './components/Menu'
 import CardHeader from './components/CardHeader'
 import Collectibles from './components/Collectibles'
@@ -115,10 +115,10 @@ const PublicProfile = () => {
                   <Icon ml="4px" onClick={toggleUsernameVisibility} cursor="pointer" />
                 </Flex>
                 <Flex alignItems="center">
-                  <AddressLink href={getBscScanAddressUrl(account)} color="text" external>
+                  {/* <AddressLink href={getBscScanAddressUrl(account)} color="text" external>
                     {account}
                     <OpenNewIcon ml="4px" />
-                  </AddressLink>
+                  </AddressLink> */}
                 </Flex>
                 <ResponsiveText bold>{team.name}</ResponsiveText>
               </Content>

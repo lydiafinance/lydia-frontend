@@ -4,11 +4,11 @@ import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { Button, Flex, Text, InjectedModalProps } from '@lydiafinance/uikit'
 import { getFullDisplayBalance } from 'utils/formatBalance'
-import { getPancakeProfileAddress } from 'utils/addressHelpers'
-import { useCake } from 'hooks/useContract'
+import { getProfileAddress } from 'utils/addressHelpers'
+import { useLyd } from 'hooks/useContract'
 import { useTranslation } from 'contexts/Localization'
 import useGetProfileCosts from 'hooks/useGetProfileCosts'
-import useHasCakeBalance from 'hooks/useHasCakeBalance'
+import useHasLydBalance from 'hooks/useHasLydBalance'
 import { useProfile } from 'state/hooks'
 import { UseEditProfileResponse } from './reducer'
 import ProfileAvatar from '../ProfileAvatar'
@@ -45,10 +45,10 @@ const StartPage: React.FC<StartPageProps> = ({ goToApprove, goToChange, goToRemo
   const { profile } = useProfile()
   const { numberCakeToUpdate, numberCakeToReactivate } = useGetProfileCosts()
   const minimumCakeRequired = profile.isActive ? numberCakeToUpdate : numberCakeToReactivate
-  const hasMinimumCakeRequired = useHasCakeBalance(minimumCakeRequired)
+  const hasMinimumCakeRequired = useHasLydBalance(minimumCakeRequired)
   const { t } = useTranslation()
   const { account } = useWeb3React()
-  const cakeContract = useCake()
+  const cakeContract = useLyd()
   const cost = profile.isActive ? numberCakeToUpdate : numberCakeToReactivate
 
   /**
@@ -57,7 +57,7 @@ const StartPage: React.FC<StartPageProps> = ({ goToApprove, goToChange, goToRemo
    */
   useEffect(() => {
     const checkApprovalStatus = async () => {
-      const response = await cakeContract.methods.allowance(account, getPancakeProfileAddress()).call()
+      const response = await cakeContract.methods.allowance(account, getProfileAddress()).call()
       const currentAllowance = new BigNumber(response)
       setNeedsApproval(currentAllowance.lt(cost))
     }

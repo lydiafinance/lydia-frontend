@@ -113,7 +113,7 @@ const Farms: React.FC = () => {
   const _lydPrice = useGetApiPrice('lyd')
   const lydPrice = useMemo(() => new BigNumber(_lydPrice), [_lydPrice])
   const [query, setQuery] = useState('')
-  const [viewMode, setViewMode] = usePersistState(ViewMode.CARD, 'lydia_farm_view')
+  const [viewMode, setViewMode] = usePersistState(ViewMode.CARD, { localStorageKey: 'lydia_farm_view' })
   const { account } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
   const prices = useGetApiPrices()

@@ -21,7 +21,7 @@ import { useWeb3React } from '@web3-react/core'
 import useToast from 'hooks/useToast'
 import useWeb3 from 'hooks/useWeb3'
 import { useTranslation } from 'contexts/Localization'
-import useHasCakeBalance from 'hooks/useHasCakeBalance'
+import useHasLydBalance from 'hooks/useHasLydBalance'
 import { DEFAULT_TOKEN_DECIMAL } from 'config'
 import debounce from 'lodash/debounce'
 import ConfirmProfileCreationModal from '../components/ConfirmProfileCreationModal'
@@ -68,7 +68,7 @@ const UserName: React.FC = () => {
   const [isValid, setIsValid] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState('')
-  const hasMinimumCakeRequired = useHasCakeBalance(minimumCakeToRegister)
+  const hasMinimumCakeRequired = useHasLydBalance(minimumCakeToRegister)
   const [onPresentConfirmProfileCreation] = useModal(
     <ConfirmProfileCreationModal
       userName={userName}

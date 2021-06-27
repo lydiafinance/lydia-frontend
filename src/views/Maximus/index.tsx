@@ -20,7 +20,7 @@ const Pools: React.FC = () => {
   const { account } = useWeb3React()
   const pools = useMaximusPools(account)
   const { data: farms } = useFarms()
-  const [stakedOnly, setStakedOnly] = usePersistState(false, 'lydia_pool_staked')
+  const [stakedOnly, setStakedOnly] = usePersistState(false,  { localStorageKey: 'lydia_pool_staked' })
   const stakedOnlyPools = useMemo(
     () => pools.filter((pool) => pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0)),
     [pools],

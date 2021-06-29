@@ -5,7 +5,7 @@ import { Ifo, PoolIds } from 'config/constants/types'
 import { useERC20, useIfoV2Contract } from 'hooks/useContract'
 import { useIfoAllowance } from 'hooks/useAllowance'
 import useRefresh from 'hooks/useRefresh'
-import { multicallv2 } from 'utils/multicall'
+import multicall from 'utils/multicall'
 import ifoV2Abi from 'config/abi/ifoV2.json'
 import { getAddress } from 'utils/addressHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
@@ -68,7 +68,7 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
       params: [account, [0, 1]],
     }))
 
-    const [userInfo, amounts] = await multicallv2(ifoV2Abi, ifoCalls)
+    const [userInfo, amounts] = await multicall(ifoV2Abi, ifoCalls)
 
     setState((prevState) => ({
       ...prevState,

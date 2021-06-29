@@ -84,11 +84,8 @@ const useGetPublicIfoData = (ifo: Ifo): PublicIfoData => {
       },
     ]
 
-    const test = await multicall(ifoV2Abi, ifoCalls)
+    const [startTimestamp, endTimestamp, poolBasic, poolUnlimited, taxRate] = await multicall(ifoV2Abi, ifoCalls)
 
-    console.log(`test`, test)
-
-    const [startTimestamp, endTimestamp, poolBasic, poolUnlimited, taxRate] = test
     const poolBasicFormatted = formatPool(poolBasic)
     const poolUnlimitedFormatted = formatPool(poolUnlimited)
 
@@ -122,7 +119,8 @@ const useGetPublicIfoData = (ifo: Ifo): PublicIfoData => {
 
   useEffect(() => {
     fetchIfoData()
-  }, [fetchIfoData, fastRefresh])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fastRefresh])
 
   return { ...state, currencyPriceInUSD: lpTokenPriceInUsd, fetchIfoData }
 }

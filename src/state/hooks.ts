@@ -296,7 +296,7 @@ export const useBlock = () => {
 }
 
 export const useTimestamp = () => {
-  return +new Date()
+  return Math.round(new Date().getTime() / 1000)
 }
 
 export const useInitialBlock = () => {

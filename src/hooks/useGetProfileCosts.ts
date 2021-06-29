@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'contexts/Localization'
 import BigNumber from 'bignumber.js'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { multicallv2 } from 'utils/multicall'
+import multicall from 'utils/multicall'
 import profileABI from 'config/abi/profile.json'
 import { getProfileAddress } from 'utils/addressHelpers'
 import useToast from './useToast'
@@ -23,7 +23,7 @@ const useGetProfileCosts = () => {
           address: getProfileAddress(),
           name: method,
         }))
-        const [[numberCakeToReactivate], [numberCakeToRegister], [numberCakeToUpdate]] = await multicallv2(
+        const [[numberCakeToReactivate], [numberCakeToRegister], [numberCakeToUpdate]] = await multicall(
           profileABI,
           calls,
         )

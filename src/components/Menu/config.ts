@@ -35,8 +35,8 @@ const config: MenuEntry[] = [
     icon: 'CrownIcon',
     href: '/maximus',
     status: {
-      text: 'BETA',
-      color: 'warning',
+      text: 'NEW',
+      color: 'success',
     },
   },
   {

@@ -295,6 +295,10 @@ export const useBlock = () => {
   return useSelector((state: State) => state.block)
 }
 
+export const useTimestamp = () => {
+  return +new Date()
+}
+
 export const useInitialBlock = () => {
   return useSelector((state: State) => state.block.initialBlock)
 }

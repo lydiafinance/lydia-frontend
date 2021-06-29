@@ -53,10 +53,10 @@ const Achievement: React.FC<Props> = ({ ifo, publicIfoData }) => {
             <Text bold mr="8px">
               {t('IFO Shopper: %title%', { title: campaignTitle })}
             </Text>
-            <Flex alignItems="center" mr="8px">
+            {/* <Flex alignItems="center" mr="8px">
               <PrizeIcon color="textSubtle" width="16px" mr="4px" />
               <Text color="textSubtle">{publicIfoData.numberPoints}</Text>
-            </Flex>
+            </Flex> */}
           </Flex>
           {publicIfoData.currencyPriceInUSD.gt(0) ? (
             <Text color="textSubtle" fontSize="12px">

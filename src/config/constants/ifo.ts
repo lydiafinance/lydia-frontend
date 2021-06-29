@@ -11,7 +11,7 @@ const lydAvaxLPToken: Token = {
 const ifos: Ifo[] = [
   {
     id: 'kalmar',
-    address: '',
+    address: '0xB255a1d5875CD5F6754C933A4BddE334B64041dB',
     isActive: true,
     name: 'Kalmar (KALM)',
     poolBasic: {
@@ -28,7 +28,7 @@ const ifos: Ifo[] = [
     },
     currency: lydAvaxLPToken,
     token: tokens.png,
-    releaseBlockNumber: 7707736,
+    releaseTimestamp: 7707736,
     campaignId: '511110000',
     articleUrl: 'https://pancakeswap.medium.com/kalmar-kalm-ifo-to-be-hosted-on-pancakeswap-4540059753e4',
     tokenOfferingPrice: 2.0,

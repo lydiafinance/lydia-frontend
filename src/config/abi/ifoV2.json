@@ -2,28 +2,23 @@
   {
     "inputs": [
       {
-        "internalType": "contract IBEP20",
+        "internalType": "contract IERC20",
         "name": "_lpToken",
         "type": "address"
       },
       {
-        "internalType": "contract IBEP20",
+        "internalType": "contract IERC20",
         "name": "_offeringToken",
         "type": "address"
       },
       {
-        "internalType": "address",
-        "name": "_pancakeProfileAddress",
-        "type": "address"
-      },
-      {
         "internalType": "uint256",
-        "name": "_startBlock",
+        "name": "_startTimestamp",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_endBlock",
+        "name": "_endTimestamp",
         "type": "uint256"
       },
       {
@@ -34,6 +29,44 @@
     ],
     "stateMutability": "nonpayable",
     "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "tokenAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amountTokens",
+        "type": "uint256"
+      }
+    ],
+    "name": "AdminTokenRecovery",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amountLP",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amountOfferingToken",
+        "type": "uint256"
+      }
+    ],
+    "name": "AdminWithdraw",
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -97,23 +130,36 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "campaignId",
+        "name": "startTimestamp",
         "type": "uint256"
       },
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "numberPoints",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "thresholdPoints",
+        "name": "endTimestamp",
         "type": "uint256"
       }
     ],
-    "name": "PointParametersSet",
+    "name": "NewStartAndEndTimestamps",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
     "type": "event"
   },
   {
@@ -140,19 +186,6 @@
     ],
     "name": "PoolParametersSet",
     "type": "event"
-  },
-  {
-    "inputs": [],
-    "name": "adminAddress",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
   },
   {
     "inputs": [],
@@ -187,7 +220,7 @@
   },
   {
     "inputs": [],
-    "name": "endBlock",
+    "name": "endTimestamp",
     "outputs": [
       {
         "internalType": "uint256",
@@ -234,22 +267,9 @@
     "name": "lpToken",
     "outputs": [
       {
-        "internalType": "contract IBEP20",
+        "internalType": "contract IERC20",
         "name": "",
         "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "numberPoints",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -273,7 +293,7 @@
     "name": "offeringToken",
     "outputs": [
       {
-        "internalType": "contract IBEP20",
+        "internalType": "contract IERC20",
         "name": "",
         "type": "address"
       }
@@ -283,15 +303,40 @@
   },
   {
     "inputs": [],
-    "name": "pancakeProfile",
+    "name": "owner",
     "outputs": [
       {
-        "internalType": "contract PancakeProfile",
+        "internalType": "address",
         "name": "",
         "type": "address"
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_tokenAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_tokenAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "recoverWrongTokens",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -329,20 +374,7 @@
   },
   {
     "inputs": [],
-    "name": "startBlock",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "thresholdPoints",
+    "name": "startTimestamp",
     "outputs": [
       {
         "internalType": "uint256",
@@ -356,22 +388,30 @@
   {
     "inputs": [
       {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "uint256",
-        "name": "_campaignId",
+        "name": "_startTimestamp",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_numberPoints",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_thresholdPoints",
+        "name": "_endTimestamp",
         "type": "uint256"
       }
     ],
-    "name": "updatePointParameters",
+    "name": "updateStartAndEndTimestamps",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

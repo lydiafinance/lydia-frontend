@@ -115,7 +115,7 @@ describe('Parser', () => {
         currency: 'LYD-AVAX LP',
         currencyAddress: '0xA527a61703D82139F8a06Bc30097cC9CAA2df5A6',
         tokenDecimals: 18,
-        releaseBlockNumber: 0,
+        releaseTimestamp: 0,
       },
     ]
     expect(getFormattedData(SettingsType.IFO, inputIFO)).toStrictEqual(outPut)

@@ -1,10 +1,9 @@
 import { useEffect, useState, useCallback } from 'react'
 import BigNumber from 'bignumber.js'
-import { AVAX_BLOCK_TIME } from 'config'
 import { Ifo, IfoStatus } from 'config/constants/types'
-import { useBlock, useLpTokenPrice } from 'state/hooks'
+import { useTimestamp, useLpTokenPrice } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
-import { multicallv2 } from 'utils/multicall'
+import multicall from 'utils/multicall'
 import ifoV2Abi from 'config/abi/ifoV2.json'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { PublicIfoData } from '../types'
@@ -27,13 +26,13 @@ const formatPool = (pool) => ({
  * Gets all public data of an IFO
  */
 const useGetPublicIfoData = (ifo: Ifo): PublicIfoData => {
-  const { address, releaseBlockNumber } = ifo
+  const { address, releaseTimestamp } = ifo
   const lpTokenPriceInUsd = useLpTokenPrice(ifo.currency.symbol)
   const { fastRefresh } = useRefresh()
 
   const [state, setState] = useState({
     status: 'idle' as IfoStatus,
-    blocksRemaining: 0,
+    timestampRemaining: 0,
     secondsUntilStart: 0,
     progress: 5,
     secondsUntilEnd: 0,
@@ -53,21 +52,20 @@ const useGetPublicIfoData = (ifo: Ifo): PublicIfoData => {
       totalAmountPool: BIG_ZERO,
       sumTaxesOverflow: BIG_ZERO,
     },
-    startBlockNum: 0,
-    endBlockNum: 0,
-    numberPoints: 0,
+    startTimestampNum: 0,
+    endTimestampNum: 0,
   })
-  const { currentBlock } = useBlock()
+  const currentTimestamp = useTimestamp()
 
   const fetchIfoData = useCallback(async () => {
     const ifoCalls = [
       {
         address,
-        name: 'startBlock',
+        name: 'startTimestamp',
       },
       {
         address,
-        name: 'endBlock',
+        name: 'endTimestamp',
       },
       {
         address,
@@ -84,48 +82,43 @@ const useGetPublicIfoData = (ifo: Ifo): PublicIfoData => {
         name: 'viewPoolTaxRateOverflow',
         params: [1],
       },
-      {
-        address,
-        name: 'numberPoints',
-      },
     ]
 
-    const [startBlock, endBlock, poolBasic, poolUnlimited, taxRate, numberPoints] = await multicallv2(
-      ifoV2Abi,
-      ifoCalls,
-    )
+    const test = await multicall(ifoV2Abi, ifoCalls)
 
+    console.log(`test`, test)
+
+    const [startTimestamp, endTimestamp, poolBasic, poolUnlimited, taxRate] = test
     const poolBasicFormatted = formatPool(poolBasic)
     const poolUnlimitedFormatted = formatPool(poolUnlimited)
 
-    const startBlockNum = startBlock ? startBlock[0].toNumber() : 0
-    const endBlockNum = endBlock ? endBlock[0].toNumber() : 0
+    const startTimestampNum = startTimestamp ? startTimestamp[0].toNumber() : 0
+    const endTimestampNum = endTimestamp ? endTimestamp[0].toNumber() : 0
     const taxRateNum = taxRate ? taxRate[0].div(TAX_PRECISION).toNumber() : 0
 
-    const status = getStatus(currentBlock, startBlockNum, endBlockNum)
-    const totalBlocks = endBlockNum - startBlockNum
-    const blocksRemaining = endBlockNum - currentBlock
+    const status = getStatus(currentTimestamp, startTimestampNum, endTimestampNum)
+    const totalTimestamp = endTimestampNum - startTimestampNum
+    const timestampRemaining = endTimestampNum - currentTimestamp
 
     // Calculate the total progress until finished or until start
     const progress =
-      currentBlock > startBlockNum
-        ? ((currentBlock - startBlockNum) / totalBlocks) * 100
-        : ((currentBlock - releaseBlockNumber) / (startBlockNum - releaseBlockNumber)) * 100
+      currentTimestamp > startTimestampNum
+        ? ((currentTimestamp - startTimestampNum) / totalTimestamp) * 100
+        : ((currentTimestamp - releaseTimestamp) / (startTimestampNum - releaseTimestamp)) * 100
 
     setState((prev) => ({
       ...prev,
-      secondsUntilEnd: blocksRemaining * AVAX_BLOCK_TIME,
-      secondsUntilStart: (startBlockNum - currentBlock) * AVAX_BLOCK_TIME,
+      secondsUntilEnd: timestampRemaining,
+      secondsUntilStart: startTimestampNum - currentTimestamp,
       poolBasic: { ...poolBasicFormatted, taxRate: 0 },
       poolUnlimited: { ...poolUnlimitedFormatted, taxRate: taxRateNum },
       status,
       progress,
-      blocksRemaining,
-      startBlockNum,
-      endBlockNum,
-      numberPoints: numberPoints ? numberPoints[0].toNumber() : 0,
+      timestampRemaining,
+      startTimestampNum,
+      endTimestampNum,
     }))
-  }, [address, currentBlock, releaseBlockNumber])
+  }, [address, currentTimestamp, releaseTimestamp])
 
   useEffect(() => {
     fetchIfoData()

@@ -11,7 +11,7 @@ interface Props {
 
 const Timer: React.FC<Props> = ({ publicIfoData }) => {
   const { t } = useTranslation()
-  const { status, secondsUntilStart, secondsUntilEnd, startBlockNum } = publicIfoData
+  const { status, secondsUntilStart, secondsUntilEnd, startTimestampNum } = publicIfoData
   const countdownToUse = status === 'coming_soon' ? secondsUntilStart : secondsUntilEnd
   const timeUntil = getTimePeriods(countdownToUse)
   const suffix = status === 'coming_soon' ? t('Start').toLowerCase() : t('Finish').toLowerCase()
@@ -34,7 +34,7 @@ const Timer: React.FC<Props> = ({ publicIfoData }) => {
               })}
             </Text>
             <Link
-              href={getBscScanBlockCountdownUrl(startBlockNum)}
+              href={getBscScanBlockCountdownUrl(startTimestampNum)}
               target="blank"
               rel="noopener noreferrer"
               ml="8px"

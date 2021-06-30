@@ -29,7 +29,7 @@ const farms: FarmConfig[] = [
     pid: 4,
     lpSymbol: 'AVAX-LYD LP',
     lpAddresses: {
-      [ChainId.FUJI]: '0x4570BD3910c64095F6C0f5e6405BE7Cb30E2bdd7',
+      [ChainId.FUJI]: '0x21A735A9c3f00EF3099D6a945F71d148840F4918',
       [ChainId.AVALANCHE]: '0xfba4edaad3248b03f1a3261ad06ad846a8e50765',
     },
     token: tokens.lyd,

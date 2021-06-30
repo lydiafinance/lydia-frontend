@@ -12,7 +12,6 @@ import ApproveConfirmButtons from 'views/Profile/components/ApproveConfirmButton
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
 import { DEFAULT_TOKEN_DECIMAL } from 'config'
 import { useERC20 } from 'hooks/useContract'
-import { BIG_NINE, BIG_TEN } from 'utils/bigNumber'
 
 interface Props {
   poolId: PoolIds
@@ -25,9 +24,6 @@ interface Props {
 }
 
 const multiplierValues = [0.1, 0.25, 0.5, 0.75, 1]
-
-// Default value for transaction setting, tweak based on BSC network congestion.
-const gasPrice = BIG_TEN.times(BIG_TEN.pow(BIG_NINE)).toString()
 
 const ContributeModal: React.FC<Props> = ({
   poolId,
@@ -65,12 +61,12 @@ const ContributeModal: React.FC<Props> = ({
       onApprove: () => {
         return raisingTokenContract.methods
           .approve(contract.options.address, ethers.constants.MaxUint256)
-          .send({ from: account, gasPrice })
+          .send({ from: account })
       },
       onConfirm: () => {
         return contract.methods
           .depositPool(valueWithTokenDecimals.toString(), poolId === PoolIds.poolBasic ? 0 : 1)
-          .send({ from: account, gasPrice })
+          .send({ from: account })
       },
       onSuccess: async () => {
         await onSuccess(valueWithTokenDecimals)

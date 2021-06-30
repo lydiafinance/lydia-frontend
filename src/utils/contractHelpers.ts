@@ -30,6 +30,8 @@ import bunnyFactoryAbi from 'config/abi/bunnyFactory.json'
 import bep20Abi from 'config/abi/erc20.json'
 import lpTokenAbi from 'config/abi/lpToken.json'
 import lydAbi from 'config/abi/lyd.json'
+import ifoV2Abi from 'config/abi/ifoV2.json'
+import ifoV1Abi from 'config/abi/ifoV1.json'
 import ifoAbi from 'config/abi/ifo.json'
 import pointCenterIfo from 'config/abi/pointCenterIfo.json'
 import lotteryAbi from 'config/abi/lottery.json'
@@ -61,10 +63,10 @@ export const getIfoContract = (address: string, web3?: Web3) => {
   return getContract(ifoAbi, address, web3)
 }
 export const getIfoV1Contract = (address: string, web3?: Web3) => {
-  return getContract(ifoAbi, address, web3)
+  return getContract(ifoV1Abi, address, web3)
 }
 export const getIfoV2Contract = (address: string, web3?: Web3) => {
-  return getContract(ifoAbi, address, web3)
+  return getContract(ifoV2Abi, address, web3)
 }
 export const getSouschefContract = (id: number, web3?: Web3) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)

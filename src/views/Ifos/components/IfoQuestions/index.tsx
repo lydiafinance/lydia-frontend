@@ -23,7 +23,6 @@ const DetailsWrapper = styled.div`
   ${({ theme }) => theme.mediaQueries.md} {
     order: 2;
     margin-bottom: 0;
-    margin-left: 40px;
   }
 `
 
@@ -32,9 +31,6 @@ const IfoQuestions = () => {
 
   return (
     <Flex alignItems={['center', null, null, 'start']} flexDirection={['column', null, null, 'row']}>
-      <ImageWrapper>
-        <img src="/images/ifo-bunny.png" alt="ifo bunny" width="414px" height="500px" />
-      </ImageWrapper>
       <DetailsWrapper>
         <Card>
           <CardHeader>

@@ -36,7 +36,7 @@ const Hero = () => {
             {t('IFO: Initial Farm Offerings')}
           </Heading>
           <Text bold fontSize="20px">
-            {t('Buy new tokens with a brand new token sale model.')}
+            {t('Buy new tokens by staking LYD-LP.')}
           </Text>
         </Container>
       </StyledHero>

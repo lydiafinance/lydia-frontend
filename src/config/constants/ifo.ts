@@ -2,16 +2,18 @@ import tokens from './tokens'
 import { Ifo, Token } from './types'
 import farms from './farms'
 
+const lydAvaxFarm = farms.find(x => x.pid === 4);
+
 const lydAvaxLPToken: Token = {
-  symbol: farms[1].lpSymbol,
-  address: farms[1].lpAddresses,
+  symbol: lydAvaxFarm.lpSymbol,
+  address: lydAvaxFarm.lpAddresses,
   decimals: 18,
 }
 
 const ifos: Ifo[] = [
   {
     id: 'kalmar',
-    address: '0xB255a1d5875CD5F6754C933A4BddE334B64041dB',
+    address: '0x6836b26Ed630E0927881e2f87E94a3b53281a15a',
     isActive: true,
     name: 'Kalmar (KALM)',
     poolBasic: {

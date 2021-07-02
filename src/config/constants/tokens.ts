@@ -122,6 +122,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://avax.olive.cash/',
   },
+  test: {
+    symbol: 'FTT',
+    address: {
+      [ChainId.AVALANCHE]: '0xB3cC853242461aCab2177C7493e38E558de10619',
+      [ChainId.FUJI]: '0xB3cC853242461aCab2177C7493e38E558de10619',
+    },
+    decimals: 6,
+    projectLink: 'https://avax.olive.cash/',
+  },
 }
 
 export default tokens

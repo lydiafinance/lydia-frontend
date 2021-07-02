@@ -15,7 +15,7 @@ const pools: MaximusConfig[] = [
       [ChainId.AVALANCHE]: '0x58128ab3ecbf703682ede72f341944bffe3524b9',
     },
     earningToken: tokens.lyd,
-    tokenPerBlock: '2.5',
+    tokenPerBlock: '2',
     quoteToken: tokens.wavax,
   },
   {
@@ -30,7 +30,7 @@ const pools: MaximusConfig[] = [
       [ChainId.AVALANCHE]: '0xe22a65204726f102d9e3539b85d3999dee2e421f',
     },
     earningToken: tokens.lyd,
-    tokenPerBlock: '2.5',
+    tokenPerBlock: '2',
     quoteToken: tokens.wavax,
   },
   {
@@ -45,8 +45,23 @@ const pools: MaximusConfig[] = [
       [ChainId.AVALANCHE]: '0xfba4edaad3248b03f1a3261ad06ad846a8e50765',
     },
     earningToken: tokens.lyd,
-    tokenPerBlock: '2.5',
+    tokenPerBlock: '2',
     quoteToken: tokens.wavax,
+  },
+  {
+    pid: 3,
+    lpSymbol: 'USDT-LYD',
+    contractAddress: {
+      [ChainId.FUJI]: '0xcE1f7DD041cDca5758DAC1f3f0626d454ccf936f',
+      [ChainId.AVALANCHE]: '0xcE1f7DD041cDca5758DAC1f3f0626d454ccf936f',
+    },
+    stakingToken: {
+      [ChainId.FUJI]: '0x4570BD3910c64095F6C0f5e6405BE7Cb30E2bdd7',
+      [ChainId.AVALANCHE]: '0x752c59f22faaa861108649f4596034796c69bc3f',
+    },
+    earningToken: tokens.lyd,
+    tokenPerBlock: '2',
+    quoteToken: tokens.usdt,
   },
   {
     pid: 7,
@@ -60,7 +75,7 @@ const pools: MaximusConfig[] = [
       [ChainId.AVALANCHE]: '0x161f750b753c7120599d07c352607F458ecB918e',
     },
     earningToken: tokens.lyd,
-    tokenPerBlock: '2.5',
+    tokenPerBlock: '2',
     quoteToken: tokens.lyd,
   },
   {
@@ -75,7 +90,7 @@ const pools: MaximusConfig[] = [
       [ChainId.AVALANCHE]: '0x3cebc2b0febf521494f06318bbe202ae7ee799c9',
     },
     earningToken: tokens.lyd,
-    tokenPerBlock: '2.5',
+    tokenPerBlock: '2',
     quoteToken: tokens.usdt,
   },
 ]

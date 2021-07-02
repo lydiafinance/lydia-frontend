@@ -9,7 +9,7 @@ const getGradient = (isDark: boolean) => {
     return 'repeating-linear-gradient(to right, #332453, #332453 40px, #281D44 40px, #281D44 80px)'
   }
 
-  return 'repeating-linear-gradient(to right, #21d4e2, #21d4e2 40px, #53dee9 40px, #53dee9 80px)'
+  return 'repeating-linear-gradient(to right, #ffef98, #ffef98 40px, #fcf4cc 40px, #fcf4cc 80px)'
 }
 
 const StyledHero = styled.div`
@@ -32,11 +32,14 @@ const Hero = () => {
     <Box mb="32px">
       <StyledHero>
         <Container>
-          <Heading as="h1" scale="xxl" color="secondary" mb="24px">
+          <Heading as="h1" scale="xxl" color="text" mb="24px">
             {t('IFO: Initial Farm Offerings')}
           </Heading>
           <Text bold fontSize="20px">
             {t('Buy new tokens by staking LYD-LP.')}
+          </Text>
+          <Text bold fontSize="20px">
+            {t('#1 Fair distribution on Avalanche')}
           </Text>
         </Container>
       </StyledHero>

@@ -1,10 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import every from 'lodash/every'
 import {
   Stepper,
   Step,
-  StepStatus,
   Card,
   CardBody,
   Heading,
@@ -14,18 +12,8 @@ import {
   OpenNewIcon,
 } from '@lydiafinance/uikit'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
-import { Ifo } from 'config/constants/types'
-import { WalletIfoData } from 'hooks/ifo/types'
 import { useTranslation } from 'contexts/Localization'
-import useTokenBalance from 'hooks/useTokenBalance'
 import Container from 'components/layout/Container'
-// import { useProfile } from 'state/hooks'
-import { getAddress } from 'utils/addressHelpers'
-
-interface Props {
-  ifo: Ifo
-  walletIfoData: WalletIfoData
-}
 
 const Wrapper = styled(Container)`
   background: ${({ theme }) => theme.colors.gradients.bubblegum};
@@ -40,50 +28,16 @@ const Wrapper = styled(Container)`
   }
 `
 
-const IfoSteps: React.FC<Props> = ({ ifo, walletIfoData }) => {
-  const { poolBasic, poolUnlimited } = walletIfoData
-  // const { hasProfile } = useProfile()
+const IfoSteps: React.FC = () => {
   const { t } = useTranslation()
-  const { balance } = useTokenBalance(getAddress(ifo.currency.address))
+
   const stepsValidationStatus = [
-    true,
-    balance.isGreaterThan(0),
-    poolBasic.amountTokenCommittedInLP.isGreaterThan(0) || poolUnlimited.amountTokenCommittedInLP.isGreaterThan(0),
-    poolBasic.hasClaimed || poolUnlimited.hasClaimed,
+    true, true, true
   ]
 
-  // const getStatusProp = (index: number): StepStatus => {
-  //   const arePreviousValid = index === 0 ? true : every(stepsValidationStatus.slice(0, index), Boolean)
-  //   if (stepsValidationStatus[index]) {
-  //     return arePreviousValid ? 'past' : 'future'
-  //   }
-  //   return arePreviousValid ? 'current' : 'future'
-  // }
-
   const renderCardBody = (step: number) => {
-    const isStepValid = true
     switch (step) {
       case 0:
-        return (
-          <CardBody>
-            <Heading as="h4" color="secondary" mb="16px">
-              {t('Activate your Profile')}
-            </Heading>
-            <Text color="textSubtle" small mb="16px">
-              {t('You’ll need an active LydiaFinance Profile to take part in an IFO!')}
-            </Text>
-            {isStepValid ? (
-              <Text color="success" bold>
-                {t('Profile Active!')}
-              </Text>
-            ) : (
-              <Button as={Link} href="/profile">
-                {t('Activate your Profile')}
-              </Button>
-            )}
-          </CardBody>
-        )
-      case 1:
         return (
           <CardBody>
             <Heading as="h4" color="secondary" mb="16px">
@@ -104,23 +58,22 @@ const IfoSteps: React.FC<Props> = ({ ifo, walletIfoData }) => {
             </Button>
           </CardBody>
         )
-      case 2:
+      case 1:
         return (
           <CardBody>
             <Heading as="h4" color="secondary" mb="16px">
               {t('Commit LP Tokens')}
             </Heading>
             <Text color="textSubtle" small>
-              {t('When the IFO sales are live, you can “commit” your LP tokens to buy the tokens being sold.')} <br />
-              {t('We recommend committing to the Basic Sale first, but you can do both if you like.')}
+              {t('When the IFO sales are live, you can “commit” your LP tokens to buy the tokens being sold.')}
             </Text>
           </CardBody>
         )
-      case 3:
+      case 2:
         return (
           <CardBody>
             <Heading as="h4" color="secondary" mb="16px">
-              {t('Claim your tokens and achievement')}
+              {t('Claim your tokens')}
             </Heading>
             <Text color="textSubtle" small>
               {t(

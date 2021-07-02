@@ -19,7 +19,7 @@ const Ifo = () => {
   return (
     <IfoLayout>
       <IfoFoldableCard ifo={activeIfo} publicIfoData={publicIfoData} walletIfoData={walletIfoData} isInitiallyVisible />
-      <IfoSteps ifo={activeIfo} walletIfoData={walletIfoData} />
+      <IfoSteps />
       <IfoQuestions />
     </IfoLayout>
   )

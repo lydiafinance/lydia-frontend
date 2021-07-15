@@ -71,11 +71,11 @@ const pools: PoolConfig[] = [
     earningToken: tokens.wavax,
     contractAddress: {
       [ChainId.FUJI]: '0x89dAA415A13B6146787B4a1EF22dF4Ef7589b0bf',
-      [ChainId.AVALANCHE]: '0x89dAA415A13B6146787B4a1EF22dF4Ef7589b0bf',
+      [ChainId.AVALANCHE]: '0xBe9bD78512Fe31Ff12A813Faa4b7507849209D81',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
-    tokenPerBlock: '0.00027',
+    tokenPerBlock: '0,000200066',
     sortOrder: 1,
     isFinished: false,
   },

@@ -75,7 +75,7 @@ const pools: PoolConfig[] = [
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
-    tokenPerBlock: '0,000200066',
+    tokenPerBlock: '0.000200066',
     sortOrder: 1,
     isFinished: false,
   },

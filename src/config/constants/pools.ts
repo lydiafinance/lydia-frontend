@@ -77,6 +77,20 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: '0.000200066',
     sortOrder: 1,
+    isFinished: true,
+  },
+  {
+    sousId: 1005,
+    stakingToken: tokens.lyd,
+    earningToken: tokens.dai,
+    contractAddress: {
+      [ChainId.FUJI]: '0x89dAA415A13B6146787B4a1EF22dF4Ef7589b0bf',
+      [ChainId.AVALANCHE]: '0xa0d692FE48166476D0caccBE1663021D65497529',
+    },
+    poolCategory: PoolCategory.CORE,
+    harvest: true,
+    tokenPerBlock: '0.0024437',
+    sortOrder: 1,
     isFinished: false,
   },
 ]

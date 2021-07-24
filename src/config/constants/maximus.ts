@@ -79,6 +79,21 @@ const pools: MaximusConfig[] = [
     quoteToken: tokens.lyd,
   },
   {
+    pid: 9,
+    lpSymbol: 'ETH-LYD',
+    contractAddress: {
+      [ChainId.FUJI]: '0x4fAE2067785ED460408670dc01A3d2A8a416bb6F',
+      [ChainId.AVALANCHE]: '0x288426B66E1887ce5bFDEA6C87ECEDD97631bc05',
+    },
+    stakingToken: {
+      [ChainId.FUJI]: '0x4570BD3910c64095F6C0f5e6405BE7Cb30E2bdd7',
+      [ChainId.AVALANCHE]: '0xEAC3778e5658667B72aEbe8C71F97ed8b3b5887b',
+    },
+    earningToken: tokens.lyd,
+    tokenPerBlock: '2',
+    quoteToken: tokens.eth,
+  },
+  {
     pid: 12,
     lpSymbol: 'USDT-DAI',
     contractAddress: {

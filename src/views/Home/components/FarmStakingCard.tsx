@@ -8,6 +8,7 @@ import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
 import UnlockButton from 'components/UnlockButton'
 import LydHarvestBalance from './LydHarvestBalance'
 import LydWalletBalance from './LydWalletBalance'
+import FarmedStakingAddCard from './FarmStakingAddCard';
 
 const StyledFarmStakingCard = styled(Card)`
   background-image: url('/images/lyd-bg.svg');
@@ -86,6 +87,7 @@ const FarmedStakingCard = () => {
             <UnlockButton width="100%" />
           )}
         </Actions>
+        <FarmedStakingAddCard />
       </CardBody>
     </StyledFarmStakingCard>
   )

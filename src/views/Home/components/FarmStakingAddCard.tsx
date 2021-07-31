@@ -2,7 +2,7 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import {useWeb3React} from "@web3-react/core";
 import styled from "styled-components";
-
+import {Flex, TooltipText, useTooltip} from "@lydiafinance/uikit";
 import useLastUpdated from "../../../hooks/useLastUpdate";
 import useGetVaultUserInfo from "../../../hooks/lydVault/useGetVaultUserInfo";
 import {convertSharesToLyd} from "../../Pools/helpers";
@@ -40,9 +40,14 @@ const FarmedStakingAddCard = () => {
 
     const currentSharesAsLyd = convertSharesToLyd(autoVaultUserInfo.shares, autoVaultPerShare)
     const autoLydProfit = currentSharesAsLyd.lydAsBigNumber.minus(autoVaultUserInfo.lydAtLastUserAction)
+    const autoLydEarnings = new BigNumber(autoLydProfit).dividedBy(BIG_TEN.pow(18)).toNumber()
 
     // Maximus
     const maximusPools = useMaximusPools(account);
+
+    const tooltipContent = "Auto compounded earnings from Auto LYD Pool and Maximus farms."
+
+    const {targetRef, tooltip, tooltipVisible} = useTooltip(tooltipContent, {placement: 'bottom-start'})
 
     if (!account) {
         return null;
@@ -54,16 +59,17 @@ const FarmedStakingAddCard = () => {
         maximusProfit += p.userData.pendingReward.toNumber();
     })
 
-    const autoLydEarnings = new BigNumber(autoLydProfit).dividedBy(BIG_TEN.pow(18)).toNumber()
-
     const earningsSum = maximusProfit + autoLydEarnings;
+
 
     if (!Number.isNaN(earningsSum)) {
         const earningsUsdt = earningsSum * lydPrice;
         return (
             <>
                 <Block>
-                    <Label>{t('Auto-Compounding LYD Earnings')}:</Label>
+                    {tooltipVisible && tooltip}
+                    <TooltipText ref={targetRef}>{t('Auto-Compounding LYD Earnings')}:</TooltipText>
+
                     <CardValue value={earningsSum} fontSize="24px" lineHeight="1.5"/>
                     <CardUsdValue key={earningsUsdt} value={earningsUsdt}/>
                 </Block>

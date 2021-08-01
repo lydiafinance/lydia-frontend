@@ -2,7 +2,8 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import {useWeb3React} from "@web3-react/core";
 import styled from "styled-components";
-import {Flex, TooltipText, useTooltip} from "@lydiafinance/uikit";
+import {Card} from "@lydiafinance/uikit";
+
 import useLastUpdated from "../../../hooks/useLastUpdate";
 import useGetVaultUserInfo from "../../../hooks/lydVault/useGetVaultUserInfo";
 import {convertSharesToLyd} from "../../Pools/helpers";
@@ -16,18 +17,29 @@ import CardValue from "./CardValue";
 import CardUsdValue from "./CardUsdValue";
 
 
-const Block = styled.div`
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 1px solid ${({theme}) => (theme.isDark ? '#524B63' : '#E9EAEB')};
+const CardBody = styled.div`
+  padding: 10px 20px;
 `
 
-const Label = styled.div`
-  color: ${({theme}) => theme.colors.textSubtle};
-  font-size: 14px;
+const StyledAutoCompoundingCard = styled(Card)`
+  align-items: center;
+  display: flex;
+  flex: 1;
 `
 
-const FarmedStakingAddCard = () => {
+const CardHeader = styled.div`
+  color: ${({theme}) => theme.colors.avalanche};
+  font-weight: bold;
+`
+
+const CardNumbers = styled.div`
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto 1fr;
+  grid-gap: 4px;
+`
+
+const AutoCompoundingCard = () => {
     const {t} = useTranslation()
     const {lastUpdated,} = useLastUpdated()
     const {account} = useWeb3React()
@@ -45,10 +57,6 @@ const FarmedStakingAddCard = () => {
     // Maximus
     const maximusPools = useMaximusPools(account);
 
-    const tooltipContent = "Auto compounded earnings from Auto LYD Pool and Maximus farms."
-
-    const {targetRef, tooltip, tooltipVisible} = useTooltip(tooltipContent, {placement: 'bottom-start'})
-
     if (!account) {
         return null;
     }
@@ -61,18 +69,19 @@ const FarmedStakingAddCard = () => {
 
     const earningsSum = maximusProfit + autoLydEarnings;
 
-
-    if (!Number.isNaN(earningsSum)) {
+    if (!Number.isNaN(earningsSum) && earningsSum > 0) {
         const earningsUsdt = earningsSum * lydPrice;
         return (
             <>
-                <Block>
-                    {tooltipVisible && tooltip}
-                    <TooltipText ref={targetRef}>{t('Auto-Compounding LYD Earnings')}:</TooltipText>
-
-                    <CardValue value={earningsSum} fontSize="24px" lineHeight="1.5"/>
-                    <CardUsdValue key={earningsUsdt} value={earningsUsdt}/>
-                </Block>
+                <StyledAutoCompoundingCard>
+                    <CardBody>
+                        <CardHeader> {t('Auto-Compounding LYD Earnings')}</CardHeader>
+                        <CardNumbers>
+                            <CardValue value={earningsSum} fontSize="24px" lineHeight="1.5"/>
+                            <CardUsdValue key={earningsUsdt} value={earningsUsdt}/>
+                        </CardNumbers>
+                    </CardBody>
+                </StyledAutoCompoundingCard>
             </>
         );
     }
@@ -80,4 +89,4 @@ const FarmedStakingAddCard = () => {
     return null;
 }
 
-export default FarmedStakingAddCard;
+export default AutoCompoundingCard;

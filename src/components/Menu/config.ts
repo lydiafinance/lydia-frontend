@@ -21,6 +21,15 @@ const config: MenuEntry[] = [
     ],
   },
   {
+    label: 'LYD Gate',
+    icon: 'GateIcon',
+    href: 'https://gate.lydia.finance/',
+    status: {
+      text: 'Bridge',
+      color: 'warning',
+    },
+  },
+  {
     label: 'Farms',
     icon: 'FarmIcon',
     href: '/farms',

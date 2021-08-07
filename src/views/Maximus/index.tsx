@@ -20,7 +20,7 @@ const Pools: React.FC = () => {
   const { account } = useWeb3React()
   const pools = useMaximusPools(account)
   const { data: farms } = useFarms()
-  const [stakedOnly, setStakedOnly] = usePersistState(false, 'lydia_pool_staked')
+  const [stakedOnly, setStakedOnly] = usePersistState(false,  { localStorageKey: 'lydia_pool_staked' })
   const stakedOnlyPools = useMemo(
     () => pools.filter((pool) => pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0)),
     [pools],
@@ -31,13 +31,13 @@ const Pools: React.FC = () => {
       <PageHeader>
         <Flex justifyContent="space-between" flexDirection={['column', null, 'row']}>
           <Flex flexDirection="column" mr={['8px', 0]}>
-            <Heading as="h1" size="xxl" color="text" mb="24px">
+            <Heading as="h1" scale="xxl" color="text" mb="24px">
               {t('Maximus Farm ✨')}
             </Heading>
-            <Heading size="md" color="text">
+            <Heading scale="md" color="text">
               {t('Stake LP token to earn automatically.')}
             </Heading>
-            <Heading size="md" color="text">
+            <Heading scale="md" color="text">
               {t('High APY, low risk, no effort, no fee.')}
             </Heading>
           </Flex>

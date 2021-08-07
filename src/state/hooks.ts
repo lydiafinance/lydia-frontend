@@ -4,9 +4,15 @@ import { kebabCase } from 'lodash'
 import { useWeb3React } from '@web3-react/core'
 import { Toast, toastTypes } from '@lydiafinance/uikit'
 import { useSelector, useDispatch } from 'react-redux'
+import { useAppDispatch } from 'state'
 import { Team } from 'config/constants/types'
 import { getWeb3NoAccount } from 'utils/web3'
 import useRefresh from 'hooks/useRefresh'
+import { BIG_ZERO } from 'utils/bigNumber'
+import { getBalanceAmount } from 'utils/formatBalance'
+import Nfts from 'config/constants/nfts'
+import { fetchWalletNfts } from './collectibles'
+
 import {
   fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
@@ -289,6 +295,61 @@ export const useBlock = () => {
   return useSelector((state: State) => state.block)
 }
 
+export const useTimestamp = () => {
+  return Math.round(new Date().getTime() / 1000)
+}
+
 export const useInitialBlock = () => {
   return useSelector((state: State) => state.block.initialBlock)
+}
+
+// Return the base token price for a farm, from a given pid
+export const useUsdtPriceFromPid = (pid: number): BigNumber => {
+  const farm = useFarmFromPid(pid)
+  return farm && new BigNumber(farm.token.usdtPrice)
+}
+
+export const useFarmFromLpSymbol = (lpSymbol: string): Farm => {
+  const farm = useSelector((state: State) => state.farms.data.find((f) => f.lpSymbol === lpSymbol))
+  return farm
+}
+
+export const useLpTokenPrice = (symbol: string) => {
+  const farm = useFarmFromLpSymbol(symbol)
+  const farmTokenPriceInUsd = useUsdtPriceFromPid(farm.pid)
+  let lpTokenPrice = BIG_ZERO
+
+  if (farm.lpTotalSupply && farm.lpTotalInQuoteToken) {
+    // Total value of base token in LP
+    const valueOfBaseTokenInFarm = farmTokenPriceInUsd.times(farm.tokenAmountTotal)
+    // Double it to get overall value in LP
+    const overallValueOfAllTokensInFarm = valueOfBaseTokenInFarm.times(2)
+    // Divide total value of all tokens, by the number of LP tokens
+    const totalLpTokens = getBalanceAmount(new BigNumber(farm.lpTotalSupply))
+    lpTokenPrice = overallValueOfAllTokensInFarm.div(totalLpTokens)
+  }
+
+  return lpTokenPrice
+}
+
+// Collectibles
+export const useGetCollectibles = () => {
+  const { account } = useWeb3React()
+  const dispatch = useAppDispatch()
+  const { isInitialized, isLoading, data } = useSelector((state: State) => state.collectibles)
+  const identifiers = Object.keys(data)
+
+  useEffect(() => {
+    // Fetch nfts only if we have not done so already
+    if (!isInitialized) {
+      dispatch(fetchWalletNfts(account))
+    }
+  }, [isInitialized, account, dispatch])
+
+  return {
+    isInitialized,
+    isLoading,
+    tokenIds: data,
+    nftsInWallet: Nfts.filter((nft) => identifiers.includes(nft.identifier)),
+  }
 }

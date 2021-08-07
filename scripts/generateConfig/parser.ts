@@ -21,7 +21,7 @@ export const getIfos = (data) => {
       currency: ifo.currency,
       currencyAddress: ifo.currency_address,
       tokenDecimals: ifo.decimals,
-      releaseBlockNumber: ifo.release_block,
+      releaseTimestamp: ifo.release_block,
     }
   })
   return ifos

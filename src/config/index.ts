@@ -18,3 +18,4 @@ export const LOTTERY_MAX_NUMBER_OF_TICKETS = 10
 export const LOTTERY_TICKET_PRICE = 500
 export const BASE_AVAX_SCAN_URL = 'https://cchain.explorer.avax.network/'
 export const DEFAULT_TOKEN_DECIMAL = BIG_TEN.pow(18)
+export const DEFAULT_GAS_PRICE = 5

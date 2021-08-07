@@ -73,7 +73,7 @@ const Hero = () => {
     <StyledHero>
       <StyledContainer>
         <LeftWrapper>
-          <Heading as="h3" size="xl" color="text" mb="15px">
+          <Heading as="h3" scale="xl" color="text" mb="15px">
             {t('The LYD Lottery')}
           </Heading>
           <Blurb>{t('Buy tickets with LYD')}</Blurb>

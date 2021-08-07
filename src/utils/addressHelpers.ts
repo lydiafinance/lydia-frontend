@@ -54,3 +54,9 @@ export const getMaximusFeeManagerAddress = () => {
 export const getMaximusDashboardAddress = () => {
   return getAddress(addresses.maximusDashboard)
 }
+export const getMulticallContract = () => {
+  return getAddress(addresses.mulltiCall)
+}
+export const getProfileAddress = () => {
+  return getAddress(addresses.profile)
+}

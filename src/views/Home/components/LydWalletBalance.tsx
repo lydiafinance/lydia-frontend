@@ -15,7 +15,7 @@ const LydWalletBalance = () => {
   const [usdtBalance, setUsdtBalance] = useState(0)
   const { t } = useTranslation()
   const lydPrice = useGetApiPrice('lyd')
-  const lydBalance = useTokenBalance(getLydAddress())
+  const { balance: lydBalance } = useTokenBalance(getLydAddress())
 
   const balanceNumber = getBalanceNumber(lydBalance)
   const { account } = useWeb3React()

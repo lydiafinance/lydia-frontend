@@ -54,7 +54,7 @@ const LotteryCard = () => {
   const [onPresentApprove] = useModal(<PurchaseWarningModal />)
   const { claimAmount } = useTotalClaim()
   const { onMultiClaim } = useMultiClaimLottery()
-  const lydBalance = useTokenBalance(getLydAddress())
+  const { balance: lydBalance } = useTokenBalance(getLydAddress())
   const { handleApprove, requestedApproval } = useApproval(onPresentApprove)
 
   const handleClaim = useCallback(async () => {
@@ -90,7 +90,7 @@ const LotteryCard = () => {
   return (
     <StyledLotteryCard>
       <CardBody>
-        <Heading size="xl" mb="24px">
+        <Heading scale="xl" mb="24px">
           {t('Your Lottery Winnings')}
         </Heading>
         <CardImage src="/images/ticket.png" alt="lyd logo" width={64} height={64} />

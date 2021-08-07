@@ -29,7 +29,7 @@ const HowItWorks = () => {
   return (
     <LayoutWrapper>
       <StyledImage src="/images/lydia-lottery-girl-sales.png" alt="lottery bunny" width={280} height={300} />
-      <StyledHeading size="lg" as="h3" color="secondary">
+      <StyledHeading scale="lg" as="h3" color="secondary">
         {t('How it works')}
       </StyledHeading>
       <Text fontSize="16px">

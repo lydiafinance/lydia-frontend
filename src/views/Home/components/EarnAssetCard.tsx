@@ -28,12 +28,12 @@ const EarnAssetCard = () => {
   return (
     <StyledFarmStakingCard>
       <CardBody>
-        <Heading color="invertedContrast" size="lg">
+        <Heading color="invertedContrast" scale="lg">
           Earn
         </Heading>
         <CardMidContent color="invertedContrast">{assets}</CardMidContent>
         <Flex justifyContent="space-between">
-          <Heading color="invertedContrast" size="lg">
+          <Heading color="invertedContrast" scale="lg">
             in Pools
           </Heading>
           <NavLink exact activeClassName="active" to="/electrum" id="pool-cta">

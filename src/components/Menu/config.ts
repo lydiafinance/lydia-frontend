@@ -21,6 +21,15 @@ const config: MenuEntry[] = [
     ],
   },
   {
+    label: 'LYD Gate',
+    icon: 'GateIcon',
+    href: 'https://gate.lydia.finance/#/bridge',
+    status: {
+      text: 'Bridge',
+      color: 'success',
+    },
+  },
+  {
     label: 'Farms',
     icon: 'FarmIcon',
     href: '/farms',
@@ -48,6 +57,15 @@ const config: MenuEntry[] = [
       color: 'success',
     },
   },
+  // {
+  //   label: 'IFO',
+  //   icon: 'IfoIcon',
+  //   href: '/ifo',
+  //   status: {
+  //     text: 'NEW',
+  //     color: 'success',
+  //   },
+  // },
   // {
   //   label: 'Collectibles',
   //   icon: 'NftIcon',

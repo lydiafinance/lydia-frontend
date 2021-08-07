@@ -22,7 +22,7 @@ const Pools: React.FC = () => {
   const { account } = useWeb3React()
   const pools = usePools(account)
   const { currentBlock } = useBlock()
-  const [stakedOnly, setStakedOnly] = usePersistState(false, 'lydia_pool_staked')
+  const [stakedOnly, setStakedOnly] = usePersistState(false,  { localStorageKey: 'lydia_pool_staked' })
 
   const [finishedPools, openPools] = useMemo(
     () => partition(pools, (pool) => pool.isFinished || currentBlock > pool.endBlock),
@@ -44,13 +44,13 @@ const Pools: React.FC = () => {
       <PageHeader>
         <Flex justifyContent="space-between" flexDirection={['column', null, 'row']}>
           <Flex flexDirection="column" mr={['8px', 0]}>
-            <Heading as="h1" size="xxl" color="text" mb="24px">
+            <Heading as="h1" scale="xxl" color="text" mb="24px">
               {t('Electrum Pools')}
             </Heading>
-            <Heading size="md" color="text">
+            <Heading scale="md" color="text">
               {t('Simply stake tokens to earn.')}
             </Heading>
-            <Heading size="md" color="text">
+            <Heading scale="md" color="text">
               {t('High APR, low risk.')}
             </Heading>
           </Flex>

@@ -82,7 +82,7 @@ const Home: React.FC = () => {
   return (
     <Page>
       <Hero>
-        <Heading as="h1" size="xl" mb="24px" color="secondary">
+        <Heading as="h1" scale="xl" mb="24px" color="secondary">
           {t('Lydia Finance')}
         </Heading>
         <Text>{t('AMM and yield farm on Avalanche.')}</Text>

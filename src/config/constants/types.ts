@@ -1,27 +1,9 @@
 import { ChainId } from '@lydiafinance/sdk'
 import { TranslatableText } from 'state/types'
 
-export type IfoStatus = 'idle' | 'coming_soon' | 'live' | 'finished'
-
-export interface Ifo {
-  id: string
-  isActive: boolean
-  address: string
-  name: string
-  subTitle?: string
-  description?: string
-  launchDate: string
-  launchTime: string
-  saleAmount: string
-  raiseAmount: string
-  lydToBurn: string
-  projectSiteUrl: string
-  currency: string
-  currencyAddress: string
-  tokenDecimals: number
-  tokenSymbol: string
-  releaseBlockNumber: number
-  campaignId?: string
+export enum PoolIds {
+  poolBasic = 'poolBasic',
+  poolUnlimited = 'poolUnlimited',
 }
 
 export enum QuoteToken {
@@ -48,6 +30,7 @@ export interface Token {
   address?: Address
   decimals?: number
   projectLink?: string
+  usdtPrice?: string
 }
 
 export interface FarmConfig {
@@ -71,6 +54,30 @@ export interface FarmConfig {
   }
 }
 
+export type IfoStatus = 'idle' | 'coming_soon' | 'live' | 'finished'
+
+interface IfoPoolInfo {
+  saleAmount: string
+  raiseAmount: string
+  lydToBurn: string
+  distributionRatio: number // Range [0-1]
+}
+
+export interface Ifo {
+  id: string
+  isActive: boolean
+  address: string
+  name: string
+  currency: Token
+  token: Token
+  releaseTimestamp: number
+  articleUrl: string
+  campaignId: string
+  tokenOfferingPrice: number
+  version: number
+  [PoolIds.poolBasic]?: IfoPoolInfo
+  [PoolIds.poolUnlimited]: IfoPoolInfo
+}
 export interface MaximusConfig {
   pid: number
   lpSymbol: string
@@ -120,13 +127,31 @@ export type NftVideo = {
   mp4: string
 }
 
+export type NftSource = {
+  [key in NftType]: {
+    address: Address
+    identifierKey: string
+  }
+}
+
+export enum NftType {
+  LYDIA = 'lydia',
+}
+
 export type Nft = {
-  name: string
   description: string
+  name: string
   images: NftImages
   sortOrder: number
-  bunnyId: number
+  type: NftType
   video?: NftVideo
+
+  // Uniquely identifies the nft.
+  // Used for matching an NFT from the config with the data from the NFT's tokenURI
+  identifier: string
+
+  // Used to be "bunnyId". Used when minting NFT
+  variationId?: number | string
 }
 
 export type TeamImages = {
@@ -145,7 +170,7 @@ export type Team = {
   textColor: string
 }
 
-export type CampaignType = 'ifo'
+export type CampaignType = 'ifo' | 'teambattle'
 
 export type Campaign = {
   id: string
@@ -153,4 +178,10 @@ export type Campaign = {
   title?: TranslatableText
   description?: TranslatableText
   badge?: string
+}
+
+export type PageMeta = {
+  title: string
+  description?: string
+  image?: string
 }

@@ -1,29 +1,52 @@
 import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
+import { BIG_ZERO } from 'utils/bigNumber'
 import { getBep20Contract, getLydContract } from 'utils/contractHelpers'
 import useWeb3 from './useWeb3'
 import useRefresh from './useRefresh'
 
+type UseTokenBalanceState = {
+  balance: BigNumber
+  fetchStatus: FetchStatus
+}
+
+export enum FetchStatus {
+  NOT_FETCHED = 'not-fetched',
+  SUCCESS = 'success',
+  FAILED = 'failed',
+}
+
 const useTokenBalance = (tokenAddress: string) => {
-  const [balance, setBalance] = useState(new BigNumber(0))
+  const { NOT_FETCHED, SUCCESS, FAILED } = FetchStatus
+  const [balanceState, setBalanceState] = useState<UseTokenBalanceState>({
+    balance: BIG_ZERO,
+    fetchStatus: NOT_FETCHED,
+  })
   const { account } = useWeb3React()
-  const web3 = useWeb3()
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
     const fetchBalance = async () => {
-      const contract = getBep20Contract(tokenAddress, web3)
-      const res = await contract.methods.balanceOf(account).call()
-      setBalance(new BigNumber(res))
+      const contract = getBep20Contract(tokenAddress)
+      try {
+        const res = await contract.methods.balanceOf(account).call()
+        setBalanceState({ balance: new BigNumber(res), fetchStatus: SUCCESS })
+      } catch (e) {
+        console.error(e)
+        setBalanceState((prev) => ({
+          ...prev,
+          fetchStatus: FAILED,
+        }))
+      }
     }
 
     if (account) {
       fetchBalance()
     }
-  }, [account, tokenAddress, web3, fastRefresh])
+  }, [account, tokenAddress, fastRefresh, SUCCESS, FAILED])
 
-  return balance
+  return balanceState
 }
 
 export const useTotalSupply = () => {

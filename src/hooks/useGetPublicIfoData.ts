@@ -44,7 +44,7 @@ const getStatus = (currentBlock: number, startBlock: number, endBlock: number): 
  * Gets all public data of an IFO
  */
 const useGetPublicIfoData = (ifo: Ifo) => {
-  const { address, releaseBlockNumber } = ifo
+  const { address, releaseTimestamp } = ifo
   const [state, setState] = useState<PublicIfoState>({
     status: 'idle',
     blocksRemaining: 0,
@@ -79,7 +79,7 @@ const useGetPublicIfoData = (ifo: Ifo) => {
       const progress =
         currentBlock > startBlockNum
           ? ((currentBlock - startBlockNum) / totalBlocks) * 100
-          : ((currentBlock - releaseBlockNumber) / (startBlockNum - releaseBlockNumber)) * 100
+          : ((currentBlock - releaseTimestamp) / (startBlockNum - releaseTimestamp)) * 100
 
       setState({
         secondsUntilEnd: blocksRemaining * AVAX_BLOCK_TIME,
@@ -95,7 +95,7 @@ const useGetPublicIfoData = (ifo: Ifo) => {
     }
 
     fetchProgress()
-  }, [address, currentBlock, contract, releaseBlockNumber, setState])
+  }, [address, currentBlock, contract, releaseTimestamp, setState])
 
   return state
 }

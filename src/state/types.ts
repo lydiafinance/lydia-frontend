@@ -13,10 +13,12 @@ export type TranslatableText =
       }
     }
 
+export type SerializedBigNumber = string
 export interface Farm extends FarmConfig {
   tokenAmount?: BigNumber
   quoteTokenAmount?: BigNumber
   lpTotalInQuoteToken?: BigNumber
+  tokenAmountTotal?: SerializedBigNumber
   lpTotalSupply?: BigNumber
   tokenPriceVsQuote?: BigNumber
   poolWeight?: BigNumber
@@ -166,4 +168,13 @@ export interface State {
   achievements: AchievementState
   block: BlockState
   maximus: MaximusState
+  collectibles: CollectiblesState
+}
+
+export interface CollectiblesState {
+  isInitialized: boolean
+  isLoading: boolean
+  data: {
+    [key: string]: number[]
+  }
 }

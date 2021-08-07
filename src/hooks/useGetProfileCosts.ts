@@ -1,39 +1,45 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'contexts/Localization'
 import BigNumber from 'bignumber.js'
-import { getProfileContract } from 'utils/contractHelpers'
-import makeBatchRequest from 'utils/makeBatchRequest'
-import { useToast } from 'state/hooks'
+import { BIG_ZERO } from 'utils/bigNumber'
+import multicall from 'utils/multicall'
+import profileABI from 'config/abi/profile.json'
+import { getProfileAddress } from 'utils/addressHelpers'
+import useToast from './useToast'
 
 const useGetProfileCosts = () => {
+  const { t } = useTranslation()
   const [costs, setCosts] = useState({
-    numberLydToReactivate: new BigNumber(0),
-    numberLydToRegister: new BigNumber(0),
-    numberLydToUpdate: new BigNumber(0),
+    numberCakeToReactivate: BIG_ZERO,
+    numberCakeToRegister: BIG_ZERO,
+    numberCakeToUpdate: BIG_ZERO,
   })
   const { toastError } = useToast()
 
   useEffect(() => {
     const fetchCosts = async () => {
       try {
-        const profileContract = getProfileContract()
-        const [numberLydToReactivate, numberLydToRegister, numberLydToUpdate] = await makeBatchRequest([
-          profileContract.methods.numberLydToReactivate().call,
-          profileContract.methods.numberLydToRegister().call,
-          profileContract.methods.numberLydToUpdate().call,
-        ])
+        const calls = ['numberCakeToReactivate', 'numberCakeToRegister', 'numberCakeToUpdate'].map((method) => ({
+          address: getProfileAddress(),
+          name: method,
+        }))
+        const [[numberCakeToReactivate], [numberCakeToRegister], [numberCakeToUpdate]] = await multicall(
+          profileABI,
+          calls,
+        )
 
         setCosts({
-          numberLydToReactivate: new BigNumber(numberLydToReactivate as string),
-          numberLydToRegister: new BigNumber(numberLydToRegister as string),
-          numberLydToUpdate: new BigNumber(numberLydToUpdate as string),
+          numberCakeToReactivate: new BigNumber(numberCakeToReactivate.toString()),
+          numberCakeToRegister: new BigNumber(numberCakeToRegister.toString()),
+          numberCakeToUpdate: new BigNumber(numberCakeToUpdate.toString()),
         })
       } catch (error) {
-        toastError('Error', 'Could not retrieve LYD costs for profile')
+        toastError(t('Error'), t('Could not retrieve CAKE costs for profile'))
       }
     }
 
     fetchCosts()
-  }, [setCosts, toastError])
+  }, [setCosts, toastError, t])
 
   return costs
 }

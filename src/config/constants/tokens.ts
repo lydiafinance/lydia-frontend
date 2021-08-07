@@ -130,6 +130,14 @@ const tokens = {
     },
     decimals: 6,
     projectLink: 'https://avax.olive.cash/',
+  bag: {
+    symbol: 'BAG',
+    address: {
+      [ChainId.AVALANCHE]: '0xa1144a6A1304bd9cbb16c800F7a867508726566E',
+      [ChainId.FUJI]: '0xa1144a6A1304bd9cbb16c800F7a867508726566E',
+    },
+    decimals: 18,
+    projectLink: 'https://baguette.exchange',
   },
 }
 

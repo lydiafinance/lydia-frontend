@@ -6,6 +6,7 @@ import Page from 'components/layout/Page'
 import { useWeb3React } from '@web3-react/core'
 import { usePools } from 'state/hooks'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
+import AutoCompoundingCard from 'views/Home/components/AutoCompoundingCard'
 import LotteryCard from 'views/Home/components/LotteryCard'
 // import EarnAssetCard from 'views/Home/components/EarnAssetCard'
 // import WinCard from 'views/Home/components/WinCard'
@@ -90,7 +91,9 @@ const Home: React.FC = () => {
       <DesktopSupportCard isMobile={isMobile}>
         <Cards column={isMobile}>
           <FarmStakingCard />
+
           <Cards column>
+            <AutoCompoundingCard />
             <EarnAPYCard />
             <TotalValueLockedCard />
           </Cards>
@@ -113,6 +116,7 @@ const Home: React.FC = () => {
         <Cards column={isMobile}>
           <LotteryCard />
           <FarmStakingCard />
+          <AutoCompoundingCard />
         </Cards>
       </MobileSupportCard>
     </Page>

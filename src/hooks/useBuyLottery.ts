@@ -40,7 +40,7 @@ export const useMultiBuyLottery = () => {
 }
 
 export const useMaxNumber = () => {
-  const [max, setMax] = useState(5)
+  const [max, setMax] = useState(4)
   const lotteryContract = useLottery()
 
   const fetchMax = useCallback(async () => {

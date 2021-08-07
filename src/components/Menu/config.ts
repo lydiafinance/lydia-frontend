@@ -44,8 +44,8 @@ const config: MenuEntry[] = [
     icon: 'CrownIcon',
     href: '/maximus',
     status: {
-      text: 'BETA',
-      color: 'warning',
+      text: 'NEW',
+      color: 'success',
     },
   },
   {
@@ -118,6 +118,14 @@ const config: MenuEntry[] = [
       {
         label: 'AvaxProjects',
         href: 'https://www.avax-projects.com/',
+      },
+      {
+        label: 'Coinpaprika',
+        href: 'https://coinpaprika.com/coin/lyd-lydia-finance-token/',
+      },
+      {
+        label: 'Nomics',
+        href: 'https://nomics.com/assets/lyd2-lydia-finance',
       },
     ],
   },

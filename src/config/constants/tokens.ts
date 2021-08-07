@@ -130,6 +130,7 @@ const tokens = {
     },
     decimals: 6,
     projectLink: 'https://avax.olive.cash/',
+  },
   bag: {
     symbol: 'BAG',
     address: {

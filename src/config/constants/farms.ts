@@ -126,6 +126,18 @@ const farms: FarmConfig[] = [
     token: tokens.dai,
     quoteToken: tokens.usdt,
   },
+  {
+    pid: 13,
+    lpSymbol: 'AVAX-YAK LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x590673007Ff2839818cB1155926758E5F969d821',
+      [ChainId.AVALANCHE]: '0x590673007Ff2839818cB1155926758E5F969d821',
+    },
+    token: tokens.yak,
+    quoteToken: tokens.wavax,
+    tokenSymbol: 'YAK',
+    quoteTokenAdresses: tokens.wavax,
+  },
 ]
 
 export default farms

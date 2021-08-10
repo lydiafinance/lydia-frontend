@@ -140,6 +140,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://baguette.exchange',
   },
+  yak: {
+    symbol: 'YAK',
+    address: {
+      [ChainId.AVALANCHE]: '0x59414b3089ce2AF0010e7523Dea7E2b35d776ec7',
+      [ChainId.FUJI]: '0x59414b3089ce2AF0010e7523Dea7E2b35d776ec7',
+    },
+    decimals: 18,
+    projectLink: 'https://yieldyak.com',
+  },
 }
 
 export default tokens

@@ -100,6 +100,10 @@ const config: MenuEntry[] = [
     icon: 'ListingIcon',
     items: [
       {
+        label: 'CoinMarketCap',
+        href: 'https://coinmarketcap.com/currencies/lydia-finance',
+      },
+      {
         label: 'CoinGecko',
         href: 'https://www.coingecko.com/en/coins/lydia-finance',
       },

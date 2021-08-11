@@ -13,6 +13,7 @@ import LotteryCard from 'views/Home/components/LotteryCard'
 import LydStats from 'views/Home/components/LydStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
 import EarnAPYCard from 'views/Home/components/EarnAPYCard'
+import BridgeCard from './components/BridgeCard';
 import PoolCard from '../Pools/components/PoolCard'
 import LydVaultCard from '../Pools/components/LydVaultCard'
 import useDeviceSize from '../../hooks/useWindowSize'
@@ -90,7 +91,10 @@ const Home: React.FC = () => {
 
       <DesktopSupportCard isMobile={isMobile}>
         <Cards column={isMobile}>
-          <FarmStakingCard />
+          <Cards column>
+            <BridgeCard />
+            <FarmStakingCard />
+          </Cards>
 
           <Cards column>
             <AutoCompoundingCard />
@@ -106,7 +110,10 @@ const Home: React.FC = () => {
 
       <MobileSupportCard isMobile={isMobile}>
         <Cards column={isMobile}>
-          <LydStats />
+          <Cards column>
+            <BridgeCard />
+            <LydStats />
+          </Cards>
           <Cards column>
             <EarnAPYCard />
 

@@ -138,6 +138,18 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'YAK',
     quoteTokenAdresses: tokens.wavax,
   },
+  {
+    pid: 14,
+    lpSymbol: 'LINK-AVAX LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0xF8FbB3c62Feb73E10914D03E5524093955E702CA',
+      [ChainId.AVALANCHE]: '0xF8FbB3c62Feb73E10914D03E5524093955E702CA',
+    },
+    token: tokens.link,
+    quoteToken: tokens.wavax,
+    tokenSymbol: 'LINK',
+    quoteTokenAdresses: tokens.wavax,
+  },
 ]
 
 export default farms

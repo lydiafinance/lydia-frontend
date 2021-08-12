@@ -149,6 +149,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://yieldyak.com',
   },
+  link: {
+    symbol: 'LINK',
+    address: {
+      [ChainId.AVALANCHE]: '0xB3fe5374F67D7a22886A0eE082b2E2f9d2651651',
+      [ChainId.FUJI]: '0xB3fe5374F67D7a22886A0eE082b2E2f9d2651651',
+    },
+    decimals: 18,
+    projectLink: 'https://chain.link',
+  },
 }
 
 export default tokens

@@ -159,7 +159,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.qi,
     quoteToken: tokens.wavax,
-    tokenSymbol: 'LINK',
+    tokenSymbol: 'QI',
     quoteTokenAdresses: tokens.qi,
   },
 ]

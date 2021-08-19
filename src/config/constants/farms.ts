@@ -150,6 +150,18 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'LINK',
     quoteTokenAdresses: tokens.wavax,
   },
+  {
+    pid: 15,
+    lpSymbol: 'QI-AVAX LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0xF8FbB3c62Feb73E10914D03E5524093955E702CA',
+      [ChainId.AVALANCHE]: '0x983E459d81f83D57757E1dDfB1318deF8A82c001',
+    },
+    token: tokens.qi,
+    quoteToken: tokens.wavax,
+    tokenSymbol: 'QI',
+    quoteTokenAdresses: tokens.qi,
+  },
 ]
 
 export default farms

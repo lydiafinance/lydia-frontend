@@ -158,6 +158,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://chain.link',
   },
+  qi: {
+    symbol: 'QI',
+    address: {
+      [ChainId.AVALANCHE]: '0x8729438eb15e2c8b576fcc6aecda6a148776c0f5',
+      [ChainId.FUJI]: '0x8729438eb15e2c8b576fcc6aecda6a148776c0f5',
+    },
+    decimals: 18,
+    projectLink: 'https://benqi.fi/',
+  },
 }
 
 export default tokens

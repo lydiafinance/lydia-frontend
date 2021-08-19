@@ -158,6 +158,69 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://chain.link',
   },
+  usdt_e: {
+    symbol: 'USDT.e',
+    address: {
+      [ChainId.AVALANCHE]: '0xc7198437980c041c805a1edcba50c1ce5db95118',
+      [ChainId.FUJI]: '0xc7198437980c041c805a1edcba50c1ce5db95118',
+    },
+    decimals: 6,
+    projectLink: 'https://tether.to/',
+  },
+  eth_e: {
+    symbol: 'ETH.e',
+    address: {
+      [ChainId.AVALANCHE]: '0x49d5c2bdffac6ce2bfdb6640f4f80f226bc10bab',
+      [ChainId.FUJI]: '0x49d5c2bdffac6ce2bfdb6640f4f80f226bc10bab',
+    },
+    decimals: 18,
+    projectLink: 'https://ptokens.io/',
+  },
+  sushi_e: {
+    symbol: 'SUSHI.e',
+    address: {
+      [ChainId.AVALANCHE]: '0x37b608519f91f70f2eeb0e5ed9af4061722e4f76',
+      [ChainId.FUJI]: '0x37b608519f91f70f2eeb0e5ed9af4061722e4f76',
+    },
+    decimals: 18,
+    projectLink: 'https://ptokens.io/',
+  },
+  dai_e: {
+    symbol: 'DAI.e',
+    address: {
+      [ChainId.AVALANCHE]: '0xd586e7f844cea2f87f50152665bcbc2c279d8d70',
+      [ChainId.FUJI]: '0xd586e7f844cea2f87f50152665bcbc2c279d8d70',
+    },
+    decimals: 18,
+    projectLink: 'https://ptokens.io/',
+  },
+  uni_e: {
+    symbol: 'UNI.e',
+    address: {
+      [ChainId.AVALANCHE]: '0x8ebaf22b6f053dffeaf46f4dd9efa95d89ba8580',
+      [ChainId.FUJI]: '0x8ebaf22b6f053dffeaf46f4dd9efa95d89ba8580',
+    },
+    decimals: 18,
+    projectLink: 'https://ptokens.io/',
+  },
+  wbtc_e: {
+    symbol: 'WBTC.e',
+    address: {
+      [ChainId.AVALANCHE]: '0x50b7545627a5162f82a992c33b87adc75187b218',
+      [ChainId.FUJI]: '0x50b7545627a5162f82a992c33b87adc75187b218',
+    },
+    decimals: 8,
+    projectLink: 'https://ptokens.io/',
+  },
+  link_e: {
+    symbol: 'LINK.e',
+    address: {
+      [ChainId.AVALANCHE]: '0x5947bb275c521040051d82396192181b413227a3',
+      [ChainId.FUJI]: '0x5947bb275c521040051d82396192181b413227a3',
+    },
+    decimals: 18,
+    projectLink: 'https://yieldyak.com',
+  },
 }
 
 export default tokens

@@ -4,16 +4,6 @@ import tokens from './tokens'
 import { FarmConfig } from './types'
 
 const farms: FarmConfig[] = [
-  // {
-  //   pid: 0,
-  //   lpSymbol: 'LYD',
-  //   lpAddresses: {
-  //     [ChainId.FUJI]: '0x520b56F7C10364F2d56D9B380E0886dAcBde4e1c',
-  //     [ChainId.AVALANCHE]: '0x45E43f8A4b43a53230b19B08dB3061A4FB421A4D',
-  //   },
-  //   token: tokens.electrum,
-  //   quoteToken: tokens.wavax,
-  // },
   {
     pid: 3,
     lpSymbol: 'USDT-LYD LP',
@@ -148,6 +138,88 @@ const farms: FarmConfig[] = [
     token: tokens.link,
     quoteToken: tokens.wavax,
     tokenSymbol: 'LINK',
+    quoteTokenAdresses: tokens.wavax,
+  },
+  {
+    pid: 15,
+    lpSymbol: 'LYD-USDT.e LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x1718309E2AD61A945FCD242F28Dc83339b5d6192',
+      [ChainId.AVALANCHE]: '0x1718309E2AD61A945FCD242F28Dc83339b5d6192',
+    },
+    token: tokens.usdt_e,
+    quoteToken: tokens.lyd,
+  },
+  {
+    pid: 16,
+    lpSymbol: 'USDT.e-AVAX LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x5Fc70cF6A4A858Cf4124013047e408367EBa1ace',
+      [ChainId.AVALANCHE]: '0x5Fc70cF6A4A858Cf4124013047e408367EBa1ace',
+    },
+    token: tokens.usdt_e,
+    quoteToken: tokens.wavax,
+  },
+  {
+    pid: 17,
+    lpSymbol: 'ETH.e-AVAX LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0xb74791cc65479132b52043b764bbB540439fdf02',
+      [ChainId.AVALANCHE]: '0xb74791cc65479132b52043b764bbB540439fdf02',
+    },
+    token: tokens.eth_e,
+    quoteToken: tokens.wavax,
+  },
+  {
+    pid: 18,
+    lpSymbol: 'ETH.e-LYD LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x7Be2c5B9dEE94102cF3920BF7192010Be04D806B',
+      [ChainId.AVALANCHE]: '0x7Be2c5B9dEE94102cF3920BF7192010Be04D806B',
+    },
+    token: tokens.eth_e,
+    quoteToken: tokens.lyd,
+  },
+  {
+    pid: 19,
+    lpSymbol: 'SUSHI.e-AVAX LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0xb4C629d453769835c2c4C6211AD0F67364D02770',
+      [ChainId.AVALANCHE]: '0xb4C629d453769835c2c4C6211AD0F67364D02770',
+    },
+    token: tokens.sushi_e,
+    quoteToken: tokens.wavax,
+  },
+  {
+    pid: 20,
+    lpSymbol: 'WBTC.e-AVAX LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x67edA35115D7Fd6930f95513472629211D827feE',
+      [ChainId.AVALANCHE]: '0x67edA35115D7Fd6930f95513472629211D827feE',
+    },
+    token: tokens.wbtc_e,
+    quoteToken: tokens.wavax,
+  },
+  {
+    pid: 21,
+    lpSymbol: 'USDT.e-DAI.e LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x7AbaB5474385918820dfBC7f35712084a91B583a',
+      [ChainId.AVALANCHE]: '0x7AbaB5474385918820dfBC7f35712084a91B583a',
+    },
+    token: tokens.dai_e,
+    quoteToken: tokens.usdt_e,
+  },
+  {
+    pid: 22,
+    lpSymbol: 'LINK.e-AVAX LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x2d560eEe40979368162ca4Ac7Ec39c8421cc732B',
+      [ChainId.AVALANCHE]: '0x2d560eEe40979368162ca4Ac7Ec39c8421cc732B',
+    },
+    token: tokens.link_e,
+    quoteToken: tokens.wavax,
+    tokenSymbol: 'LINK.e',
     quoteTokenAdresses: tokens.wavax,
   },
 ]

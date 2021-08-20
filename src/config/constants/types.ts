@@ -47,6 +47,7 @@ export interface FarmConfig {
   tokenSymbol?: any
   quoteTokenAdresses?: any
   hide?: any
+  isFinished?: boolean
   dual?: {
     rewardPerBlock: number
     earnLabel: string

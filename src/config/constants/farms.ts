@@ -4,16 +4,6 @@ import tokens from './tokens'
 import { FarmConfig } from './types'
 
 const farms: FarmConfig[] = [
-  // {
-  //   pid: 0,
-  //   lpSymbol: 'LYD',
-  //   lpAddresses: {
-  //     [ChainId.FUJI]: '0x520b56F7C10364F2d56D9B380E0886dAcBde4e1c',
-  //     [ChainId.AVALANCHE]: '0x45E43f8A4b43a53230b19B08dB3061A4FB421A4D',
-  //   },
-  //   token: tokens.electrum,
-  //   quoteToken: tokens.wavax,
-  // },
   {
     pid: 3,
     lpSymbol: 'USDT-LYD LP',
@@ -23,6 +13,18 @@ const farms: FarmConfig[] = [
     },
     token: tokens.usdt,
     quoteToken: tokens.lyd,
+    isFinished: false,
+  },
+  {
+    pid: 16,
+    lpSymbol: 'LYD-USDT.e LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x1718309E2AD61A945FCD242F28Dc83339b5d6192',
+      [ChainId.AVALANCHE]: '0x1718309E2AD61A945FCD242F28Dc83339b5d6192',
+    },
+    token: tokens.usdt_e,
+    quoteToken: tokens.lyd,
+    isFinished: false,
   },
   {
     pid: 4,
@@ -35,6 +37,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wavax,
     tokenSymbol: 'LYD',
     quoteTokenAdresses: tokens.wavax,
+    isFinished: false,
   },
   {
     pid: 7,
@@ -45,6 +48,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.png,
     quoteToken: tokens.lyd,
+    isFinished: false,
   },
   {
     pid: 9,
@@ -55,6 +59,18 @@ const farms: FarmConfig[] = [
     },
     token: tokens.eth,
     quoteToken: tokens.lyd,
+    isFinished: false,
+  },
+  {
+    pid: 19,
+    lpSymbol: 'ETH.e-LYD LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x7Be2c5B9dEE94102cF3920BF7192010Be04D806B',
+      [ChainId.AVALANCHE]: '0x7Be2c5B9dEE94102cF3920BF7192010Be04D806B',
+    },
+    token: tokens.eth_e,
+    quoteToken: tokens.lyd,
+    isFinished: false,
   },
   {
     pid: 10,
@@ -65,6 +81,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.snob,
     quoteToken: tokens.lyd,
+    isFinished: false,
   },
   {
     pid: 11,
@@ -75,6 +92,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.xava,
     quoteToken: tokens.lyd,
+    isFinished: true,
   },
   {
     pid: 1,
@@ -85,6 +103,18 @@ const farms: FarmConfig[] = [
     },
     token: tokens.usdt,
     quoteToken: tokens.wavax,
+    isFinished: false,
+  },
+  {
+    pid: 17,
+    lpSymbol: 'USDT.e-AVAX LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x5Fc70cF6A4A858Cf4124013047e408367EBa1ace',
+      [ChainId.AVALANCHE]: '0x5Fc70cF6A4A858Cf4124013047e408367EBa1ace',
+    },
+    token: tokens.usdt_e,
+    quoteToken: tokens.wavax,
+    isFinished: false,
   },
   {
     pid: 2,
@@ -95,6 +125,18 @@ const farms: FarmConfig[] = [
     },
     token: tokens.eth,
     quoteToken: tokens.wavax,
+    isFinished: false,
+  },
+  {
+    pid: 18,
+    lpSymbol: 'ETH.e-AVAX LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0xb74791cc65479132b52043b764bbB540439fdf02',
+      [ChainId.AVALANCHE]: '0xb74791cc65479132b52043b764bbB540439fdf02',
+    },
+    token: tokens.eth_e,
+    quoteToken: tokens.wavax,
+    isFinished: false,
   },
   {
     pid: 6,
@@ -105,6 +147,18 @@ const farms: FarmConfig[] = [
     },
     token: tokens.sushi,
     quoteToken: tokens.wavax,
+    isFinished: false,
+  },
+  {
+    pid: 20,
+    lpSymbol: 'SUSHI.e-AVAX LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0xb4C629d453769835c2c4C6211AD0F67364D02770',
+      [ChainId.AVALANCHE]: '0xb4C629d453769835c2c4C6211AD0F67364D02770',
+    },
+    token: tokens.sushi_e,
+    quoteToken: tokens.wavax,
+    isFinished: false,
   },
   {
     pid: 8,
@@ -115,6 +169,18 @@ const farms: FarmConfig[] = [
     },
     token: tokens.wbtc,
     quoteToken: tokens.wavax,
+    isFinished: false,
+  },
+  {
+    pid: 21,
+    lpSymbol: 'WBTC.e-AVAX LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x67edA35115D7Fd6930f95513472629211D827feE',
+      [ChainId.AVALANCHE]: '0x67edA35115D7Fd6930f95513472629211D827feE',
+    },
+    token: tokens.wbtc_e,
+    quoteToken: tokens.wavax,
+    isFinished: false,
   },
   {
     pid: 12,
@@ -125,6 +191,18 @@ const farms: FarmConfig[] = [
     },
     token: tokens.dai,
     quoteToken: tokens.usdt,
+    isFinished: false,
+  },
+  {
+    pid: 22,
+    lpSymbol: 'USDT.e-DAI.e LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x7AbaB5474385918820dfBC7f35712084a91B583a',
+      [ChainId.AVALANCHE]: '0x7AbaB5474385918820dfBC7f35712084a91B583a',
+    },
+    token: tokens.dai_e,
+    quoteToken: tokens.usdt_e,
+    isFinished: false,
   },
   {
     pid: 13,
@@ -137,6 +215,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wavax,
     tokenSymbol: 'YAK',
     quoteTokenAdresses: tokens.wavax,
+    isFinished: false,
   },
   {
     pid: 14,
@@ -149,6 +228,20 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wavax,
     tokenSymbol: 'LINK',
     quoteTokenAdresses: tokens.wavax,
+    isFinished: false,
+  },
+  {
+    pid: 23,
+    lpSymbol: 'LINK.e-AVAX LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x2d560eEe40979368162ca4Ac7Ec39c8421cc732B',
+      [ChainId.AVALANCHE]: '0x2d560eEe40979368162ca4Ac7Ec39c8421cc732B',
+    },
+    token: tokens.link_e,
+    quoteToken: tokens.wavax,
+    tokenSymbol: 'LINK.e',
+    quoteTokenAdresses: tokens.wavax,
+    isFinished: false,
   },
   {
     pid: 15,
@@ -161,6 +254,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wavax,
     tokenSymbol: 'QI',
     quoteTokenAdresses: tokens.qi,
+    isFinished: false,
   },
 ]
 

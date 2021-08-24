@@ -34,6 +34,21 @@ const pools: MaximusConfig[] = [
     quoteToken: tokens.wavax,
   },
   {
+    pid: 17,
+    lpSymbol: 'USDT.e-AVAX',
+    contractAddress: {
+      [ChainId.FUJI]: '0xeB3dDd62CF53199593811dae4653321Ce26Ec537',
+      [ChainId.AVALANCHE]: '0xeB3dDd62CF53199593811dae4653321Ce26Ec537',
+    },
+    stakingToken: {
+      [ChainId.FUJI]: '0x5Fc70cF6A4A858Cf4124013047e408367EBa1ace',
+      [ChainId.AVALANCHE]: '0x5Fc70cF6A4A858Cf4124013047e408367EBa1ace',
+    },
+    earningToken: tokens.lyd,
+    tokenPerBlock: '2',
+    quoteToken: tokens.wavax,
+  },
+  {
     pid: 4,
     lpSymbol: 'AVAX-LYD',
     contractAddress: {
@@ -62,6 +77,21 @@ const pools: MaximusConfig[] = [
     earningToken: tokens.lyd,
     tokenPerBlock: '2',
     quoteToken: tokens.usdt,
+  },
+  {
+    pid: 16,
+    lpSymbol: 'USDT.E-LYD',
+    contractAddress: {
+      [ChainId.FUJI]: '0xdF5C8D10685cbdEA26fed99A3BB1142987345013',
+      [ChainId.AVALANCHE]: '0xdF5C8D10685cbdEA26fed99A3BB1142987345013',
+    },
+    stakingToken: {
+      [ChainId.FUJI]: '0x1718309E2AD61A945FCD242F28Dc83339b5d6192',
+      [ChainId.AVALANCHE]: '0x1718309E2AD61A945FCD242F28Dc83339b5d6192',
+    },
+    earningToken: tokens.lyd,
+    tokenPerBlock: '2',
+    quoteToken: tokens.usdt_e,
   },
   {
     pid: 7,
@@ -94,6 +124,21 @@ const pools: MaximusConfig[] = [
     quoteToken: tokens.eth,
   },
   {
+    pid: 19,
+    lpSymbol: 'ETH.e-LYD',
+    contractAddress: {
+      [ChainId.FUJI]: '0x036fa505E4D6358a772f578B4031c9AF1af5Bd1D',
+      [ChainId.AVALANCHE]: '0x036fa505E4D6358a772f578B4031c9AF1af5Bd1D',
+    },
+    stakingToken: {
+      [ChainId.FUJI]: '0x7Be2c5B9dEE94102cF3920BF7192010Be04D806B',
+      [ChainId.AVALANCHE]: '0x7Be2c5B9dEE94102cF3920BF7192010Be04D806B',
+    },
+    earningToken: tokens.lyd,
+    tokenPerBlock: '2',
+    quoteToken: tokens.eth_e,
+  },
+  {
     pid: 12,
     lpSymbol: 'USDT-DAI',
     contractAddress: {
@@ -107,7 +152,7 @@ const pools: MaximusConfig[] = [
     earningToken: tokens.lyd,
     tokenPerBlock: '2',
     quoteToken: tokens.usdt,
-  },
+  }
 ]
 
 export default pools

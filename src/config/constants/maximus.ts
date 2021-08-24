@@ -79,6 +79,21 @@ const pools: MaximusConfig[] = [
     quoteToken: tokens.usdt,
   },
   {
+    pid: 16,
+    lpSymbol: 'USDT.E-LYD',
+    contractAddress: {
+      [ChainId.FUJI]: '0xdF5C8D10685cbdEA26fed99A3BB1142987345013',
+      [ChainId.AVALANCHE]: '0xdF5C8D10685cbdEA26fed99A3BB1142987345013',
+    },
+    stakingToken: {
+      [ChainId.FUJI]: '0x1718309E2AD61A945FCD242F28Dc83339b5d6192',
+      [ChainId.AVALANCHE]: '0x1718309E2AD61A945FCD242F28Dc83339b5d6192',
+    },
+    earningToken: tokens.lyd,
+    tokenPerBlock: '2',
+    quoteToken: tokens.usdt_e,
+  },
+  {
     pid: 7,
     lpSymbol: 'PNG-LYD',
     contractAddress: {
@@ -137,22 +152,7 @@ const pools: MaximusConfig[] = [
     earningToken: tokens.lyd,
     tokenPerBlock: '2',
     quoteToken: tokens.usdt,
-  },
-  {
-    pid: 16,
-    lpSymbol: 'USDT.E-LYD',
-    contractAddress: {
-      [ChainId.FUJI]: '0xdF5C8D10685cbdEA26fed99A3BB1142987345013',
-      [ChainId.AVALANCHE]: '0xdF5C8D10685cbdEA26fed99A3BB1142987345013',
-    },
-    stakingToken: {
-      [ChainId.FUJI]: '0x1718309E2AD61A945FCD242F28Dc83339b5d6192',
-      [ChainId.AVALANCHE]: '0x1718309E2AD61A945FCD242F28Dc83339b5d6192',
-    },
-    earningToken: tokens.lyd,
-    tokenPerBlock: '2',
-    quoteToken: tokens.usdt_e,
-  },
+  }
 ]
 
 export default pools

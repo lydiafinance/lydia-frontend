@@ -22,7 +22,6 @@ const CardBody = styled.a`
   padding: 10px 20px;
   display: flex;
   align-items: center;
-  text-shadow: 1px 2px #fff8d2;
 `
 
 const BridgeImage = styled(Heading)`

@@ -24,7 +24,7 @@ const StyledAutoCompoundingCard = styled(Card)`
   align-items: center;
   display: flex;
   flex: 1;
-  max-height: 168px; ;
+  max-height: 168px;
 `
 
 const CardHeader = styled.div`
@@ -42,6 +42,7 @@ const CardMidContent = styled(Heading).attrs({ size: 'xl' })`
   line-height: 44px;
   font-size: 28px;
 `
+
 const AutoCompoundingCard = () => {
   const { t } = useTranslation()
   const { lastUpdated } = useLastUpdated()

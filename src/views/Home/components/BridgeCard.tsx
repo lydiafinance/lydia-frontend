@@ -22,13 +22,15 @@ const CardBody = styled.a`
   padding: 10px 20px;
   display: flex;
   align-items: center;
-  text-shadow: 1px 2px white;
+  text-shadow: 1px 2px #fff8d2;
 `
 
-const BridgeImage = styled.img`
-  margin-right: 6px;
-  width: 64px;
-  height: 64px;
+const BridgeImage = styled(Heading)`
+  background: #ffffffa6;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 40px;
+  color: #000px;
 `
 
 const BridgeCard = () => {
@@ -39,9 +41,9 @@ const BridgeCard = () => {
       <CardBody href="https://gate.lydia.finance">
         {/* <BridgeImage src="/images/gate.svg" /> */}
 
-        <Heading color="#e60c41" scale="xl">
+        <BridgeImage color="#000" scale="xl">
           {t('LYD Gate | Buy LYD on BSC')}
-        </Heading>
+        </BridgeImage>
       </CardBody>
     </StyledBridgeCard>
   )

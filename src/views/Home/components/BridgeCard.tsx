@@ -21,8 +21,7 @@ const StyledBridgeCard = styled(Card)`
 
 const CardBody = styled.a`
   padding: 10px 20px;
-  display: flex;
-  align-items: center;
+  height: 100%;
 `
 
 const BridgeImage = styled(Heading)<{ isMobile: boolean }>`

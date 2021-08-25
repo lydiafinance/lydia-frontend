@@ -1,41 +1,50 @@
 import React from 'react'
 
-import styled from "styled-components";
-import {Card} from "@lydiafinance/uikit";
+import styled from 'styled-components'
+import { Card, Heading } from '@lydiafinance/uikit'
 
-import {useTranslation} from "../../../contexts/Localization";
+import { useTranslation } from '../../../contexts/Localization'
 
 const StyledBridgeCard = styled(Card)`
-  color: ${({theme}) => theme.colors.avalanche};
+  color: ${({ theme }) => theme.colors.avalanche};
+  height: 168px;
+  display: flex;
+  align-items: center;
+  background-image: url('/images/gate1.png');
+  background-position-x: 1px;
+  background-position-y: -90px;
+
+  display: flex;
+  align-items: baseline;
 `
 
 const CardBody = styled.a`
   padding: 10px 20px;
   display: flex;
   align-items: center;
+  text-shadow: 1px 2px white;
 `
 
 const BridgeImage = styled.img`
   margin-right: 6px;
-  width: 24px;
-  height: 24px
-`
-
-const BridgeLabel = styled.span`
-  font-weight: bold;
-  margin-right: 10px;
+  width: 64px;
+  height: 64px;
 `
 
 const BridgeCard = () => {
-    const {t} = useTranslation()
+  const { t } = useTranslation()
 
-    return <StyledBridgeCard>
-        <CardBody href="https://gate.lydia.finance">
-            <BridgeImage src="/images/gate.svg"/>
-            <BridgeLabel>{t('LYD Gate')}</BridgeLabel>
-            {t('Buy LYD on BSC')}
-        </CardBody>
+  return (
+    <StyledBridgeCard>
+      <CardBody href="https://gate.lydia.finance">
+        {/* <BridgeImage src="/images/gate.svg" /> */}
+
+        <Heading color="#e60c41" scale="xl">
+          {t('LYD Gate | Buy LYD on BSC')}
+        </Heading>
+      </CardBody>
     </StyledBridgeCard>
+  )
 }
 
-export default BridgeCard;
+export default BridgeCard

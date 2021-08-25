@@ -13,7 +13,7 @@ import LotteryCard from 'views/Home/components/LotteryCard'
 import LydStats from 'views/Home/components/LydStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
 import EarnAPYCard from 'views/Home/components/EarnAPYCard'
-import BridgeCard from './components/BridgeCard';
+import BridgeCard from './components/BridgeCard'
 import PoolCard from '../Pools/components/PoolCard'
 import LydVaultCard from '../Pools/components/LydVaultCard'
 import useDeviceSize from '../../hooks/useWindowSize'
@@ -82,12 +82,13 @@ const Home: React.FC = () => {
 
   return (
     <Page>
-      <Hero>
+      {/* <Hero>
         <Heading as="h1" scale="xl" mb="24px" color="secondary">
           {t('Lydia Finance')}
         </Heading>
         <Text>{t('AMM and yield farm on Avalanche.')}</Text>
-      </Hero>
+      </Hero> */}
+      <img src="/images/banner.gif" alt="banner" className="banner" />
 
       <DesktopSupportCard isMobile={isMobile}>
         <Cards column={isMobile}>
@@ -112,6 +113,7 @@ const Home: React.FC = () => {
         <Cards column={isMobile}>
           <Cards column>
             <BridgeCard />
+
             <LydStats />
           </Cards>
           <Cards column>

@@ -6,6 +6,13 @@ const Page = styled(Container)`
   padding-top: 16px;
   padding-bottom: 16px;
 
+  .banner {
+    width: 100%;
+    border-radius: 13px;
+    margin: 20px 0px;
+    margin-bottom: 50px;
+  }
+
   ${({ theme }) => theme.mediaQueries.sm} {
     padding-top: 24px;
     padding-bottom: 24px;

@@ -29,7 +29,7 @@ const BridgeImage = styled(Heading)<{ isMobile: boolean }>`
   background: #ffffffa6;
   border-radius: 10px;
   padding: 5px;
-  font-size: ${({ isMobile }) => `${isMobile ? '30px' : '40px'}`};
+  font-size: ${({ isMobile }) => `${isMobile ? '30px' : '38px'}`};
   color: #000px;
 `
 

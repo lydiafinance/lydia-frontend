@@ -61,10 +61,6 @@ const AutoCompoundingCard = () => {
   // Maximus
   const maximusPools = useMaximusPools(account)
 
-  if (!account) {
-    return null
-  }
-
   let maximusProfit = 0
 
   maximusPools.forEach((p) => {
@@ -73,26 +69,24 @@ const AutoCompoundingCard = () => {
 
   const earningsSum = maximusProfit + autoLydEarnings
 
-  if (!Number.isNaN(earningsSum) && earningsSum > 0) {
-    const earningsUsdt = earningsSum * lydPrice
-    return (
-      <>
-        <StyledAutoCompoundingCard>
-          <CardBody>
-            <Heading color="contrast" scale="lg">
-              {t('Auto-Compounding LYD Earnings')}
-            </Heading>
-            <CardNumbers>
-              {/* <CardValue value={earningsSum} fontSize="32px" lineHeight="1.5" /> */}
+  const earningsUsdt = earningsSum * lydPrice
+  return (
+    <>
+      <StyledAutoCompoundingCard>
+        <CardBody>
+          <Heading color="contrast" scale="lg">
+            {t('Auto-Compounding LYD Earnings')}
+          </Heading>
+          <CardNumbers>
+            {/* <CardValue value={earningsSum} fontSize="32px" lineHeight="1.5" /> */}
 
-              <CardMidContent color="#E60C41">{earningsSum}</CardMidContent>
-              <CardUsdValue key={earningsUsdt} value={earningsUsdt} />
-            </CardNumbers>
-          </CardBody>
-        </StyledAutoCompoundingCard>
-      </>
-    )
-  }
+            <CardMidContent color="#E60C41">{earningsSum}</CardMidContent>
+            <CardUsdValue key={earningsUsdt} value={earningsUsdt} />
+          </CardNumbers>
+        </CardBody>
+      </StyledAutoCompoundingCard>
+    </>
+  )
 
   return null
 }

@@ -102,9 +102,9 @@ const Home: React.FC = () => {
           </Cards>
 
           <Cards column>
-            <AutoCompoundingCard />
-            <EarnAPYCard />
             <TotalValueLockedCard />
+            <EarnAPYCard />
+            <AutoCompoundingCard />
           </Cards>
         </Cards>
         <Cards column={isMobile}>

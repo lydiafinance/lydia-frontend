@@ -230,6 +230,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://yieldyak.com',
   },
+  cnr: {
+    symbol: 'CNR',
+    address: {
+      [ChainId.AVALANCHE]: '0x8D88e48465F30Acfb8daC0b3E35c9D6D7d36abaf',
+      [ChainId.FUJI]: '0x8D88e48465F30Acfb8daC0b3E35c9D6D7d36abaf',
+    },
+    decimals: 18,
+    projectLink: 'https://canary.exchange',
+  },
 }
 
 export default tokens

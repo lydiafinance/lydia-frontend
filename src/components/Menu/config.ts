@@ -7,7 +7,7 @@ const config: MenuEntry[] = [
     href: '/',
   },
   {
-    label: 'Trade',
+    label: 'Exchange',
     icon: 'TradeIcon',
     items: [
       {
@@ -26,17 +26,18 @@ const config: MenuEntry[] = [
     href: 'https://gate.lydia.finance/#/bridge',
     status: {
       text: 'Bridge',
-      color: 'success',
+      // @ts-ignore
+      color: 'desc',
     },
   },
   {
     label: 'Farms',
-    icon: 'FarmIcon',
+    icon: 'PoolIcon',
     href: '/farms',
   },
   {
-    label: 'Pools',
-    icon: 'PoolIcon',
+    label: 'Electrum Pools',
+    icon: 'FarmIcon',
     href: '/pools',
   },
   {
@@ -50,11 +51,20 @@ const config: MenuEntry[] = [
   },
   {
     label: 'Lottery',
-    icon: 'TicketIcon',
+    icon: 'Lottery2',
     href: '/lottery',
     status: {
       text: 'NEW',
       color: 'success',
+    },
+  },
+  {
+    label: 'Launchpad',
+    icon: 'LaunchpadIcon',
+    href: '/coming-soon',
+    status: {
+      text: 'SOON',
+      color: 'warning',
     },
   },
   // {
@@ -90,11 +100,6 @@ const config: MenuEntry[] = [
   //     },
   //   ],
   // },
-  {
-    label: 'Audit',
-    icon: 'ShieldIcon',
-    href: 'https://docs.lydia.finance/security/certik-audit',
-  },
   {
     label: 'Listings',
     icon: 'ListingIcon',
@@ -155,13 +160,8 @@ const config: MenuEntry[] = [
       },
     ],
   },
-  // {
-  //   label: 'IFO',
-  //   icon: 'IfoIcon',
-  //   href: '/ifo',
-  // },
   {
-    label: 'More',
+    label: 'Learn More',
     icon: 'MoreIcon',
     items: [
       {
@@ -177,6 +177,11 @@ const config: MenuEntry[] = [
       //   href: 'https://lydia.medium.com',
       // },
     ],
+  },
+  {
+    label: 'Audited by CertiK',
+    icon: 'ShieldIcon',
+    href: 'https://www.certik.org/projects/lydiafinance',
   },
 ]
 

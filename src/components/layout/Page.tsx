@@ -10,7 +10,7 @@ const Page = styled(Container)`
     width: 100%;
     border-radius: 13px;
     margin: 20px 0px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {

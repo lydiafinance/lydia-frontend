@@ -88,7 +88,11 @@ const Home: React.FC = () => {
         </Heading>
         <Text>{t('AMM and yield farm on Avalanche.')}</Text>
       </Hero> */}
-      <img src="/images/banner.gif" alt="banner" className="banner" />
+      {isMobile ? (
+        <img src="/images/banner-mobile.gif" alt="banner" className="banner" />
+      ) : (
+        <img src="/images/banner.gif" alt="banner" className="banner" />
+      )}
 
       <DesktopSupportCard isMobile={isMobile}>
         <Cards column={isMobile}>

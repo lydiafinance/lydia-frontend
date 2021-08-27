@@ -8,7 +8,7 @@ import useDeviceSize from '../../../hooks/useWindowSize'
 
 const StyledBridgeCard = styled(Card)`
   color: ${({ theme }) => theme.colors.avalanche};
-  height: 168px;
+  height: 250px;
   display: flex;
   align-items: center;
   background-image: url('/images/gate1.png');
@@ -28,8 +28,9 @@ const BridgeImage = styled(Heading)<{ isMobile: boolean }>`
   background: #ffffffa6;
   border-radius: 10px;
   padding: 5px;
-  font-size: ${({ isMobile }) => `${isMobile ? '30px' : '38px'}`};
-  color: #000px;
+  font-size: ${({ isMobile }) => `${isMobile ? '25px' : '38px'}`};
+  color: #000;
+  background-position: left;
 `
 
 // font-size: 30px;

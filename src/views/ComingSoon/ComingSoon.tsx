@@ -11,10 +11,12 @@ const Airdrop: React.FC = () => {
   return (
     <Page>
       <Hero>
-        <img src="/images/white_king.png" alt="Electrum POOL icon" width={300} height={300} />
-        <Heading as="h1" scale="xxl" mb="16px">
-          {t('Coming Soon')}
-        </Heading>
+        <a href="https://medium.com/@lydiafinance/the-lydia-launchpad-is-coming-33dc5a141656">
+          <Heading as="h1" scale="xxl" mb="16px">
+            {t('Coming Soon')}
+          </Heading>
+          <img src="/images/launchpad.png" alt="Electrum POOL icon" width={2000} height={300} />
+        </a>
       </Hero>
     </Page>
   )
@@ -35,6 +37,10 @@ const Hero = styled.div`
   align-self: center;
   justify-content: center;
   flex-direction: column;
+
+  img {
+    border-radius: 10px;
+  }
 
   .center {
     display: flex;

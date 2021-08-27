@@ -25,7 +25,7 @@ const config: MenuEntry[] = [
     icon: 'GateIcon',
     href: 'https://gate.lydia.finance/#/bridge',
     status: {
-      text: 'Bridge',
+      text: 'BRIDGE',
       // @ts-ignore
       color: 'failure',
     },
@@ -45,7 +45,7 @@ const config: MenuEntry[] = [
     icon: 'CrownIcon',
     href: '/maximus',
     status: {
-      text: 'NEW',
+      text: 'EARN',
       color: 'success',
     },
   },
@@ -54,7 +54,7 @@ const config: MenuEntry[] = [
     icon: 'Lottery2',
     href: '/lottery',
     status: {
-      text: 'NEW',
+      text: 'WIN',
       color: 'success',
     },
   },

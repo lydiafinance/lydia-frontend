@@ -27,7 +27,7 @@ const config: MenuEntry[] = [
     status: {
       text: 'Bridge',
       // @ts-ignore
-      color: 'desc',
+      color: 'failure',
     },
   },
   {

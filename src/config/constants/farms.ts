@@ -96,7 +96,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 1,
-    lpSymbol: 'USDT-AVAX LP',
+    lpSymbol: 'AVAX-USDT LP',
     lpAddresses: {
       [ChainId.FUJI]: '0xb239eafea4e312f9409f96493a5f24bb4a23af18',
       [ChainId.AVALANCHE]: '0xe22a65204726f102d9e3539b85d3999dee2e421f',
@@ -107,7 +107,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 17,
-    lpSymbol: 'USDT.e-AVAX LP',
+    lpSymbol: 'AVAX-USDT.e LP',
     lpAddresses: {
       [ChainId.FUJI]: '0x5Fc70cF6A4A858Cf4124013047e408367EBa1ace',
       [ChainId.AVALANCHE]: '0x5Fc70cF6A4A858Cf4124013047e408367EBa1ace',
@@ -118,7 +118,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 2,
-    lpSymbol: 'ETH-AVAX LP',
+    lpSymbol: 'AVAX-ETH LP',
     lpAddresses: {
       [ChainId.FUJI]: '0x1ccd24def23a742d56a976810ca5bda37b43744d',
       [ChainId.AVALANCHE]: '0x58128ab3ecbf703682ede72f341944bffe3524b9',
@@ -129,7 +129,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 18,
-    lpSymbol: 'ETH.e-AVAX LP',
+    lpSymbol: 'AVAX-ETH.e LP',
     lpAddresses: {
       [ChainId.FUJI]: '0xb74791cc65479132b52043b764bbB540439fdf02',
       [ChainId.AVALANCHE]: '0xb74791cc65479132b52043b764bbB540439fdf02',
@@ -151,7 +151,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 20,
-    lpSymbol: 'SUSHI.e-AVAX LP',
+    lpSymbol: 'AVAX-SUSHI.e LP',
     lpAddresses: {
       [ChainId.FUJI]: '0xb4C629d453769835c2c4C6211AD0F67364D02770',
       [ChainId.AVALANCHE]: '0xb4C629d453769835c2c4C6211AD0F67364D02770',
@@ -162,7 +162,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 8,
-    lpSymbol: 'WBTC-AVAX LP',
+    lpSymbol: 'AVAX-WBTC LP',
     lpAddresses: {
       [ChainId.FUJI]: '0x1ccd24def23a742d56a976810ca5bda37b43744d',
       [ChainId.AVALANCHE]: '0x9cfb46d0b92ac83aaa9ed0913f3f01cdbe22176d',
@@ -173,7 +173,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 21,
-    lpSymbol: 'WBTC.e-AVAX LP',
+    lpSymbol: 'AVAX-WBTC.e LP',
     lpAddresses: {
       [ChainId.FUJI]: '0x67edA35115D7Fd6930f95513472629211D827feE',
       [ChainId.AVALANCHE]: '0x67edA35115D7Fd6930f95513472629211D827feE',
@@ -206,7 +206,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 13,
-    lpSymbol: 'YAK-AVAX LP',
+    lpSymbol: 'AVAX-YAK LP',
     lpAddresses: {
       [ChainId.FUJI]: '0x590673007Ff2839818cB1155926758E5F969d821',
       [ChainId.AVALANCHE]: '0x590673007Ff2839818cB1155926758E5F969d821',
@@ -219,7 +219,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 14,
-    lpSymbol: 'LINK-AVAX LP',
+    lpSymbol: 'AVAX-LINK LP',
     lpAddresses: {
       [ChainId.FUJI]: '0xF8FbB3c62Feb73E10914D03E5524093955E702CA',
       [ChainId.AVALANCHE]: '0xF8FbB3c62Feb73E10914D03E5524093955E702CA',
@@ -232,7 +232,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 23,
-    lpSymbol: 'LINK.e-AVAX LP',
+    lpSymbol: 'AVAX-LINK.e LP',
     lpAddresses: {
       [ChainId.FUJI]: '0x2d560eEe40979368162ca4Ac7Ec39c8421cc732B',
       [ChainId.AVALANCHE]: '0x2d560eEe40979368162ca4Ac7Ec39c8421cc732B',
@@ -245,7 +245,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 15,
-    lpSymbol: 'QI-AVAX LP',
+    lpSymbol: 'AVAX-QI LP',
     lpAddresses: {
       [ChainId.FUJI]: '0xF8FbB3c62Feb73E10914D03E5524093955E702CA',
       [ChainId.AVALANCHE]: '0x983E459d81f83D57757E1dDfB1318deF8A82c001',
@@ -259,7 +259,7 @@ const farms: FarmConfig[] = [
 
   {
     pid: 24,
-    lpSymbol: 'XAVA-AVAX LP',
+    lpSymbol: 'AVAX-XAVA LP',
     lpAddresses: {
       [ChainId.FUJI]: '0x8cE7dF6508a2783480db7063809c3dabB01893f5',
       [ChainId.AVALANCHE]: '0x8cE7dF6508a2783480db7063809c3dabB01893f5',

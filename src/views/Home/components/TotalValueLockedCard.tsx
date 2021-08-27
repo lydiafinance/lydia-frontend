@@ -9,6 +9,7 @@ const StyledTotalValueLockedCard = styled(Card)`
   align-items: center;
   display: flex;
   flex: 1;
+  max-height: 168px;
 `
 
 export interface ApiTvlResponse {
@@ -26,7 +27,7 @@ const TotalValueLockedCard = () => {
   return (
     <StyledTotalValueLockedCard>
       <CardBody>
-        <Heading scale="lg" mb="24px">
+        <Heading scale="xl" mb="12px">
           {t('Total Value Locked (TVL)')}
         </Heading>
         {data ? (

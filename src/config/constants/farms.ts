@@ -256,7 +256,6 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: tokens.qi,
     isFinished: false,
   },
-
   {
     pid: 24,
     lpSymbol: 'XAVA-AVAX LP',
@@ -267,6 +266,19 @@ const farms: FarmConfig[] = [
     token: tokens.xava,
     quoteToken: tokens.wavax,
     tokenSymbol: 'XAVA',
+    quoteTokenAdresses: tokens.wavax,
+    isFinished: false,
+  },
+  {
+    pid: 25,
+    lpSymbol: 'VSO-AVAX LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x4c9b23dfff6a15cad84008ecf5b424b715d8e82c',
+      [ChainId.AVALANCHE]: '0x4c9b23dfff6a15cad84008ecf5b424b715d8e82c',
+    },
+    token: tokens.vso,
+    quoteToken: tokens.wavax,
+    tokenSymbol: 'VSO',
     quoteTokenAdresses: tokens.wavax,
     isFinished: false,
   },

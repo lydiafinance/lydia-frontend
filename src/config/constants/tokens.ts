@@ -239,6 +239,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://canary.exchange',
   },
+  vso: {
+    symbol: 'VSO',
+    address: {
+      [ChainId.AVALANCHE]: '0x846D50248BAf8b7ceAA9d9B53BFd12d7D7FBB25a',
+      [ChainId.FUJI]: '0x846D50248BAf8b7ceAA9d9B53BFd12d7D7FBB25a',
+    },
+    decimals: 18,
+    projectLink: 'https://verso.finance',
+  },
 }
 
 export default tokens

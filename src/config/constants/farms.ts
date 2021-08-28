@@ -27,6 +27,17 @@ const farms: FarmConfig[] = [
     isFinished: false,
   },
   {
+    pid: 26,
+    lpSymbol: 'DAI.e-LYD LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x4ee072c5946b4cdc00cbdeb4a4e54a03cf6d08d3',
+      [ChainId.AVALANCHE]: '0x4ee072c5946b4cdc00cbdeb4a4e54a03cf6d08d3',
+    },
+    token: tokens.dai_e,
+    quoteToken: tokens.lyd,
+    isFinished: false,
+  },
+  {
     pid: 4,
     lpSymbol: 'AVAX-LYD LP',
     lpAddresses: {

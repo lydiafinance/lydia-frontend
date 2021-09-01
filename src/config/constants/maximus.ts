@@ -17,6 +17,7 @@ const pools: MaximusConfig[] = [
     earningToken: tokens.lyd,
     tokenPerBlock: '2',
     quoteToken: tokens.wavax,
+    isFinished: true
   },
   {
     pid: 1,
@@ -32,6 +33,7 @@ const pools: MaximusConfig[] = [
     earningToken: tokens.lyd,
     tokenPerBlock: '2',
     quoteToken: tokens.wavax,
+    isFinished: true
   },
   {
     pid: 17,
@@ -77,6 +79,7 @@ const pools: MaximusConfig[] = [
     earningToken: tokens.lyd,
     tokenPerBlock: '2',
     quoteToken: tokens.usdt,
+    isFinished: true
   },
   {
     pid: 16,
@@ -122,6 +125,7 @@ const pools: MaximusConfig[] = [
     earningToken: tokens.lyd,
     tokenPerBlock: '2',
     quoteToken: tokens.eth,
+    isFinished: true
   },
   {
     pid: 19,
@@ -152,6 +156,7 @@ const pools: MaximusConfig[] = [
     earningToken: tokens.lyd,
     tokenPerBlock: '2',
     quoteToken: tokens.usdt,
+    isFinished: true
   }
 ]
 

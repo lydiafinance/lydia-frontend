@@ -91,7 +91,7 @@ const Home: React.FC = () => {
       {isMobile ? (
         <img src="/images/banner-mobile.gif" alt="banner" className="banner" />
       ) : (
-        <img src="/images/banner.gif" alt="banner" className="banner" />
+        <img src="/images/crop-desktop-banner.gif" alt="banner" className="banner" />
       )}
 
       <DesktopSupportCard isMobile={isMobile}>
@@ -102,9 +102,9 @@ const Home: React.FC = () => {
           </Cards>
 
           <Cards column>
-            <AutoCompoundingCard />
-            <EarnAPYCard />
             <TotalValueLockedCard />
+            <EarnAPYCard />
+            <AutoCompoundingCard />
           </Cards>
         </Cards>
         <Cards column={isMobile}>
@@ -121,9 +121,8 @@ const Home: React.FC = () => {
             <LydStats />
           </Cards>
           <Cards column>
-            <EarnAPYCard />
-
             <TotalValueLockedCard />
+            <EarnAPYCard />
           </Cards>
         </Cards>
         <Cards column={isMobile}>

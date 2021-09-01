@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import { Route, useRouteMatch } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import orderBy from 'lodash/orderBy'
@@ -20,40 +20,53 @@ const Pools: React.FC = () => {
   const { account } = useWeb3React()
   const pools = useMaximusPools(account)
   const { data: farms } = useFarms()
-  const [stakedOnly, setStakedOnly] = usePersistState(false,  { localStorageKey: 'lydia_pool_staked' })
-  const stakedOnlyPools = useMemo(
-    () => pools.filter((pool) => pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0)),
-    [pools],
-  )
+
+  const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'lydia_pool_staked' })
+
+  const activePools = pools.filter((pool) => !pool.isFinished)
+  const stakedOnlyPools = activePools.filter((pool) => pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0))
+
+  const inActivePools = pools.filter((pool) => pool.isFinished)
+  const stakedInactivePools = inActivePools.filter((pool) => pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0))
 
   return (
     <>
       <PageHeader>
-        <Flex justifyContent="space-between" flexDirection={['column', null, 'row']}>
-          <Flex flexDirection="column" mr={['8px', 0]}>
-            <Heading as="h1" scale="xxl" color="text" mb="24px">
+        <Flex justifyContent='space-between' flexDirection={['column', null, 'row']}>
+          <Flex flexDirection='column' mr={['8px', 0]}>
+            <Heading as='h1' scale='xxl' color='text' mb='24px'>
               {t('Maximus Farm ✨')}
             </Heading>
-            <Heading scale="md" color="text">
+            <Heading scale='md' color='text'>
               {t('Stake LP token to earn automatically.')}
             </Heading>
-            <Heading scale="md" color="text">
+            <Heading scale='md' color='text'>
               {t('High APY, low risk, no effort, no fee.')}
             </Heading>
           </Flex>
         </Flex>
       </PageHeader>
       <Page>
-        <PoolTabButtons stakedOnly={stakedOnly} setStakedOnly={setStakedOnly} />
+        <PoolTabButtons stakedOnly={stakedOnly} setStakedOnly={setStakedOnly}
+                        hasStakeInFinishedFarms={stakedInactivePools.length > 0} />
         <FlexLayout>
           <Route exact path={`${path}`}>
             {stakedOnly
               ? orderBy(stakedOnlyPools, ['sortOrder']).map((pool) => (
-                  <LydVaultCard pool={pool} showStakedOnly={stakedOnly} farms={farms} />
-                ))
-              : orderBy(pools, ['sortOrder']).map((pool) => (
-                  <LydVaultCard pool={pool} showStakedOnly={stakedOnly} farms={farms} />
-                ))}
+                <LydVaultCard pool={pool} showStakedOnly={stakedOnly} farms={farms} key={pool.pid} />
+              ))
+              : orderBy(activePools, ['sortOrder']).map((pool) => (
+                <LydVaultCard pool={pool} showStakedOnly={stakedOnly} farms={farms} key={pool.pid} />
+              ))}
+          </Route>
+          <Route exact path={`${path}/history`}>
+            {stakedOnly
+              ? orderBy(stakedInactivePools, ['sortOrder']).map((pool) => (
+                <LydVaultCard pool={pool} showStakedOnly={stakedOnly} farms={farms} key={pool.pid} />
+              ))
+              : orderBy(inActivePools, ['sortOrder']).map((pool) => (
+                <LydVaultCard pool={pool} showStakedOnly={stakedOnly} farms={farms} key={pool.pid} />
+              ))}
           </Route>
         </FlexLayout>
       </Page>

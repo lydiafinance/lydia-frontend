@@ -114,7 +114,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.usdt,
     quoteToken: tokens.wavax,
-    isFinished: false,
+    isFinished: true,
   },
   {
     pid: 17,
@@ -136,7 +136,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.eth,
     quoteToken: tokens.wavax,
-    isFinished: false,
+    isFinished: true,
   },
   {
     pid: 18,
@@ -180,7 +180,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.wbtc,
     quoteToken: tokens.wavax,
-    isFinished: false,
+    isFinished: true,
   },
   {
     pid: 21,
@@ -202,7 +202,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.dai,
     quoteToken: tokens.usdt,
-    isFinished: false,
+    isFinished: true,
   },
   {
     pid: 22,
@@ -239,7 +239,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wavax,
     tokenSymbol: 'LINK',
     quoteTokenAdresses: tokens.wavax,
-    isFinished: false,
+    isFinished: true,
   },
   {
     pid: 23,

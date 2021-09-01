@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Card, CardBody, Heading, Skeleton, Text } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useGetStats } from 'hooks/api'
+import useDeviceSize from '../../../hooks/useWindowSize'
 
 const StyledTotalValueLockedCard = styled(Card)`
   align-items: center;
@@ -23,11 +24,13 @@ const TotalValueLockedCard = () => {
   const { t } = useTranslation()
   const data = useGetStats()
   const tvl = data ? data?.total_value_locked_all.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
+  const deviceSize = useDeviceSize()
+  const { isMobile } = deviceSize
 
   return (
     <StyledTotalValueLockedCard>
       <CardBody>
-        <Heading scale="xl" mb="12px">
+        <Heading scale={isMobile ? 'lg' : 'xl'} mb="12px">
           {t('Total Value Locked (TVL)')}
         </Heading>
         {data ? (

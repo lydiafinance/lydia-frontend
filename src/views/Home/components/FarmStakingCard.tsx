@@ -37,8 +37,9 @@ const Actions = styled.div`
   margin-top: 24px;
 `
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ isMobile: boolean }>`
   display: flex;
+  flex-direction: ${({ isMobile }) => (isMobile ? 'column' : 'row')};
   width: 100%;
   align-items: unset;
 `
@@ -50,7 +51,7 @@ const FarmedStakingCard = () => {
   const farmsWithBalance = useFarmsWithBalance()
   const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
   const deviceSize = useDeviceSize()
-  const { isDesktop } = deviceSize
+  const { isDesktop, isMobile } = deviceSize
 
   const { onReward } = useAllHarvest(balancesWithValue.map((farmWithBalance) => farmWithBalance.pid))
 
@@ -71,7 +72,7 @@ const FarmedStakingCard = () => {
         <Heading scale="xl" mb="24px">
           {t('Farms & Staking')}
         </Heading>
-        <Wrapper>
+        <Wrapper isMobile={isMobile}>
           {isDesktop && <CardImage src="/images/lyd.png" alt="lyd logo" width={64} height={64} />}
           <Block>
             <Label>{t('LYD to Harvest')}:</Label>

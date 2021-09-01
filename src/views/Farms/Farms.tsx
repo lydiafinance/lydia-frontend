@@ -153,8 +153,10 @@ const Farms: React.FC = () => {
     }
   }, [isArchived, dispatch, account])
 
-  const activeFarms = _farmsLP.filter((farm) => farm.pid !== 0 && !farm.isFinished && !isArchivedPid(farm.pid))
-  const inactiveFarms = _farmsLP.filter((farm) => farm.pid !== 0 && farm.isFinished && !isArchivedPid(farm.pid))
+  const activeFarms = _farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
+  const inactiveFarms = _farmsLP.filter(
+    (farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid),
+  )
   const archivedFarms = _farmsLP.filter((farm) => isArchivedPid(farm.pid))
 
   const stakedOnlyFarms = activeFarms.filter(

@@ -176,6 +176,15 @@ const tokens = {
     decimals: 6,
     projectLink: 'https://tether.to/',
   },
+  usdc_e: {
+    symbol: 'USDC.E',
+    address: {
+      [ChainId.AVALANCHE]: '0xA7D7079b0FEaD91F3e65f86E8915Cb59c1a4C664',
+      [ChainId.FUJI]: '0xA7D7079b0FEaD91F3e65f86E8915Cb59c1a4C664',
+    },
+    decimals: 6,
+    projectLink: 'https://www.centre.io/usdc',
+  },
   eth_e: {
     symbol: 'ETH.e',
     address: {

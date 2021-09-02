@@ -177,7 +177,7 @@ const tokens = {
     projectLink: 'https://tether.to/',
   },
   usdc_e: {
-    symbol: 'USDC.E',
+    symbol: 'USDC.e',
     address: {
       [ChainId.AVALANCHE]: '0xA7D7079b0FEaD91F3e65f86E8915Cb59c1a4C664',
       [ChainId.FUJI]: '0xA7D7079b0FEaD91F3e65f86E8915Cb59c1a4C664',

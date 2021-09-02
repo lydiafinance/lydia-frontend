@@ -216,6 +216,17 @@ const farms: FarmConfig[] = [
     isFinished: false,
   },
   {
+    pid: 27,
+    lpSymbol: 'USDT.e-USDC.e LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0xc25251390dc341daeb0b928dd7113aeec7504a2c',
+      [ChainId.AVALANCHE]: '0xc25251390dc341daeb0b928dd7113aeec7504a2c',
+    },
+    token: tokens.usdc_e,
+    quoteToken: tokens.usdt_e,
+    isFinished: false,
+  },
+  {
     pid: 13,
     lpSymbol: 'AVAX-YAK LP',
     lpAddresses: {

@@ -293,7 +293,7 @@ const Farms: React.FC = () => {
         originalValue: farm.apr,
       },
       farm: {
-        image: farm.lpSymbol.split(' ')[0].toLocaleLowerCase(),
+        image: farm.lpSymbol.split(' ')[0].toLowerCase(),
         label: lpLabel,
         pid: farm.pid,
       },

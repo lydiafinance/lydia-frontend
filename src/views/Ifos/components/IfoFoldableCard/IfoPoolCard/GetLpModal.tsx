@@ -15,7 +15,7 @@ const GetLpModal: React.FC<Partial<Props>> = ({ currency, onDismiss }) => {
     <Modal title={t('LP Tokens required')} onDismiss={onDismiss}>
       <ModalBody maxWidth="288px">
         <Image
-          src={`/images/farms/${currency.symbol.split(' ')[0].toLocaleLowerCase()}.svg`}
+          src={`/images/farms/${currency.symbol.split(' ')[0].toLowerCase()}.svg`}
           width={72}
           height={72}
           margin="auto"

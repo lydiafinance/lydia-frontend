@@ -95,7 +95,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, lydPrice, account })
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
-  const farmImage = farm.lpSymbol.split(' ')[0].toLocaleLowerCase()
+  const farmImage = farm.lpSymbol.split(' ')[0].toLowerCase()
 
   const totalValueFormatted = farm.liquidity
     ? `$${farm.liquidity.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`

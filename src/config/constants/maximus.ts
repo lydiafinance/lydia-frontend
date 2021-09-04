@@ -109,7 +109,7 @@ const pools: MaximusConfig[] = [
     },
     earningToken: tokens.lyd,
     tokenPerBlock: '2',
-    quoteToken: tokens.usdt,
+    quoteToken: tokens.dai_e,
   },
   {
     pid: 7,

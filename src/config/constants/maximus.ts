@@ -17,7 +17,7 @@ const pools: MaximusConfig[] = [
     earningToken: tokens.lyd,
     tokenPerBlock: '2',
     quoteToken: tokens.wavax,
-    isFinished: true
+    isFinished: true,
   },
   {
     pid: 1,
@@ -33,7 +33,7 @@ const pools: MaximusConfig[] = [
     earningToken: tokens.lyd,
     tokenPerBlock: '2',
     quoteToken: tokens.wavax,
-    isFinished: true
+    isFinished: true,
   },
   {
     pid: 17,
@@ -79,7 +79,7 @@ const pools: MaximusConfig[] = [
     earningToken: tokens.lyd,
     tokenPerBlock: '2',
     quoteToken: tokens.usdt,
-    isFinished: true
+    isFinished: true,
   },
   {
     pid: 16,
@@ -95,6 +95,21 @@ const pools: MaximusConfig[] = [
     earningToken: tokens.lyd,
     tokenPerBlock: '2',
     quoteToken: tokens.usdt_e,
+  },
+  {
+    pid: 22,
+    lpSymbol: 'USDT.e-DAI.e',
+    contractAddress: {
+      [ChainId.FUJI]: '0xad9aC72aAE3dB711CDcC9FD1142bE46742102354',
+      [ChainId.AVALANCHE]: '0xad9aC72aAE3dB711CDcC9FD1142bE46742102354',
+    },
+    stakingToken: {
+      [ChainId.FUJI]: '0x7AbaB5474385918820dfBC7f35712084a91B583a',
+      [ChainId.AVALANCHE]: '0x7AbaB5474385918820dfBC7f35712084a91B583a',
+    },
+    earningToken: tokens.lyd,
+    tokenPerBlock: '2',
+    quoteToken: tokens.usdt,
   },
   {
     pid: 7,
@@ -125,7 +140,22 @@ const pools: MaximusConfig[] = [
     earningToken: tokens.lyd,
     tokenPerBlock: '2',
     quoteToken: tokens.eth,
-    isFinished: true
+    isFinished: true,
+  },
+  {
+    pid: 18,
+    lpSymbol: 'AVAX-ETH.e',
+    contractAddress: {
+      [ChainId.FUJI]: '0x15eCF52152C15029557c89CD9CF9Cf148366BFDC',
+      [ChainId.AVALANCHE]: '0x15eCF52152C15029557c89CD9CF9Cf148366BFDC',
+    },
+    stakingToken: {
+      [ChainId.FUJI]: '0xb74791cc65479132b52043b764bbb540439fdf02',
+      [ChainId.AVALANCHE]: '0xb74791cc65479132b52043b764bbb540439fdf02',
+    },
+    earningToken: tokens.lyd,
+    tokenPerBlock: '2',
+    quoteToken: tokens.wavax,
   },
   {
     pid: 19,
@@ -156,8 +186,8 @@ const pools: MaximusConfig[] = [
     earningToken: tokens.lyd,
     tokenPerBlock: '2',
     quoteToken: tokens.usdt,
-    isFinished: true
-  }
+    isFinished: true,
+  },
 ]
 
 export default pools

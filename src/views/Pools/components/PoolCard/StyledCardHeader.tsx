@@ -17,7 +17,7 @@ const StyledCardHeader: React.FC<{
   const { t } = useTranslation()
   const poolImageSrc = isAutoVault
     ? `lyd-lydvault.svg`
-    : `${earningTokenSymbol}-${stakingTokenSymbol}.svg`.toLocaleLowerCase()
+    : `${earningTokenSymbol}-${stakingTokenSymbol}.svg`.toLowerCase()
   const isLydPool = earningTokenSymbol === 'LYD' && stakingTokenSymbol === 'LYD'
   const background = isLydPool ? 'bubblegum' : 'cardHeader'
 

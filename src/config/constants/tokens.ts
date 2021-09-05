@@ -257,6 +257,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://verso.finance',
   },
+  a_avax_b: {
+    symbol: 'aAVAXb',
+    address: {
+      [ChainId.AVALANCHE]: '0x6C6f910A79639dcC94b4feEF59Ff507c2E843929',
+      [ChainId.FUJI]: '0x6C6f910A79639dcC94b4feEF59Ff507c2E843929',
+    },
+    decimals: 18,
+    projectLink: 'https://stakefi.ankr.com',
+  },
 }
 
 export default tokens

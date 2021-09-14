@@ -266,6 +266,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://stakefi.ankr.com',
   },
+  pefi: {
+    symbol: 'PEFI',
+    address: {
+      [ChainId.AVALANCHE]: '0xe896cdeaac9615145c0ca09c8cd5c25bced6384c',
+      [ChainId.FUJI]: '0xe896cdeaac9615145c0ca09c8cd5c25bced6384c',
+    },
+    decimals: 18,
+    projectLink: 'https://penguinfinance.org',
+  },
 }
 
 export default tokens

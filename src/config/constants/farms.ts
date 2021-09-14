@@ -95,6 +95,30 @@ const farms: FarmConfig[] = [
     isFinished: false,
   },
   {
+    pid: 29,
+    lpSymbol: 'PEFI-USDT.e LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0xdb57a10b415fb4f246fca159bb9b98ad0b126a71',
+      [ChainId.AVALANCHE]: '0xdb57a10b415fb4f246fca159bb9b98ad0b126a71',
+    },
+    token: tokens.pefi,
+    quoteToken: tokens.usdt_e,
+    tokenSymbol: 'PEFI',
+    quoteTokenAdresses: tokens.usdt_e,
+    isFinished: false,
+  },
+  {
+    pid: 30,
+    lpSymbol: 'PEFI-LYD LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0xCC592739C6c64f797E46CD00f12a6f15c2DF1c04',
+      [ChainId.AVALANCHE]: '0xCC592739C6c64f797E46CD00f12a6f15c2DF1c04',
+    },
+    token: tokens.pefi,
+    quoteToken: tokens.lyd,
+    isFinished: false,
+  },
+  {
     pid: 11,
     lpSymbol: 'XAVA-LYD LP',
     lpAddresses: {
@@ -316,31 +340,7 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'aAVAXb',
     quoteTokenAdresses: tokens.wavax,
     isFinished: false,
-  },
-  {
-    pid: 29,
-    lpSymbol: 'PEFI-USDT.e LP',
-    lpAddresses: {
-      [ChainId.FUJI]: '0xdb57a10b415fb4f246fca159bb9b98ad0b126a71',
-      [ChainId.AVALANCHE]: '0xdb57a10b415fb4f246fca159bb9b98ad0b126a71',
-    },
-    token: tokens.pefi,
-    quoteToken: tokens.usdt_e,
-    tokenSymbol: 'PEFI',
-    quoteTokenAdresses: tokens.usdt_e,
-    isFinished: false,
-  },
-  {
-    pid: 30,
-    lpSymbol: 'PEFI-LYD LP',
-    lpAddresses: {
-      [ChainId.FUJI]: '0xCC592739C6c64f797E46CD00f12a6f15c2DF1c04',
-      [ChainId.AVALANCHE]: '0xCC592739C6c64f797E46CD00f12a6f15c2DF1c04',
-    },
-    token: tokens.pefi,
-    quoteToken: tokens.lyd,
-    isFinished: false,
-  },
+  }
 ]
 
 export default farms

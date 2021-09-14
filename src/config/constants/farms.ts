@@ -96,7 +96,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 29,
-    lpSymbol: 'PEFI-USDT.e LP',
+    lpSymbol: 'USDT.e-PEFI LP',
     lpAddresses: {
       [ChainId.FUJI]: '0xdb57a10b415fb4f246fca159bb9b98ad0b126a71',
       [ChainId.AVALANCHE]: '0xdb57a10b415fb4f246fca159bb9b98ad0b126a71',

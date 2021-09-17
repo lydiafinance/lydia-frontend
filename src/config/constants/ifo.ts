@@ -13,7 +13,7 @@ const lydAvaxLPToken: Token = {
 const ifos: Ifo[] = [
   {
     id: 'ftt',
-    address: '0x59f9750697526A8B7872C8800a9357aFa4427094',
+    address: '0xF4Ca296840a376cB4E1D264EBDf6F74858FACE5F',
     isActive: true,
     name: 'TEST (FTT)',
     poolBasic: {
@@ -33,7 +33,7 @@ const ifos: Ifo[] = [
     releaseTimestamp: 7707736,
     campaignId: '511110000',
     articleUrl: 'https://pancakeswap.medium.com/kalmar-kalm-ifo-to-be-hosted-on-pancakeswap-4540059753e4',
-    tokenOfferingPrice: 0.1,
+    tokenOfferingPrice: 0.02,
     version: 2,
   },
 ]

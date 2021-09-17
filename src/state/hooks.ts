@@ -306,7 +306,7 @@ export const useInitialBlock = () => {
 // Return the base token price for a farm, from a given pid
 export const useUsdtPriceFromPid = (pid: number): BigNumber => {
   const farm = useFarmFromPid(pid)
-  return farm && new BigNumber(farm.token.usdtPrice)
+  return farm && new BigNumber(farm.tokenPriceUsdt)
 }
 
 export const useFarmFromLpSymbol = (lpSymbol: string): Farm => {

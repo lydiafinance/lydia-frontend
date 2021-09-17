@@ -13,7 +13,7 @@ const lydAvaxLPToken: Token = {
 const ifos: Ifo[] = [
   {
     id: 'ftt',
-    address: '0xF4Ca296840a376cB4E1D264EBDf6F74858FACE5F',
+    address: '0xCFe814907c3bC550142670c2d9b1877a1bEf4E33',
     isActive: true,
     name: 'TEST (FTT)',
     poolBasic: {

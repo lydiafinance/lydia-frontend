@@ -125,10 +125,10 @@ const tokens = {
   test: {
     symbol: 'FTT',
     address: {
-      [ChainId.AVALANCHE]: '0xB3cC853242461aCab2177C7493e38E558de10619',
-      [ChainId.FUJI]: '0xB3cC853242461aCab2177C7493e38E558de10619',
+      [ChainId.AVALANCHE]: '0x65E50902eD92899d599671b14a6b16f0a5036A7c',
+      [ChainId.FUJI]: '0x65E50902eD92899d599671b14a6b16f0a5036A7c',
     },
-    decimals: 6,
+    decimals: 18,
     projectLink: 'https://avax.olive.cash/',
   },
   bag: {

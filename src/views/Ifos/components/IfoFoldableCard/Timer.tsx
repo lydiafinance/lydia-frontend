@@ -1,7 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'contexts/Localization'
-import { getBscScanBlockCountdownUrl } from 'utils/avaxExplorer'
-import { Flex, Link, PocketWatchIcon, Text, Skeleton } from '@lydiafinance/uikit'
+import { Flex, PocketWatchIcon, Text, Skeleton } from '@lydiafinance/uikit'
 import getTimePeriods from 'utils/getTimePeriods'
 import { PublicIfoData } from 'hooks/ifo/types'
 
@@ -11,7 +10,7 @@ interface Props {
 
 const Timer: React.FC<Props> = ({ publicIfoData }) => {
   const { t } = useTranslation()
-  const { status, secondsUntilStart, secondsUntilEnd, startTimestampNum } = publicIfoData
+  const { status, secondsUntilStart, secondsUntilEnd } = publicIfoData
   const countdownToUse = status === 'coming_soon' ? secondsUntilStart : secondsUntilEnd
   const timeUntil = getTimePeriods(countdownToUse)
   const suffix = status === 'coming_soon' ? t('Start').toLowerCase() : t('Finish').toLowerCase()
@@ -33,15 +32,6 @@ const Timer: React.FC<Props> = ({ publicIfoData }) => {
                 minute: timeUntil.minutes,
               })}
             </Text>
-            <Link
-              href={getBscScanBlockCountdownUrl(startTimestampNum)}
-              target="blank"
-              rel="noopener noreferrer"
-              ml="8px"
-              textTransform="lowercase"
-            >
-              {`(${t('Blocks')})`}
-            </Link>
           </Flex>
         </>
       )}

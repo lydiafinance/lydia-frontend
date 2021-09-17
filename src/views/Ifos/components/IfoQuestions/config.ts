@@ -9,7 +9,7 @@ const config = [
   {
     title: 'Which sale should I commit to? Can I do both?',
     description: [
-      'You can choose one or both at the same time! If you’re only committing a small amount, we recommend the Basic Sale first. Just remember you need a LydiaFinance Profile in order to participate.',
+      'You can choose one or both at the same time! If you’re only committing a small amount, we recommend the Basic Sale first.',
     ],
   },
   {
@@ -22,9 +22,7 @@ const config = [
   },
   {
     title: 'Where does the participation fee go?',
-    description: [
-      'We burn it. The LYD-AVAX LP tokens from the participation fee will be decomposed. We will then use the AVAX portion to market buy the LYD equivalent, and finally throw all of the LYD into the weekly token burn.',
-    ],
-  }
+    description: ['We burn it. The LYD-AVAX LP tokens from the participation fee will be decomposed.'],
+  },
 ]
 export default config

@@ -32,7 +32,7 @@ const ifos: Ifo[] = [
     token: tokens.test,
     releaseTimestamp: 7707736,
     campaignId: '511110000',
-    articleUrl: 'https://pancakeswap.medium.com/kalmar-kalm-ifo-to-be-hosted-on-pancakeswap-4540059753e4',
+    articleUrl: 'https://lydiafinance.medium.com/everest-dao-ifo-on-lydia-finance-6bf983a5c9ad',
     tokenOfferingPrice: 0.02,
     version: 2,
   },

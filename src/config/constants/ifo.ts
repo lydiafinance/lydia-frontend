@@ -18,14 +18,14 @@ const ifos: Ifo[] = [
     name: 'TEST (FTT)',
     poolBasic: {
       saleAmount: '30 FTT',
-      raiseAmount: '$3',
-      lydToBurn: '$1.5',
+      raiseAmount: '$1.5',
+      lydToBurn: '$0,75',
       distributionRatio: 0.3,
     },
     poolUnlimited: {
       saleAmount: '70 FTT',
-      raiseAmount: '$7',
-      lydToBurn: '$3.5',
+      raiseAmount: '$3.5',
+      lydToBurn: '$1.75',
       distributionRatio: 0.7,
     },
     currency: lydAvaxLPToken,
@@ -33,7 +33,7 @@ const ifos: Ifo[] = [
     releaseTimestamp: 7707736,
     campaignId: '511110000',
     articleUrl: 'https://lydiafinance.medium.com/everest-dao-ifo-on-lydia-finance-6bf983a5c9ad',
-    tokenOfferingPrice: 0.02,
+    tokenOfferingPrice: 0.01,
     version: 2,
   },
 ]

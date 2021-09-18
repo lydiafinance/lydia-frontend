@@ -17,13 +17,13 @@ const ifos: Ifo[] = [
     isActive: true,
     name: 'TEST (FTT)',
     poolBasic: {
-      saleAmount: '30 FTT',
+      saleAmount: '150 FTT',
       raiseAmount: '$1.5',
       lydToBurn: '$0,75',
       distributionRatio: 0.3,
     },
     poolUnlimited: {
-      saleAmount: '70 FTT',
+      saleAmount: '350 FTT',
       raiseAmount: '$3.5',
       lydToBurn: '$1.75',
       distributionRatio: 0.7,

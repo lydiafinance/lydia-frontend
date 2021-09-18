@@ -25,7 +25,7 @@ const Timer: React.FC<Props> = ({ publicIfoData }) => {
             <Text bold mr='16px'>
               {suffix}:
             </Text>
-            {secondsUntilStart <= 60 ?
+            {status === 'coming_soon' && secondsUntilStart <= 60 ?
               <Text>{t('in less than a minute')}</Text> :
               <Text>
                 {t('%day%d %hour%h %minute%m', {

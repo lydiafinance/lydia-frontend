@@ -31,7 +31,7 @@ const ifos: Ifo[] = [
     currency: lydAvaxLPToken,
     token: tokens.test,
     releaseTimestamp: 7707736,
-    campaignId: '511110000',
+    campaignId: '511110001',
     articleUrl: 'https://lydiafinance.medium.com/everest-dao-ifo-on-lydia-finance-6bf983a5c9ad',
     tokenOfferingPrice: 0.01,
     version: 2,

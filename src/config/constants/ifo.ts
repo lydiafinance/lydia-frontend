@@ -13,19 +13,19 @@ const lydAvaxLPToken: Token = {
 const ifos: Ifo[] = [
   {
     id: 'ftt',
-    address: '0x0418546141583845F0c70DCd113b4f58Ea4CD57B',
+    address: '0x69dd1988cD04ac8dB8E234b033F640AC0bB07b24',
     isActive: true,
     name: 'TEST (FTT)',
     poolBasic: {
-      saleAmount: '150 FTT',
-      raiseAmount: '$1.5',
-      lydToBurn: '$0,75',
+      saleAmount: '120 FTT',
+      raiseAmount: '$1.2',
+      lydToBurn: '$0,6',
       distributionRatio: 0.3,
     },
     poolUnlimited: {
-      saleAmount: '350 FTT',
-      raiseAmount: '$3.5',
-      lydToBurn: '$1.75',
+      saleAmount: '280 FTT',
+      raiseAmount: '$2.8',
+      lydToBurn: '$1.4',
       distributionRatio: 0.7,
     },
     currency: lydAvaxLPToken,

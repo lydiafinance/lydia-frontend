@@ -43,7 +43,7 @@ const getRibbonComponent = (ifo: Ifo, status: IfoStatus, t: any) => {
         variantColor="primary"
         ribbonPosition="left"
         style={{ textTransform: 'uppercase' }}
-        text={status === 'live' ? `${t('Live')}!` : `${t('Finished')}!`}
+        text={status === 'live' ? `${t('Live')}!` : `${t('SOON')}!`}
       />
     )
   }
@@ -65,7 +65,7 @@ const Header = styled(CardHeader)<{ ifoId: string }>`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-image: ${({ ifoId }) => `url('/images/ifos/${ifoId}-bg.svg')`};
+  background-image: ${({ ifoId }) => `url('/images/ifos/evrt.png')`};
 `
 
 const FoldableContent = styled.div<{ isVisible: boolean; isActive: boolean }>`
@@ -98,7 +98,8 @@ const StyledCardFooter = styled(CardFooter)`
 `
 
 const IfoFoldableCard: React.FC<IfoFoldableCardProps> = ({ ifo, publicIfoData, walletIfoData, isInitiallyVisible }) => {
-  const [isVisible, setIsVisible] = useState(isInitiallyVisible)
+  // const [isVisible, setIsVisible] = useState(isInitiallyVisible)
+  const [isVisible, setIsVisible] = useState(false)
   const [enableStatus, setEnableStatus] = useState(EnableStatus.DISABLED)
   const { t } = useTranslation()
   const { account } = useWeb3React()
@@ -144,7 +145,7 @@ const IfoFoldableCard: React.FC<IfoFoldableCardProps> = ({ ifo, publicIfoData, w
   return (
     <StyledCard ribbon={Ribbon}>
       <Header ifoId={ifo.id}>
-        <ExpandableButton expanded={isVisible} onClick={() => setIsVisible((prev) => !prev)} />
+        {/* <ExpandableButton expanded={isVisible} onClick={() => setIsVisible((prev) => !prev)} /> */}
       </Header>
       <FoldableContent isVisible={isVisible} isActive={publicIfoData.status !== 'idle' && isActive}>
         {isActive && <Progress variant="flat" primaryStep={publicIfoData.progress} />}

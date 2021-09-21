@@ -61,7 +61,7 @@ const config: MenuEntry[] = [
   {
     label: 'Launchpad',
     icon: 'LaunchpadIcon',
-    href: '/coming-soon',
+    href: '/launchpad',
     status: {
       text: 'SOON',
       color: 'warning',

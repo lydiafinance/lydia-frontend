@@ -1,7 +1,7 @@
 import React from 'react'
 
 import styled from 'styled-components'
-import { Card, Heading } from '@lydiafinance/uikit'
+import { Card, Heading, Link } from '@lydiafinance/uikit'
 
 import { useTranslation } from '../../../contexts/Localization'
 import useDeviceSize from '../../../hooks/useWindowSize'
@@ -38,6 +38,13 @@ const BridgeImage = styled(Heading)<{ isMobile: boolean }>`
 
 // font-size: 30px;
 
+const LinkStyled = styled(Link)<{ isMobile: boolean }>`
+  position: absolute;
+  z-index: 9999;
+  height: 100%;
+  width: 100%;
+`
+
 const BridgeCard = () => {
   const { t } = useTranslation()
   const deviceSize = useDeviceSize()
@@ -45,9 +52,10 @@ const BridgeCard = () => {
 
   return (
     <StyledBridgeCard>
-      <CardBody href="http://lydia.finance/launchpad">
+      {/* @ts-ignore */}
+      <LinkStyled href="https://lydia.finance/launchpad" />
+      <CardBody>
         {/* <BridgeImage src="/images/gate.svg" /> */}
-
         <BridgeImage isMobile={isMobile} color="#000" scale="xl">
           {/* {t('LYD Gate | Buy LYD on BSC')} */}
         </BridgeImage>

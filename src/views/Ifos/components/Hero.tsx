@@ -33,10 +33,10 @@ const Hero = () => {
       <StyledHero>
         <Container>
           <Heading as="h1" scale="xxl" color="text" mb="24px">
-            {t('IFO: Initial Farm Offerings')}
+            {t('Lydia Launchpad (IFO)')}
           </Heading>
           <Text bold fontSize="20px">
-            {t('Buy new tokens by staking LYD-LP.')}
+            {t('Buy new tokens by staking AVAX-LYD LP.')}
           </Text>
           <Text bold fontSize="20px">
             {t('#1 Fair distribution on Avalanche')}

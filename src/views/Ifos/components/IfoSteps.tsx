@@ -1,16 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {
-  Stepper,
-  Step,
-  Card,
-  CardBody,
-  Heading,
-  Text,
-  Button,
-  Link,
-  OpenNewIcon,
-} from '@lydiafinance/uikit'
+import { Stepper, Step, Card, CardBody, Heading, Text, Button, Link, OpenNewIcon } from '@lydiafinance/uikit'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import { useTranslation } from 'contexts/Localization'
 import Container from 'components/layout/Container'
@@ -31,9 +21,7 @@ const Wrapper = styled(Container)`
 const IfoSteps: React.FC = () => {
   const { t } = useTranslation()
 
-  const stepsValidationStatus = [
-    true, true, true
-  ]
+  const stepsValidationStatus = [true, true, true]
 
   const renderCardBody = (step: number) => {
     switch (step) {
@@ -50,7 +38,7 @@ const IfoSteps: React.FC = () => {
             <Button
               as={Link}
               external
-              href={`${BASE_ADD_LIQUIDITY_URL}/AVAX/0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7`}
+              href={`${BASE_ADD_LIQUIDITY_URL}/AVAX/0x4C9B4E1AC6F24CdE3660D5E4Ef1eBF77C710C084`}
               endIcon={<OpenNewIcon color="white" />}
               mt="16px"
             >

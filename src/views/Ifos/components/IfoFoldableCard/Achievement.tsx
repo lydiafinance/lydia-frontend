@@ -24,6 +24,7 @@ const StyledLinkExternal = styled(LinkExternal)`
   ${({ theme }) => theme.mediaQueries.md} {
     margin-top: 0;
   }
+  color: ${({ theme }) => theme.colors.textSubtle};
 `
 
 const Achievement: React.FC<Props> = ({ ifo }) => {
@@ -36,7 +37,6 @@ const Achievement: React.FC<Props> = ({ ifo }) => {
         <StyledLinkExternal href={ifo.articleUrl} mb="8px">
           {t('Learn more about %title%', { title: campaignTitle })}
         </StyledLinkExternal>
-        <StyledLinkExternal href={getBscScanAddressUrl(ifo.address)}>{t('View Contract')}</StyledLinkExternal>
       </Flex>
     </Container>
   )

@@ -34,7 +34,7 @@ interface IfoFoldableCardProps {
 
 const getRibbonComponent = (ifo: Ifo, status: IfoStatus, t: any) => {
   if (status === 'coming_soon') {
-    return <CardRibbon variantColor="textDisabled" ribbonPosition="left" text={t('Coming Soon')} />
+    return <CardRibbon variantColor="primaryBright" ribbonPosition="left" text={t('Coming Soon')} />
   }
 
   if (status === 'live' || (status === 'finished' && ifo.isActive)) {

@@ -13,19 +13,19 @@ const lydAvaxLPToken: Token = {
 const ifos: Ifo[] = [
   {
     id: 'evrt',
-    address: '0x66E39268cbBf595FfaAeB17F44fB17cDdd37cd2e',
+    address: '0xEeE752a5c384ff78A123F976F48613815c3dE47A',
     isActive: true,
     name: 'EVEREST DAO (EVRT)',
     poolBasic: {
-      saleAmount: '6,000,000 EVRT',
-      raiseAmount: '$120,000',
-      lydToBurn: '$60,000',
+      saleAmount: '60 EVRT',
+      raiseAmount: '$1.2',
+      lydToBurn: '$0.6',
       distributionRatio: 0.3,
     },
     poolUnlimited: {
-      saleAmount: '14,000,000 EVRT',
-      raiseAmount: '$280,000',
-      lydToBurn: '$140,000',
+      saleAmount: '140 EVRT',
+      raiseAmount: '$2.8',
+      lydToBurn: '$1.4',
       distributionRatio: 0.7,
     },
     currency: lydAvaxLPToken,

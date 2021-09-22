@@ -275,6 +275,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://penguinfinance.org',
   },
+  pefi: {
+    symbol: 'EVRT',
+    address: {
+      [ChainId.AVALANCHE]: '0x3ACa5545e76746A3Fe13eA66B24BC0eBcC51E6b4',
+      [ChainId.FUJI]: '0x3ACa5545e76746A3Fe13eA66B24BC0eBcC51E6b4',
+    },
+    decimals: 18,
+    projectLink: 'https://everestdao.net',
+  },
 }
 
 export default tokens

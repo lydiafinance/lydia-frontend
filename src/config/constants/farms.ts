@@ -317,7 +317,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 25,
-    lpSymbol: 'VSO-AVAX LP',
+    lpSymbol: 'AVAX-VSO LP',
     lpAddresses: {
       [ChainId.FUJI]: '0x4c9b23dfff6a15cad84008ecf5b424b715d8e82c',
       [ChainId.AVALANCHE]: '0x4c9b23dfff6a15cad84008ecf5b424b715d8e82c',
@@ -330,7 +330,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 28,
-    lpSymbol: 'aAVAXb-AVAX LP',
+    lpSymbol: 'AVAX-aAVAXb LP',
     lpAddresses: {
       [ChainId.FUJI]: '0xba4486e7a6f74be11fb7159d205f876168c906aa',
       [ChainId.AVALANCHE]: '0xba4486e7a6f74be11fb7159d205f876168c906aa',
@@ -343,7 +343,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 31,
-    lpSymbol: 'EVRT-AVAX LP',
+    lpSymbol: 'AVAX-EVRT LP',
     lpAddresses: {
       [ChainId.FUJI]: '0x26bbBf5104F99Dd1d6e61fF54980E78edcb0ba29',
       [ChainId.AVALANCHE]: '0x26bbBf5104F99Dd1d6e61fF54980E78edcb0ba29',

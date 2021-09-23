@@ -340,7 +340,20 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'aAVAXb',
     quoteTokenAdresses: tokens.wavax,
     isFinished: false,
-  }
+  },
+  {
+    pid: 31,
+    lpSymbol: 'EVRT-AVAX LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x26bbBf5104F99Dd1d6e61fF54980E78edcb0ba29',
+      [ChainId.AVALANCHE]: '0x26bbBf5104F99Dd1d6e61fF54980E78edcb0ba29',
+    },
+    token: tokens.evrt,
+    quoteToken: tokens.wavax,
+    tokenSymbol: 'EVRT',
+    quoteTokenAdresses: tokens.wavax,
+    isFinished: false,
+  },
 ]
 
 export default farms

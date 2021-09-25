@@ -354,6 +354,19 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: tokens.wavax,
     isFinished: false,
   },
+  {
+    pid: 32,
+    lpSymbol: 'AVAX-DUEL LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0xc70b2E0cB6946BD7EC71d2a3cC810fBDfa425a11',
+      [ChainId.AVALANCHE]: '0xc70b2E0cB6946BD7EC71d2a3cC810fBDfa425a11',
+    },
+    token: tokens.duel,
+    quoteToken: tokens.wavax,
+    tokenSymbol: 'DUEL',
+    quoteTokenAdresses: tokens.wavax,
+    isFinished: false,
+  },
 ]
 
 export default farms

@@ -284,6 +284,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://everestdao.net',
   },
+  duel: {
+    symbol: 'DUEL',
+    address: {
+      [ChainId.AVALANCHE]: '0xc1a49c0B9C10F35850bd8E15EaeF0346BE63E002',
+      [ChainId.FUJI]: '0xc1a49c0B9C10F35850bd8E15EaeF0346BE63E002',
+    },
+    decimals: 18,
+    projectLink: 'https://duel.network',
+  },
 }
 
 export default tokens

@@ -11,9 +11,10 @@ const StyledBridgeCard = styled(Card)`
   height: 250px;
   display: flex;
   align-items: center;
-  background-image: url('/images/gate1.png');
+  background-image: url('/images/maximus.png');
+  background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
+  background-size: cover;
   cursor: pointer;
 
   display: flex;
@@ -53,7 +54,7 @@ const BridgeCard = () => {
   return (
     <StyledBridgeCard>
       {/* @ts-ignore */}
-      <LinkStyled href="https://lydia.finance/launchpad" />
+      <LinkStyled href="https://twitter.com/MaximusFarm" />
       <CardBody>
         {/* <BridgeImage src="/images/gate.svg" /> */}
         <BridgeImage isMobile={isMobile} color="#000" scale="xl">

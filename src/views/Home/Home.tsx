@@ -17,6 +17,7 @@ import BridgeCard from './components/BridgeCard'
 import PoolCard from '../Pools/components/PoolCard'
 import LydVaultCard from '../Pools/components/LydVaultCard'
 import useDeviceSize from '../../hooks/useWindowSize'
+import useTheme from '../../hooks/useTheme'
 
 const Hero = styled.div`
   align-items: center;
@@ -79,6 +80,7 @@ const Home: React.FC = () => {
   const { isMobile } = deviceSize
   const pools = usePools(account)
   const autoPool = useMemo(() => pools.find((pool) => pool.sousId === 0), [pools])
+  const { isDark, toggleTheme } = useTheme()
 
   return (
     <Page>
@@ -88,10 +90,10 @@ const Home: React.FC = () => {
         </Heading>
         <Text>{t('AMM and yield farm on Avalanche.')}</Text>
       </Hero> */}
-      {isMobile ? (
-        <img src="/images/banner-mobile.gif" alt="banner" className="banner" />
+      {isDark ? (
+        <img src="/images/crop-desktop-banner-dark.gif" alt="banner" className="banner" />
       ) : (
-        <img src="/images/crop-desktop-banner.gif" alt="banner" className="banner" />
+        <img src="/images/crop-desktop-banner-light.gif" alt="banner" className="banner" />
       )}
 
       <DesktopSupportCard isMobile={isMobile}>

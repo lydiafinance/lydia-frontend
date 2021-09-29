@@ -293,6 +293,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://duel.network',
   },
+  joe: {
+    symbol: 'JOE',
+    address: {
+      [ChainId.AVALANCHE]: '0x6e84a6216eA6dACC71eE8E6b0a5B7322EEbC0fDd',
+      [ChainId.FUJI]: '0x6e84a6216eA6dACC71eE8E6b0a5B7322EEbC0fDd',
+    },
+    decimals: 18,
+    projectLink: 'https://www.traderjoexyz.com',
+  },
 }
 
 export default tokens

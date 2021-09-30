@@ -16,6 +16,7 @@ export const BASE_ADD_LIQUIDITY_URL = `${BASE_EXCHANGE_URL}/#/add`
 export const BASE_LIQUIDITY_POOL_URL = `${BASE_EXCHANGE_URL}/#/pool`
 export const LOTTERY_MAX_NUMBER_OF_TICKETS = 10
 export const LOTTERY_TICKET_PRICE = 60
+export const LAST_LOTTERY_TICKET_PRICE = 500 // This should be same with LOTTERY_TICKET_PRICE on next cycle
 export const BASE_AVAX_SCAN_URL = 'https://cchain.explorer.avax.network/'
 export const DEFAULT_TOKEN_DECIMAL = BIG_TEN.pow(18)
 export const DEFAULT_GAS_PRICE = 5

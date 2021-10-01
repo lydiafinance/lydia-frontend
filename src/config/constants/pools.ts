@@ -163,6 +163,20 @@ const pools: PoolConfig[] = [
     sortOrder: 1,
     isFinished: false,
   },
+  {
+    sousId: 1011,
+    stakingToken: tokens.lyd,
+    earningToken: tokens.evrt,
+    contractAddress: {
+      [ChainId.FUJI]: '0x5D1e8842D227b34C5e9fE9943c04294Ef4AE81c7',
+      [ChainId.AVALANCHE]: '0x5D1e8842D227b34C5e9fE9943c04294Ef4AE81c7',
+    },
+    poolCategory: PoolCategory.CORE,
+    harvest: true,
+    tokenPerBlock: '0.0851521164',
+    sortOrder: 1,
+    isFinished: false,
+  },
 ]
 
 export default pools

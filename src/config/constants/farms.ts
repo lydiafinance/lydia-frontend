@@ -264,6 +264,19 @@ const farms: FarmConfig[] = [
     isFinished: false,
   },
   {
+    pid: 35,
+    lpSymbol: 'AVAX-mYAK LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0xb25538eade2ab3144db8d9791d6fc6e3fd99bdb5',
+      [ChainId.AVALANCHE]: '0xb25538eade2ab3144db8d9791d6fc6e3fd99bdb5',
+    },
+    token: tokens.m_yak,
+    quoteToken: tokens.wavax,
+    tokenSymbol: 'mYAK',
+    quoteTokenAdresses: tokens.wavax,
+    isFinished: false,
+  },
+  {
     pid: 14,
     lpSymbol: 'AVAX-LINK LP',
     lpAddresses: {

@@ -302,6 +302,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://www.traderjoexyz.com',
   },
+  m_yak: {
+    symbol: 'mYAK',
+    address: {
+      [ChainId.AVALANCHE]: '0xdDAaAD7366B455AfF8E7c82940C43CEB5829B604',
+      [ChainId.FUJI]: '0xdDAaAD7366B455AfF8E7c82940C43CEB5829B604',
+    },
+    decimals: 12,
+    projectLink: 'https://yieldyak.com',
+  },
 }
 
 export default tokens

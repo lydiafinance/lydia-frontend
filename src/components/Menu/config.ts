@@ -105,6 +105,10 @@ const config: MenuEntry[] = [
     icon: 'ListingIcon',
     items: [
       {
+        label: 'BitMart',
+        href: 'https://www.bitmart.com/trade/en?symbol=LYD_USDT',
+      },
+      {
         label: 'CoinMarketCap',
         href: 'https://coinmarketcap.com/currencies/lydia-finance',
       },

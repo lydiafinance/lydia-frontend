@@ -185,7 +185,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
 
   return (
     <Modal
-      title={isRemovingStake ? t('Unstake') : t('Stake LP in Maximus Pool')}
+      title={isRemovingStake ? t('Unstake') : t('Stake LP in Maximizer Farm')}
       onDismiss={onDismiss}
       headerBackground={theme.colors.gradients.cardHeader}
     >

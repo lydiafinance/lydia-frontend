@@ -406,6 +406,19 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: tokens.wavax,
     isFinished: false,
   },
+  {
+    pid: 36,
+    lpSymbol: 'AVAX-AVME LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0xB54591864811D46A372A16593165bbE0aED4F450',
+      [ChainId.AVALANCHE]: '0xB54591864811D46A372A16593165bbE0aED4F450',
+    },
+    token: tokens.avme,
+    quoteToken: tokens.wavax,
+    tokenSymbol: 'AVME',
+    quoteTokenAdresses: tokens.wavax,
+    isFinished: false,
+  },
 ]
 
 export default farms

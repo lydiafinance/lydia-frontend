@@ -41,11 +41,11 @@ const config: MenuEntry[] = [
     href: '/pools',
   },
   {
-    label: 'Maximus Farm',
+    label: 'Maximizer Farm',
     icon: 'CrownIcon',
-    href: '/maximus',
+    href: '/maximizer',
     status: {
-      text: 'EARN',
+      text: 'AUTO',
       color: 'success',
     },
   },

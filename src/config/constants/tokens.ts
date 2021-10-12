@@ -311,6 +311,15 @@ const tokens = {
     decimals: 12,
     projectLink: 'https://yieldyak.com',
   },
+  avme: {
+    symbol: 'AVME',
+    address: {
+      [ChainId.AVALANCHE]: '0x1ECd47FF4d9598f89721A2866BFEb99505a413Ed',
+      [ChainId.FUJI]: '0x1ECd47FF4d9598f89721A2866BFEb99505a413Ed',
+    },
+    decimals: 18,
+    projectLink: 'https://avme.io',
+  },
 }
 
 export default tokens

@@ -70,7 +70,7 @@ const App: React.FC = () => {
             <Route path="/electrum">
               <Redirect to="/pools" />
             </Route>
-            <Route path="/maximus">
+            <Route path="/maximizer">
               <Maximus />
             </Route>
             <Route path="/coming-soon">

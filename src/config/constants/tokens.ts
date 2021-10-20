@@ -320,6 +320,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://avme.io',
   },
+  aave_e: {
+    symbol: 'AAVE.e',
+    address: {
+      [ChainId.AVALANCHE]: '0x63a72806098Bd3D9520cC43356dD78afe5D386D9',
+      [ChainId.FUJI]: '0x63a72806098Bd3D9520cC43356dD78afe5D386D9',
+    },
+    decimals: 18,
+    projectLink: 'https://aave.com',
+  },
 }
 
 export default tokens

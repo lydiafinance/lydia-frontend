@@ -431,6 +431,19 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: tokens.wavax,
     isFinished: false,
   },
+  {
+    pid: 38,
+    lpSymbol: 'AVAX-PNG LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x264b5ccccC16D6328cd8e0032Ef90eF5Aba78c72',
+      [ChainId.AVALANCHE]: '0x264b5ccccC16D6328cd8e0032Ef90eF5Aba78c72',
+    },
+    token: tokens.png,
+    quoteToken: tokens.wavax,
+    tokenSymbol: 'PNG',
+    quoteTokenAdresses: tokens.wavax,
+    isFinished: false,
+  },
 ]
 
 export default farms

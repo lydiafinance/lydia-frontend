@@ -444,6 +444,19 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: tokens.wavax,
     isFinished: false,
   },
+  {
+    pid: 39,
+    lpSymbol: 'AVAX-TEDDY LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x0a94056FC82b10593FE8fc3E048A2d642e0D53Db',
+      [ChainId.AVALANCHE]: '0x0a94056FC82b10593FE8fc3E048A2d642e0D53Db',
+    },
+    token: tokens.teddy,
+    quoteToken: tokens.wavax,
+    tokenSymbol: 'TEDDY',
+    quoteTokenAdresses: tokens.wavax,
+    isFinished: false,
+  },
 ]
 
 export default farms

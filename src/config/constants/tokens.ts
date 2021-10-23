@@ -329,6 +329,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://aave.com',
   },
+  teddy: {
+    symbol: 'TEDDY',
+    address: {
+      [ChainId.AVALANCHE]: '0x094bd7B2D99711A1486FB94d4395801C6d0fdDcC',
+      [ChainId.FUJI]: '0x094bd7B2D99711A1486FB94d4395801C6d0fdDcC',
+    },
+    decimals: 18,
+    projectLink: 'https://teddy.cash',
+  },
 }
 
 export default tokens

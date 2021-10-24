@@ -338,6 +338,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://teddy.cash',
   },
+  orca: {
+    symbol: 'ORCA',
+    address: {
+      [ChainId.AVALANCHE]: '0x8B1d98A91F853218ddbb066F20b8c63E782e2430',
+      [ChainId.FUJI]: '0x8B1d98A91F853218ddbb066F20b8c63E782e2430',
+    },
+    decimals: 18,
+    projectLink: 'https://www.avai.finance',
+  },
 }
 
 export default tokens

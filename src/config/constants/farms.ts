@@ -218,6 +218,28 @@ const farms: FarmConfig[] = [
     isFinished: false,
   },
   {
+    pid: 40,
+    lpSymbol: 'AVAX-USDC.e LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0xde5EFeD768113778e502452c01171c4C81df8Cf7',
+      [ChainId.AVALANCHE]: '0xde5EFeD768113778e502452c01171c4C81df8Cf7',
+    },
+    token: tokens.usdc_e,
+    quoteToken: tokens.wavax,
+    isFinished: false,
+  },
+  {
+    pid: 41,
+    lpSymbol: 'AVAX-DAI.e LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0xf38DDfc7499C6f80Df10d63483627937568D328f',
+      [ChainId.AVALANCHE]: '0xf38DDfc7499C6f80Df10d63483627937568D328f',
+    },
+    token: tokens.dai_e,
+    quoteToken: tokens.wavax,
+    isFinished: false,
+  },
+  {
     pid: 12,
     lpSymbol: 'USDT-DAI LP',
     lpAddresses: {

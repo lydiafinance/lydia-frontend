@@ -203,7 +203,7 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: '0.00744047619',
     sortOrder: 1,
-    isFinished: false,
+    isFinished: true,
   },
 ]
 

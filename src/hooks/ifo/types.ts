@@ -25,6 +25,8 @@ export interface PublicIfoData {
   fetchIfoData: () => void
   [PoolIds.poolBasic]?: PoolCharacteristics
   [PoolIds.poolUnlimited]: PoolCharacteristics
+  nextReleaseTimestamp: number
+  releasedPercent: BigNumber
 }
 
 // User specific pool characteristics
@@ -35,6 +37,9 @@ export interface UserPoolCharacteristics {
   taxAmountInLP: BigNumber // @contract: userTaxAmountPool
   hasClaimed: boolean // @contract: claimedPool
   isPendingTx: boolean
+  purchasedTokens: BigNumber
+  claimedTokens: BigNumber
+  claimableTokens: BigNumber
 }
 
 // Use only inside the useGetWalletIfoData hook

@@ -54,6 +54,8 @@ const useGetPublicIfoData = (ifo: Ifo): PublicIfoData => {
     },
     startTimestampNum: 0,
     endTimestampNum: 0,
+    nextReleaseTimestamp: 0,
+    releasedPercent: BIG_ZERO,
   })
   const currentTimestamp = useTimestamp()
 
@@ -82,9 +84,18 @@ const useGetPublicIfoData = (ifo: Ifo): PublicIfoData => {
         name: 'viewPoolTaxRateOverflow',
         params: [1],
       },
+      {
+        address,
+        name: 'releasedPercent',
+      },
+      {
+        address,
+        name: 'nextReleaseTimestamp',
+      },
     ]
 
-    const [startTimestamp, endTimestamp, poolBasic, poolUnlimited, taxRate] = await multicall(ifoV2Abi, ifoCalls)
+    const [startTimestamp, endTimestamp, poolBasic, poolUnlimited, taxRate, releasedPercent, nextReleaseTimestamp] =
+      await multicall(ifoV2Abi, ifoCalls)
 
     const poolBasicFormatted = formatPool(poolBasic)
     const poolUnlimitedFormatted = formatPool(poolUnlimited)
@@ -96,6 +107,8 @@ const useGetPublicIfoData = (ifo: Ifo): PublicIfoData => {
     const status = getStatus(currentTimestamp, startTimestampNum, endTimestampNum)
     const totalTimestamp = endTimestampNum - startTimestampNum
     const timestampRemaining = endTimestampNum - currentTimestamp
+
+    const hasLockedToken = new BigNumber(releasedPercent.toString()).lt(100)
 
     // Calculate the total progress until finished or until start
     const progress =
@@ -114,6 +127,9 @@ const useGetPublicIfoData = (ifo: Ifo): PublicIfoData => {
       timestampRemaining,
       startTimestampNum,
       endTimestampNum,
+      hasLockedToken,
+      releasedPercent: new BigNumber(releasedPercent.toString()),
+      nextReleaseTimestamp: parseInt(nextReleaseTimestamp.toString() || 0, 10),
     }))
   }, [address, currentTimestamp, releaseTimestamp])
 

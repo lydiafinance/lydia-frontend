@@ -8,6 +8,7 @@ import { WalletIfoData, PublicIfoData } from 'hooks/ifo/types'
 import UnlockButton from 'components/UnlockButton'
 import ContributeButton from './ContributeButton'
 import ClaimButton from './ClaimButton'
+import LockedClaimButton from './LockedClaimButton'
 import { SkeletonCardActions } from './Skeletons'
 
 interface Props {
@@ -50,6 +51,17 @@ const IfoCardActions: React.FC<Props> = ({ poolId, ifo, publicIfoData, walletIfo
         (userPoolCharacteristics.offeringAmountInToken.isGreaterThan(0) ||
           userPoolCharacteristics.refundingAmountInLP.isGreaterThan(0)) && (
           <ClaimButton poolId={poolId} ifoVersion={ifo.version} walletIfoData={walletIfoData} />
+        )}
+      {publicIfoData.status === 'finished' &&
+        userPoolCharacteristics.hasClaimed &&
+        userPoolCharacteristics.purchasedTokens.isGreaterThan(userPoolCharacteristics.claimedTokens) &&
+        publicIfoData.endTimestampNum < publicIfoData.nextReleaseTimestamp && (
+          <LockedClaimButton
+            poolId={poolId}
+            ifoVersion={ifo.version}
+            walletIfoData={walletIfoData}
+            nextReleaseTimestamp={publicIfoData.nextReleaseTimestamp}
+          />
         )}
     </>
   )

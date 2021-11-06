@@ -34,29 +34,17 @@ const config: MenuEntry[] = [
   {
     label: 'Maximizer Farms',
     icon: 'CrownIcon',
-    href: '/maximizer',
-    status: {
-      text: 'AUTO',
-      color: 'success',
-    },
+    href: '/maximizer'
   },
   {
     label: 'Launchpad',
     icon: 'LaunchpadIcon',
-    href: '/launchpad',
-    status: {
-      text: 'NEW',
-      color: 'warning',
-    },
+    href: '/launchpad'
   },
   {
     label: 'Lottery',
     icon: 'Lottery2',
-    href: '/lottery',
-    status: {
-      text: 'WIN',
-      color: 'success',
-    },
+    href: '/lottery'
   },
   {
     label: "Buy LYD",

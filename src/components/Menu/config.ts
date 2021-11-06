@@ -30,7 +30,6 @@ const config: MenuEntry[] = [
     icon: 'FarmIcon',
     href: '/pools',
   },
-
   {
     label: 'Maximizer Farms',
     icon: 'CrownIcon',

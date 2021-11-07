@@ -54,7 +54,7 @@ const BridgeCard = () => {
   return (
     <StyledBridgeCard>
       {/* @ts-ignore */}
-      <LinkStyled href="https://www.lydia.finance/launchpad" />
+      <LinkStyled href="https://lydiafinance.medium.com/maximus-ifo-on-lydia-finance-dc1009a5cde7" />
       <CardBody>
         {/* <BridgeImage src="/images/gate.svg" /> */}
         <BridgeImage isMobile={isMobile} color="#000" scale="xl">

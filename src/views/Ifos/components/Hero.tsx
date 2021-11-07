@@ -29,22 +29,9 @@ const Hero = () => {
   const { t } = useTranslation()
 
   return (
-    <Box mb="32px">
-      <StyledHero>
-        <Container>
-          <Heading as="h1" scale="xxl" color="text" mb="24px">
-            {t('Lydia Launchpad (IFO)')}
-          </Heading>
-          <Text bold fontSize="20px">
-            {t('Buy new tokens by staking AVAX-LYD LP.')}
-          </Text>
-          <Text bold fontSize="20px">
-            {t('#1 Fair distribution on Avalanche')}
-          </Text>
-        </Container>
-      </StyledHero>
-      <CurtainBottom />
-    </Box>
+    <Container>
+      <img src="/images/launchpad.gif" alt="banner" className="banner" />
+    </Container>
   )
 }
 

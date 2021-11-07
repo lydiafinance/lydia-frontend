@@ -87,11 +87,13 @@ const Home: React.FC = () => {
 
   return (
     <Page>
-      <Lottie
-        options={{
-          animationData: animation,
-        }}
-      />
+      {!isMobile && (
+        <Lottie
+          options={{
+            animationData: animation,
+          }}
+        />
+      )}
 
       <DesktopSupportCard isMobile={isMobile}>
         <Cards column={isMobile}>

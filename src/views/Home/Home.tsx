@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
+import Lottie from 'lottie-react-web'
 import { Heading, Text, BaseLayout } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import Page from 'components/layout/Page'
@@ -8,6 +9,7 @@ import { usePools } from 'state/hooks'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
 import AutoCompoundingCard from 'views/Home/components/AutoCompoundingCard'
 import LotteryCard from 'views/Home/components/LotteryCard'
+import PageHeader from 'components/PageHeader'
 // import EarnAssetCard from 'views/Home/components/EarnAssetCard'
 // import WinCard from 'views/Home/components/WinCard'
 import LydStats from 'views/Home/components/LydStats'
@@ -18,6 +20,7 @@ import PoolCard from '../Pools/components/PoolCard'
 import LydVaultCard from '../Pools/components/LydVaultCard'
 import useDeviceSize from '../../hooks/useWindowSize'
 import useTheme from '../../hooks/useTheme'
+import animation from '../../animations/home.json'
 
 const Hero = styled.div`
   align-items: center;
@@ -84,16 +87,12 @@ const Home: React.FC = () => {
 
   return (
     <Page>
-      {/* <Hero>
-        <Heading as="h1" scale="xl" mb="24px" color="secondary">
-          {t('Lydia Finance')}
-        </Heading>
-        <Text>{t('AMM and yield farm on Avalanche.')}</Text>
-      </Hero> */}
-      {isDark ? (
-        <img src="/images/crop-desktop-banner-dark.gif" alt="banner" className="banner" />
-      ) : (
-        <img src="/images/crop-desktop-banner-light.gif" alt="banner" className="banner" />
+      {!isMobile && (
+        <Lottie
+          options={{
+            animationData: animation,
+          }}
+        />
       )}
 
       <DesktopSupportCard isMobile={isMobile}>

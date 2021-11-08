@@ -1,8 +1,11 @@
-import React from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import Lottie from 'lottie-react-web'
 import { Box, Heading, Text } from '@lydiafinance/uikit'
 import Container from 'components/layout/Container'
 import { useTranslation } from 'contexts/Localization'
+import animation from '../../../animations/launchpad.json'
 
 const getGradient = (isDark: boolean) => {
   if (isDark) {
@@ -27,24 +30,25 @@ const CurtainBottom = styled.div`
 
 const Hero = () => {
   const { t } = useTranslation()
+  const [loop, setLoop] = useState(true)
+  let timer
+
+  useEffect(() => {
+    timer = setTimeout(() => setLoop(false), 6000)
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [])
 
   return (
-    <Box mb="32px">
-      <StyledHero>
-        <Container>
-          <Heading as="h1" scale="xxl" color="text" mb="24px">
-            {t('Lydia Launchpad (IFO)')}
-          </Heading>
-          <Text bold fontSize="20px">
-            {t('Buy new tokens by staking AVAX-LYD LP.')}
-          </Text>
-          <Text bold fontSize="20px">
-            {t('#1 Fair distribution on Avalanche')}
-          </Text>
-        </Container>
-      </StyledHero>
-      <CurtainBottom />
-    </Box>
+    <Container>
+      <Lottie
+        options={{
+          animationData: animation,
+          loop,
+        }}
+      />
+    </Container>
   )
 }
 

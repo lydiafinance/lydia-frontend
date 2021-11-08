@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import { useAppDispatch } from 'state'
+import Lottie from 'lottie-react-web'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { Image, Heading, RowType, Toggle, Text } from '@lydiafinance/uikit'
@@ -29,6 +30,7 @@ import SearchInput from './components/SearchInput'
 import { RowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
+import animation from '../../animations/farms.json'
 
 const ControlContainer = styled.div`
   display: flex;
@@ -314,7 +316,7 @@ const Farms: React.FC = () => {
   })
 
   const renderContent = (): JSX.Element => {
-    if (viewMode === ViewMode.TABLE && rowData.length) {
+    if (viewMode === ViewMode.CARD && rowData.length) {
       const columnSchema = DesktopColumnSchema
 
       const columns = columnSchema.map((column) => ({
@@ -372,14 +374,22 @@ const Farms: React.FC = () => {
 
   return (
     <>
-      <PageHeader>
+      {/* <PageHeader>
         <Heading as="h1" scale="xxl" color="secondary" mb="24px">
           {t('Farms')}
         </Heading>
         <Heading scale="lg" color="text">
           {t('Stake Liquidity Pool (LP) tokens to earn.')}
         </Heading>
+      </PageHeader> */}
+      <PageHeader background="transparent">
+        <Lottie
+          options={{
+            animationData: animation,
+          }}
+        />
       </PageHeader>
+
       <Page>
         <ControlContainer>
           <ViewControls>

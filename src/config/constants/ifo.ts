@@ -17,15 +17,15 @@ const ifos: Ifo[] = [
     isActive: true,
     name: 'MAXIMUS (MAXI)',
     poolBasic: {
-      saleAmount: '1,050,000 MAXI',
-      raiseAmount: '$1,050,000',
-      lydToBurn: '$525,000',
-      distributionRatio: 0.3,
-    },
-    poolUnlimited: {
       saleAmount: '450,000 MAXI',
       raiseAmount: '$450,000',
       lydToBurn: '$225,000',
+      distributionRatio: 0.3,
+    },
+    poolUnlimited: {
+      saleAmount: '1,050,000 MAXI',
+      raiseAmount: '$1,050,000',
+      lydToBurn: '$525,000',
       distributionRatio: 0.7,
     },
     currency: lydAvaxLPToken,

@@ -12,9 +12,35 @@ const lydAvaxLPToken: Token = {
 
 const ifos: Ifo[] = [
   {
+    id: 'maxi',
+    address: '0x1bAa7360Ce7273aACB48Ae38b038cEB150C1ed56',
+    isActive: true,
+    name: 'MAXIMUS (MAXI)',
+    poolBasic: {
+      saleAmount: '1,050,000 MAXI',
+      raiseAmount: '$1,050,000',
+      lydToBurn: '$525,000',
+      distributionRatio: 0.3,
+    },
+    poolUnlimited: {
+      saleAmount: '450,000 MAXI',
+      raiseAmount: '$450,000',
+      lydToBurn: '$225,000',
+      distributionRatio: 0.7,
+    },
+    currency: lydAvaxLPToken,
+    token: tokens.maxi,
+    releaseTimestamp: 1636552800,
+    campaignId: '1',
+    articleUrl: 'https://lydiafinance.medium.com/maximus-ifo-on-lydia-finance-dc1009a5cde7',
+    tokenOfferingPrice: 1,
+    version: 2,
+    releasePercent: [40, 30, 30],
+  },
+  {
     id: 'evrt',
     address: '0x66E39268cbBf595FfaAeB17F44fB17cDdd37cd2e',
-    isActive: true,
+    isActive: false,
     name: 'EVEREST DAO (EVRT)',
     poolBasic: {
       saleAmount: '6,000,000 EVRT',
@@ -35,6 +61,7 @@ const ifos: Ifo[] = [
     articleUrl: 'https://lydiafinance.medium.com/everest-dao-ifo-on-lydia-finance-6bf983a5c9ad',
     tokenOfferingPrice: 0.02,
     version: 2,
+    releasePercent: [],
   },
 ]
 

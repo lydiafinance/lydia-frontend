@@ -7,7 +7,7 @@ const config: MenuEntry[] = [
     href: '/',
   },
   {
-    label: 'Exchange',
+    label: 'Trade',
     icon: 'TradeIcon',
     items: [
       {
@@ -19,16 +19,6 @@ const config: MenuEntry[] = [
         href: 'https://exchange.lydia.finance/#/pool',
       },
     ],
-  },
-  {
-    label: 'LYD Gate',
-    icon: 'GateIcon',
-    href: 'https://gate.lydia.finance/#/bridge',
-    status: {
-      text: 'BRIDGE',
-      // @ts-ignore
-      color: 'failure',
-    },
   },
   {
     label: 'Farms',
@@ -43,149 +33,39 @@ const config: MenuEntry[] = [
   {
     label: 'Maximizer Farms',
     icon: 'CrownIcon',
-    href: '/maximizer',
-    status: {
-      text: 'AUTO',
-      color: 'success',
-    },
-  },
-  {
-    label: 'Lottery',
-    icon: 'Lottery2',
-    href: '/lottery',
-    status: {
-      text: 'WIN',
-      color: 'success',
-    },
+    href: '/maximizer'
   },
   {
     label: 'Launchpad',
     icon: 'LaunchpadIcon',
-    href: '/launchpad',
-    status: {
-      text: 'NEW',
-      color: 'warning',
-    },
+    href: '/launchpad'
   },
-  // {
-  //   label: 'IFO',
-  //   icon: 'IfoIcon',
-  //   href: '/ifo',
-  //   status: {
-  //     text: 'NEW',
-  //     color: 'success',
-  //   },
-  // },
-  // {
-  //   label: 'Collectibles',
-  //   icon: 'NftIcon',
-  //   href: '/collectibles',
-  // },
-  // {
-  //   label: 'Teams & Profile',
-  //   icon: 'GroupsIcon',
-  //   calloutClass: 'rainbow',
-  //   items: [
-  //     {
-  //       label: 'Leaderboard',
-  //       href: '/teams',
-  //     },
-  //     {
-  //       label: 'Task Center',
-  //       href: '/profile/tasks',
-  //     },
-  //     {
-  //       label: 'Your Profile',
-  //       href: '/profile',
-  //     },
-  //   ],
-  // },
   {
-    label: 'Listings',
-    icon: 'ListingIcon',
+    label: 'Lottery',
+    icon: 'Lottery2',
+    href: '/lottery'
+  },
+  {
+    label: "Buy LYD",
+    icon: "CoinIcon",
     items: [
       {
-        label: 'BitMart',
-        href: 'https://www.bitmart.com/trade/en?symbol=LYD_USDT',
+        label: "Lydia",
+        href: "https://exchange.lydia.finance",
       },
       {
-        label: 'CoinMarketCap',
-        href: 'https://coinmarketcap.com/currencies/lydia-finance',
+        label: "Pangolin",
+        href: "https://app.pangolin.exchange/#/swap?outputCurrency=0x4C9B4E1AC6F24CdE3660D5E4Ef1eBF77C710C084",
       },
       {
-        label: 'CoinGecko',
-        href: 'https://www.coingecko.com/en/coins/lydia-finance',
+        label: "BitMart",
+        href: "https://www.bitmart.com/trade/en?symbol=LYD_USDT",
       },
       {
-        label: 'LiveCoinWatch',
-        href: 'https://www.livecoinwatch.com/price/LydiaFinance-_LYD',
-      },
-      {
-        label: 'Markr.io',
-        href: 'https://markr.io/#/applications/LydiaFinance',
-      },
-      {
-        label: 'DefiLama',
-        href: 'https://defillama.com/protocol/lydia',
-      },
-      {
-        label: 'AvaxProjects',
-        href: 'https://www.avax-projects.com/',
-      },
-      {
-        label: 'Coinpaprika',
-        href: 'https://coinpaprika.com/coin/lyd-lydia-finance-token/',
-      },
-      {
-        label: 'Nomics',
-        href: 'https://nomics.com/assets/lyd2-lydia-finance',
-      },
+        label: "LYD Gate",
+        href: "https://gate.lydia.finance/#/bridge",
+      }
     ],
-  },
-  {
-    label: 'Info',
-    icon: 'InfoIcon',
-    items: [
-      {
-        label: 'Overview',
-        href: 'https://info.lydia.finance',
-      },
-      {
-        label: 'Tokens',
-        href: 'https://info.lydia.finance/tokens',
-      },
-      {
-        label: 'Pairs',
-        href: 'https://info.lydia.finance/pairs',
-      },
-      {
-        label: 'Accounts',
-        href: 'https://info.lydia.finance/accounts',
-      },
-    ],
-  },
-  {
-    label: 'Learn More',
-    icon: 'MoreIcon',
-    items: [
-      {
-        label: 'Github',
-        href: 'https://github.com/lydiafinance',
-      },
-      {
-        label: 'Docs',
-        href: 'https://docs.lydia.finance',
-      },
-      // {
-      //   label: 'Blog',
-      //   href: 'https://lydia.medium.com',
-      // },
-    ],
-  },
-  {
-    label: 'Audited by CertiK',
-    icon: 'ShieldIcon',
-    href: 'https://www.certik.org/projects/lydiafinance',
   },
 ]
 

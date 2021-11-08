@@ -24,6 +24,9 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
       taxAmountInLP: BIG_ZERO,
       hasClaimed: false,
       isPendingTx: false,
+      purchasedTokens: BIG_ZERO,
+      claimedTokens: BIG_ZERO,
+      claimableTokens: BIG_ZERO,
     },
     poolUnlimited: {
       amountTokenCommittedInLP: BIG_ZERO,
@@ -32,6 +35,9 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
       taxAmountInLP: BIG_ZERO,
       hasClaimed: false,
       isPendingTx: false,
+      purchasedTokens: BIG_ZERO,
+      claimedTokens: BIG_ZERO,
+      claimableTokens: BIG_ZERO,
     },
   })
 
@@ -61,14 +67,21 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
     }))
   }
 
-  const fetchIfoData = useCallback(async () => {
-    const ifoCalls = ['viewUserInfo', 'viewUserOfferingAndRefundingAmountsForPools'].map((method) => ({
-      address,
-      name: method,
-      params: [account, [0, 1]],
-    }))
+  // uint256 amountPool; // How many tokens the user has provided for pool
+  // bool claimedPool; // Whether the user has claimed (default: false) for pool
+  // uint256 purchasedTokens; // Total purchased offering tokens amount by the user
+  // uint256 claimedTokens; // Total claimed offering tokens amount by the user
 
-    const [userInfo, amounts] = await multicall(ifoV2Abi, ifoCalls)
+  const fetchIfoData = useCallback(async () => {
+    const ifoCalls = ['viewUserInfo', 'viewUserOfferingAndRefundingAmountsForPools', 'claimableTokens'].map(
+      (method) => ({
+        address,
+        name: method,
+        params: [account, [0, 1]],
+      }),
+    )
+
+    const [userInfo, amounts, claimableTokens] = await multicall(ifoV2Abi, ifoCalls)
 
     setState((prevState) => ({
       ...prevState,
@@ -79,6 +92,9 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
         refundingAmountInLP: new BigNumber(amounts[0][0][1].toString()),
         taxAmountInLP: new BigNumber(amounts[0][0][2].toString()),
         hasClaimed: userInfo[1][0],
+        purchasedTokens: new BigNumber(userInfo[2][0].toString()),
+        claimedTokens: new BigNumber(userInfo[3][0].toString()),
+        claimableTokens: new BigNumber(claimableTokens[0][0].toString()),
       },
       poolUnlimited: {
         ...prevState.poolUnlimited,
@@ -87,6 +103,9 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
         refundingAmountInLP: new BigNumber(amounts[0][1][1].toString()),
         taxAmountInLP: new BigNumber(amounts[0][1][2].toString()),
         hasClaimed: userInfo[1][1],
+        purchasedTokens: new BigNumber(userInfo[2][1].toString()),
+        claimedTokens: new BigNumber(userInfo[3][1].toString()),
+        claimableTokens: new BigNumber(claimableTokens[0][1].toString()),
       },
     }))
   }, [account, address])

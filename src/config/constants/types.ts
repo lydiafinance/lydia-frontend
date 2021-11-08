@@ -78,6 +78,7 @@ export interface Ifo {
   version: number
   [PoolIds.poolBasic]?: IfoPoolInfo
   [PoolIds.poolUnlimited]: IfoPoolInfo
+  releasePercent: Array<number>
 }
 export interface MaximusConfig {
   pid: number

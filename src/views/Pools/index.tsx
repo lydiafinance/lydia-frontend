@@ -3,6 +3,7 @@ import { Route, useRouteMatch } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { Heading, Flex, Image } from '@lydiafinance/uikit'
+import Lottie from 'lottie-react-web'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
@@ -15,14 +16,17 @@ import PoolCard from './components/PoolCard'
 import LydVaultCard from './components/LydVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import BountyCard from './components/BountyCard'
+import animation from '../../animations/electrum.json'
+import useDeviceSize from '../../hooks/useWindowSize'
 
 const Pools: React.FC = () => {
   const { path } = useRouteMatch()
   const { t } = useTranslation()
   const { account } = useWeb3React()
+  const deviceSize = useDeviceSize()
   const pools = usePools(account)
   const { currentBlock } = useBlock()
-  const [stakedOnly, setStakedOnly] = usePersistState(false,  { localStorageKey: 'lydia_pool_staked' })
+  const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'lydia_pool_staked' })
 
   const [finishedPools, openPools] = useMemo(
     () => partition(pools, (pool) => pool.isFinished || currentBlock > pool.endBlock),
@@ -38,23 +42,32 @@ const Pools: React.FC = () => {
   )
   // This pool is passed explicitly to the lyd vault
   const lydPoolData = useMemo(() => openPools.find((pool) => pool.sousId === 0), [openPools])
+  const { isDesktop } = deviceSize
 
   return (
     <>
-      <PageHeader>
+      <PageHeader background="transparent">
         <Flex justifyContent="space-between" flexDirection={['column', null, 'row']}>
-          <Flex flexDirection="column" mr={['8px', 0]}>
-            <Heading as="h1" scale="xxl" color="text" mb="24px">
-              {t('Electrum Pools')}
-            </Heading>
-            <Heading scale="md" color="text">
-              {t('Simply stake tokens to earn.')}
-            </Heading>
-            <Heading scale="md" color="text">
-              {t('High APR, low risk.')}
-            </Heading>
-          </Flex>
-          <Flex height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
+          {/* <Flex flexDirection="column">
+            <Lottie
+              options={{
+                animationData: animation,
+              }}
+            />
+          </Flex> */}
+
+          <Flex
+            height="fit-content"
+            justifyContent="center"
+            alignItems="center"
+            flexWrap={!isDesktop ? 'wrap' : 'nowrap'}
+            mt={['24px', null, '0px']}
+          >
+            <Lottie
+              options={{
+                animationData: animation,
+              }}
+            />
             <BountyCard />
           </Flex>
         </Flex>

@@ -77,6 +77,15 @@ const IfoCardTokens: React.FC<IfoCardTokensProps> = ({
   const distributionRatio = ifo[poolId].distributionRatio * 100
   const tokenImage = `/images/tokens/${getAddress(ifo.token.address)}.png`
 
+  let nextReleasePercent = 0
+  ifo.releasePercent.find((_percent, i) => {
+    if (publicIfoData.releasedPercent.toNumber() === _percent) {
+      nextReleasePercent += ifo.releasePercent[i + 1] - ifo.releasePercent[i]
+      return true
+    }
+    return false
+  })
+
   const renderTokenSection = () => {
     if (isLoading) {
       return <SkeletonCardTokens />
@@ -153,15 +162,39 @@ const IfoCardTokens: React.FC<IfoCardTokensProps> = ({
           <TokenSection img={tokenImage}>
             <Label> {t(hasClaimed ? '%symbol% received' : '%symbol% to receive', { symbol: token.symbol })}</Label>
             <Flex alignItems="center">
-              <Value>{getBalanceNumber(userPoolCharacteristics.offeringAmountInToken, token.decimals)}</Value>
+              {userPoolCharacteristics.purchasedTokens.isGreaterThan(0) ? (
+                <Value>
+                  {getBalanceNumber(userPoolCharacteristics.claimedTokens, token.decimals)} of{' '}
+                  {getBalanceNumber(userPoolCharacteristics.purchasedTokens, token.decimals)}{' '}
+                </Value>
+              ) : (
+                <Value>{getBalanceNumber(userPoolCharacteristics.offeringAmountInToken, token.decimals)}</Value>
+              )}
               {!hasClaimed && userPoolCharacteristics.offeringAmountInToken.isEqualTo(0) && (
                 <div ref={targetRef} style={{ display: 'flex', marginLeft: '8px' }}>
                   <HelpIcon />
                 </div>
               )}
-              {hasClaimed && <CheckmarkCircleIcon color="success" ml="8px" />}
             </Flex>
           </TokenSection>
+          {userPoolCharacteristics.purchasedTokens.isGreaterThan(0) &&
+            !!nextReleasePercent &&
+            userPoolCharacteristics.claimableTokens.isGreaterThan(0) && (
+              <TokenSection img={tokenImage} mt="24px">
+                <Label> {t('Next Round %symbol% to receive', { symbol: token.symbol })}</Label>
+                <Flex alignItems="center">
+                  <Value>
+                    {(getBalanceNumber(userPoolCharacteristics.purchasedTokens, token.decimals) * nextReleasePercent) /
+                      100}
+                  </Value>
+                  {!hasClaimed && userPoolCharacteristics.offeringAmountInToken.isEqualTo(0) && (
+                    <div ref={targetRef} style={{ display: 'flex', marginLeft: '8px' }}>
+                      <HelpIcon />
+                    </div>
+                  )}
+                </Flex>
+              </TokenSection>
+            )}
         </>
       )
     }

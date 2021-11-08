@@ -1,8 +1,11 @@
-import React from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import Lottie from 'lottie-react-web'
 import { Box, Heading, Text } from '@lydiafinance/uikit'
 import Container from 'components/layout/Container'
 import { useTranslation } from 'contexts/Localization'
+import animation from '../../../animations/launchpad.json'
 
 const getGradient = (isDark: boolean) => {
   if (isDark) {
@@ -27,10 +30,24 @@ const CurtainBottom = styled.div`
 
 const Hero = () => {
   const { t } = useTranslation()
+  const [loop, setLoop] = useState(true)
+  let timer
+
+  useEffect(() => {
+    timer = setTimeout(() => setLoop(false), 6000)
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [])
 
   return (
     <Container>
-      <img src="/images/launchpad.gif" alt="banner" className="banner" />
+      <Lottie
+        options={{
+          animationData: animation,
+          loop,
+        }}
+      />
     </Container>
   )
 }

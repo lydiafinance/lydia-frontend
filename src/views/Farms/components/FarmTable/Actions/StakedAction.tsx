@@ -18,7 +18,7 @@ import useWeb3 from 'hooks/useWeb3'
 
 import DepositModal from '../../DepositModal'
 import WithdrawModal from '../../WithdrawModal'
-import { ActionContainer, ActionTitles, ActionContent, Earned, Title, Subtle } from './styles'
+import { ActionContainer, ActionTitles, ActionContent, Earned, Title, Subtle, Staked } from './styles'
 
 const IconButtonWrapper = styled.div`
   display: flex;
@@ -28,7 +28,7 @@ interface StackedActionProps extends FarmWithStakedValue {
   userDataReady: boolean
 }
 
-const Staked: React.FunctionComponent<StackedActionProps> = ({
+const StakedAction: React.FunctionComponent<StackedActionProps> = ({
   pid,
   lpSymbol,
   lpAddresses,
@@ -39,7 +39,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const [requestedApproval, setRequestedApproval] = useState(false)
-  const { allowance, tokenBalance, stakedBalance } = useFarmUser(pid)
+  const { allowance, tokenBalance, stakedBalance, stakedUsd } = useFarmUser(pid)
   const { onStake } = useStake(pid)
   const { onUnstake } = useUnstake(pid)
   const web3 = useWeb3()
@@ -61,6 +61,13 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     }
     return stakedBalanceNumber.toLocaleString()
   }, [stakedBalance])
+
+  const rawStakedUsd = getBalanceNumber(stakedUsd, 0)
+
+  const displayBalanceUsd = rawStakedUsd.toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })
 
   const [onPresentDeposit] = useModal(
     <DepositModal max={tokenBalance} onConfirm={onStake} tokenName={lpSymbol} addLiquidityUrl={addLiquidityUrl} />,
@@ -105,6 +112,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
           <ActionContent>
             <div>
               <Earned>{displayBalance()}</Earned>
+              <Staked>~${displayBalanceUsd}</Staked>
             </div>
             <IconButtonWrapper>
               <IconButton variant="secondary" onClick={onPresentWithdraw} mr="6px">
@@ -171,4 +179,4 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   )
 }
 
-export default Staked
+export default StakedAction

@@ -36,10 +36,10 @@ const Pools: React.FC = () => {
   return (
     <>
       <PageHeader>
-        <Flex justifyContent="space-between" flexDirection={['column', null, 'row']}>
-          <Flex flexDirection="column" mr={['8px', 0]}>
+        <Flex justifyContent="center" alignItems="center" flexDirection={['column', null, 'row']}>
+          <Flex flexDirection="column" mr={['8px', 0]} alignItems="center">
             <Heading as="h1" scale="xxl" color="text" mb="24px">
-              {t('Maximizer Farms ✨')}
+              {t('Maximizer Farms')}
             </Heading>
             <Heading scale="md" color="text">
               {t('Stake LP token to earn automatically.')}

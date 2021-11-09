@@ -350,11 +350,11 @@ const tokens = {
   maxi: {
     symbol: 'MAXI',
     address: {
-      [ChainId.AVALANCHE]: '0x8B1d98A91F853218ddbb066F20b8c63E782e2430',
-      [ChainId.FUJI]: '0x8B1d98A91F853218ddbb066F20b8c63E782e2430',
+      [ChainId.AVALANCHE]: '0x885d748C00A279B67A7749EC6b03301700dd0455',
+      [ChainId.FUJI]: '0x885d748C00A279B67A7749EC6b03301700dd0455',
     },
     decimals: 18,
-    projectLink: 'https://www.avai.finance',
+    projectLink: 'https://www.maximus.farm',
   },
 }
 

@@ -179,7 +179,7 @@ const IfoCardTokens: React.FC<IfoCardTokensProps> = ({
           </TokenSection>
           {userPoolCharacteristics.purchasedTokens.isGreaterThan(0) &&
             !!nextReleasePercent &&
-            userPoolCharacteristics.claimableTokens.isGreaterThan(0) && (
+            !userPoolCharacteristics.claimableTokens.isGreaterThan(0) && (
               <TokenSection img={tokenImage} mt="24px">
                 <Label> {t('Next Round %symbol% to receive', { symbol: token.symbol })}</Label>
                 <Flex alignItems="center">

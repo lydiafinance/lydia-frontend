@@ -35,7 +35,7 @@ const ifos: Ifo[] = [
     articleUrl: 'https://lydiafinance.medium.com/maximus-ifo-on-lydia-finance-dc1009a5cde7',
     tokenOfferingPrice: 1,
     version: 2,
-    releasePercent: [40, 30, 30],
+    releasePercent: [40, 70, 100],
   },
   {
     id: 'evrt',

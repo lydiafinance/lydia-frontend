@@ -13,7 +13,7 @@ const lydAvaxLPToken: Token = {
 const ifos: Ifo[] = [
   {
     id: 'maxi',
-    address: '0x1bAa7360Ce7273aACB48Ae38b038cEB150C1ed56',
+    address: '0x45d3b4861AEC54f028B650E77db6CcEf1cd2A0Ba',
     isActive: true,
     name: 'MAXIMUS (MAXI)',
     poolBasic: {

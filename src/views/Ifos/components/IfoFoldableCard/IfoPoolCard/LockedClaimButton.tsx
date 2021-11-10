@@ -61,7 +61,8 @@ const ClaimButton: React.FC<Props> = ({ poolId, ifoVersion, walletIfoData, nextR
   return (
     <Button disabled width="100%">
       Next unlock:{' '}
-      {t('%day%d %hour%h %minute%m', {
+      {t('%month%mo %day%d %hour%h %minute%m', {
+        month: timeUntil.months,
         day: timeUntil.days,
         hour: timeUntil.hours,
         minute: timeUntil.minutes,

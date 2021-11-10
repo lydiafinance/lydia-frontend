@@ -181,7 +181,7 @@ const IfoCardTokens: React.FC<IfoCardTokensProps> = ({
             !!nextReleasePercent &&
             !userPoolCharacteristics.claimableTokens.isGreaterThan(0) && (
               <TokenSection img={tokenImage} mt="24px">
-                <Label> {t('Next Round %symbol% to receive', { symbol: token.symbol })}</Label>
+                <Label> {t('Next unlock %symbol% to be received', { symbol: token.symbol })}</Label>
                 <Flex alignItems="center">
                   <Value>
                     {(getBalanceNumber(userPoolCharacteristics.purchasedTokens, token.decimals) * nextReleasePercent) /

@@ -106,6 +106,19 @@ const farms: FarmConfig[] = [
     isFinished: false,
   },
   {
+    pid: 42,
+    lpSymbol: 'AVAX-MAXI LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x0D9B1f890a7ebF861737d890D49dC1Fe4F7D782F',
+      [ChainId.AVALANCHE]: '0x0D9B1f890a7ebF861737d890D49dC1Fe4F7D782F',
+    },
+    token: tokens.maxi,
+    quoteToken: tokens.wavax,
+    tokenSymbol: 'MAXI',
+    quoteTokenAdresses: tokens.wavax,
+    isFinished: false,
+  },
+  {
     pid: 29,
     lpSymbol: 'USDT.e-PEFI LP',
     lpAddresses: {
@@ -476,19 +489,6 @@ const farms: FarmConfig[] = [
     token: tokens.teddy,
     quoteToken: tokens.wavax,
     tokenSymbol: 'TEDDY',
-    quoteTokenAdresses: tokens.wavax,
-    isFinished: false,
-  },
-  {
-    pid: 42,
-    lpSymbol: 'AVAX-MAXI LP',
-    lpAddresses: {
-      [ChainId.FUJI]: '0x0D9B1f890a7ebF861737d890D49dC1Fe4F7D782F',
-      [ChainId.AVALANCHE]: '0x0D9B1f890a7ebF861737d890D49dC1Fe4F7D782F',
-    },
-    token: tokens.maxi,
-    quoteToken: tokens.wavax,
-    tokenSymbol: 'MAXI',
     quoteTokenAdresses: tokens.wavax,
     isFinished: false,
   },

@@ -106,6 +106,19 @@ const farms: FarmConfig[] = [
     isFinished: false,
   },
   {
+    pid: 43,
+    lpSymbol: 'MAXI-LYD LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x50f154742816a1Ab7DEC3689012Ca123e8bA3C5F',
+      [ChainId.AVALANCHE]: '0x50f154742816a1Ab7DEC3689012Ca123e8bA3C5F',
+    },
+    token: tokens.maxi,
+    quoteToken: tokens.lyd,
+    tokenSymbol: 'MAXI',
+    quoteTokenAdresses: tokens.lyd,
+    isFinished: false,
+  },
+  {
     pid: 42,
     lpSymbol: 'AVAX-MAXI LP',
     lpAddresses: {

@@ -356,6 +356,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://www.maximus.farm',
   },
+  cycle: {
+    symbol: 'CYCLE',
+    address: {
+      [ChainId.AVALANCHE]: '0x81440c939f2c1e34fc7048e518a637205a632a74',
+      [ChainId.FUJI]: '0x81440c939f2c1e34fc7048e518a637205a632a74',
+    },
+    decimals: 18,
+    projectLink: 'https://www.cycle.finance',
+  },
 }
 
 export default tokens

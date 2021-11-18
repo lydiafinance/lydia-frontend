@@ -518,6 +518,19 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: tokens.wavax,
     isFinished: false,
   },
+  {
+    pid: 45,
+    lpSymbol: 'AVAX-BOOFI LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x234285bef3a95479f3432e1ad2b396b76bf4e4d2',
+      [ChainId.AVALANCHE]: '0x234285bef3a95479f3432e1ad2b396b76bf4e4d2',
+    },
+    token: tokens.boofi,
+    quoteToken: tokens.wavax,
+    tokenSymbol: 'BOOFI',
+    quoteTokenAdresses: tokens.wavax,
+    isFinished: false,
+  },
 ]
 
 export default farms

@@ -365,6 +365,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://www.cycle.finance',
   },
+  boofi: {
+    symbol: 'BOOFI',
+    address: {
+      [ChainId.AVALANCHE]: '0xb00f1ad977a949a3ccc389ca1d1282a2946963b0',
+      [ChainId.FUJI]: '0xb00f1ad977a949a3ccc389ca1d1282a2946963b0',
+    },
+    decimals: 18,
+    projectLink: 'https://www.boofinance.io/',
+  },
 }
 
 export default tokens

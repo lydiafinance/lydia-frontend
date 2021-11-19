@@ -522,8 +522,8 @@ const farms: FarmConfig[] = [
     pid: 45,
     lpSymbol: 'AVAX-BOOFI LP',
     lpAddresses: {
-      [ChainId.FUJI]: '0x234285bef3a95479f3432e1ad2b396b76bf4e4d2',
-      [ChainId.AVALANCHE]: '0x234285bef3a95479f3432e1ad2b396b76bf4e4d2',
+      [ChainId.FUJI]: '0xfa4575732a9c39b99d9e9f34ac93db34619d63d3',
+      [ChainId.AVALANCHE]: '0xfa4575732a9c39b99d9e9f34ac93db34619d63d3',
     },
     token: tokens.boofi,
     quoteToken: tokens.wavax,

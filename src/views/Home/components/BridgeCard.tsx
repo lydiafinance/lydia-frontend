@@ -7,12 +7,13 @@ import { Card, Heading, Link, Image } from '@lydiafinance/uikit'
 import { useTranslation } from '../../../contexts/Localization'
 import useDeviceSize from '../../../hooks/useWindowSize'
 
-const StyledBridgeCard = styled(Card)`
+const StyledBridgeCard = styled(Card)<{ isMobile: boolean }>`
   color: ${({ theme }) => theme.colors.avalanche};
   height: 250px;
   display: flex;
   align-items: center;
-  background-image: url('/images/avaxlions.png');
+  background-image: ${({ isMobile }) => `url(${!isMobile ? '/images/avaxlions.png' : '/images/avaxlionsmobile.png'})`};
+  // background-image: '/images/avaxlions.png';
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -65,7 +66,7 @@ const BridgeCard = () => {
   const { isMobile } = deviceSize
 
   return (
-    <StyledBridgeCard>
+    <StyledBridgeCard isMobile={isMobile}>
       {/* @ts-ignore */}
       <LinkStyled href="https://avaxlions.com/" />
       <CardBody>

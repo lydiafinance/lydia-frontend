@@ -1,7 +1,8 @@
+/* eslint-disable react/no-unknown-property */
 import React from 'react'
 
 import styled from 'styled-components'
-import { Card, Heading, Link } from '@lydiafinance/uikit'
+import { Card, Heading, Link, Image } from '@lydiafinance/uikit'
 
 import { useTranslation } from '../../../contexts/Localization'
 import useDeviceSize from '../../../hooks/useWindowSize'
@@ -11,7 +12,7 @@ const StyledBridgeCard = styled(Card)`
   height: 250px;
   display: flex;
   align-items: center;
-  background-image: url('/images/maximus1.png');
+  background-image: url('/images/avaxlions.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -46,6 +47,18 @@ const LinkStyled = styled(Link)<{ isMobile: boolean }>`
   width: 100%;
 `
 
+const Gif = styled.img`
+  max-width: 200px;
+  top: 10px;
+  border-radius: 124px 24px;
+`
+
+const Wrapper = styled.a`
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+`
+
 const BridgeCard = () => {
   const { t } = useTranslation()
   const deviceSize = useDeviceSize()
@@ -54,15 +67,18 @@ const BridgeCard = () => {
   return (
     <StyledBridgeCard>
       {/* @ts-ignore */}
-      <LinkStyled href="/launchpad" />
+      <LinkStyled href="https://avaxlions.com/" />
       <CardBody>
         {/* <BridgeImage src="/images/gate.svg" /> */}
         <BridgeImage isMobile={isMobile} color="#000" scale="xl">
           {/* {t('LYD Gate | Buy LYD on BSC')} */}
         </BridgeImage>
+
+        <Wrapper>
+          <Gif alt="lions" src="https://www.avaxlions.com/static/media/MintGif.442d559f.gif" />
+        </Wrapper>
       </CardBody>
     </StyledBridgeCard>
   )
 }
-
 export default BridgeCard

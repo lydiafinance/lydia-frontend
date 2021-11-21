@@ -531,6 +531,19 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: tokens.wavax,
     isFinished: false,
   },
+  {
+    pid: 46,
+    lpSymbol: 'AVAX-DUO LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x82a88fa5d0c0b79d50347782c5bce763e48f3df8',
+      [ChainId.AVALANCHE]: '0x82a88fa5d0c0b79d50347782c5bce763e48f3df8',
+    },
+    token: tokens.duo,
+    quoteToken: tokens.wavax,
+    tokenSymbol: 'DUO',
+    quoteTokenAdresses: tokens.wavax,
+    isFinished: false,
+  },
 ]
 
 export default farms

@@ -374,6 +374,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://www.boofinance.io/',
   },
+  duo: {
+    symbol: 'DUO',
+    address: {
+      [ChainId.AVALANCHE]: '0xAEF107957318C4CC3B00e851ca19De23536f5964',
+      [ChainId.FUJI]: '0xAEF107957318C4CC3B00e851ca19De23536f5964',
+    },
+    decimals: 18,
+    projectLink: 'https://singular.farm',
+  },
 }
 
 export default tokens

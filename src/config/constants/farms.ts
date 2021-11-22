@@ -544,6 +544,19 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: tokens.wavax,
     isFinished: false,
   },
+  {
+    pid: 47,
+    lpSymbol: 'AVAX-HCT LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x34b839a62149c41678bd1b04ad0f404c42744728',
+      [ChainId.AVALANCHE]: '0x34b839a62149c41678bd1b04ad0f404c42744728',
+    },
+    token: tokens.hct,
+    quoteToken: tokens.wavax,
+    tokenSymbol: 'HCT',
+    quoteTokenAdresses: tokens.wavax,
+    isFinished: false,
+  },
 ]
 
 export default farms

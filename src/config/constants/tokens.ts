@@ -383,6 +383,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://singular.farm',
   },
+  hct: {
+    symbol: 'HCT',
+    address: {
+      [ChainId.AVALANCHE]: '0x45c13620b55c35a5f539d26e88247011eb10fdbd',
+      [ChainId.FUJI]: '0x45c13620b55c35a5f539d26e88247011eb10fdbd',
+    },
+    decimals: 18,
+    projectLink: 'https://hurricaneswap.com',
+  },
 }
 
 export default tokens

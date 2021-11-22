@@ -12,8 +12,7 @@ const StyledBridgeCard = styled(Card)<{ isDesktop: boolean }>`
   height: 250px;
   display: flex;
   align-items: center;
-  background-image: ${({ isDesktop }) =>
-    `url(${!isDesktop ? '/images/avaxlions.png' : '/images/avaxlionsmobile.png'})`};
+  background-image: ${({ isDesktop }) => `url(${isDesktop ? '/images/avaxlions.png' : '/images/avaxlionsmobile.png'})`};
   // background-image: '/images/avaxlions.png';
   background-repeat: no-repeat;
   background-position: center;

@@ -557,6 +557,32 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: tokens.wavax,
     isFinished: false,
   },
+  {
+    pid: 48,
+    lpSymbol: 'AVAX-MIM LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0xeEAE46cef0285c1A307667bD135C17b2182B1F31',
+      [ChainId.AVALANCHE]: '0xeEAE46cef0285c1A307667bD135C17b2182B1F31',
+    },
+    token: tokens.mim,
+    quoteToken: tokens.wavax,
+    tokenSymbol: 'MIM',
+    quoteTokenAdresses: tokens.wavax,
+    isFinished: false,
+  },
+  {
+    pid: 49,
+    lpSymbol: 'AVAX-TIME LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x584D08Ba0afC57B0b942461922a9a20af62c6EF6',
+      [ChainId.AVALANCHE]: '0x584D08Ba0afC57B0b942461922a9a20af62c6EF6',
+    },
+    token: tokens.time,
+    quoteToken: tokens.wavax,
+    tokenSymbol: 'TIME',
+    quoteTokenAdresses: tokens.wavax,
+    isFinished: false,
+  },
 ]
 
 export default farms

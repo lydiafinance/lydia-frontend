@@ -392,6 +392,24 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://hurricaneswap.com',
   },
+  mim: {
+    symbol: 'MIM',
+    address: {
+      [ChainId.AVALANCHE]: '0x130966628846bfd36ff31a822705796e8cb8c18d',
+      [ChainId.FUJI]: '0x130966628846bfd36ff31a822705796e8cb8c18d',
+    },
+    decimals: 18,
+    projectLink: 'https://abracadabra.money/',
+  },
+  time: {
+    symbol: 'TIME',
+    address: {
+      [ChainId.AVALANCHE]: '0xb54f16fb19478766a268f172c9480f8da1a7c9c3',
+      [ChainId.FUJI]: '0xb54f16fb19478766a268f172c9480f8da1a7c9c3',
+    },
+    decimals: 9,
+    projectLink: 'https://www.wonderland.money/',
+  },
 }
 
 export default tokens

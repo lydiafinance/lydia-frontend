@@ -1,7 +1,7 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
 import { Button, useModal } from '@lydiafinance/uikit'
-import { getBalanceNumber } from 'utils/formatBalance'
+import { getBalanceAmount, getBalanceNumber } from 'utils/formatBalance'
 import { Ifo, PoolIds } from 'config/constants/types'
 import { WalletIfoData, PublicIfoData } from 'hooks/ifo/types'
 import { useTranslation } from 'contexts/Localization'
@@ -31,7 +31,7 @@ const ContributeButton: React.FC<Props> = ({ poolId, ifo, publicIfoData, walletI
     await Promise.all([publicIfoData.fetchIfoData(), walletIfoData.fetchIfoData()])
     toastSuccess(
       t('Success!'),
-      t('You have contributed %amount% AVAX-USDT.e LP tokens to this IFO!', { amount: getBalanceNumber(amount) }),
+      t('You have contributed %amount% AVAX-USDT.e LP tokens to this IFO!', { amount: getBalanceAmount(amount).toString() }),
     )
   }
 

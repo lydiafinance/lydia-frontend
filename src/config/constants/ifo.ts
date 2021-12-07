@@ -42,7 +42,7 @@ const ifos: Ifo[] = [
     articleUrl: 'https://lydiafinance.medium.com/avaone-ifo-on-lydia-finance-e5d8e17f9aed',
     tokenOfferingPrice: 0.7,
     version: 2,
-    releasePercent: [75, 25],
+    releasePercent: [75, 100],
   },
   {
     id: 'maxi',

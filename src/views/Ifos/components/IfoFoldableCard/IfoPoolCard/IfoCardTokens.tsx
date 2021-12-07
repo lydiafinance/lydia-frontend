@@ -77,6 +77,13 @@ const IfoCardTokens: React.FC<IfoCardTokensProps> = ({
   const distributionRatio = ifo[poolId].distributionRatio * 100
   const tokenImage = `/images/tokens/${getAddress(ifo.token.address)}.png`
 
+  let currencyImage = ''
+  if (currency.symbol === 'AVAX-USDT.e LP') {
+    currencyImage = '/images/farms/avax-usdt.e.svg'
+  } else if (currency.symbol === 'AVAX-LYD LP') {
+    currencyImage = '/images/farms/avax-lyd.svg'
+  }
+
   let nextReleasePercent = 0
   ifo.releasePercent.find((_percent, i) => {
     if (publicIfoData.releasedPercent.toNumber() === _percent) {
@@ -123,7 +130,7 @@ const IfoCardTokens: React.FC<IfoCardTokensProps> = ({
     if (publicIfoData.status === 'live') {
       return (
         <>
-          <TokenSection img="/images/farms/avax-lyd.svg" mb="24px">
+          <TokenSection img={currencyImage} mb="24px">
             <Label>{t('Your %symbol% committed', { symbol: currency.symbol })}</Label>
             <Value>{getBalanceAmount(userPoolCharacteristics.amountTokenCommittedInLP, currency.decimals).toString()}</Value>
             <PercentageOfTotal
@@ -146,7 +153,7 @@ const IfoCardTokens: React.FC<IfoCardTokensProps> = ({
         </Flex>
       ) : (
         <>
-          <TokenSection img="/images/farms/avax-lyd.svg" mb="24px">
+          <TokenSection img={currencyImage} mb="24px">
             <Label>
               {t(hasClaimed ? 'Your %symbol% RECLAIMED' : 'Your %symbol% TO RECLAIM', { symbol: currency.symbol })}
             </Label>

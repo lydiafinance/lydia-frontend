@@ -3,10 +3,17 @@ import { Ifo, Token } from './types'
 import farms from './farms'
 
 const lydAvaxFarm = farms.find((x) => x.pid === 4)
+const avaxUsdtFarm = farms.find((x) => x.pid === 17)
 
 const lydAvaxLPToken: Token = {
   symbol: lydAvaxFarm.lpSymbol,
   address: lydAvaxFarm.lpAddresses,
+  decimals: 18,
+}
+
+const avaxUsdtLPToken: Token = {
+  symbol: avaxUsdtFarm.lpSymbol,
+  address: avaxUsdtFarm.lpAddresses,
   decimals: 18,
 }
 

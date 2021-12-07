@@ -2,8 +2,8 @@ const config = [
   {
     title: 'What’s the difference between a Basic Sale and Unlimited Sale?',
     description: [
-      'In the Basic Sale, every user can commit a maximum of about 200 USD worth of LYD-AVAX LP Tokens. We calculate the maximum LP amount about 30 minutes before each IFO. The Basic Sale has no participation fee.',
-      'In the Unlimited Sale, there’s no limit to the amount of LYD-AVAX LP Tokens you can commit. However, there’s a fee for participation: see below.',
+      'In the Basic Sale, every user can commit a maximum of about 200 USD worth of AVAX-USDT.e LP Tokens. We calculate the maximum LP amount about 30 minutes before each IFO. The Basic Sale has no participation fee.',
+      'In the Unlimited Sale, there’s no limit to the amount of AVAX-USDT.e LP Tokens you can commit. However, there’s a fee for participation: see below.',
     ],
   },
   {
@@ -22,7 +22,7 @@ const config = [
   },
   {
     title: 'Where does the participation fee go?',
-    description: ['We burn it. The LYD-AVAX LP tokens from the participation fee will be decomposed.'],
+    description: ['We burn it. The AVAX-USDT.e LP tokens from the participation fee will be decomposed.'],
   },
 ]
 export default config

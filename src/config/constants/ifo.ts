@@ -20,7 +20,7 @@ const avaxUsdtLPToken: Token = {
 const ifos: Ifo[] = [
   {
     id: 'avao',
-    address: '0x2fF0EC71A6C89f42937F39Cd2A2A93179a9379FE',
+    address: '0x9d9c2A392Bac2Cd045Daf26F7fEA87640E214B3d',
     isActive: true,
     name: 'AvaOne (AVAO)',
     poolBasic: {

@@ -151,7 +151,7 @@ const IfoCardTokens: React.FC<IfoCardTokensProps> = ({
               {t(hasClaimed ? 'Your %symbol% RECLAIMED' : 'Your %symbol% TO RECLAIM', { symbol: currency.symbol })}
             </Label>
             <Flex alignItems="center">
-              <Value>{getBalanceNumber(userPoolCharacteristics.refundingAmountInLP, currency.decimals)}</Value>
+              <Value>{getBalanceAmount(userPoolCharacteristics.refundingAmountInLP, currency.decimals).toString()}</Value>
               {hasClaimed && <CheckmarkCircleIcon color="success" ml="8px" />}
             </Flex>
             <PercentageOfTotal

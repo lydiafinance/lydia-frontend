@@ -23,7 +23,7 @@ const FooterEntry: React.FC<FooterEntryProps> = ({ label, value }) => {
       <Text small color="textSubtle">
         {label}
       </Text>
-      {value ? (
+      {(value && value !== '0') ? (
         <Text small textAlign="right">
           {value}
         </Text>

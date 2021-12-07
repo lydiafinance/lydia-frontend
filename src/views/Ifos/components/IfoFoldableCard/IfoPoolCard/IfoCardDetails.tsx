@@ -3,7 +3,7 @@ import { Text, Flex, Box, Skeleton } from '@lydiafinance/uikit'
 import { PublicIfoData } from 'hooks/ifo/types'
 import { useTranslation } from 'contexts/Localization'
 import { Ifo, PoolIds } from 'config/constants/types'
-import { getBalanceNumber, formatNumber } from 'utils/formatBalance'
+import { getBalanceNumber, formatNumber, getBalanceAmount } from 'utils/formatBalance'
 import { SkeletonCardDetails } from './Skeletons'
 
 export interface IfoCardDetailsProps {
@@ -40,7 +40,7 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({ poolId, ifo, publicIfoD
   const poolCharacteristic = publicIfoData[poolId]
 
   /* Format start */
-  const maxLpTokens = getBalanceNumber(poolCharacteristic.limitPerUserInLP, ifo.currency.decimals)
+  const maxLpTokens = getBalanceAmount(poolCharacteristic.limitPerUserInLP, ifo.currency.decimals).toString()
   const taxRate = `${poolCharacteristic.taxRate}%`
 
   const totalCommittedPercent = poolCharacteristic.totalAmountPool

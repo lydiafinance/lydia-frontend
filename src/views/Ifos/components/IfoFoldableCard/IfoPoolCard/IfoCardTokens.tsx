@@ -15,7 +15,7 @@ import { useWeb3React } from '@web3-react/core'
 import { Ifo, PoolIds } from 'config/constants/types'
 import { PublicIfoData, WalletIfoData } from 'hooks/ifo/types'
 import { useTranslation } from 'contexts/Localization'
-import { getBalanceNumber } from 'utils/formatBalance'
+import { getBalanceNumber, getBalanceAmount } from 'utils/formatBalance'
 import { getAddress } from 'utils/addressHelpers'
 import { EnableStatus } from '../types'
 import PercentageOfTotal from './PercentageOfTotal'
@@ -125,7 +125,7 @@ const IfoCardTokens: React.FC<IfoCardTokensProps> = ({
         <>
           <TokenSection img="/images/farms/avax-lyd.svg" mb="24px">
             <Label>{t('Your %symbol% committed', { symbol: currency.symbol })}</Label>
-            <Value>{getBalanceNumber(userPoolCharacteristics.amountTokenCommittedInLP, currency.decimals)}</Value>
+            <Value>{getBalanceAmount(userPoolCharacteristics.amountTokenCommittedInLP, currency.decimals).toString()}</Value>
             <PercentageOfTotal
               userAmount={userPoolCharacteristics.amountTokenCommittedInLP}
               totalAmount={publicPoolCharacteristics.totalAmountPool}
@@ -151,7 +151,7 @@ const IfoCardTokens: React.FC<IfoCardTokensProps> = ({
               {t(hasClaimed ? 'Your %symbol% RECLAIMED' : 'Your %symbol% TO RECLAIM', { symbol: currency.symbol })}
             </Label>
             <Flex alignItems="center">
-              <Value>{getBalanceNumber(userPoolCharacteristics.refundingAmountInLP, currency.decimals)}</Value>
+              <Value>{getBalanceAmount(userPoolCharacteristics.refundingAmountInLP, currency.decimals).toString()}</Value>
               {hasClaimed && <CheckmarkCircleIcon color="success" ml="8px" />}
             </Flex>
             <PercentageOfTotal

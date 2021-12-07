@@ -38,7 +38,7 @@ const IfoSteps: React.FC = () => {
             <Button
               as={Link}
               external
-              href={`${BASE_ADD_LIQUIDITY_URL}/AVAX/0x4C9B4E1AC6F24CdE3660D5E4Ef1eBF77C710C084`}
+              href={`${BASE_ADD_LIQUIDITY_URL}/AVAX/0xc7198437980c041c805A1EDcbA50c1Ce5db95118`}
               endIcon={<OpenNewIcon color="white" />}
               mt="16px"
             >

@@ -410,6 +410,15 @@ const tokens = {
     decimals: 9,
     projectLink: 'https://www.wonderland.money/',
   },
+  avao: {
+    symbol: 'AVAO',
+    address: {
+      [ChainId.AVALANCHE]: '0xCF7101f34DBA0f3d5fFafD3D3Aa2b3Fc20C08775',
+      [ChainId.FUJI]: '0xCF7101f34DBA0f3d5fFafD3D3Aa2b3Fc20C08775',
+    },
+    decimals: 18,
+    projectLink: 'https://avaone.finance',
+  },
 }
 
 export default tokens

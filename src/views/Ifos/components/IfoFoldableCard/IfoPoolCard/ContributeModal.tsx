@@ -23,7 +23,7 @@ interface Props {
   onDismiss?: () => void
 }
 
-const multiplierValues = [0.1, 0.25, 0.5, 0.75, 1]
+const multiplierValues = [1,]
 
 const ContributeModal: React.FC<Props> = ({
   poolId,
@@ -116,7 +116,7 @@ const ContributeModal: React.FC<Props> = ({
             balance: getBalanceAmount(userCurrencyBalance, currency.decimals).toString(),
           })}
         </Text>
-        <Flex justifyContent="space-between" mb="16px">
+        <Flex justifyContent="flex-end" mb="16px">
           {multiplierValues.map((multiplierValue, index) => (
             <Button
               key={multiplierValue}
@@ -125,7 +125,7 @@ const ContributeModal: React.FC<Props> = ({
               onClick={() => setValue(getBalanceAmount(maximumLpCommitable.times(multiplierValue)).toString())}
               mr={index < multiplierValues.length - 1 ? '8px' : 0}
             >
-              {multiplierValue * 100}%
+              Max
             </Button>
           ))}
         </Flex>

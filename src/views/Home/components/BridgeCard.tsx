@@ -12,8 +12,9 @@ const StyledBridgeCard = styled(Card)<{ isDesktop: boolean }>`
   height: 250px;
   display: flex;
   align-items: center;
-  background-image: ${({ isDesktop }) => `url(${isDesktop ? '/images/avaxlions.png' : '/images/avaxlionsmobile.png'})`};
+  // background-image: ${({ isDesktop }) => `url(${isDesktop ? '/images/avaxlions.png' : '/images/avaxlionsmobile.png'})`};
   // background-image: '/images/avaxlions.png';
+  background-image: ${({ isDesktop }) => `url(${isDesktop ? '/images/avaoneifo.png' : '/images/avaoneifo.png'})`};
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -68,16 +69,19 @@ const BridgeCard = () => {
   return (
     <StyledBridgeCard isDesktop={isDesktop}>
       {/* @ts-ignore */}
-      <LinkStyled href="https://avaxlions.com/" />
+      <LinkStyled href="https://www.lydia.finance/launchpad" />
       <CardBody>
         {/* <BridgeImage src="/images/gate.svg" /> */}
         <BridgeImage isMobile={isMobile} color="#000" scale="xl">
           {/* {t('LYD Gate | Buy LYD on BSC')} */}
         </BridgeImage>
 
-        <Wrapper>
+        <Wrapper />
+        {/*
+         <Wrapper>
           <Gif alt="lions" src="https://www.avaxlions.com/static/media/MintGif.442d559f.gif" />
         </Wrapper>
+        */}
       </CardBody>
     </StyledBridgeCard>
   )

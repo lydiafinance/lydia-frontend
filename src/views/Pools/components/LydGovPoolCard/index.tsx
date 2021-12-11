@@ -29,7 +29,7 @@ interface LydVaultProps {
   isHomeCard?: boolean
 }
 
-const LydGovernanceCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHomeCard }) => {
+const LydGovPoolCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHomeCard }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { lastUpdated, setLastUpdated } = useLastUpdated()
@@ -107,4 +107,4 @@ const LydGovernanceCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHo
   )
 }
 
-export default LydGovernanceCard
+export default LydGovPoolCard

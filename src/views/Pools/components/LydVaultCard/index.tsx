@@ -18,10 +18,7 @@ import StyledCardHeader from '../PoolCard/StyledCardHeader'
 import VaultCardActions from './VaultCardActions'
 import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
 import RecentLydProfitRow from './RecentLydProfitRow'
-
-const StyledCardBody = styled(CardBody)<{ isLoading: boolean }>`
-  min-height: ${({ isLoading }) => (isLoading ? '0' : '254px')};
-`
+import SharedCardBody from '../Shared/SharedCardBody'
 
 interface LydVaultProps {
   pool: Pool
@@ -51,7 +48,7 @@ const LydVaultCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHomeCar
   return (
     <StyledCard isStaking={accountHasSharesStaked} isHomeCard={isHomeCard}>
       <StyledCardHeader isAutoVault earningTokenSymbol="LYD" stakingTokenSymbol="LYD" />
-      <StyledCardBody isLoading={isLoading}>
+      <SharedCardBody isLoading={isLoading}>
         <AprRow
           pool={pool}
           stakingTokenPrice={stakingTokenPrice}
@@ -95,7 +92,7 @@ const LydVaultCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHomeCar
             </>
           )}
         </Flex>
-      </StyledCardBody>
+      </SharedCardBody>
       <CardFooter
         pool={pool}
         account={account}

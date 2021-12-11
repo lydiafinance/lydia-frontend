@@ -18,18 +18,15 @@ import StyledCardHeader from '../PoolCard/StyledCardHeader'
 import VaultCardActions from './VaultCardActions'
 import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
 import RecentLydProfitRow from './RecentLydProfitRow'
+import SharedCardBody from '../Shared/SharedCardBody'
 
-const StyledCardBody = styled(CardBody)<{ isLoading: boolean }>`
-  min-height: ${({ isLoading }) => (isLoading ? '0' : '254px')};
-`
-
-interface LydVaultProps {
+interface LydGovPoolProps {
   pool: Pool
   showStakedOnly?: boolean
   isHomeCard?: boolean
 }
 
-const LydGovPoolCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHomeCard }) => {
+const LydGovPoolCard: React.FC<LydGovPoolProps> = ({ pool, showStakedOnly, isHomeCard }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { lastUpdated, setLastUpdated } = useLastUpdated()
@@ -51,7 +48,7 @@ const LydGovPoolCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHomeC
   return (
     <StyledCard isStaking={accountHasSharesStaked} isHomeCard={isHomeCard}>
       <StyledCardHeader isAutoVault earningTokenSymbol="LYD" stakingTokenSymbol="LYD" />
-      <StyledCardBody isLoading={isLoading}>
+      <SharedCardBody isLoading={isLoading}>
         <AprRow
           pool={pool}
           stakingTokenPrice={stakingTokenPrice}
@@ -95,7 +92,7 @@ const LydGovPoolCard: React.FC<LydVaultProps> = ({ pool, showStakedOnly, isHomeC
             </>
           )}
         </Flex>
-      </StyledCardBody>
+      </SharedCardBody>
       <CardFooter
         pool={pool}
         account={account}

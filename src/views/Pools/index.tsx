@@ -14,6 +14,7 @@ import Page from 'components/layout/Page'
 import PageHeader from 'components/PageHeader'
 import PoolCard from './components/PoolCard'
 import LydVaultCard from './components/LydVaultCard'
+import LydGovernanceCard from './components/LydGovernanceCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import BountyCard from './components/BountyCard'
 import animation from '../../animations/electrum.json'
@@ -82,6 +83,7 @@ const Pools: React.FC = () => {
           <Route exact path={`${path}`}>
             <>
               <LydVaultCard pool={lydPoolData} showStakedOnly={stakedOnly} />
+              <LydGovernanceCard pool={lydPoolData} showStakedOnly={stakedOnly} />
               {stakedOnly
                 ? orderBy(stakedOnlyPools, ['sortOrder']).map((pool) => (
                     <PoolCard key={pool.sousId} pool={pool} account={account} />

@@ -18,6 +18,7 @@ import {
   getClaimRefundAddress,
   getAirdropAddress,
   getLydVaultAddress,
+  getLydGovernanceAddress,
   getMaximusFeeManagerAddress,
   getMaximusDashboardAddress,
   getMulticallAddress,
@@ -42,6 +43,7 @@ import sousChefAvax from 'config/abi/sousChefAvax.json'
 import claimRefundAbi from 'config/abi/claimRefund.json'
 import airDropAbi from 'config/abi/airdrop.json'
 import lydVaultAbi from 'config/abi/lydVaultAbi.json'
+import lydGovernanceAbi from 'config/abi/lydGovernanceAbi.json'
 import maximusFeeManagerAbi from 'config/abi/maximusFeeManagerAbi.json'
 import maximusAbi from 'config/abi/maximusAbi.json'
 import maximusDashboardAbi from 'config/abi/maximusDashboardAbi.json'
@@ -105,6 +107,9 @@ export const getAirdropContract = (web3?: Web3) => {
 }
 export const getLydVaultContract = (web3?: Web3) => {
   return getContract(lydVaultAbi, getLydVaultAddress(), web3)
+}
+export const getLydGovernanceContract = (web3?: Web3) => {
+  return getContract(lydGovernanceAbi, getLydVaultAddress(), web3)
 }
 export const getMaximusFeeManagerContract = (web3?: Web3) => {
   return getContract(maximusFeeManagerAbi, getMaximusFeeManagerAddress(), web3)

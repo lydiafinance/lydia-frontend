@@ -5,7 +5,7 @@ import { useLydGovernanceContract } from 'hooks/useContract'
 import useRefresh from 'hooks/useRefresh'
 import makeBatchRequest from 'utils/makeBatchRequest'
 
-const useGetVaultBountyInfo = () => {
+const useGetGovernanceBountyInfo = () => {
   const { fastRefresh } = useRefresh()
   const lydGovernanceContract = useLydGovernanceContract()
   const [estimatedDollarBountyReward, setEstimatedDollarBountyReward] = useState(null)
@@ -33,4 +33,4 @@ const useGetVaultBountyInfo = () => {
   return { estimatedLydBountyReward, estimatedDollarBountyReward, totalPendingLydHarvest }
 }
 
-export default useGetVaultBountyInfo
+export default useGetGovernanceBountyInfo

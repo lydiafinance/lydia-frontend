@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
-import { useLydVaultContract } from 'hooks/useContract'
+import { useLydGovernanceContract } from 'hooks/useContract'
 import makeBatchRequest from 'utils/makeBatchRequest'
 
-export interface VaultFees {
+export interface GovernanceFees {
   performanceFee: string
   callFee: string
   withdrawalFee: string
   withdrawalFeePeriod: string
 }
 
-const useGetVaultFees = () => {
-  const lydVaultContract = useLydVaultContract()
+const useGetGovernanceFees = () => {
+  const lydGovernanceContract = useLydGovernanceContract()
   const [fees, setFees] = useState({
     performanceFee: null,
     callFee: null,
@@ -26,10 +26,10 @@ const useGetVaultFees = () => {
         contractCallFee,
         contractWithdrawalFee,
       ] = await makeBatchRequest([
-        lydVaultContract.methods.performanceFee().call,
-        lydVaultContract.methods.withdrawFeePeriod().call,
-        lydVaultContract.methods.callFee().call,
-        lydVaultContract.methods.withdrawFee().call,
+        lydGovernanceContract.methods.performanceFee().call,
+        lydGovernanceContract.methods.withdrawFeePeriod().call,
+        lydGovernanceContract.methods.callFee().call,
+        lydGovernanceContract.methods.withdrawFee().call,
       ])
 
       setFees({
@@ -41,9 +41,9 @@ const useGetVaultFees = () => {
     }
 
     getFees()
-  }, [lydVaultContract])
+  }, [lydGovernanceContract])
 
   return fees
 }
 
-export default useGetVaultFees
+export default useGetGovernanceFees

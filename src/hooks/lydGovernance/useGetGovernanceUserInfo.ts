@@ -4,7 +4,7 @@ import { useWeb3React } from '@web3-react/core'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { useLydVaultContract } from 'hooks/useContract'
 
-const useGetVaultUserInfo = (lastUpdated?: number) => {
+const useGetGovernanceUserInfo = (lastUpdated?: number) => {
   const { account } = useWeb3React()
   const lydVaultContract = useLydVaultContract()
   const [userInfo, setUserInfo] = useState({
@@ -34,4 +34,4 @@ const useGetVaultUserInfo = (lastUpdated?: number) => {
   return userInfo
 }
 
-export default useGetVaultUserInfo
+export default useGetGovernanceUserInfo

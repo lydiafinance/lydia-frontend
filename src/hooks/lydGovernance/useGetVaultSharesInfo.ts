@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { convertSharesToLyd } from 'views/Pools/helpers'
-import { useLydVaultContract } from 'hooks/useContract'
+import { useLydGovernanceContract } from 'hooks/useContract'
 import makeBatchRequest from 'utils/makeBatchRequest'
 
 const useGetVaultSharesInfo = (lastUpdated?: number) => {
-  const lydVaultContract = useLydVaultContract()
+  const lydVaultContract = useLydGovernanceContract()
   const [totalShares, setTotalShares] = useState(null)
   const [totalLydInVault, setTotalLydInVault] = useState(null)
   const [pricePerFullShare, setPricePerFullShare] = useState(null)

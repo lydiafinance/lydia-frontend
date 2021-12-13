@@ -1,15 +1,14 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Box, CardBody, Flex, Text } from '@lydiafinance/uikit'
+import { Box, Flex, Text } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
 import UnlockButton from 'components/UnlockButton'
 import { getAddress } from 'utils/addressHelpers'
 import { useGetApiPrice } from 'state/hooks'
 import useLastUpdated from 'hooks/useLastUpdate'
-import useGetVaultUserInfo from 'hooks/lydVault/useGetVaultUserInfo'
-import useGetVaultSharesInfo from 'hooks/lydVault/useGetVaultSharesInfo'
-import useGetVaultFees from 'hooks/lydVault/useGetVaultFees'
+import useGetGovernanceUserInfo from 'hooks/lydGovernance/useGetGovernanceUserInfo'
+import useGetVaultSharesInfo from 'hooks/lydGovernance/useGetVaultSharesInfo'
+import useGetGovernanceFees from 'hooks/lydGovernance/useGetGovernanceFees'
 import { Pool } from 'state/types'
 import AprRow from '../PoolCard/AprRow'
 import StyledCard from '../PoolCard/StyledCard'
@@ -30,8 +29,8 @@ const LydGovPoolCard: React.FC<LydGovPoolProps> = ({ pool, showStakedOnly, isHom
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { lastUpdated, setLastUpdated } = useLastUpdated()
-  const userInfo = useGetVaultUserInfo(lastUpdated)
-  const vaultFees = useGetVaultFees()
+  const userInfo = useGetGovernanceUserInfo(lastUpdated)
+  const governanceFees = useGetGovernanceFees()
   const { totalLydInVault, pricePerFullShare } = useGetVaultSharesInfo()
   const { stakingToken } = pool
   //   Estimate & manual for now. 288 = once every 5 mins. We can change once we have a better sense of this
@@ -39,7 +38,7 @@ const LydGovPoolCard: React.FC<LydGovPoolProps> = ({ pool, showStakedOnly, isHom
   const accountHasSharesStaked = userInfo.shares && userInfo.shares.gt(0)
   const stakingTokenPrice = useGetApiPrice(stakingToken?.symbol?.toLowerCase())
   const isLoading = !pool.userData || !userInfo.shares
-  const performanceFeeAsDecimal = vaultFees.performanceFee && parseInt(vaultFees.performanceFee, 10) / 100
+  const performanceFeeAsDecimal = governanceFees.performanceFee && parseInt(governanceFees.performanceFee, 10) / 100
 
   if (showStakedOnly && !accountHasSharesStaked) {
     return null
@@ -65,8 +64,8 @@ const LydGovPoolCard: React.FC<LydGovPoolProps> = ({ pool, showStakedOnly, isHom
         </Box>
         <Box mt="8px">
           <UnstakingFeeCountdownRow
-            withdrawalFee={vaultFees.withdrawalFee}
-            withdrawalFeePeriod={vaultFees.withdrawalFeePeriod}
+            withdrawalFee={governanceFees.withdrawalFee}
+            withdrawalFeePeriod={governanceFees.withdrawalFeePeriod}
             lastDepositedTime={accountHasSharesStaked && userInfo.lastDepositedTime}
           />
         </Box>
@@ -76,7 +75,7 @@ const LydGovPoolCard: React.FC<LydGovPoolProps> = ({ pool, showStakedOnly, isHom
               pool={pool}
               userInfo={userInfo}
               pricePerFullShare={pricePerFullShare}
-              vaultFees={vaultFees}
+              vaultFees={governanceFees}
               stakingTokenPrice={stakingTokenPrice}
               accountHasSharesStaked={accountHasSharesStaked}
               lastUpdated={lastUpdated}
@@ -96,7 +95,7 @@ const LydGovPoolCard: React.FC<LydGovPoolProps> = ({ pool, showStakedOnly, isHom
       <CardFooter
         pool={pool}
         account={account}
-        performanceFee={vaultFees.performanceFee}
+        performanceFee={governanceFees.performanceFee}
         isAutoVault
         totalLydInVault={totalLydInVault}
       />

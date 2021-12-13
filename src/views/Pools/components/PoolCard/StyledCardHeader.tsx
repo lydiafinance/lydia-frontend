@@ -13,7 +13,8 @@ const StyledCardHeader: React.FC<{
   stakingTokenSymbol: string
   isAutoVault?: boolean
   isFinished?: boolean
-}> = ({ earningTokenSymbol, stakingTokenSymbol, isFinished = false, isAutoVault = false }) => {
+  isAutoGovernance?: boolean
+}> = ({ earningTokenSymbol, stakingTokenSymbol, isFinished = false, isAutoVault = false, isAutoGovernance = false }) => {
   const { t } = useTranslation()
   const poolImageSrc = isAutoVault
     ? `lyd-lydvault.svg`
@@ -23,7 +24,12 @@ const StyledCardHeader: React.FC<{
 
   const getHeadingPrefix = () => {
     if (isAutoVault) {
-      // vault
+      // Auto Governance    
+      if(isAutoGovernance){
+        return `${t('Auto Governance')}`
+      }
+
+      // vault    
       return `${t('Auto')}`
     }
     if (isLydPool) {

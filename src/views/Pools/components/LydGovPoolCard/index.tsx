@@ -46,7 +46,7 @@ const LydGovPoolCard: React.FC<LydGovPoolProps> = ({ pool, showStakedOnly, isHom
 
   return (
     <StyledCard isStaking={accountHasSharesStaked} isHomeCard={isHomeCard}>
-      <StyledCardHeader isAutoVault earningTokenSymbol="LYD" stakingTokenSymbol="LYD" />
+      <StyledCardHeader isAutoVault isAutoGovernance earningTokenSymbol="LYD" stakingTokenSymbol="LYD" />
       <SharedCardBody isLoading={isLoading}>
         <AprRow
           pool={pool}

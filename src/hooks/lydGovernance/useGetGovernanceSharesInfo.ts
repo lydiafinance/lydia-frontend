@@ -4,10 +4,10 @@ import { convertSharesToLyd } from 'views/Pools/helpers'
 import { useLydGovernanceContract } from 'hooks/useContract'
 import makeBatchRequest from 'utils/makeBatchRequest'
 
-const useGetVaultSharesInfo = (lastUpdated?: number) => {
+const useGetGovernanceSharesInfo = (lastUpdated?: number) => {
   const lydVaultContract = useLydGovernanceContract()
   const [totalShares, setTotalShares] = useState(null)
-  const [totalLydInVault, setTotalLydInVault] = useState(null)
+  const [totalLydInGovernance, setTotalLydInGovernance] = useState(null)
   const [pricePerFullShare, setPricePerFullShare] = useState(null)
 
   useEffect(() => {
@@ -18,15 +18,15 @@ const useGetVaultSharesInfo = (lastUpdated?: number) => {
       ])
       const sharePriceAsBigNumber = new BigNumber(sharePrice as string)
       const totalSharesAsBigNumber = new BigNumber(shares as string)
-      const totalLydInVaultEstimate = convertSharesToLyd(totalSharesAsBigNumber, sharePriceAsBigNumber)
+      const totalLydInGovernanceEstimate = convertSharesToLyd(totalSharesAsBigNumber, sharePriceAsBigNumber)
       setPricePerFullShare(sharePriceAsBigNumber)
       setTotalShares(totalSharesAsBigNumber)
-      setTotalLydInVault(totalLydInVaultEstimate.lydAsBigNumber)
+      setTotalLydInGovernance(totalLydInGovernanceEstimate.lydAsBigNumber)
     }
     getTotalShares()
   }, [lydVaultContract, lastUpdated])
 
-  return { totalShares, totalLydInVault, pricePerFullShare }
+  return { totalShares, totalLydInGovernance, pricePerFullShare }
 }
 
-export default useGetVaultSharesInfo
+export default useGetGovernanceSharesInfo

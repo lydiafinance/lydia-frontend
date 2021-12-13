@@ -7,7 +7,7 @@ import { getAddress } from 'utils/addressHelpers'
 import { useGetApiPrice } from 'state/hooks'
 import useLastUpdated from 'hooks/useLastUpdate'
 import useGetGovernanceUserInfo from 'hooks/lydGovernance/useGetGovernanceUserInfo'
-import useGetVaultSharesInfo from 'hooks/lydGovernance/useGetVaultSharesInfo'
+import useGetGovernanceSharesInfo from 'hooks/lydGovernance/useGetGovernanceSharesInfo'
 import useGetGovernanceFees from 'hooks/lydGovernance/useGetGovernanceFees'
 import { Pool } from 'state/types'
 import AprRow from '../PoolCard/AprRow'
@@ -31,7 +31,7 @@ const LydGovPoolCard: React.FC<LydGovPoolProps> = ({ pool, showStakedOnly, isHom
   const { lastUpdated, setLastUpdated } = useLastUpdated()
   const userInfo = useGetGovernanceUserInfo(lastUpdated)
   const governanceFees = useGetGovernanceFees()
-  const { totalLydInVault, pricePerFullShare } = useGetVaultSharesInfo()
+  const { totalLydInGovernance, pricePerFullShare } = useGetGovernanceSharesInfo()
   const { stakingToken } = pool
   //   Estimate & manual for now. 288 = once every 5 mins. We can change once we have a better sense of this
   const timesCompoundedDaily = 288
@@ -97,7 +97,7 @@ const LydGovPoolCard: React.FC<LydGovPoolProps> = ({ pool, showStakedOnly, isHom
         account={account}
         performanceFee={governanceFees.performanceFee}
         isAutoVault
-        totalLydInVault={totalLydInVault}
+        totalLydInVault={totalLydInGovernance}
       />
     </StyledCard>
   )

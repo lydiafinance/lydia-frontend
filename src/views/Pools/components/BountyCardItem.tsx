@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import styled from 'styled-components'
 import {
-  CardBody,
   Text,
   Flex,
   HelpIcon,
@@ -17,6 +16,10 @@ import BountyModal from './BountyModal'
 
 const InlineText = styled(Text)`
   display: inline;
+`
+
+const CardBody = styled.div`
+  padding: 10px 20px;
 `
 
 const useBountyToDisplay = (bountyInfo) => {
@@ -57,7 +60,7 @@ const BountyCardItem = ({title,targetRef, callFee, TooltipComponent, bountyInfo,
     return (
         <CardBody>
           <Flex flexDirection="column">
-            <Flex alignItems="center" mb="12px">
+            <Flex alignItems="center" mb="5px">
               <Text fontSize="14px" bold color="textSubtle" mr="4px">
                 {title}
                 <br />
@@ -69,7 +72,7 @@ const BountyCardItem = ({title,targetRef, callFee, TooltipComponent, bountyInfo,
             </Flex>
           </Flex>
           <Flex alignItems="center" justifyContent="space-between">
-            <Flex flexDirection="column" mr="12px">
+            <Flex flexDirection="column" mr="5px">
               <Heading>{bounties.cardLydBountyToDisplay || <Skeleton height={20} width={96} mb="2px" />}</Heading>
               <InlineText fontSize="12px" color="textSubtle">
                 {bounties.dollarBountyToDisplay ? (

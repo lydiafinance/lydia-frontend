@@ -15,7 +15,7 @@ import GovernanceCardFooter from './GovernanceCardFooter'
 import StyledCardHeader from '../PoolCard/StyledCardHeader'
 import LydGovernanceCardActions from './GovernanceCardActions'
 import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
-import RecentLydProfitRow from './RecentLydProfitRow'
+import RecentLydProfitRow from '../Shared/RecentLydProfitRow'
 import SharedCardBody from '../Shared/SharedCardBody'
 
 interface LydGovPoolProps {

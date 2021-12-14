@@ -17,7 +17,7 @@ import CardFooter from '../PoolCard/CardFooter'
 import StyledCardHeader from '../PoolCard/StyledCardHeader'
 import VaultCardActions from './VaultCardActions'
 import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
-import RecentLydProfitRow from './RecentLydProfitRow'
+import RecentLydProfitRow from '../Shared/RecentLydProfitRow'
 import SharedCardBody from '../Shared/SharedCardBody'
 
 interface LydVaultProps {

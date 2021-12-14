@@ -3,13 +3,13 @@ import { Flex, Button, useModal, Skeleton } from '@lydiafinance/uikit'
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
 import { Pool } from 'state/types'
-import { VaultFees } from 'hooks/lydVault/useGetVaultFees'
+import { GovernanceFees } from 'hooks/lydGovernance/useGetGovernanceFees'
 import { VaultUser } from 'views/Pools/types'
 import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
 import VaultStakeModal from '../VaultStakeModal'
 import HasSharesActions from './HasSharesActions'
 
-interface VaultStakeActionsProps {
+interface GovernanceStakeActionsProps {
   pool: Pool
   stakingTokenBalance: BigNumber
   stakingTokenPrice: number
@@ -17,11 +17,11 @@ interface VaultStakeActionsProps {
   accountHasSharesStaked: boolean
   pricePerFullShare: BigNumber
   isLoading?: boolean
-  vaultFees: VaultFees
+  governanceFees: GovernanceFees
   setLastUpdated: () => void
 }
 
-const VaultStakeActions: React.FC<VaultStakeActionsProps> = ({
+const GovernanceStakeActions: React.FC<GovernanceStakeActionsProps> = ({
   pool,
   stakingTokenBalance,
   stakingTokenPrice,
@@ -29,7 +29,7 @@ const VaultStakeActions: React.FC<VaultStakeActionsProps> = ({
   accountHasSharesStaked,
   pricePerFullShare,
   isLoading = false,
-  vaultFees,
+  governanceFees,
   setLastUpdated,
 }) => {
   const { stakingToken } = pool
@@ -54,7 +54,7 @@ const VaultStakeActions: React.FC<VaultStakeActionsProps> = ({
         userInfo={userInfo}
         pricePerFullShare={pricePerFullShare}
         setLastUpdated={setLastUpdated}
-        vaultFees={vaultFees}
+        governanceFees={governanceFees}
       />
     ) : (
       <Button onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}>{t('Stake')}</Button>
@@ -64,4 +64,4 @@ const VaultStakeActions: React.FC<VaultStakeActionsProps> = ({
   return <Flex flexDirection="column">{isLoading ? <Skeleton width="100%" height="52px" /> : renderStakeAction()}</Flex>
 }
 
-export default VaultStakeActions
+export default GovernanceStakeActions

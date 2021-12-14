@@ -3,7 +3,7 @@ import { Flex, Text, IconButton, AddIcon, MinusIcon, Heading, useModal, Skeleton
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber, formatNumber } from 'utils/formatBalance'
 import { Pool } from 'state/types'
-import { VaultFees } from 'hooks/lydVault/useGetVaultFees'
+import { GovernanceFees } from 'hooks/lydGovernance/useGetGovernanceFees'
 import { VaultUser } from 'views/Pools/types'
 import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
 import { convertSharesToLyd } from '../../../helpers'
@@ -15,7 +15,7 @@ interface HasStakeActionProps {
   stakingTokenPrice: number
   userInfo: VaultUser
   pricePerFullShare: BigNumber
-  vaultFees: VaultFees
+  governanceFees: GovernanceFees
   setLastUpdated: () => void
 }
 
@@ -25,7 +25,7 @@ const HasSharesActions: React.FC<HasStakeActionProps> = ({
   stakingTokenPrice,
   userInfo,
   pricePerFullShare,
-  vaultFees,
+  governanceFees,
   setLastUpdated,
 }) => {
   const { stakingToken } = pool
@@ -54,7 +54,7 @@ const HasSharesActions: React.FC<HasStakeActionProps> = ({
       stakingTokenPrice={stakingTokenPrice}
       pricePerFullShare={pricePerFullShare}
       userInfo={userInfo}
-      vaultFees={vaultFees}
+      vaultFees={governanceFees}
       setLastUpdated={setLastUpdated}
       isRemovingStake
     />,

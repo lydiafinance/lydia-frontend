@@ -10,13 +10,13 @@ import { VaultFees } from 'hooks/lydVault/useGetVaultFees'
 import { Pool } from 'state/types'
 import { VaultUser } from 'views/Pools/types'
 import VaultApprovalAction from './VaultApprovalAction'
-import VaultStakeActions from './VaultStakeActions'
+import GovernanceStakeActions from './GovernanceStakeActions'
 
 const InlineText = styled(Text)`
   display: inline;
 `
 
-const LydVaultCardActions: React.FC<{
+const LydGovernanceCardActions: React.FC<{
   pool: Pool
   userInfo: VaultUser
   pricePerFullShare: BigNumber
@@ -81,12 +81,12 @@ const LydVaultCardActions: React.FC<{
           </InlineText>
         </Box>
         {isVaultApproved ? (
-          <VaultStakeActions
+          <GovernanceStakeActions
             isLoading={isLoading}
             pool={pool}
             stakingTokenBalance={stakingTokenBalance}
             stakingTokenPrice={stakingTokenPrice}
-            vaultFees={vaultFees}
+            governanceFees={vaultFees}
             userInfo={userInfo}
             pricePerFullShare={pricePerFullShare}
             accountHasSharesStaked={accountHasSharesStaked}
@@ -100,4 +100,4 @@ const LydVaultCardActions: React.FC<{
   )
 }
 
-export default LydVaultCardActions
+export default LydGovernanceCardActions

@@ -5,7 +5,7 @@ import { useLydGovernanceContract } from 'hooks/useContract'
 import makeBatchRequest from 'utils/makeBatchRequest'
 
 const useGetGovernanceSharesInfo = (lastUpdated?: number) => {
-  const lydVaultContract = useLydGovernanceContract()
+  const lydGovernanceContract = useLydGovernanceContract()
   const [totalShares, setTotalShares] = useState(null)
   const [totalLydInGovernance, setTotalLydInGovernance] = useState(null)
   const [pricePerFullShare, setPricePerFullShare] = useState(null)
@@ -13,8 +13,8 @@ const useGetGovernanceSharesInfo = (lastUpdated?: number) => {
   useEffect(() => {
     const getTotalShares = async () => {
       const [sharePrice, shares] = await makeBatchRequest([
-        lydVaultContract.methods.getPricePerFullShare().call,
-        lydVaultContract.methods.totalShares().call,
+        lydGovernanceContract.methods.getPricePerFullShare().call,
+        lydGovernanceContract.methods.totalShares().call,
       ])
       const sharePriceAsBigNumber = new BigNumber(sharePrice as string)
       const totalSharesAsBigNumber = new BigNumber(shares as string)
@@ -24,7 +24,7 @@ const useGetGovernanceSharesInfo = (lastUpdated?: number) => {
       setTotalLydInGovernance(totalLydInGovernanceEstimate.lydAsBigNumber)
     }
     getTotalShares()
-  }, [lydVaultContract, lastUpdated])
+  }, [lydGovernanceContract, lastUpdated])
 
   return { totalShares, totalLydInGovernance, pricePerFullShare }
 }

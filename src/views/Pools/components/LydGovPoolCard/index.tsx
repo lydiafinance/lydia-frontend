@@ -14,7 +14,7 @@ import AprRow from '../PoolCard/AprRow'
 import StyledCard from '../PoolCard/StyledCard'
 import CardFooter from '../PoolCard/CardFooter'
 import StyledCardHeader from '../PoolCard/StyledCardHeader'
-import VaultCardActions from './VaultCardActions'
+import LydGovernanceCardActions from './GovernanceCardActions'
 import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
 import RecentLydProfitRow from './RecentLydProfitRow'
 import SharedCardBody from '../Shared/SharedCardBody'
@@ -46,7 +46,7 @@ const LydGovPoolCard: React.FC<LydGovPoolProps> = ({ pool, showStakedOnly, isHom
 
   return (
     <StyledCard isStaking={accountHasSharesStaked} isHomeCard={isHomeCard}>
-      <StyledCardHeader isAutoVault isAutoGovernance earningTokenSymbol="LYD" stakingTokenSymbol="LYD" />
+      <StyledCardHeader isAutoGovernance isAutoVault earningTokenSymbol="LYD" stakingTokenSymbol="LYD" />
       <SharedCardBody isLoading={isLoading}>
         <AprRow
           pool={pool}
@@ -71,7 +71,7 @@ const LydGovPoolCard: React.FC<LydGovPoolProps> = ({ pool, showStakedOnly, isHom
         </Box>
         <Flex mt="24px" flexDirection="column">
           {account ? (
-            <VaultCardActions
+            <LydGovernanceCardActions
               pool={pool}
               userInfo={userInfo}
               pricePerFullShare={pricePerFullShare}

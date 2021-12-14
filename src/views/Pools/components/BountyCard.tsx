@@ -15,8 +15,10 @@ import {
 } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import useGetVaultFees from 'hooks/lydVault/useGetVaultFees'
+import useGetGovernanceFees from 'hooks/lydGovernance/useGetGovernanceFees'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import useGetVaultBountyInfo from 'hooks/lydVault/useGetVaultBountyInfo'
+import useGetGovernanceBountyInfo from 'hooks/lydGovernance/useGetGovernanceBountyInfo'
 import BountyModal from './BountyModal'
 
 const StyledCard = styled(Card)`

@@ -74,6 +74,7 @@ const Pools: React.FC = () => {
               }}
             />
             <BountyCard />
+            <BountyCard />
           </Flex>
         </Flex>
       </PageHeader>
@@ -86,7 +87,7 @@ const Pools: React.FC = () => {
         <FlexLayout>
           <Route exact path={`${path}`}>
             <>
-              <LydGovPoolCard pool={lydGovPoolData} showStakedOnly={stakedOnly} isHomeCard/>
+              <LydGovPoolCard pool={lydGovPoolData} showStakedOnly={stakedOnly} />
               <LydVaultCard pool={lydPoolData} showStakedOnly={stakedOnly} />
               {stakedOnly
                 ? orderBy(stakedOnlyPools, ['sortOrder']).map((pool) => (

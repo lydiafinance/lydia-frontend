@@ -7,7 +7,7 @@ import { GovernanceFees } from 'hooks/lydGovernance/useGetGovernanceFees'
 import { VaultUser } from 'views/Pools/types'
 import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
 import { convertSharesToLyd } from '../../../helpers'
-import VaultStakeModal from '../VaultStakeModal'
+import GovernanceStakeModal from '../GovernanceStakeModal'
 
 interface HasStakeActionProps {
   pool: Pool
@@ -38,7 +38,7 @@ const HasSharesActions: React.FC<HasStakeActionProps> = ({
   const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal tokenSymbol={stakingToken.symbol} />)
 
   const [onPresentStake] = useModal(
-    <VaultStakeModal
+    <GovernanceStakeModal
       stakingMax={stakingTokenBalance}
       pool={pool}
       userInfo={userInfo}
@@ -48,13 +48,13 @@ const HasSharesActions: React.FC<HasStakeActionProps> = ({
   )
 
   const [onPresentUnstake] = useModal(
-    <VaultStakeModal
+    <GovernanceStakeModal
       stakingMax={lydAsBigNumber}
       pool={pool}
       stakingTokenPrice={stakingTokenPrice}
       pricePerFullShare={pricePerFullShare}
       userInfo={userInfo}
-      vaultFees={governanceFees}
+      governanceFees={governanceFees}
       setLastUpdated={setLastUpdated}
       isRemovingStake
     />,

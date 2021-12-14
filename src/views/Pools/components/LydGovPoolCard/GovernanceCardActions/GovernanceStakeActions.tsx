@@ -6,7 +6,7 @@ import { Pool } from 'state/types'
 import { GovernanceFees } from 'hooks/lydGovernance/useGetGovernanceFees'
 import { VaultUser } from 'views/Pools/types'
 import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
-import VaultStakeModal from '../VaultStakeModal'
+import GovernanceStakeModal from '../GovernanceStakeModal'
 import HasSharesActions from './HasSharesActions'
 
 interface GovernanceStakeActionsProps {
@@ -36,7 +36,7 @@ const GovernanceStakeActions: React.FC<GovernanceStakeActionsProps> = ({
   const { t } = useTranslation()
   const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal tokenSymbol={stakingToken.symbol} />)
   const [onPresentStake] = useModal(
-    <VaultStakeModal
+    <GovernanceStakeModal
       stakingMax={stakingTokenBalance}
       stakingTokenPrice={stakingTokenPrice}
       userInfo={userInfo}

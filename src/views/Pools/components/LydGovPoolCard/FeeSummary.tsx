@@ -2,18 +2,19 @@ import React from 'react'
 import { Text, Flex, useTooltip, TooltipText } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { VaultFees } from 'hooks/lydVault/useGetVaultFees'
+import { GovernanceFees } from 'hooks/lydGovernance/useGetGovernanceFees'
 import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
 
 interface FeeSummaryProps {
   stakingTokenSymbol: string
   lastDepositedTime: string
-  vaultFees: VaultFees
+  governanceFees: GovernanceFees
   stakeAmount: string
 }
 
-const FeeSummary: React.FC<FeeSummaryProps> = ({ stakingTokenSymbol, lastDepositedTime, vaultFees, stakeAmount }) => {
+const FeeSummary: React.FC<FeeSummaryProps> = ({ stakingTokenSymbol, lastDepositedTime, governanceFees, stakeAmount }) => {
   const { t } = useTranslation()
-  const feeAsDecimal = parseInt(vaultFees.withdrawalFee) / 100
+  const feeAsDecimal = parseInt(governanceFees.withdrawalFee) / 100
   const feeInLyd = (parseFloat(stakeAmount) * (feeAsDecimal / 100)).toFixed(4)
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     <>
@@ -41,8 +42,8 @@ const FeeSummary: React.FC<FeeSummaryProps> = ({ stakingTokenSymbol, lastDeposit
         </Text>
       </Flex>
       <UnstakingFeeCountdownRow
-        withdrawalFee={vaultFees.withdrawalFee}
-        withdrawalFeePeriod={vaultFees.withdrawalFeePeriod}
+        withdrawalFee={governanceFees.withdrawalFee}
+        withdrawalFeePeriod={governanceFees.withdrawalFeePeriod}
         lastDepositedTime={lastDepositedTime}
       />
     </>

@@ -5,10 +5,10 @@ import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
 import { BASE_EXCHANGE_URL } from 'config'
 import { BIG_TEN } from 'utils/bigNumber'
-import { useLydVaultContract } from 'hooks/useContract'
+import { useLydGovernanceContract } from 'hooks/useContract'
 import useTheme from 'hooks/useTheme'
 import useWithdrawalFeeTimer from 'hooks/lydVault/useWithdrawalFeeTimer'
-import { VaultFees } from 'hooks/lydVault/useGetVaultFees'
+import { GovernanceFees } from 'hooks/lydGovernance/useGetGovernanceFees'
 import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/formatBalance'
 import useToast from 'hooks/useToast'
@@ -17,14 +17,14 @@ import { VaultUser } from 'views/Pools/types'
 import { convertLydToShares } from '../../helpers'
 import FeeSummary from './FeeSummary'
 
-interface VaultStakeModalProps {
+interface GovernanceStakeModalProps {
   pool: Pool
   stakingMax: BigNumber
   stakingTokenPrice: number
   userInfo: VaultUser
   isRemovingStake?: boolean
   pricePerFullShare?: BigNumber
-  vaultFees?: VaultFees
+  governanceFees?: GovernanceFees
   setLastUpdated: () => void
   onDismiss?: () => void
 }
@@ -33,20 +33,20 @@ const StyledButton = styled(Button)`
   flex-grow: 1;
 `
 
-const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
+const GovernanceStakeModal: React.FC<GovernanceStakeModalProps> = ({
   pool,
   stakingMax,
   stakingTokenPrice,
   pricePerFullShare,
   userInfo,
   isRemovingStake = false,
-  vaultFees,
+  governanceFees,
   onDismiss,
   setLastUpdated,
 }) => {
   const { account } = useWeb3React()
   const { stakingToken } = pool
-  const lydVaultContract = useLydVaultContract()
+  const lydVaultContract = useLydGovernanceContract()
   const { t } = useTranslation()
   const { theme } = useTheme()
   const { toastSuccess, toastError } = useToast()
@@ -216,7 +216,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
         <FeeSummary
           stakingTokenSymbol={stakingToken.symbol}
           lastDepositedTime={userInfo.lastDepositedTime}
-          vaultFees={vaultFees}
+          governanceFees={governanceFees}
           stakeAmount={stakeAmount}
         />
       )}
@@ -238,4 +238,4 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
   )
 }
 
-export default VaultStakeModal
+export default GovernanceStakeModal

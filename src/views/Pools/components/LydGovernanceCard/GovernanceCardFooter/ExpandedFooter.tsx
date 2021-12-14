@@ -9,13 +9,11 @@ import {
   Text,
   TooltipText,
   LinkExternal,
-  TimerIcon,
   Skeleton,
   useTooltip,
   Button,
 } from '@lydiafinance/uikit'
 import { BASE_AVAX_SCAN_URL, BASE_URL } from 'config'
-import { useBlock } from 'state/hooks'
 import { Pool } from 'state/types'
 import { getAddress, getLydGovernanceAddress } from 'utils/addressHelpers'
 import { registerToken } from 'utils/wallet'
@@ -42,19 +40,13 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({
   totalLydInGovernance,
 }) => {
   const { t } = useTranslation()
-  const { currentBlock } = useBlock()
-  const { stakingToken, earningToken, totalStaked, startBlock, endBlock, isFinished, contractAddress } = pool
+  const { stakingToken, earningToken, totalStaked, contractAddress } = pool
 
   const tokenAddress = earningToken.address ? getAddress(earningToken.address) : ''
   const poolContractAddress = getAddress(contractAddress)
   const lydGovernanceContractAddress = getLydGovernanceAddress()
   const imageSrc = `${BASE_URL}/images/tokens/${earningToken.symbol.toLowerCase()}.png`
   const isMetaMaskInScope = !!(window as WindowChain).ethereum?.isMetaMask
-
-  const shouldShowBlockCountdown = Boolean(!isFinished && startBlock && endBlock)
-  const blocksUntilStart = Math.max(startBlock - currentBlock, 0)
-  const blocksRemaining = Math.max(endBlock - currentBlock, 0)
-  const hasPoolStarted = blocksUntilStart === 0 && blocksRemaining > 0
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     t('Subtracted automatically from each yield harvest and burned.'),

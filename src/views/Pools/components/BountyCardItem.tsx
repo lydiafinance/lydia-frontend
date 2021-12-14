@@ -39,9 +39,8 @@ const useBountyToDisplay = (bountyInfo) => {
     return info
   }
 
-const BountyCardItem = ({title,targetRef, callFee, TooltipComponent, bountyInfo}) => {
+const BountyCardItem = ({title,targetRef, callFee, TooltipComponent, bountyInfo, contract }) => {
     const { t } = useTranslation()
-
     const bounties = useBountyToDisplay(bountyInfo)
 
     const [onPresentBountyModal] = useModal(
@@ -50,6 +49,7 @@ const BountyCardItem = ({title,targetRef, callFee, TooltipComponent, bountyInfo}
           dollarBountyToDisplay={bounties.dollarBountyToDisplay}
           totalPendingLydHarvest={bountyInfo.totalPendingLydHarvest}
           callFee={callFee}
+          contract={contract}
           TooltipComponent={TooltipComponent}
         />,
     )

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Card, Text, useTooltip } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import useGetVaultFees from 'hooks/lydVault/useGetVaultFees'
+import { useLydVaultContract,useLydGovernanceContract } from 'hooks/useContract'
 import useGetGovernanceFees from 'hooks/lydGovernance/useGetGovernanceFees'
 import useGetVaultBountyInfo from 'hooks/lydVault/useGetVaultBountyInfo'
 import useGetGovernanceBountyInfo from 'hooks/lydGovernance/useGetGovernanceBountyInfo'
@@ -28,6 +29,8 @@ const BountyCard = () => {
   const governanceBountyInfo = useGetGovernanceBountyInfo()
   const vaultFees = useGetVaultFees()
   const governanceFees = useGetGovernanceFees();
+  const lydVaultContract = useLydVaultContract()
+  const lydGovernanceContract = useLydGovernanceContract()
 
   const TooltipVaultComponent = () => (
     <>
@@ -78,6 +81,7 @@ const BountyCard = () => {
           callFee={vaultFees.callFee}
           TooltipComponent={TooltipVaultComponent}
           bountyInfo={vaultBountyInfo}
+          contract={lydVaultContract}
         />
         <BountyCardItem
           title={t('Governance')}
@@ -85,6 +89,7 @@ const BountyCard = () => {
           callFee={governanceFees.callFee}
           TooltipComponent={TooltipGovernanceComponent}
           bountyInfo={governanceBountyInfo}
+          contract={lydGovernanceContract}
         />
       </StyledCard>
     </>

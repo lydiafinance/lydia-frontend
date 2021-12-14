@@ -4,7 +4,6 @@ import { useWeb3React } from '@web3-react/core'
 import styled from 'styled-components'
 import { Modal, Text, Flex, Button, HelpIcon, AutoRenewIcon, useTooltip } from '@lydiafinance/uikit'
 import { getFullDisplayBalance } from 'utils/formatBalance'
-import { useLydVaultContract } from 'hooks/useContract'
 import useTheme from 'hooks/useTheme'
 import useToast from 'hooks/useToast'
 import { useTranslation } from 'contexts/Localization'
@@ -17,6 +16,7 @@ interface BountyModalProps {
   callFee: number
   onDismiss?: () => void
   TooltipComponent: React.ElementType
+  contract: any
 }
 
 const Divider = styled.div`
@@ -33,12 +33,12 @@ const BountyModal: React.FC<BountyModalProps> = ({
   callFee,
   onDismiss,
   TooltipComponent,
+  contract
 }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { theme } = useTheme()
   const { toastError, toastSuccess } = useToast()
-  const lydVaultContract = useLydVaultContract()
   const [pendingTx, setPendingTx] = useState(false)
   const callFeeAsDecimal = callFee / 100
   const totalYieldToDisplay = getFullDisplayBalance(totalPendingLydHarvest, 18, 3)
@@ -48,7 +48,7 @@ const BountyModal: React.FC<BountyModalProps> = ({
   })
 
   const handleConfirmClick = async () => {
-    lydVaultContract.methods
+    contract.methods
       .harvest()
       .send({ from: account })
       .on('sending', () => {

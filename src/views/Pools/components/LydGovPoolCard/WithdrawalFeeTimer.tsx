@@ -7,7 +7,7 @@ const WithdrawalFeeTimer: React.FC<{ secondsRemaining: number }> = ({ secondsRem
 
   return (
     <Text fontSize="14px">
-      {days && days}d : {hours && hours}h : {minutes && minutes}m
+      <span/>
     </Text>
   )
 }

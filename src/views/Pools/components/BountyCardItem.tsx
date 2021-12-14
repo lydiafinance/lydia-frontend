@@ -19,7 +19,7 @@ const InlineText = styled(Text)`
 `
 
 const CardBody = styled.div`
-  padding: 10px 20px;
+  padding: 20px 20px;
 `
 
 const useBountyToDisplay = (bountyInfo) => {

@@ -46,7 +46,7 @@ const GovernanceStakeModal: React.FC<GovernanceStakeModalProps> = ({
 }) => {
   const { account } = useWeb3React()
   const { stakingToken } = pool
-  const lydVaultContract = useLydGovernanceContract()
+  const lydGovernanceContract = useLydGovernanceContract()
   const { t } = useTranslation()
   const { theme } = useTheme()
   const { toastSuccess, toastError } = useToast()
@@ -83,7 +83,7 @@ const GovernanceStakeModal: React.FC<GovernanceStakeModalProps> = ({
     const isWithdrawingAll = sharesRemaining.lte(triggerWithdrawAllThreshold)
 
     if (isWithdrawingAll) {
-      lydVaultContract.methods
+      lydGovernanceContract.methods
         .withdrawAll()
         .send({ from: account })
         .on('sending', () => {
@@ -102,7 +102,7 @@ const GovernanceStakeModal: React.FC<GovernanceStakeModalProps> = ({
           setPendingTx(false)
         })
     } else {
-      lydVaultContract.methods
+      lydGovernanceContract.methods
         .withdraw(shareStakeToWithdraw.sharesAsBigNumber.toString())
         // .toString() being called to fix a BigNumber error in prod
         // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
@@ -126,7 +126,7 @@ const GovernanceStakeModal: React.FC<GovernanceStakeModalProps> = ({
   }
 
   const handleDeposit = async (convertedStakeAmount: BigNumber) => {
-    lydVaultContract.methods
+    lydGovernanceContract.methods
       .deposit(convertedStakeAmount.toString())
       // .toString() being called to fix a BigNumber error in prod
       // as suggested here https://github.com/ChainSafe/web3.js/issues/2077

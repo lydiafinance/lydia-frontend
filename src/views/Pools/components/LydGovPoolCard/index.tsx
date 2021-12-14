@@ -11,7 +11,7 @@ import useGetGovernanceFees from 'hooks/lydGovernance/useGetGovernanceFees'
 import { Pool } from 'state/types'
 import AprRow from '../PoolCard/AprRow'
 import StyledCard from '../PoolCard/StyledCard'
-import CardFooter from '../PoolCard/CardFooter'
+import GovernanceCardFooter from './GovernanceCardFooter'
 import StyledCardHeader from '../PoolCard/StyledCardHeader'
 import LydGovernanceCardActions from './GovernanceCardActions'
 import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
@@ -91,12 +91,11 @@ const LydGovPoolCard: React.FC<LydGovPoolProps> = ({ pool, showStakedOnly, isHom
           )}
         </Flex>
       </SharedCardBody>
-      <CardFooter
+      <GovernanceCardFooter
         pool={pool}
         account={account}
         performanceFee={governanceFees.performanceFee}
-        isAutoVault
-        totalLydInVault={totalLydInGovernance}
+        totalLydInGovernance={totalLydInGovernance}
       />
     </StyledCard>
   )

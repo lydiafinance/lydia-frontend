@@ -18,13 +18,13 @@ import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
 import RecentLydProfitRow from '../Shared/RecentLydProfitRow'
 import SharedCardBody from '../Shared/SharedCardBody'
 
-interface LydGovPoolProps {
+interface LydGovernanceProps {
   pool: Pool
   showStakedOnly?: boolean
   isHomeCard?: boolean
 }
 
-const LydGovPoolCard: React.FC<LydGovPoolProps> = ({ pool, showStakedOnly, isHomeCard }) => {
+const LydGovernanceCard: React.FC<LydGovernanceProps> = ({ pool, showStakedOnly, isHomeCard }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { lastUpdated, setLastUpdated } = useLastUpdated()
@@ -101,4 +101,4 @@ const LydGovPoolCard: React.FC<LydGovPoolProps> = ({ pool, showStakedOnly, isHom
   )
 }
 
-export default LydGovPoolCard
+export default LydGovernanceCard

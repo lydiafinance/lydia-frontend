@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { useLydVaultContract } from 'hooks/useContract'
+import { useLydGovernanceContract } from 'hooks/useContract'
 
 const useGetGovernanceUserInfo = (lastUpdated?: number) => {
   const { account } = useWeb3React()
-  const lydVaultContract = useLydVaultContract()
+  const lydVaultContract = useLydGovernanceContract()
   const [userInfo, setUserInfo] = useState({
     shares: BIG_ZERO,
     lydAtLastUserAction: BIG_ZERO,

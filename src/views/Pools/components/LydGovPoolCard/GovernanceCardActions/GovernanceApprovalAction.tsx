@@ -3,20 +3,20 @@ import { Button, AutoRenewIcon, Skeleton } from '@lydiafinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import { ethers } from 'ethers'
 import { useTranslation } from 'contexts/Localization'
-import { useLyd, useLydVaultContract } from 'hooks/useContract'
+import { useLyd, useLydGovernanceContract } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
 import { Pool } from 'state/types'
 
-interface ApprovalActionProps {
+interface GovernanceApprovalActionProps {
   pool: Pool
   setLastUpdated: () => void
   isLoading?: boolean
 }
 
-const ApprovalAction: React.FC<ApprovalActionProps> = ({ pool, isLoading = false, setLastUpdated }) => {
+const GovernanceApprovalAction: React.FC<GovernanceApprovalActionProps> = ({ pool, isLoading = false, setLastUpdated }) => {
   const { account } = useWeb3React()
   const { stakingToken } = pool
-  const lydVaultContract = useLydVaultContract()
+  const lydGovernanceContract = useLydGovernanceContract()
   const lydContract = useLyd()
   const { t } = useTranslation()
   const [requestedApproval, setRequestedApproval] = useState(false)
@@ -24,7 +24,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ pool, isLoading = false
 
   const handleApprove = () => {
     lydContract.methods
-      .approve(lydVaultContract.options.address, ethers.constants.MaxUint256)
+      .approve(lydGovernanceContract.options.address, ethers.constants.MaxUint256)
       .send({ from: account })
       .on('sending', () => {
         setRequestedApproval(true)
@@ -32,7 +32,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ pool, isLoading = false
       .on('receipt', () => {
         toastSuccess(
           `${t('Contract Enabled')}`,
-          `${t(`You can now stake in the %symbol% vault!`, { symbol: stakingToken.symbol })}`,
+          `${t(`You can now stake in the %symbol% governance vault!`, { symbol: stakingToken.symbol })}`,
         )
         setLastUpdated()
         setRequestedApproval(false)
@@ -66,4 +66,4 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ pool, isLoading = false
   )
 }
 
-export default ApprovalAction
+export default GovernanceApprovalAction

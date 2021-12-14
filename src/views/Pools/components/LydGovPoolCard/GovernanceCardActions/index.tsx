@@ -4,12 +4,12 @@ import styled from 'styled-components'
 import { Flex, Text, Box } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
-import { useLyd, useLydVaultContract } from 'hooks/useContract'
+import { useLyd, useLydGovernanceContract } from 'hooks/useContract'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { VaultFees } from 'hooks/lydVault/useGetVaultFees'
+import { GovernanceFees } from 'hooks/lydGovernance/useGetGovernanceFees'
 import { Pool } from 'state/types'
 import { VaultUser } from 'views/Pools/types'
-import VaultApprovalAction from './VaultApprovalAction'
+import GovernanceApprovalAction from './GovernanceApprovalAction'
 import GovernanceStakeActions from './GovernanceStakeActions'
 
 const InlineText = styled(Text)`
@@ -23,7 +23,7 @@ const LydGovernanceCardActions: React.FC<{
   stakingTokenPrice: number
   accountHasSharesStaked: boolean
   lastUpdated: number
-  vaultFees: VaultFees
+  governanceFees: GovernanceFees
   isLoading: boolean
   setLastUpdated: () => void
 }> = ({
@@ -33,7 +33,7 @@ const LydGovernanceCardActions: React.FC<{
   stakingTokenPrice,
   accountHasSharesStaked,
   lastUpdated,
-  vaultFees,
+  governanceFees,
   isLoading,
   setLastUpdated,
 }) => {
@@ -41,14 +41,14 @@ const LydGovernanceCardActions: React.FC<{
   const { stakingToken, userData } = pool
   const [isVaultApproved, setIsVaultApproved] = useState(false)
   const lydContract = useLyd()
-  const lydVaultContract = useLydVaultContract()
+  const lydGovernanceContract = useLydGovernanceContract()
   const { t } = useTranslation()
   const stakingTokenBalance = userData?.stakingTokenBalance ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO
 
   useEffect(() => {
     const checkApprovalStatus = async () => {
       try {
-        const response = await lydContract.methods.allowance(account, lydVaultContract.options.address).call()
+        const response = await lydContract.methods.allowance(account, lydGovernanceContract.options.address).call()
         const currentAllowance = new BigNumber(response)
         setIsVaultApproved(currentAllowance.gt(0))
       } catch (error) {
@@ -57,7 +57,7 @@ const LydGovernanceCardActions: React.FC<{
     }
 
     checkApprovalStatus()
-  }, [account, lydContract, lydVaultContract, lastUpdated])
+  }, [account, lydContract, lydGovernanceContract, lastUpdated])
 
   return (
     <Flex flexDirection="column">
@@ -86,14 +86,14 @@ const LydGovernanceCardActions: React.FC<{
             pool={pool}
             stakingTokenBalance={stakingTokenBalance}
             stakingTokenPrice={stakingTokenPrice}
-            governanceFees={vaultFees}
+            governanceFees={governanceFees}
             userInfo={userInfo}
             pricePerFullShare={pricePerFullShare}
             accountHasSharesStaked={accountHasSharesStaked}
             setLastUpdated={setLastUpdated}
           />
         ) : (
-          <VaultApprovalAction pool={pool} isLoading={isLoading} setLastUpdated={setLastUpdated} />
+          <GovernanceApprovalAction pool={pool} isLoading={isLoading} setLastUpdated={setLastUpdated} />
         )}
       </Flex>
     </Flex>

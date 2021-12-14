@@ -3,7 +3,6 @@ import { Box, Flex, Text } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
 import UnlockButton from 'components/UnlockButton'
-import { getAddress } from 'utils/addressHelpers'
 import { useGetApiPrice } from 'state/hooks'
 import useLastUpdated from 'hooks/useLastUpdate'
 import useGetGovernanceUserInfo from 'hooks/lydGovernance/useGetGovernanceUserInfo'
@@ -75,7 +74,7 @@ const LydGovPoolCard: React.FC<LydGovPoolProps> = ({ pool, showStakedOnly, isHom
               pool={pool}
               userInfo={userInfo}
               pricePerFullShare={pricePerFullShare}
-              vaultFees={governanceFees}
+              governanceFees={governanceFees}
               stakingTokenPrice={stakingTokenPrice}
               accountHasSharesStaked={accountHasSharesStaked}
               lastUpdated={lastUpdated}

@@ -20,11 +20,6 @@ const FeeSummary: React.FC<FeeSummaryProps> = ({ stakingTokenSymbol, lastDeposit
       <Text bold mb="4px">
         {t(`Unstaking fee: %fee%%`, { fee: feeAsDecimal })}
       </Text>
-      <Text>
-        {t(
-          'Only applies within 5 days of staking. Unstaking after 5 days will not include a fee. Timer resets every time you stake new LYD in the pool.',
-        )}
-      </Text>
     </>,
     { placement: 'top-start' },
   )

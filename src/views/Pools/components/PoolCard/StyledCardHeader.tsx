@@ -24,11 +24,6 @@ const StyledCardHeader: React.FC<{
 
   const getHeadingPrefix = () => {
     if (isAutoVault) {
-      // Auto Governance    
-      if(isAutoGovernance){
-        return `${t('Auto Governance')}`
-      }
-
       // vault    
       return `${t('Auto')}`
     }
@@ -55,7 +50,7 @@ const StyledCardHeader: React.FC<{
       <Flex alignItems="center" justifyContent="space-between">
         <Flex flexDirection="column">
           <Heading color={isFinished ? 'textDisabled' : 'text'} scale="lg">
-            {`${getHeadingPrefix()} ${earningTokenSymbol}`}
+            {isAutoGovernance ? 'Lydian\'s Pool' : `${getHeadingPrefix()} ${earningTokenSymbol}`}
           </Heading>
           <Text color={isFinished ? 'textDisabled' : 'text'}>{getSubHeading()}</Text>
         </Flex>

@@ -74,7 +74,6 @@ const Pools: React.FC = () => {
               }}
             />
             <BountyCard />
-            <BountyCard />
           </Flex>
         </Flex>
       </PageHeader>

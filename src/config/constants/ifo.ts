@@ -93,7 +93,7 @@ const ifos: Ifo[] = [
     campaignId: '511110001',
     articleUrl: 'https://lydiafinance.medium.com/everest-dao-ifo-on-lydia-finance-6bf983a5c9ad',
     tokenOfferingPrice: 0.02,
-    version: 2,
+    version: 1,
     releasePercent: [],
   },
 ]

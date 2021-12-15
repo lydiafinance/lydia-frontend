@@ -6,7 +6,7 @@ import { useLydGovernanceContract } from 'hooks/useContract'
 
 const useGetGovernanceUserInfo = (lastUpdated?: number) => {
   const { account } = useWeb3React()
-  const lydVaultContract = useLydGovernanceContract()
+  const lydGovernanceContract = useLydGovernanceContract()
   const [userInfo, setUserInfo] = useState({
     shares: BIG_ZERO,
     lydAtLastUserAction: BIG_ZERO,
@@ -17,7 +17,7 @@ const useGetGovernanceUserInfo = (lastUpdated?: number) => {
   useEffect(() => {
     //   user-specific vault contract fetches
     const fetchUserVaultInfo = async () => {
-      const userContractInfo = await lydVaultContract.methods.userInfo(account).call()
+      const userContractInfo = await lydGovernanceContract.methods.userInfo(account).call()
       setUserInfo({
         shares: new BigNumber(userContractInfo.shares),
         lydAtLastUserAction: new BigNumber(userContractInfo.lydAtLastUserAction),
@@ -29,7 +29,7 @@ const useGetGovernanceUserInfo = (lastUpdated?: number) => {
     if (account) {
       fetchUserVaultInfo()
     }
-  }, [account, lydVaultContract, lastUpdated])
+  }, [account, lydGovernanceContract, lastUpdated])
 
   return userInfo
 }

@@ -58,22 +58,20 @@ const BountyCardItem = ({title,targetRef, callFee, TooltipComponent, bountyInfo,
     )
 
     return (
-        <CardBody>
+        <CardBody style={{padding: "10px 16px"}}>
           <Flex flexDirection="column">
             <Flex alignItems="center" mb="5px">
               <Text fontSize="14px" bold color="textSubtle" mr="4px">
-                {title}
-                <br />
-                {t("Bounty")}
+                {title} {t("Bounty")}
               </Text>
               <Box ref={targetRef}>
                 <HelpIcon color="textSubtle" />
               </Box>
             </Flex>
           </Flex>
-          <Flex alignItems="center" justifyContent="space-between">
-            <Flex flexDirection="column" mr="5px">
-              <Heading>{bounties.cardLydBountyToDisplay || <Skeleton height={20} width={96} mb="2px" />}</Heading>
+          <Flex justifyContent="space-between" flexDirection="column">
+            <Flex flexDirection="row" mr="5px" mb="5px">
+              <Heading mr="3px">{bounties.cardLydBountyToDisplay || <Skeleton height={20} width={96} mb="2px" />}</Heading>
               <InlineText fontSize="12px" color="textSubtle">
                 {bounties.dollarBountyToDisplay ? (
                   `~ ${bounties.dollarBountyToDisplay} USD`
@@ -82,6 +80,7 @@ const BountyCardItem = ({title,targetRef, callFee, TooltipComponent, bountyInfo,
                 )}
               </InlineText>
             </Flex>
+            <Flex alignItems="center">
             <Button
               disabled={!bounties.dollarBountyToDisplay || !bounties.cardLydBountyToDisplay || !callFee}
               onClick={onPresentBountyModal}
@@ -89,6 +88,7 @@ const BountyCardItem = ({title,targetRef, callFee, TooltipComponent, bountyInfo,
             >
               {t('Claim')}
             </Button>
+            </Flex>
           </Flex>
         </CardBody>
     )

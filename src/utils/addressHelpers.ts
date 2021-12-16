@@ -48,6 +48,9 @@ export const getAirdropAddress = () => {
 export const getLydVaultAddress = () => {
   return getAddress(addresses.lydVault)
 }
+export const getLydGovernanceAddress = () => {
+  return getAddress(addresses.lydGovernance)
+}
 export const getMaximusFeeManagerAddress = () => {
   return getAddress(addresses.maximusFeeManager)
 }

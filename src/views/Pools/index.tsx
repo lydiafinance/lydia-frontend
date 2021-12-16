@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import { Route, useRouteMatch } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Flex, Image } from '@lydiafinance/uikit'
+import { Flex } from '@lydiafinance/uikit'
 import Lottie from 'lottie-react-web'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
@@ -14,6 +14,7 @@ import Page from 'components/layout/Page'
 import PageHeader from 'components/PageHeader'
 import PoolCard from './components/PoolCard'
 import LydVaultCard from './components/LydVaultCard'
+import LydGovernanceCard from './components/LydGovernanceCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import BountyCard from './components/BountyCard'
 import animation from '../../animations/electrum.json'
@@ -42,6 +43,10 @@ const Pools: React.FC = () => {
   )
   // This pool is passed explicitly to the lyd vault
   const lydPoolData = useMemo(() => openPools.find((pool) => pool.sousId === 0), [openPools])
+
+  // This pool is passed explicitly to the lyd governance pool
+  const lydGovPoolData = useMemo(() => openPools.find((pool) => pool.sousId === 0), [openPools])
+
   const { isDesktop } = deviceSize
 
   return (
@@ -82,6 +87,7 @@ const Pools: React.FC = () => {
           <Route exact path={`${path}`}>
             <>
               <LydVaultCard pool={lydPoolData} showStakedOnly={stakedOnly} />
+              <LydGovernanceCard pool={lydGovPoolData} showStakedOnly={stakedOnly} />
               {stakedOnly
                 ? orderBy(stakedOnlyPools, ['sortOrder']).map((pool) => (
                     <PoolCard key={pool.sousId} pool={pool} account={account} />

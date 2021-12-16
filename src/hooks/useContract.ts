@@ -15,6 +15,7 @@ import {
   getClaimRefundContract,
   getAirdropContract,
   getLydVaultContract,
+  getLydGovernanceContract,
   getMaximusFeeManagerContract,
   getMaximusContract,
   getMaximusDashboardContract,
@@ -105,6 +106,11 @@ export const useAirdropContract = () => {
 export const useLydVaultContract = () => {
   const web3 = useWeb3()
   return useMemo(() => getLydVaultContract(web3), [web3])
+}
+
+export const useLydGovernanceContract = () => {
+  const web3 = useWeb3()
+  return useMemo(() => getLydGovernanceContract(web3), [web3])
 }
 
 export const useMaximusFeeManagerContract = () => {

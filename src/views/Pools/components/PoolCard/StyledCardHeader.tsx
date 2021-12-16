@@ -13,17 +13,21 @@ const StyledCardHeader: React.FC<{
   stakingTokenSymbol: string
   isAutoVault?: boolean
   isFinished?: boolean
-}> = ({ earningTokenSymbol, stakingTokenSymbol, isFinished = false, isAutoVault = false }) => {
+  isAutoGovernance?: boolean
+}> = ({ earningTokenSymbol, stakingTokenSymbol, isFinished = false, isAutoVault = false, isAutoGovernance = false }) => {
   const { t } = useTranslation()
-  const poolImageSrc = isAutoVault
-    ? `lyd-lydvault.svg`
-    : `${earningTokenSymbol}-${stakingTokenSymbol}.svg`.toLowerCase()
+  let poolImageSrc = `${earningTokenSymbol}-${stakingTokenSymbol}.svg`.toLowerCase();
+  if (isAutoGovernance) {
+    poolImageSrc = `lyd-lydgovvault.svg`
+  } else if (isAutoVault) {
+    poolImageSrc = `lyd-lydvault.svg`
+  }
   const isLydPool = earningTokenSymbol === 'LYD' && stakingTokenSymbol === 'LYD'
   const background = isLydPool ? 'bubblegum' : 'cardHeader'
 
   const getHeadingPrefix = () => {
     if (isAutoVault) {
-      // vault
+      // vault    
       return `${t('Auto')}`
     }
     if (isLydPool) {
@@ -49,7 +53,7 @@ const StyledCardHeader: React.FC<{
       <Flex alignItems="center" justifyContent="space-between">
         <Flex flexDirection="column">
           <Heading color={isFinished ? 'textDisabled' : 'text'} scale="lg">
-            {`${getHeadingPrefix()} ${earningTokenSymbol}`}
+            {isAutoGovernance ? 'Lydian\'s Pool' : `${getHeadingPrefix()} ${earningTokenSymbol}`}
           </Heading>
           <Text color={isFinished ? 'textDisabled' : 'text'}>{getSubHeading()}</Text>
         </Flex>

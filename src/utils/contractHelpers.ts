@@ -18,6 +18,7 @@ import {
   getClaimRefundAddress,
   getAirdropAddress,
   getLydVaultAddress,
+  getLydGovernanceAddress,
   getMaximusFeeManagerAddress,
   getMaximusDashboardAddress,
   getMulticallAddress,
@@ -105,6 +106,9 @@ export const getAirdropContract = (web3?: Web3) => {
 }
 export const getLydVaultContract = (web3?: Web3) => {
   return getContract(lydVaultAbi, getLydVaultAddress(), web3)
+}
+export const getLydGovernanceContract = (web3?: Web3) => {
+  return getContract(lydVaultAbi, getLydGovernanceAddress(), web3)
 }
 export const getMaximusFeeManagerContract = (web3?: Web3) => {
   return getContract(maximusFeeManagerAbi, getMaximusFeeManagerAddress(), web3)

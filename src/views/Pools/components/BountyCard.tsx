@@ -13,14 +13,13 @@ const StyledCard = styled(Card)`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-column: span 1;
-  ${({ theme }) => theme.mediaQueries.sm} {
-    min-width: 200px;
-  }
+  max-width: 200px;
   ${({ theme }) => theme.mediaQueries.md} {
     grid-template-columns: repeat(2, 1fr);
+    max-width: 400px;
   }
   width: 100%;
-  max-width: 400px;
+  
 `
 
 const BountyCard = () => {

@@ -51,11 +51,11 @@ const BountyCard = () => {
       <Text mb="16px">{`${t(`This bounty is given as a reward for providing a service to other users.`)}`}</Text>
       <Text mb="16px">
         {t(
-          'Whenever you successfully claim the bounty, you’re also helping out by activating the Auto LYD Pool’s compounding function for everyone.',
+          'Whenever you successfully claim the bounty, you’re also helping out by activating the Lydian’s Pool’s compounding function for everyone.',
         )}
       </Text>
       <Text style={{ fontWeight: 'bold' }}>
-        {t(`Auto-Compound Bounty: %fee%% of all Auto LYD pool users’ pending yield`, { fee: governanceFees.callFee / 100 })}
+        {t(`Auto-Compound Bounty: %fee%% of all Lydian’s Pool users’ pending yield`, { fee: governanceFees.callFee / 100 })}
       </Text>
     </>
   )
@@ -76,7 +76,7 @@ const BountyCard = () => {
       {governanceToolTip.tooltipVisible && governanceToolTip.tooltip}
       <StyledCard>
         <BountyCardItem
-          title={t('Vault')}
+          title={t('Auto LYD')}
           targetRef={vaultToolTip.targetRef}
           callFee={vaultFees.callFee}
           TooltipComponent={TooltipVaultComponent}
@@ -84,7 +84,7 @@ const BountyCard = () => {
           contract={lydVaultContract}
         />
         <BountyCardItem
-          title={t('Governance')}
+          title={t('Lydian\'s Pool')}
           targetRef={governanceToolTip.targetRef}
           callFee={governanceFees.callFee}
           TooltipComponent={TooltipGovernanceComponent}

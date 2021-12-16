@@ -64,7 +64,7 @@ const BountyCardItem = ({title,targetRef, callFee, TooltipComponent, bountyInfo,
               <Text fontSize="14px" bold color="textSubtle" mr="4px">
                 {title}
                 <br />
-                {t("Auto LYD Bounty")}
+                {t("Bounty")}
               </Text>
               <Box ref={targetRef}>
                 <HelpIcon color="textSubtle" />

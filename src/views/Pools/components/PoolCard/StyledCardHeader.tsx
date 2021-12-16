@@ -16,9 +16,12 @@ const StyledCardHeader: React.FC<{
   isAutoGovernance?: boolean
 }> = ({ earningTokenSymbol, stakingTokenSymbol, isFinished = false, isAutoVault = false, isAutoGovernance = false }) => {
   const { t } = useTranslation()
-  const poolImageSrc = isAutoVault
-    ? `lyd-lydvault.svg`
-    : `${earningTokenSymbol}-${stakingTokenSymbol}.svg`.toLowerCase()
+  let poolImageSrc = `${earningTokenSymbol}-${stakingTokenSymbol}.svg`.toLowerCase();
+  if (isAutoGovernance) {
+    poolImageSrc = `lyd-lydgovvault.svg`
+  } else if (isAutoVault) {
+    poolImageSrc = `lyd-lydvault.svg`
+  }
   const isLydPool = earningTokenSymbol === 'LYD' && stakingTokenSymbol === 'LYD'
   const background = isLydPool ? 'bubblegum' : 'cardHeader'
 

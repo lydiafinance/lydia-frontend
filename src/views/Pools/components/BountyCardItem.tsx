@@ -70,7 +70,7 @@ const BountyCardItem = ({title,targetRef, callFee, TooltipComponent, bountyInfo,
             </Flex>
           </Flex>
           <Flex justifyContent="space-between" flexDirection="column">
-            <Flex flexDirection="row" mr="5px" mb="5px">
+            <Flex flexDirection="row" mr="5px" mb="5px" alignItems="center">
               <Heading mr="3px">{bounties.cardLydBountyToDisplay || <Skeleton height={20} width={96} mb="2px" />}</Heading>
               <InlineText fontSize="12px" color="textSubtle">
                 {bounties.dollarBountyToDisplay ? (

@@ -67,6 +67,7 @@ interface IfoPoolInfo {
 export interface Ifo {
   id: string
   isActive: boolean
+  inDevelopment?: boolean 
   address: string
   name: string
   currency: Token

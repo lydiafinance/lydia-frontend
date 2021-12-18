@@ -21,6 +21,33 @@ const ifos: Ifo[] = [
   {
     id: 'avao',
     address: '0x9d9c2A392Bac2Cd045Daf26F7fEA87640E214B3d',
+    isActive: false,
+    inDevelopment: true,
+    name: 'AvaOne (AVAO)',
+    poolBasic: {
+      saleAmount: '300,000 AVAO',
+      raiseAmount: '$210,000',
+      lydToBurn: '$60,000',
+      distributionRatio: 0.3,
+    },
+    poolUnlimited: {
+      saleAmount: '700,000 AVAO',
+      raiseAmount: '$490,000',
+      lydToBurn: '$140,000',
+      distributionRatio: 0.7,
+    },
+    currency: avaxUsdtLPToken,
+    token: tokens.avao,
+    releaseTimestamp: 1639058400,
+    campaignId: '2',
+    articleUrl: 'https://lydiafinance.medium.com/avaone-ifo-on-lydia-finance-e5d8e17f9aed',
+    tokenOfferingPrice: 0.7,
+    version: 3,
+    releasePercent: [75, 100],
+  },
+  {
+    id: 'avao',
+    address: '0x9d9c2A392Bac2Cd045Daf26F7fEA87640E214B3d',
     isActive: true,
     name: 'AvaOne (AVAO)',
     poolBasic: {

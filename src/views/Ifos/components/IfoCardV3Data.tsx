@@ -9,7 +9,7 @@ interface Props {
   isInitiallyVisible: boolean
 }
 
-const IfoCardV2Data: React.FC<Props> = ({ ifo, isInitiallyVisible }) => {
+const IfoCardV3Data: React.FC<Props> = ({ ifo, isInitiallyVisible }) => {
   const publicIfoData = useGetPublicIfoV3Data(ifo)
   const walletIfoData = useGetWalletIfoV3Data(ifo)
 
@@ -23,4 +23,4 @@ const IfoCardV2Data: React.FC<Props> = ({ ifo, isInitiallyVisible }) => {
   )
 }
 
-export default IfoCardV2Data
+export default IfoCardV3Data

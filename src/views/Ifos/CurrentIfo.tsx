@@ -1,11 +1,9 @@
 import React from 'react'
 import { ifosConfig } from 'config/constants'
-import useGetPublicIfoV2Data from 'hooks/ifo/v2/useGetPublicIfoData'
-import useGetWalletIfoV2Data from 'hooks/ifo/v2/useGetWalletIfoData'
-import IfoFoldableCard from './components/IfoFoldableCard'
 import IfoLayout from './components/IfoLayout'
 import IfoSteps from './components/IfoSteps'
 import IfoQuestions from './components/IfoQuestions'
+import IfoCardV2Data from './components/IfoCardV2Data'
 
 /**
  * Note: currently there should be only 1 active IFO at a time
@@ -13,12 +11,9 @@ import IfoQuestions from './components/IfoQuestions'
 const activeIfo = ifosConfig.find((ifo) => ifo.isActive)
 
 const Ifo = () => {
-  const publicIfoData = useGetPublicIfoV2Data(activeIfo)
-  const walletIfoData = useGetWalletIfoV2Data(activeIfo)
-
   return (
     <IfoLayout>
-      <IfoFoldableCard ifo={activeIfo} publicIfoData={publicIfoData} walletIfoData={walletIfoData} isInitiallyVisible />
+      <IfoCardV2Data key={activeIfo.id} ifo={activeIfo} isInitiallyVisible />
       <IfoSteps />
       <IfoQuestions />
     </IfoLayout>

@@ -93,12 +93,12 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
       },
       {
         address,
-        name: 'isEligible', // Checks id the address has enough tokens in the vault
+        name: 'isEligible',
+        params: [account],
       }
     ]
 
-
-    const [userInfo, amounts, claimableTokens, isEligible] = await multicall(ifoV3Abi, ifoCalls)
+    const [userInfo, amounts, claimableTokens,isEligible] = await multicall(ifoV3Abi, ifoCalls)
 
     setState((prevState) => ({
       ...prevState,
@@ -112,7 +112,7 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
         purchasedTokens: new BigNumber(userInfo[2][0].toString()),
         claimedTokens: new BigNumber(userInfo[3][0].toString()),
         claimableTokens: new BigNumber(claimableTokens[0][0].toString()),
-        isEligible
+        isEligible: isEligible[0]
       },
       poolUnlimited: {
         ...prevState.poolUnlimited,
@@ -124,7 +124,7 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
         purchasedTokens: new BigNumber(userInfo[2][1].toString()),
         claimedTokens: new BigNumber(userInfo[3][1].toString()),
         claimableTokens: new BigNumber(claimableTokens[0][1].toString()),
-        isEligible
+        isEligible: isEligible[0]
       },
     }))
   }, [account, address])

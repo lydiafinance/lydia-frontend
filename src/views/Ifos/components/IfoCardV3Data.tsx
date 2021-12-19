@@ -2,7 +2,7 @@ import React from 'react'
 import useGetPublicIfoV3Data from 'hooks/ifo/v3/useGetPublicIfoData'
 import useGetWalletIfoV3Data from 'hooks/ifo/v3/useGetWalletIfoData'
 import { Ifo } from 'config/constants/types'
-import IfoFoldableCard from './IfoFoldableCard'
+import IfoFoldableV3Card from './IfoFoldableV3Card'
 
 interface Props {
   ifo: Ifo
@@ -14,7 +14,7 @@ const IfoCardV3Data: React.FC<Props> = ({ ifo, isInitiallyVisible }) => {
   const walletIfoData = useGetWalletIfoV3Data(ifo)
 
   return (
-    <IfoFoldableCard
+    <IfoFoldableV3Card
       ifo={ifo}
       publicIfoData={publicIfoData}
       walletIfoData={walletIfoData}

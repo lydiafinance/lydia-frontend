@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import { Ifo, PoolIds } from 'config/constants/types'
-import { useERC20, useIfoV2Contract } from 'hooks/useContract'
+import { useERC20, useIfoV3Contract } from 'hooks/useContract'
 import { useIfoAllowance } from 'hooks/useAllowance'
 import useRefresh from 'hooks/useRefresh'
 import multicall from 'utils/multicall'
@@ -44,7 +44,7 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
   const { address, currency } = ifo
 
   const { account } = useWeb3React()
-  const contract = useIfoV2Contract(address)
+  const contract = useIfoV3Contract(address)
   const currencyContract = useERC20(getAddress(currency.address))
   const allowance = useIfoAllowance(currencyContract, address)
 
@@ -73,15 +73,32 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
   // uint256 claimedTokens; // Total claimed offering tokens amount by the user
 
   const fetchIfoData = useCallback(async () => {
-    const ifoCalls = ['viewUserInfo', 'viewUserOfferingAndRefundingAmountsForPools', 'claimableTokens'].map(
-      (method) => ({
+    // todo : add isEligible
+    // same params. cause there is a loop 
+    const ifoCalls = [
+      {
         address,
-        name: method,
+        name: 'viewUserInfo',
         params: [account, [0, 1]],
-      }),
-    )
+      },
+      {
+        address,
+        name: 'viewUserOfferingAndRefundingAmountsForPools',
+        params: [account, [0, 1]],
+      },
+      {
+        address,
+        name: 'claimableTokens',
+        params: [account, [0, 1]],
+      },
+      {
+        address,
+        name: 'isEligible', // Checks id the address has enough tokens in the vault
+      }
+    ]
 
-    const [userInfo, amounts, claimableTokens] = await multicall(ifoV3Abi, ifoCalls)
+
+    const [userInfo, amounts, claimableTokens, isEligible] = await multicall(ifoV3Abi, ifoCalls)
 
     setState((prevState) => ({
       ...prevState,
@@ -95,6 +112,7 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
         purchasedTokens: new BigNumber(userInfo[2][0].toString()),
         claimedTokens: new BigNumber(userInfo[3][0].toString()),
         claimableTokens: new BigNumber(claimableTokens[0][0].toString()),
+        isEligible
       },
       poolUnlimited: {
         ...prevState.poolUnlimited,
@@ -106,6 +124,7 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
         purchasedTokens: new BigNumber(userInfo[2][1].toString()),
         claimedTokens: new BigNumber(userInfo[3][1].toString()),
         claimableTokens: new BigNumber(claimableTokens[0][1].toString()),
+        isEligible
       },
     }))
   }, [account, address])

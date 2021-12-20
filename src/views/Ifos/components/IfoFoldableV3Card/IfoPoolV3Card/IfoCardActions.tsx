@@ -80,7 +80,15 @@ const IfoCardActions: React.FC<Props> = ({
         !userPoolCharacteristics.hasClaimed &&
         (userPoolCharacteristics.offeringAmountInToken.isGreaterThan(0) ||
           userPoolCharacteristics.refundingAmountInLP.isGreaterThan(0)) && (
+            isPreparationPeriod ? 
           <ClaimButton poolId={poolId} ifoVersion={ifo.version} walletIfoData={walletIfoData} />
+          : 
+          <LockedClaimButton
+          poolId={poolId}
+          ifoVersion={ifo.version}
+          walletIfoData={walletIfoData}
+          nextReleaseTimestamp={publicIfoData.nextReleaseTimestamp}
+          />
         )}
       {publicIfoData.status === 'finished' &&
         userPoolCharacteristics.hasClaimed &&

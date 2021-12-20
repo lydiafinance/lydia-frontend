@@ -28,7 +28,9 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
       claimedTokens: BIG_ZERO,
       claimableTokens: BIG_ZERO,
       isEligible: false,
-      userVaultBalance: BIG_ZERO
+      userVaultBalance: BIG_ZERO,
+      minVaultBalance: BIG_ZERO,
+      isPreparationPeriod: true
     },
     poolUnlimited: {
       amountTokenCommittedInLP: BIG_ZERO,
@@ -41,7 +43,9 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
       claimedTokens: BIG_ZERO,
       claimableTokens: BIG_ZERO,
       isEligible: false,
-      userVaultBalance: BIG_ZERO
+      userVaultBalance: BIG_ZERO,
+      minVaultBalance: BIG_ZERO,
+      isPreparationPeriod: true
     },
   })
 
@@ -97,18 +101,25 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
         address,
         name: 'isEligible',
         params: [account],
+      },
+      {
+        address,
+        name: 'getUserVaultBalance',
+        params: [account],
+      },
+      {
+        address,
+        name: 'minVaultBalance',
+      },
+      {
+        address,
+        name: 'isPreparationPeriod',
       }
     ]
 
-    // {
-    //   address,
-    //   name: 'viewUserVaultBalance', // gonna be change 
-    //   params: [account],
-    // }
-
     // todo: new function in new contact
 
-    const [userInfo, amounts, claimableTokens, isEligible] = await multicall(ifoV3Abi, ifoCalls)
+    const [userInfo, amounts, claimableTokens, isEligible,getUserVaultBalance,minVaultBalance,isPreparationPeriod] = await multicall(ifoV3Abi, ifoCalls)
 
     setState((prevState) => ({
       ...prevState,
@@ -123,6 +134,9 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
         claimedTokens: new BigNumber(userInfo[3][0].toString()),
         claimableTokens: new BigNumber(claimableTokens[0][0].toString()),
         isEligible: isEligible[0],
+        minVaultBalance: new BigNumber(minVaultBalance),
+        userVaultBalance: new BigNumber(getUserVaultBalance),
+        isPreparationPeriod: isPreparationPeriod[0]
       },
       poolUnlimited: {
         ...prevState.poolUnlimited,
@@ -135,6 +149,9 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
         claimedTokens: new BigNumber(userInfo[3][1].toString()),
         claimableTokens: new BigNumber(claimableTokens[0][1].toString()),
         isEligible: isEligible[0],
+        minVaultBalance: new BigNumber(minVaultBalance),
+        userVaultBalance: new BigNumber(getUserVaultBalance),
+        isPreparationPeriod: isPreparationPeriod[0]
       },
     }))
   }, [account, address])

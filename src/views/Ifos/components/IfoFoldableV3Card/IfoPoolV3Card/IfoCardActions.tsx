@@ -1,11 +1,12 @@
 import React from 'react'
 import { useTranslation } from 'contexts/Localization'
-import { Button } from '@lydiafinance/uikit'
+import { Button,Box,Alert,Text } from '@lydiafinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import { Link } from 'react-router-dom'
 import { Ifo, PoolIds } from 'config/constants/types'
 import { WalletIfoData, PublicIfoData } from 'hooks/ifo/types'
 import UnlockButton from 'components/UnlockButton'
+import { getBalanceNumber } from 'utils/formatBalance'
 import ContributeButton from './ContributeButton'
 import ClaimButton from './ClaimButton'
 import LockedClaimButton from './LockedClaimButton'
@@ -32,6 +33,9 @@ const IfoCardActions: React.FC<Props> = ({
   const { account } = useWeb3React()
   const userPoolCharacteristics = walletIfoData[poolId]
 
+  const { isEligible, minVaultBalance, userVaultBalance } = userPoolCharacteristics
+
+
   if (isLoading) {
     return <SkeletonCardActions />
   }
@@ -51,7 +55,13 @@ const IfoCardActions: React.FC<Props> = ({
   if (!userPoolCharacteristics.isEligible) {
     return (
       <>
-        <Button target="_blank" as={Link} to="/pools" width="100%">
+        <Box mt="16px">
+          <Alert title={t("To participate in this sale,")}>
+            <Text fontSize="14px" as="p">{t("You need to stake on Lydian's Pool")}</Text>
+            <Text fontSize="12px" as="p">{t("LYD to vault")} : {getBalanceNumber(minVaultBalance.minus(userVaultBalance))} </Text>
+          </Alert>
+        </Box>
+        <Button mt="5px" target="_blank" as={Link} to="/pools" width="100%">
           {t("Stake on Lydian's Pool")}
         </Button>
       </>

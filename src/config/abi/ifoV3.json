@@ -676,7 +676,20 @@
     "type": "function"
   },
   {
-    "name": "viewUserVaultBalance",
+    "name": "isPreparationPeriod",
+    "inputs": [],
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "name": "getUserVaultBalance",
     "inputs": [
       {
         "internalType": "address",
@@ -684,6 +697,19 @@
         "type": "address"
       }
     ],
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "minVaultBalance",
     "outputs": [
       {
         "internalType": "uint256",

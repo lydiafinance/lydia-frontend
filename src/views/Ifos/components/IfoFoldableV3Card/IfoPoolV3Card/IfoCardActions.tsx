@@ -20,7 +20,14 @@ interface Props {
   isLoading: boolean
 }
 
-const IfoCardActions: React.FC<Props> = ({ poolId, ifo, publicIfoData, walletIfoData, hasProfile, isLoading }) => {
+const IfoCardActions: React.FC<Props> = ({
+  poolId,
+  ifo,
+  publicIfoData,
+  walletIfoData,
+  hasProfile,
+  isLoading,
+}) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const userPoolCharacteristics = walletIfoData[poolId]
@@ -38,6 +45,16 @@ const IfoCardActions: React.FC<Props> = ({ poolId, ifo, publicIfoData, walletIfo
       <Button as={Link} to="/profile" width="100%">
         {t('Activate your Profile')}
       </Button>
+    )
+  }
+
+  if (!userPoolCharacteristics.isEligible) {
+    return (
+      <>
+        <Button as={Link} to="/pools" width="100%">
+          {t("Stake on Lydian's Pool")}
+        </Button>
+      </>
     )
   }
 

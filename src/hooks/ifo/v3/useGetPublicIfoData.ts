@@ -4,7 +4,7 @@ import { Ifo, IfoStatus } from 'config/constants/types'
 import { useTimestamp, useLpTokenPrice } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import multicall from 'utils/multicall'
-import ifoV2Abi from 'config/abi/ifoV2.json'
+import ifoV3Abi from 'config/abi/ifoV3.json'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { PublicIfoData } from '../types'
 import { getStatus } from '../helpers'
@@ -95,7 +95,7 @@ const useGetPublicIfoData = (ifo: Ifo): PublicIfoData => {
     ]
 
     const [startTimestamp, endTimestamp, poolBasic, poolUnlimited, taxRate, releasedPercent, nextReleaseTimestamp] =
-      await multicall(ifoV2Abi, ifoCalls)
+      await multicall(ifoV3Abi, ifoCalls)
 
     const poolBasicFormatted = formatPool(poolBasic)
     const poolUnlimitedFormatted = formatPool(poolUnlimited)
@@ -105,6 +105,8 @@ const useGetPublicIfoData = (ifo: Ifo): PublicIfoData => {
     const taxRateNum = taxRate ? taxRate[0].div(TAX_PRECISION).toNumber() : 0
 
     const status = getStatus(currentTimestamp, startTimestampNum, endTimestampNum)
+    // const status = 'coming_soon';
+    
     const totalTimestamp = endTimestampNum - startTimestampNum
     const timestampRemaining = endTimestampNum - currentTimestamp
 

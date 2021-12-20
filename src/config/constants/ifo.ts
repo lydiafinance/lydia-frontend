@@ -4,6 +4,7 @@ import farms from './farms'
 
 const lydAvaxFarm = farms.find((x) => x.pid === 4)
 const avaxUsdtFarm = farms.find((x) => x.pid === 17)
+const avaxUsdtFarmTest = farms.find((x) => x.pid === 18)
 
 const lydAvaxLPToken: Token = {
   symbol: lydAvaxFarm.lpSymbol,
@@ -17,10 +18,16 @@ const avaxUsdtLPToken: Token = {
   decimals: 18,
 }
 
+const avaxUsdtLPTestToken: Token = {
+  symbol: avaxUsdtFarmTest.lpSymbol,
+  address: avaxUsdtFarmTest.lpAddresses,
+  decimals: 18,
+}
+
 const ifos: Ifo[] = [
   {
-    id: 'evrt',
-    address: '0x9d9c2A392Bac2Cd045Daf26F7fEA87640E214B3d',
+    id: 'avao2',
+    address: '0x60Cc748Af5b19b3212671ae3C85AaF2b073af429',
     isActive: false,
     inDevelopment: true,
     name: '(PLACEHOLDER)',
@@ -36,10 +43,10 @@ const ifos: Ifo[] = [
       lydToBurn: '$1,000',
       distributionRatio: 0.1,
     },
-    currency: avaxUsdtLPToken,
+    currency: avaxUsdtLPTestToken,
     token: tokens.avao,
-    releaseTimestamp: 1639058400,
-    campaignId: '2',
+    releaseTimestamp: 2639058400,
+    campaignId: '3',
     articleUrl: 'https://lydiafinance.medium.com/avaone-ifo-on-lydia-finance-e5d8e17f9aed',
     tokenOfferingPrice: 0.1,
     version: 3,

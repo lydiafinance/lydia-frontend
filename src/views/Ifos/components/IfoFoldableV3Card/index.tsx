@@ -21,7 +21,7 @@ import useToast from 'hooks/useToast'
 import { useTranslation } from 'contexts/Localization'
 import { getAddress } from 'utils/addressHelpers'
 import { EnableStatus } from './types'
-import IfoPoolCard from './IfoPoolCard'
+import IfoPoolV3Card from './IfoPoolV3Card'
 import Timer from './Timer'
 import Achievement from './Achievement'
 
@@ -152,9 +152,13 @@ const IfoFoldableCard: React.FC<IfoFoldableCardProps> = ({ ifo, publicIfoData, w
         {isActive && <Progress variant="flat" primaryStep={publicIfoData.progress} />}
         <StyledCardBody>
           {isActive && <Timer publicIfoData={publicIfoData} />}
+
+          {walletIfoData.poolBasic.isEligible ? <span>Eligible</span> : <span> Not Eligible</span>}
+          {walletIfoData.poolUnlimited.isEligible ? <span>Eligible</span> : <span> Not Eligible</span>}
+
           <CardsWrapper singleCard={!publicIfoData.poolBasic || !walletIfoData.poolBasic}>
             {publicIfoData.poolBasic && walletIfoData.poolBasic && (
-              <IfoPoolCard
+              <IfoPoolV3Card
                 poolId={PoolIds.poolBasic}
                 ifo={ifo}
                 publicIfoData={publicIfoData}
@@ -164,7 +168,7 @@ const IfoFoldableCard: React.FC<IfoFoldableCardProps> = ({ ifo, publicIfoData, w
               />
             )}
             {publicIfoData.poolUnlimited && walletIfoData.poolUnlimited && (
-              <IfoPoolCard
+              <IfoPoolV3Card
                 poolId={PoolIds.poolUnlimited}
                 ifo={ifo}
                 publicIfoData={publicIfoData}

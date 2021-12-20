@@ -40,6 +40,8 @@ export interface UserPoolCharacteristics {
   purchasedTokens: BigNumber
   claimedTokens: BigNumber
   claimableTokens: BigNumber
+  isEligible?: boolean // @contract: isEligible
+  userVaultBalance?: BigNumber
 }
 
 // Use only inside the useGetWalletIfoData hook

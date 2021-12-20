@@ -27,6 +27,8 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
       purchasedTokens: BIG_ZERO,
       claimedTokens: BIG_ZERO,
       claimableTokens: BIG_ZERO,
+      isEligible: false,
+      userVaultBalance: BIG_ZERO
     },
     poolUnlimited: {
       amountTokenCommittedInLP: BIG_ZERO,
@@ -38,6 +40,8 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
       purchasedTokens: BIG_ZERO,
       claimedTokens: BIG_ZERO,
       claimableTokens: BIG_ZERO,
+      isEligible: false,
+      userVaultBalance: BIG_ZERO
     },
   })
 
@@ -73,8 +77,6 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
   // uint256 claimedTokens; // Total claimed offering tokens amount by the user
 
   const fetchIfoData = useCallback(async () => {
-    // todo : add isEligible
-    // same params. cause there is a loop 
     const ifoCalls = [
       {
         address,
@@ -95,10 +97,15 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
         address,
         name: 'isEligible',
         params: [account],
+      },
+      {
+        address,
+        name: 'viewUserVaultBalance',
+        params: [account],
       }
     ]
 
-    const [userInfo, amounts, claimableTokens,isEligible] = await multicall(ifoV3Abi, ifoCalls)
+    const [userInfo, amounts, claimableTokens, isEligible, viewUserVaultBalance] = await multicall(ifoV3Abi, ifoCalls)
 
     setState((prevState) => ({
       ...prevState,
@@ -112,7 +119,8 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
         purchasedTokens: new BigNumber(userInfo[2][0].toString()),
         claimedTokens: new BigNumber(userInfo[3][0].toString()),
         claimableTokens: new BigNumber(claimableTokens[0][0].toString()),
-        isEligible: isEligible[0]
+        isEligible: isEligible[0],
+        userVaultBalance: new BigNumber(viewUserVaultBalance[0])
       },
       poolUnlimited: {
         ...prevState.poolUnlimited,
@@ -124,7 +132,8 @@ const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
         purchasedTokens: new BigNumber(userInfo[2][1].toString()),
         claimedTokens: new BigNumber(userInfo[3][1].toString()),
         claimableTokens: new BigNumber(claimableTokens[0][1].toString()),
-        isEligible: isEligible[0]
+        isEligible: isEligible[0],
+        userVaultBalance: new BigNumber(viewUserVaultBalance[0])
       },
     }))
   }, [account, address])

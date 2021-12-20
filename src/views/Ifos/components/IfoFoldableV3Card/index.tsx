@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
 import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  CardRibbon,
   ExpandableButton,
   Progress,
   Button,
@@ -13,89 +7,18 @@ import {
 } from '@lydiafinance/uikit'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Ifo, IfoStatus, PoolIds } from 'config/constants/types'
-import { PublicIfoData, WalletIfoData } from 'hooks/ifo/types'
+import { PoolIds } from 'config/constants/types'
 import { useIfoApprove } from 'hooks/useApprove'
 import { useERC20 } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
 import { useTranslation } from 'contexts/Localization'
 import { getAddress } from 'utils/addressHelpers'
-import { EnableStatus } from './types'
 import IfoPoolV3Card from './IfoPoolV3Card'
-import Timer from './Timer'
-import Achievement from './Achievement'
-
-interface IfoFoldableCardProps {
-  ifo: Ifo
-  publicIfoData: PublicIfoData
-  walletIfoData: WalletIfoData
-  isInitiallyVisible: boolean
-}
-
-const getRibbonComponent = (ifo: Ifo, status: IfoStatus, t: any) => {
-  if (status === 'coming_soon') {
-    return <CardRibbon variantColor="primaryBright" ribbonPosition="left" text={t('Coming Soon')} />
-  }
-
-  if (status === 'live' || (status === 'finished' && ifo.isActive)) {
-    return (
-      <CardRibbon
-        variantColor="primary"
-        ribbonPosition="left"
-        style={{ textTransform: 'uppercase' }}
-        text={status === 'live' ? `${t('Live')}!` : `${t('Finished')}!`}
-      />
-    )
-  }
-
-  return null
-}
-
-const StyledCard = styled(Card)`
-  max-width: 736px;
-  width: 100%;
-  margin: auto;
-`
-
-const Header = styled(CardHeader)<{ ifoId: string }>`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  height: 112px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-image: ${({ ifoId }) => `url('/images/ifos/${ifoId}-bg.svg')`};
-`
-
-const FoldableContent = styled.div<{ isVisible: boolean; isActive: boolean }>`
-  display: ${({ isVisible }) => (isVisible ? 'block' : 'none')};
-  background: ${({ isActive, theme }) => (isActive ? theme.colors.gradients.bubblegum : theme.colors.dropdown)};
-`
-
-const CardsWrapper = styled.div<{ singleCard: boolean }>`
-  display: grid;
-  grid-gap: 32px;
-  grid-template-columns: 1fr;
-  margin-bottom: 32px;
-  ${({ theme }) => theme.mediaQueries.md} {
-    grid-template-columns: ${({ singleCard }) => (singleCard ? '1fr' : '1fr 1fr')};
-    justify-items: ${({ singleCard }) => (singleCard ? 'center' : 'unset')};
-  }
-`
-
-const StyledCardBody = styled(CardBody)`
-  padding: 24px 16px;
-  ${({ theme }) => theme.mediaQueries.md} {
-    padding: 24px;
-  }
-`
-
-const StyledCardFooter = styled(CardFooter)`
-  text-align: center;
-  padding: 8px;
-  background: ${({ theme }) => theme.colors.card};
-`
+import { EnableStatus, IfoFoldableCardProps } from '../Shared/types'
+import Timer from '../Shared/Timer'
+import Achievement from '../Shared/Achievement'
+import { StyledCard, Header, FoldableContent, CardsWrapper, StyledCardBody, StyledCardFooter } from '../IfoLayout'
+import getRibbonComponent from '../Shared/getRibbonComponent'
 
 const IfoFoldableCard: React.FC<IfoFoldableCardProps> = ({ ifo, publicIfoData, walletIfoData, isInitiallyVisible }) => {
   const [isVisible, setIsVisible] = useState(isInitiallyVisible)
@@ -106,7 +29,8 @@ const IfoFoldableCard: React.FC<IfoFoldableCardProps> = ({ ifo, publicIfoData, w
   const Ribbon = getRibbonComponent(ifo, publicIfoData.status, t)
   // todo: dont forget
   // const isActive = publicIfoData.status !== 'finished' && ifo.isActive
-  const isActive = true;
+
+  const isActive = true
   const { contract } = walletIfoData
   const onApprove = useIfoApprove(raisingTokenContract, contract.options.address)
   const { toastSuccess } = useToast()

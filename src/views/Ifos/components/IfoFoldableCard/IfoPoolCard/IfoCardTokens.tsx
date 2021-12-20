@@ -17,7 +17,7 @@ import { PublicIfoData, WalletIfoData } from 'hooks/ifo/types'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber, getBalanceAmount } from 'utils/formatBalance'
 import { getAddress } from 'utils/addressHelpers'
-import { EnableStatus } from '../types'
+import { EnableStatus } from '../../Shared/types'
 import PercentageOfTotal from './PercentageOfTotal'
 import { SkeletonCardTokens } from './Skeletons'
 

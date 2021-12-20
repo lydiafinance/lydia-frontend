@@ -4,7 +4,7 @@ import { Card, CardBody, CardHeader, Text, useTooltip, HelpIcon, Flex } from '@l
 import { Ifo, PoolIds } from 'config/constants/types'
 // import { useProfile } from 'state/hooks'
 import { PublicIfoData, WalletIfoData } from 'hooks/ifo/types'
-import { EnableStatus } from '../types'
+import { EnableStatus } from '../../Shared/types'
 import IfoCardTokens from './IfoCardTokens'
 import IfoCardActions from './IfoCardActions'
 import IfoCardDetails from './IfoCardDetails'

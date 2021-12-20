@@ -34,7 +34,7 @@ const IfoCardActions: React.FC<Props> = ({
   const { account } = useWeb3React()
   const userPoolCharacteristics = walletIfoData[poolId]
 
-  const { isEligible, minVaultBalance, userVaultBalance } = userPoolCharacteristics
+  const { isEligible, minVaultBalance, userVaultBalance, isPreparationPeriod } = userPoolCharacteristics
 
 
   if (isLoading) {
@@ -64,7 +64,7 @@ const IfoCardActions: React.FC<Props> = ({
             : null}
           </Alert>
         </Box>
-        <Button mt="5px" target="_blank" as={Link} to="/pools" width="100%">
+        <Button mt="15px" target="_blank" as={Link} to="/pools" width="100%">
           {t("Stake on Lydian's Pool")}
         </Button>
       </>

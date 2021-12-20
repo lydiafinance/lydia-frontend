@@ -51,7 +51,7 @@ const IfoCardActions: React.FC<Props> = ({
   if (!userPoolCharacteristics.isEligible) {
     return (
       <>
-        <Button as={Link} to="/pools" width="100%">
+        <Button target="_blank" as={Link} to="/pools" width="100%">
           {t("Stake on Lydian's Pool")}
         </Button>
       </>

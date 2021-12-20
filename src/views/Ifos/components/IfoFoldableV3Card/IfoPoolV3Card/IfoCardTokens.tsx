@@ -119,8 +119,8 @@ const IfoCardTokens: React.FC<IfoCardTokensProps> = ({
           {
             !isEligible && 
             <Box mt="16px">
-              <Alert title={t("To participate in this sale...")}>
-                <Text fontSize="14px" as="p">{t("You need to stake Lydian's Pool")}</Text>
+              <Alert title={t("To participate in this sale,")}>
+                <Text fontSize="14px" as="p">{t("You need to stake at Lydian's Pool")}</Text>
               </Alert>
             </Box>
           }

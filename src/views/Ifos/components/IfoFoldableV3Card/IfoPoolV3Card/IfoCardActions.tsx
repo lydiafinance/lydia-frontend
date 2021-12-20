@@ -1,4 +1,5 @@
 import React from 'react'
+import { BIG_ZERO } from 'utils/bigNumber'
 import { useTranslation } from 'contexts/Localization'
 import { Button,Box,Alert,Text } from '@lydiafinance/uikit'
 import { useWeb3React } from '@web3-react/core'
@@ -52,13 +53,15 @@ const IfoCardActions: React.FC<Props> = ({
     )
   }
 
-  if (!userPoolCharacteristics.isEligible) {
+  if (!isEligible) {
     return (
       <>
         <Box mt="16px">
           <Alert title={t("To participate in this sale,")}>
-            <Text fontSize="14px" as="p">{t("You need to stake on Lydian's Pool")}</Text>
-            <Text fontSize="12px" as="p">{t("LYD to vault")} : {getBalanceNumber(minVaultBalance.minus(userVaultBalance))} </Text>
+            <Text fontSize="14px" as="p">{t("You need to stake on Lydian's Pool at least")} {getBalanceNumber(minVaultBalance)} LYD</Text>
+            {userVaultBalance !== BIG_ZERO ? 
+            <Text fontSize="12px" as="p">{t("Your current pool balance:")} : {getBalanceNumber(userVaultBalance)} </Text>
+            : null}
           </Alert>
         </Box>
         <Button mt="5px" target="_blank" as={Link} to="/pools" width="100%">

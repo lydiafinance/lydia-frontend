@@ -28,8 +28,7 @@ const ifos: Ifo[] = [
   {
     id: 'avao2',
     address: '0x60Cc748Af5b19b3212671ae3C85AaF2b073af429',
-    isActive: false,
-    inDevelopment: true,
+    isActive: true,
     name: '(PLACEHOLDER)',
     poolBasic: {
       saleAmount: '1,000 AVAO',
@@ -55,7 +54,7 @@ const ifos: Ifo[] = [
   {
     id: 'avao',
     address: '0x9d9c2A392Bac2Cd045Daf26F7fEA87640E214B3d',
-    isActive: true,
+    isActive: false,
     name: 'AvaOne (AVAO)',
     poolBasic: {
       saleAmount: '300,000 AVAO',

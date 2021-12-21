@@ -6,7 +6,7 @@ import IfoCardV2Data from './components/IfoCardV2Data'
 import IfoCardV3Data from './components/IfoCardV3Data'
 import IfoLayout from './components/IfoLayout'
 
-const inactiveIfo: Ifo[] = ifosConfig.filter((ifo) => !ifo.isActive && !ifo.inDevelopment )
+const inactiveIfo: Ifo[] = ifosConfig.filter((ifo) => !ifo.isActive)
 
 const PastIfo = () => {
   return (

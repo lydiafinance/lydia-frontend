@@ -4,7 +4,6 @@ import farms from './farms'
 
 const lydAvaxFarm = farms.find((x) => x.pid === 4)
 const avaxUsdtFarm = farms.find((x) => x.pid === 17)
-const avaxUsdtFarmTest = farms.find((x) => x.pid === 18)
 
 const lydAvaxLPToken: Token = {
   symbol: lydAvaxFarm.lpSymbol,
@@ -18,18 +17,12 @@ const avaxUsdtLPToken: Token = {
   decimals: 18,
 }
 
-const avaxUsdtLPTestToken: Token = {
-  symbol: avaxUsdtFarmTest.lpSymbol,
-  address: avaxUsdtFarmTest.lpAddresses,
-  decimals: 18,
-}
-
 const ifos: Ifo[] = [
   {
-    id: 'avao2',
-    address: '0x60Cc748Af5b19b3212671ae3C85AaF2b073af429',
+    id: 'traverse',
+    address: '0x7A91E9e685CEaF62185CA3f702d345a14CC55945',
     isActive: true,
-    name: '(PLACEHOLDER)',
+    name: 'TRAVERSE (VERSE)',
     poolBasic: {
       saleAmount: '1,000 AVAO',
       raiseAmount: '$1,000',
@@ -42,14 +35,14 @@ const ifos: Ifo[] = [
       lydToBurn: '$1,000',
       distributionRatio: 0.1,
     },
-    currency: avaxUsdtLPTestToken,
-    token: tokens.avao,
+    currency: avaxUsdtLPToken,
+    token: tokens.test9,
     releaseTimestamp: 2639058400,
     campaignId: '3',
     articleUrl: 'https://lydiafinance.medium.com/avaone-ifo-on-lydia-finance-e5d8e17f9aed',
     tokenOfferingPrice: 0.1,
     version: 3,
-    releasePercent: [75, 100],
+    releasePercent: [100],
   },
   {
     id: 'avao',

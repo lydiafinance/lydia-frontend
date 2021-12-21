@@ -19,9 +19,10 @@ const ClaimButton: React.FC<Props> = ({ poolId, ifoVersion, walletIfoData, nextR
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { toastError, toastSuccess } = useToast()
-
+  const {isPreparationPeriod} = userPoolCharacteristics;
+  
   const setPendingTx = (isPending: boolean) => walletIfoData.setPendingTx(isPending, poolId)
-  const isClaimable = userPoolCharacteristics.claimableTokens.isGreaterThan(0)
+  const isClaimable = userPoolCharacteristics.claimableTokens.isGreaterThan(0) && !isPreparationPeriod
   const timeUntil = getTimePeriods(nextReleaseTimestamp - Math.floor(Date.now() / 1000))
 
   const handleClaim = async () => {
@@ -48,7 +49,7 @@ const ClaimButton: React.FC<Props> = ({ poolId, ifoVersion, walletIfoData, nextR
     return (
       <Button
         onClick={handleClaim}
-        disabled={userPoolCharacteristics.isPendingTx}
+        disabled={userPoolCharacteristics.isPendingTx || isPreparationPeriod}
         width="100%"
         isLoading={userPoolCharacteristics.isPendingTx}
         endIcon={userPoolCharacteristics.isPendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}

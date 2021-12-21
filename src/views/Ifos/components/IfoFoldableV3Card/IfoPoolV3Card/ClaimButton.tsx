@@ -17,6 +17,7 @@ const ClaimButton: React.FC<Props> = ({ poolId, ifoVersion, walletIfoData }) => 
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { toastError, toastSuccess } = useToast()
+  const {isPreparationPeriod} = userPoolCharacteristics;
 
   const setPendingTx = (isPending: boolean) => walletIfoData.setPendingTx(isPending, poolId)
 
@@ -43,7 +44,7 @@ const ClaimButton: React.FC<Props> = ({ poolId, ifoVersion, walletIfoData }) => 
   return (
     <Button
       onClick={handleClaim}
-      disabled={userPoolCharacteristics.isPendingTx}
+      disabled={userPoolCharacteristics.isPendingTx || isPreparationPeriod}
       width="100%"
       isLoading={userPoolCharacteristics.isPendingTx}
       endIcon={userPoolCharacteristics.isPendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}

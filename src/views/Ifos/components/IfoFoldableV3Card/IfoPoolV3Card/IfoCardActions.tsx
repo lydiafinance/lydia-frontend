@@ -33,8 +33,7 @@ const IfoCardActions: React.FC<Props> = ({
   const { account } = useWeb3React()
   const userPoolCharacteristics = walletIfoData[poolId]
 
-  const { isEligible, minVaultBalance, userVaultBalance, isPreparationPeriod } = userPoolCharacteristics
-
+  const { isEligible, minVaultBalance, userVaultBalance } = userPoolCharacteristics
 
   if (isLoading) {
     return <SkeletonCardActions />
@@ -66,17 +65,10 @@ const IfoCardActions: React.FC<Props> = ({
       {publicIfoData.status === 'finished' &&
         !userPoolCharacteristics.hasClaimed &&
         (userPoolCharacteristics.offeringAmountInToken.isGreaterThan(0) ||
-          userPoolCharacteristics.refundingAmountInLP.isGreaterThan(0)) && (
-            !isPreparationPeriod ? 
-          <ClaimButton poolId={poolId} ifoVersion={ifo.version} walletIfoData={walletIfoData} />
-          : 
-          <LockedClaimButton
-          poolId={poolId}
-          ifoVersion={ifo.version}
-          walletIfoData={walletIfoData}
-          nextReleaseTimestamp={publicIfoData.nextReleaseTimestamp}
-          />
-        )}
+          userPoolCharacteristics.refundingAmountInLP.isGreaterThan(0)) && 
+            <ClaimButton poolId={poolId} ifoVersion={ifo.version} walletIfoData={walletIfoData} />
+      }
+
       {publicIfoData.status === 'finished' &&
         userPoolCharacteristics.hasClaimed &&
         userPoolCharacteristics.purchasedTokens.isGreaterThan(userPoolCharacteristics.claimedTokens) &&

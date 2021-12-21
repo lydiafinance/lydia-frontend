@@ -52,7 +52,7 @@ const IfoCardActions: React.FC<Props> = ({
     )
   }
 
-  if ((!isEligible && publicIfoData.status !== 'finished') && (publicIfoData.status === 'live' || publicIfoData.status === 'coming_soon')) {
+  if (!isEligible && (publicIfoData.status === 'live' || publicIfoData.status === 'coming_soon')) {
     return (
         <EligibleInfo minVaultBalance={minVaultBalance} userVaultBalance={userVaultBalance} />
     )

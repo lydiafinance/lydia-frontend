@@ -46,6 +46,11 @@ const config: MenuEntry[] = [
     href: '/lottery'
   },
   {
+    label: 'Governance',
+    icon: 'GroupsIcon',
+    href: 'https://snapshot.org/#/lydiafinance.eth'
+  },
+  {
     label: "Buy LYD",
     icon: "CoinIcon",
     items: [

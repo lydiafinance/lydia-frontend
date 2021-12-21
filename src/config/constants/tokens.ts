@@ -419,6 +419,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://avaone.finance',
   },
+  test9: {
+    symbol: 'FTT9',
+    address: {
+      [ChainId.AVALANCHE]: '0x4521af173d8bec89854afc315ac81adafccd816c',
+      [ChainId.FUJI]: '0x4521af173d8bec89854afc315ac81adafccd816c',
+    },
+    decimals: 9,
+    projectLink: 'https://www.project.link/',
+  },
 }
 
 export default tokens

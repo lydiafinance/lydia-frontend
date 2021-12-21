@@ -53,15 +53,15 @@ const IfoCardActions: React.FC<Props> = ({
     )
   }
 
-  if (!isEligible) {
+  if (!isEligible && (publicIfoData.status === 'live' || publicIfoData.status === 'coming_soon')) {
     return (
       <>
         <Box mt="16px">
-          <Alert title={t("To participate in this sale,")}>
-            <Text fontSize="14px" as="p">{t("You need to stake on Lydian's Pool at least")} {getBalanceNumber(minVaultBalance)} LYD</Text>
-            {userVaultBalance !== BIG_ZERO ? 
-            <Text fontSize="12px" as="p">{t("Your current pool balance:")} : {getBalanceNumber(userVaultBalance)} </Text>
-            : null}
+          <Alert title={t("To participate in this sale")}>
+            <Text mt="5px" fontSize="14px" as="p">{t("You need to stake on Lydian's Pool at least")} {getBalanceNumber(minVaultBalance)} LYD</Text>
+            {!userVaultBalance.isEqualTo(BIG_ZERO) && 
+            <Text mt="5px" fontSize="12px" as="p">{t("Your current pool balance:")} : {getBalanceNumber(userVaultBalance)} </Text>
+            }
           </Alert>
         </Box>
         <Button mt="15px" target="_blank" as={Link} to="/pools" width="100%">

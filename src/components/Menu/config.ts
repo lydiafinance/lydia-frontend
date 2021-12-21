@@ -46,6 +46,11 @@ const config: MenuEntry[] = [
     href: '/lottery'
   },
   {
+    label: 'Lottery',
+    icon: 'Lottery2',
+    href: '/lottery'
+  },
+  {
     label: "Buy LYD",
     icon: "CoinIcon",
     items: [

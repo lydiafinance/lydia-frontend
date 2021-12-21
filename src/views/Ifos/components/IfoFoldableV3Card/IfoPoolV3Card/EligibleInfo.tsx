@@ -13,7 +13,7 @@ const EligibleInfo = ({minVaultBalance,userVaultBalance}) => {
           <Alert title={t("To participate in this sale")}>
             <Text mt="5px" fontSize="14px" as="p">{t("You need to stake on Lydian's Pool at least")} {getBalanceNumber(minVaultBalance)} LYD</Text>
             {!userVaultBalance.isEqualTo(BIG_ZERO) && 
-            <Text mt="5px" fontSize="12px" as="p">{t("Your current pool balance:")} : {getBalanceNumber(userVaultBalance)} </Text>
+            <Text mt="5px" fontSize="12px" as="p">{t("Your current pool balance")} : {getBalanceNumber(userVaultBalance)} </Text>
             }
           </Alert>
         </Box>

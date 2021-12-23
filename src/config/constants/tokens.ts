@@ -420,10 +420,10 @@ const tokens = {
     projectLink: 'https://avaone.finance',
   },
   test9: {
-    symbol: 'FTT9',
+    symbol: 'Merse',
     address: {
-      [ChainId.AVALANCHE]: '0x4521af173d8bec89854afc315ac81adafccd816c',
-      [ChainId.FUJI]: '0x4521af173d8bec89854afc315ac81adafccd816c',
+      [ChainId.AVALANCHE]: '0xE7179144C66BED03d4C0Efb9885e291f0Bf4e7F1',
+      [ChainId.FUJI]: '0xE7179144C66BED03d4C0Efb9885e291f0Bf4e7F1',
     },
     decimals: 9,
     projectLink: 'https://www.project.link/',

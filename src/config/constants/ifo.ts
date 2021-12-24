@@ -19,9 +19,35 @@ const avaxUsdtLPToken: Token = {
 
 const ifos: Ifo[] = [
   {
+    id: 'traverse',
+    address: '0xC6d33E4Ba2cBcC0232EEef6c03621E882EBbccCa',
+    isActive: true,
+    name: 'TRAVERSE (VERSE)',
+    poolBasic: {
+      saleAmount: '30,000 VERSE',
+      raiseAmount: '$126,000',
+      lydToBurn: '$39,000',
+      distributionRatio: 0.3,
+    },
+    poolUnlimited: {
+      saleAmount: '70,000 VERSE',
+      raiseAmount: '$294,000',
+      lydToBurn: '$91,000',
+      distributionRatio: 0.7,
+    },
+    currency: avaxUsdtLPToken,
+    token: tokens.verse,
+    releaseTimestamp: 1640350800,
+    campaignId: '3',
+    articleUrl: 'https://lydiafinance.medium.com/traverse-ifo-on-lydia-finance-5487346fce44',
+    tokenOfferingPrice: 4.2,
+    version: 3,
+    releasePercent: [100],
+  },
+  {
     id: 'avao',
     address: '0x9d9c2A392Bac2Cd045Daf26F7fEA87640E214B3d',
-    isActive: true,
+    isActive: false,
     name: 'AvaOne (AVAO)',
     poolBasic: {
       saleAmount: '300,000 AVAO',

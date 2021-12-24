@@ -19,8 +19,9 @@ import {
   getMaximusFeeManagerContract,
   getMaximusContract,
   getMaximusDashboardContract,
-  getIfoV2Contract,
   getIfoV1Contract,
+  getIfoV2Contract,
+  getIfoV3Contract,
   getErc721Contract,
 } from 'utils/contractHelpers'
 
@@ -36,6 +37,10 @@ export const useIfoV1Contract = (address: string) => {
 export const useIfoV2Contract = (address: string) => {
   const web3 = useWeb3()
   return useMemo(() => getIfoV2Contract(address, web3), [address, web3])
+}
+export const useIfoV3Contract = (address: string) => {
+  const web3 = useWeb3()
+  return useMemo(() => getIfoV3Contract(address, web3), [address, web3])
 }
 
 export const useIfoContract = (address: string) => {

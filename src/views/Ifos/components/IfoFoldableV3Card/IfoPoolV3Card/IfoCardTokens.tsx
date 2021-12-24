@@ -73,7 +73,7 @@ const IfoCardTokens: React.FC<IfoCardTokensProps> = ({
   const userPoolCharacteristics = walletIfoData[poolId]
 
   const { currency, token } = ifo
-  const { hasClaimed } = userPoolCharacteristics
+  const { hasClaimed, isEligible } = userPoolCharacteristics
   const distributionRatio = ifo[poolId].distributionRatio * 100
   const tokenImage = `/images/tokens/${getAddress(ifo.token.address)}.png`
 
@@ -113,7 +113,7 @@ const IfoCardTokens: React.FC<IfoCardTokensProps> = ({
           <Text fontSize="14px" color="textSubtle" pl="48px">
             {t('%ratio%% of total sale', { ratio: distributionRatio })}
           </Text>
-          {enableStatus !== EnableStatus.ENABLED && account && (
+          {enableStatus !== EnableStatus.ENABLED && account && isEligible &&  (
             <Button
               width="100%"
               mt="16px"

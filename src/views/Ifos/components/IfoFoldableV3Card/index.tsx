@@ -13,7 +13,7 @@ import { useERC20 } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
 import { useTranslation } from 'contexts/Localization'
 import { getAddress } from 'utils/addressHelpers'
-import IfoPoolCard from './IfoPoolCard'
+import IfoPoolV3Card from './IfoPoolV3Card'
 import { EnableStatus, IfoFoldableCardProps } from '../Shared/types'
 import Timer from '../Shared/Timer'
 import Achievement from '../Shared/Achievement'
@@ -75,7 +75,7 @@ const IfoFoldableCard: React.FC<IfoFoldableCardProps> = ({ ifo, publicIfoData, w
           {isActive && <Timer publicIfoData={publicIfoData} />}
           <CardsWrapper singleCard={!publicIfoData.poolBasic || !walletIfoData.poolBasic}>
             {publicIfoData.poolBasic && walletIfoData.poolBasic && (
-              <IfoPoolCard
+              <IfoPoolV3Card
                 poolId={PoolIds.poolBasic}
                 ifo={ifo}
                 publicIfoData={publicIfoData}
@@ -85,7 +85,7 @@ const IfoFoldableCard: React.FC<IfoFoldableCardProps> = ({ ifo, publicIfoData, w
               />
             )}
             {publicIfoData.poolUnlimited && walletIfoData.poolUnlimited && (
-              <IfoPoolCard
+              <IfoPoolV3Card
                 poolId={PoolIds.poolUnlimited}
                 ifo={ifo}
                 publicIfoData={publicIfoData}

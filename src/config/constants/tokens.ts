@@ -131,6 +131,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://avax.olive.cash/',
   },
+  test9: {
+    symbol: 'Merse',
+    address: {
+      [ChainId.AVALANCHE]: '0xE7179144C66BED03d4C0Efb9885e291f0Bf4e7F1',
+      [ChainId.FUJI]: '0xE7179144C66BED03d4C0Efb9885e291f0Bf4e7F1',
+    },
+    decimals: 9,
+    projectLink: 'https://www.project.link/',
+  },
   bag: {
     symbol: 'BAG',
     address: {
@@ -419,14 +428,14 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://avaone.finance',
   },
-  test9: {
-    symbol: 'Merse',
+  verse: {
+    symbol: 'VERSE',
     address: {
-      [ChainId.AVALANCHE]: '0xE7179144C66BED03d4C0Efb9885e291f0Bf4e7F1',
-      [ChainId.FUJI]: '0xE7179144C66BED03d4C0Efb9885e291f0Bf4e7F1',
+      [ChainId.AVALANCHE]: '0xB72ab6f7177bBb41eFcC17D817778d77460259F1',
+      [ChainId.FUJI]: '0xB72ab6f7177bBb41eFcC17D817778d77460259F1',
     },
     decimals: 9,
-    projectLink: 'https://www.project.link/',
+    projectLink: 'https://traverse.money',
   },
 }
 

@@ -609,6 +609,19 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: tokens.wavax,
     isFinished: false,
   },
+  {
+    pid: 52,
+    lpSymbol: 'AVAX-AVAO LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x762558b56e2be40b5029c69d6e7ef3678763b19e',
+      [ChainId.AVALANCHE]: '0x762558b56e2be40b5029c69d6e7ef3678763b19e',
+    },
+    token: tokens.avao2,
+    quoteToken: tokens.wavax,
+    tokenSymbol: 'AVAO',
+    quoteTokenAdresses: tokens.wavax,
+    isFinished: false,
+  },
 ]
 
 export default farms

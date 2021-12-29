@@ -428,6 +428,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://avaone.finance',
   },
+  avao2: {
+    symbol: 'AVAO',
+    address: {
+      [ChainId.AVALANCHE]: '0xecf4e40e564a1de686d89142a0963d908579daaa',
+      [ChainId.FUJI]: '0xecf4e40e564a1de686d89142a0963d908579daaa',
+    },
+    decimals: 18,
+    projectLink: 'https://avaone.finance',
+  },
   verse: {
     symbol: 'VERSE',
     address: {

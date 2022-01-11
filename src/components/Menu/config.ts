@@ -63,10 +63,6 @@ const config: MenuEntry[] = [
         href: "https://app.pangolin.exchange/#/swap?outputCurrency=0x4C9B4E1AC6F24CdE3660D5E4Ef1eBF77C710C084",
       },
       {
-        label: "BitMart",
-        href: "https://www.bitmart.com/trade/en?symbol=LYD_USDT",
-      },
-      {
         label: "LYD Gate",
         href: "https://gate.lydia.finance/#/bridge",
       }

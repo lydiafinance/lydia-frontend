@@ -156,7 +156,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, lydPrice, account })
           cChainExplorer={`https://cchain.explorer.avax.network/address/${
             farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
           }`}
-          infoAddress={`https://info.lydia.finance/pair/${lpAddress}`}
+          infoAddress={`https://info.lydia.finance/pairs/${lpAddress}`}
           totalValueFormatted={totalValueFormatted}
           lpLabel={lpLabel}
           addLiquidityUrl={addLiquidityUrl}

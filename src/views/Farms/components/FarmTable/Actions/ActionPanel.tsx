@@ -148,7 +148,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   })
   const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
   const avax = `https://cchain.explorer.avax.network/address/${lpAddress}`
-  const info = `https://info.lydia.finance/pair/${lpAddress}`
+  const info = `https://info.lydia.finance/pairs/${lpAddress}`
   // const isCommunityFarm = communityFarms.includes(token.symbol)
 
   return (

@@ -16,7 +16,7 @@ const pools: PoolConfig[] = [
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
-    tokenPerBlock: '2.0',
+    tokenPerBlock: '1.5',
     sortOrder: 1,
     isFinished: false,
     // TODO: Make SURE!!!!!!!!!!!!!!!!!!!

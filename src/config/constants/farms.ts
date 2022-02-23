@@ -167,6 +167,17 @@ const farms: FarmConfig[] = [
     isFinished: true,
   },
   {
+    pid: 53,
+    lpSymbol: 'AVAX-sAVAX LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0x4849e22c53e60421fcee656867e91b5e2fd60bf8',
+      [ChainId.AVALANCHE]: '0x4849e22c53e60421fcee656867e91b5e2fd60bf8',
+    },
+    token: tokens.savax,
+    quoteToken: tokens.wavax,
+    isFinished: false,
+  },
+  {
     pid: 17,
     lpSymbol: 'AVAX-USDT.e LP',
     lpAddresses: {

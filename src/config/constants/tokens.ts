@@ -446,6 +446,15 @@ const tokens = {
     decimals: 9,
     projectLink: 'https://traverse.money',
   },
+  savax: {
+    symbol: 'sAVAX',
+    address: {
+      [ChainId.AVALANCHE]: '0x2b2c81e08f1af8835a78bb2a90ae924ace0ea4be',
+      [ChainId.FUJI]: '0x2b2c81e08f1af8835a78bb2a90ae924ace0ea4be',
+    },
+    decimals: 18,
+    projectLink: 'https://benqi.fi',
+  },
 }
 
 export default tokens

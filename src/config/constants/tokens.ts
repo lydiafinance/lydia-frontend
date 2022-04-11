@@ -455,11 +455,20 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://benqi.fi',
   },
-  elk: {
+  elk1: {
     symbol: 'ELK',
     address: {
       [ChainId.AVALANCHE]: '0xE1C110E1B1b4A1deD0cAf3E42BfBdbB7b5d7cE1C',
       [ChainId.FUJI]: '0xE1C110E1B1b4A1deD0cAf3E42BfBdbB7b5d7cE1C',
+    },
+    decimals: 18,
+    projectLink: 'https://elk.finance/',
+  },
+  elk2: {
+    symbol: 'ELK',
+    address: {
+      [ChainId.AVALANCHE]: '0xeEeEEb57642040bE42185f49C52F7E9B38f8eeeE',
+      [ChainId.FUJI]: '0xeEeEEb57642040bE42185f49C52F7E9B38f8eeeE',
     },
     decimals: 18,
     projectLink: 'https://elk.finance/',

@@ -3,18 +3,7 @@ import { Route, useRouteMatch } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import orderBy from 'lodash/orderBy'
 import { useWeb3React } from '@web3-react/core'
-import {
-  Heading,
-  Flex,
-  Card,
-  CardBody,
-  CardFooter,
-  Button,
-  Text,
-  Link,
-  CardHeader,
-  Breadcrumbs,
-} from '@lydiafinance/uikit'
+import { Heading, Flex, Card, CardBody, CardFooter, Button, Text } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -31,7 +20,6 @@ const NftStaking: React.FC = () => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const [loading, setLoading] = useState(true)
-
   const [totalStaked, setTotalStaked] = useState(0)
   const [balanceOf, setBalanceOf] = useState(0)
   const [earned, setEarned] = useState(BIG_ZERO)

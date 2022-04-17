@@ -68,4 +68,8 @@ export default {
     [ChainId.FUJI]: '',
     [ChainId.AVALANCHE]: '',
   },
+  nftStake: {
+    [ChainId.FUJI]: '',
+    [ChainId.AVALANCHE]: '0x68400906742aab0b25ab6420a8fdfaf298a776d8',
+  },
 }

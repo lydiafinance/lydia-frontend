@@ -22,6 +22,7 @@ import {
   getMaximusFeeManagerAddress,
   getMaximusDashboardAddress,
   getMulticallAddress,
+  getNftStakeAddress,
 } from 'utils/addressHelpers'
 
 // ABI
@@ -49,6 +50,7 @@ import maximusAbi from 'config/abi/maximusAbi.json'
 import maximusDashboardAbi from 'config/abi/maximusDashboardAbi.json'
 import MultiCallAbi from 'config/abi/Multicall.json'
 import erc721Abi from 'config/abi/erc721.json'
+import nftStakeAbi from 'config/abi/nftStake.json'
 
 const getContract = (abi: any, address: string, web3?: Web3) => {
   const _web3 = web3 ?? web3NoAccount
@@ -130,4 +132,7 @@ export const getMulticallContract = (web3?: Web3) => {
 }
 export const getErc721Contract = (address: string, web3?: Web3) => {
   return getContract(erc721Abi, address, web3)
+}
+export const getNftStakeContract = (web3?: Web3) => {
+  return getContract(nftStakeAbi, getNftStakeAddress(), web3)
 }

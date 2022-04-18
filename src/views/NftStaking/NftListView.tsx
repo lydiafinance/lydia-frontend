@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardBody, CardFooter, Button, Text, Link, CardHeader, Breadcrumbs } from '@lydiafinance/uikit'
+import { Card, CardBody, CardFooter, Button, Text, Link, CardHeader, Breadcrumbs, Checkbox } from '@lydiafinance/uikit'
 import Page from 'components/layout/Page'
 import { useTranslation } from 'contexts/Localization'
 import useGetAvaxLionsNfts from 'hooks/useGetAvaxLionsNfts'
@@ -32,6 +32,12 @@ const NftListView = ({ title, emptyText, buttonText }) => {
                 <div className="nft-card" key={nft.tokenId}>
                   <div className="nft-image">
                     <img src={nft.tokenData.image} alt={`token-${nft.tokenId}`} />
+                  </div>
+                  <div className="nft-details">
+                    <div>
+                      <Checkbox scale="sm" />
+                      {nft.tokenData.name}
+                    </div>
                   </div>
                 </div>
               ))}

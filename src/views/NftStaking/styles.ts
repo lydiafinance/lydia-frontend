@@ -10,8 +10,33 @@ export const ManageLayout = styled(FlexLayout)`
     max-width: 64.5%;
   }
 
+  .nft-grid {
+    display: flex;
+  }
+
   .nft-card {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 150px;
+    margin: 10px;
+    padding: 10px;
+    border-style: solid !important;
+    border-color: grey !important;
+    border-radius: 10px !important;
+    border: 1px;
+    .nft-image {
+      display: flex;
+      width: 120px;
+      padding: 5px;
+      justify-content: center;
+    }
+    .nft-details {
+      width: 120px;
+      padding: 5px;
+    }
     img {
+      display: block !important;
       width: 100px;
     }
   }

@@ -1,7 +1,6 @@
 import { useWeb3React } from '@web3-react/core'
 import { useEffect, useReducer } from 'react'
 import { getAvaxLionsContract } from 'utils/contractHelpers'
-import makeBatchRequest from 'utils/makeBatchRequest'
 
 const avaxLionsContract = getAvaxLionsContract()
 
@@ -62,13 +61,13 @@ const useGetAvaxLionsNfts = () => {
         if (balanceOf > 0) {
           let nfts: AvaxLionsNftMap = {}
 
-          const getTokenIdAndBunnyId = async (index: number) => {
+          const getTokenId = async (index: number) => {
             try {
-              const { tokenOfOwnerByIndex, getBunnyId, tokenURI } = avaxLionsContract.methods
+              const { tokenOfOwnerByIndex, tokenURI } = avaxLionsContract.methods
               const tokenId = await tokenOfOwnerByIndex(account, index).call()
-              const [bunnyId, tokenUri] = await makeBatchRequest([getBunnyId(tokenId).call, tokenURI(tokenId).call])
+              const tokenUri = await tokenURI(tokenId).call()
 
-              return [Number(bunnyId), Number(tokenId), tokenUri]
+              return [Number(tokenId), tokenUri]
             } catch (error) {
               return null
             }
@@ -77,7 +76,7 @@ const useGetAvaxLionsNfts = () => {
           const tokenIdPromises = []
 
           for (let i = 0; i < balanceOf; i++) {
-            tokenIdPromises.push(getTokenIdAndBunnyId(i))
+            tokenIdPromises.push(getTokenId(i))
           }
 
           const tokenIdsOwnedByWallet = await Promise.all(tokenIdPromises)
@@ -87,13 +86,13 @@ const useGetAvaxLionsNfts = () => {
               return accum
             }
 
-            const [bunnyId, tokenId, tokenUri] = association
+            const [tokenId, tokenUri] = association
 
             return {
               ...accum,
-              [bunnyId]: {
+              [tokenId]: {
                 tokenUri,
-                tokenIds: accum[bunnyId] ? [...accum[bunnyId].tokenIds, tokenId] : [tokenId],
+                tokenId,
               },
             }
           }, {})

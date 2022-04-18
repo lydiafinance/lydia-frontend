@@ -74,6 +74,6 @@ export default {
   },
   avaxlions: {
     [ChainId.FUJI]: '',
-    [ChainId.AVALANCHE]: '0x86211e8A52040Ba2080467aDfD21731687b87571',
+    [ChainId.AVALANCHE]: '0xfE8FCf6B03407FE7f4bf916E1649a662d1B2eE5D',
   },
 }

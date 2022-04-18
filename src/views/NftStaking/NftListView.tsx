@@ -2,10 +2,15 @@ import React from 'react'
 import { Card, CardBody, CardFooter, Button, Text, Link, CardHeader, Breadcrumbs } from '@lydiafinance/uikit'
 import Page from 'components/layout/Page'
 import { useTranslation } from 'contexts/Localization'
+import useGetAvaxLionsNfts from 'hooks/useGetAvaxLionsNfts'
 import { ManageLayout } from './styles'
 
 const NftListView = ({ title, emptyText, buttonText }) => {
   const { t } = useTranslation()
+
+  const { nfts, isLoading } = useGetAvaxLionsNfts()
+  console.log(nfts, isLoading)
+
   return (
     <Page>
       <ManageLayout className="manage-body">

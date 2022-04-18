@@ -11,7 +11,21 @@ export const ManageLayout = styled(FlexLayout)`
   }
 
   .nft-grid {
-    display: flex;
+    display: grid;
+    ${({ theme }) => theme.mediaQueries.xs} {
+      grid-template-columns: auto;
+    }
+    ${({ theme }) => theme.mediaQueries.sm} {
+      grid-template-columns: auto auto;
+    }
+
+    ${({ theme }) => theme.mediaQueries.md} {
+      grid-template-columns: auto auto auto;
+    }
+
+    ${({ theme }) => theme.mediaQueries.lg} {
+      grid-template-columns: auto auto auto auto;
+    }
   }
 
   .nft-card {

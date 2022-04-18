@@ -4,6 +4,7 @@ import Page from 'components/layout/Page'
 import { useTranslation } from 'contexts/Localization'
 import useGetAvaxLionsNfts from 'hooks/useGetAvaxLionsNfts'
 import { ManageLayout } from './styles'
+import NftListItemView from './NftListItemView'
 
 const NftListView = ({ title, emptyText, buttonText }) => {
   const { t } = useTranslation()
@@ -29,17 +30,7 @@ const NftListView = ({ title, emptyText, buttonText }) => {
           {!isEmpty && (
             <CardBody className="nft-grid">
               {nfts.map((nft) => (
-                <div className="nft-card" key={nft.tokenId}>
-                  <div className="nft-image">
-                    <img src={nft.tokenData.image} alt={`token-${nft.tokenId}`} />
-                  </div>
-                  <div className="nft-details">
-                    <div>
-                      <Checkbox scale="sm" />
-                      {nft.tokenData.name}
-                    </div>
-                  </div>
-                </div>
+                <NftListItemView nft={nft} />
               ))}
             </CardBody>
           )}

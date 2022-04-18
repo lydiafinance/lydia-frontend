@@ -26,13 +26,13 @@ const NftStaking: React.FC = () => {
   const [earned, setEarned] = useState(BIG_ZERO)
   const [isClaiming, setIsClaiming] = useState(false)
 
-  const handleClaimClick = () => {
+  const handleClaimClick = async () => {
     setIsClaiming(true)
 
     try {
-      nftStakeContract.methods
+      await nftStakeContract.methods
         .getReward()
-        .send({ from: account })
+        .send({ from: account, gas: 200000 })
         .on('transactionHash', (tx) => {
           return tx.transactionHash
         })
@@ -148,7 +148,7 @@ const NftStaking: React.FC = () => {
                       {t('Stake NFTs')}
                     </Button>
                     <Button className="manage-btn" as="a" href="/nft-stake/withdraw" variant="danger">
-                      {t('Withdraw')}
+                      {t('Withdraw NFTs')}
                     </Button>
                   </CardFooter>
                 </Card>

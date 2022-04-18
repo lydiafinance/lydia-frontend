@@ -23,6 +23,7 @@ import {
   getMaximusDashboardAddress,
   getMulticallAddress,
   getNftStakeAddress,
+  getAvaxLionsAddress,
 } from 'utils/addressHelpers'
 
 // ABI
@@ -51,6 +52,7 @@ import maximusDashboardAbi from 'config/abi/maximusDashboardAbi.json'
 import MultiCallAbi from 'config/abi/Multicall.json'
 import erc721Abi from 'config/abi/erc721.json'
 import nftStakeAbi from 'config/abi/nftStake.json'
+import avaxLionsAbi from 'config/abi/avaxlions.json'
 
 const getContract = (abi: any, address: string, web3?: Web3) => {
   const _web3 = web3 ?? web3NoAccount
@@ -135,4 +137,7 @@ export const getErc721Contract = (address: string, web3?: Web3) => {
 }
 export const getNftStakeContract = (web3?: Web3) => {
   return getContract(nftStakeAbi, getNftStakeAddress(), web3)
+}
+export const getAvaxLionsContract = (web3?: Web3) => {
+  return getContract(avaxLionsAbi, getAvaxLionsAddress(), web3)
 }

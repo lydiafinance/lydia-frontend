@@ -10,6 +10,7 @@ import Page from 'components/layout/Page'
 import PageHeader from 'components/PageHeader'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getNftStakeContract } from 'utils/contractHelpers'
+import makeBatchRequest from 'utils/makeBatchRequest'
 import { ManageLayout } from './styles'
 import NftListView from './NftListView'
 
@@ -23,30 +24,52 @@ const NftStaking: React.FC = () => {
   const [totalStaked, setTotalStaked] = useState(0)
   const [balanceOf, setBalanceOf] = useState(0)
   const [earned, setEarned] = useState(BIG_ZERO)
+  const [isClaiming, setIsClaiming] = useState(false)
+
+  const handleClaimClick = () => {
+    setIsClaiming(true)
+
+    try {
+      nftStakeContract.methods
+        .getReward()
+        .send({ from: account })
+        .on('transactionHash', (tx) => {
+          return tx.transactionHash
+        })
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsClaiming(false)
+    }
+  }
 
   useEffect(() => {
     const fetchNfts = async () => {
       if (account) {
         try {
-          const resBalanceOf = await nftStakeContract.methods.balanceOf(account).call()
-          const resTotalSupply = await nftStakeContract.methods.totalSupply().call()
-          const resEarned = await nftStakeContract.methods.earned(account).call()
-          setTotalStaked(resTotalSupply)
-          setEarned(new BigNumber(resEarned).shiftedBy(-18))
-          setBalanceOf(resBalanceOf)
+          const { balanceOf: getBalanceOf, totalSupply: getTotalSupply, earned: getEarned } = nftStakeContract.methods
+
+          const [_balanceOf, _totalSupply, _earned] = await makeBatchRequest([
+            getBalanceOf(account).call,
+            getTotalSupply().call,
+            getEarned(account).call,
+          ])
+
+          setTotalStaked(Number(_totalSupply))
+          setEarned(new BigNumber(Number(_earned)).shiftedBy(-18))
+          setBalanceOf(Number(_balanceOf))
         } catch (e) {
-          setLoading(false)
           console.log(e)
         } finally {
           setLoading(false)
         }
-      } else {
-        setLoading(false)
       }
     }
 
     if (account) {
       fetchNfts()
+    } else {
+      setLoading(false)
     }
   }, [account])
 
@@ -77,7 +100,7 @@ const NftStaking: React.FC = () => {
         <Page>
           <FlexLayout>
             <Card>
-              <CardBody>{t('Connect your wallet')}</CardBody>
+              <CardBody>{t('Please connect your wallet')}</CardBody>
             </Card>
           </FlexLayout>
         </Page>
@@ -107,7 +130,10 @@ const NftStaking: React.FC = () => {
               <ManageLayout>
                 <Card className="manage">
                   <CardBody className="manage-header">
-                    {t('Your unclaimed LYD')} <Button variant="primary">{t('Claim')}</Button>
+                    {t('Your unclaimed LYD')}{' '}
+                    <Button onClick={handleClaimClick} variant="primary" disabled={isClaiming}>
+                      {isClaiming ? t('Claiming') : t('Claim')}
+                    </Button>
                   </CardBody>
                   <CardBody className="manage-body">
                     <Heading scale="lg" color="text">

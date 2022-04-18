@@ -66,3 +66,6 @@ export const getProfileAddress = () => {
 export const getNftStakeAddress = () => {
   return getAddress(addresses.nftStake)
 }
+export const getAvaxLionsAddress = () => {
+  return getAddress(addresses.avaxlions)
+}

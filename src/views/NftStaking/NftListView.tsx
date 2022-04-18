@@ -11,10 +11,12 @@ const NftListView = ({ title, emptyText, buttonText }) => {
   const { nfts, isLoading } = useGetAvaxLionsNfts()
   console.log(nfts, isLoading)
 
+  const isEmpty = nfts.length === 0
+
   return (
     <Page>
       <ManageLayout className="manage-body">
-        <Card className="manage">
+        <Card className="nft-container-card">
           <CardHeader>
             <Breadcrumbs mb="32px">
               <Link href="/nft-stake" color="secondary" style={{ fontWeight: 400 }}>
@@ -23,9 +25,22 @@ const NftListView = ({ title, emptyText, buttonText }) => {
               <Text color="textDisabled">{title}</Text>
             </Breadcrumbs>
           </CardHeader>
-          <CardBody>{emptyText}</CardBody>
+          {isEmpty && <CardBody>{isLoading ? t('Please wait...') : emptyText}</CardBody>}
+          {!isEmpty && (
+            <CardBody className="nft-grid">
+              {nfts.map((nft) => (
+                <div className="nft-card" key={nft.tokenId}>
+                  <div className="nft-image">
+                    <img src={nft.tokenData.image} alt={`token-${nft.tokenId}`} />
+                  </div>
+                </div>
+              ))}
+            </CardBody>
+          )}
           <CardFooter className="manage-footer">
-            <Button variant="danger">{buttonText}</Button>
+            <Button disabled={isEmpty && isLoading} variant="danger">
+              {buttonText}
+            </Button>
           </CardFooter>
         </Card>
       </ManageLayout>

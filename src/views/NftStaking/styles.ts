@@ -6,6 +6,16 @@ export const ManageLayout = styled(FlexLayout)`
     max-width: 64.5%;
   }
 
+  .nft-container-card {
+    max-width: 64.5%;
+  }
+
+  .nft-card {
+    img {
+      width: 100px;
+    }
+  }
+
   .manage-header {
     display: flex;
     justify-content: space-between;

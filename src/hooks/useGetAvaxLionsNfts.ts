@@ -1,27 +1,21 @@
 import { useWeb3React } from '@web3-react/core'
 import { useEffect, useReducer } from 'react'
 import { getAvaxLionsContract } from 'utils/contractHelpers'
+import fetchData from '../lambda/lambda'
 
 const avaxLionsContract = getAvaxLionsContract()
 
-export type AvaxLionsNftMap = {
-  [key: number]: {
-    tokenUri: string
-    tokenIds: number[]
-  }
-}
-
-type Action = { type: 'set_nfts'; data: AvaxLionsNftMap } | { type: 'reset' } | { type: 'refresh'; timestamp: number }
+type Action = { type: 'set_nfts'; data } | { type: 'reset' } | { type: 'refresh'; timestamp: number }
 
 type State = {
   isLoading: boolean
-  nfts: AvaxLionsNftMap
+  nfts: []
   lastUpdated: number
 }
 
 const initialState: State = {
   isLoading: true,
-  nfts: {},
+  nfts: [],
   lastUpdated: Date.now(),
 }
 
@@ -57,17 +51,16 @@ const useGetAvaxLionsNfts = () => {
     const fetchNfts = async () => {
       try {
         const balanceOf = await avaxLionsContract.methods.balanceOf(account).call()
-
         if (balanceOf > 0) {
-          let nfts: AvaxLionsNftMap = {}
-
+          const _lions = []
           const getTokenId = async (index: number) => {
             try {
               const { tokenOfOwnerByIndex, tokenURI } = avaxLionsContract.methods
               const tokenId = await tokenOfOwnerByIndex(account, index).call()
               const tokenUri = await tokenURI(tokenId).call()
+              const tokenData = await fetchData(tokenUri)
 
-              return [Number(tokenId), tokenUri]
+              return [Number(tokenId), tokenUri, tokenData]
             } catch (error) {
               return null
             }
@@ -80,13 +73,14 @@ const useGetAvaxLionsNfts = () => {
           }
 
           const tokenIdsOwnedByWallet = await Promise.all(tokenIdPromises)
-
-          nfts = tokenIdsOwnedByWallet.reduce((accum, association) => {
+          // console.log(tokenIdsOwnedByWallet)
+          tokenIdsOwnedByWallet.reduce((accum, association) => {
             if (!association) {
               return accum
             }
 
-            const [tokenId, tokenUri] = association
+            const [tokenId, tokenUri, tokenData] = association
+            _lions.push({ tokenId, tokenUri, tokenData })
 
             return {
               ...accum,
@@ -97,7 +91,7 @@ const useGetAvaxLionsNfts = () => {
             }
           }, {})
 
-          dispatch({ type: 'set_nfts', data: nfts })
+          dispatch({ type: 'set_nfts', data: _lions })
         } else {
           // Reset it in case of wallet change
           dispatch({ type: 'reset' })
@@ -112,9 +106,9 @@ const useGetAvaxLionsNfts = () => {
     }
   }, [account, lastUpdated, dispatch])
 
-  const refresh = () => dispatch({ type: 'refresh', timestamp: Date.now() })
+  // const refresh = () => dispatch({ type: 'refresh', timestamp: Date.now() })
 
-  return { ...state, refresh }
+  return { ...state }
 }
 
 export default useGetAvaxLionsNfts

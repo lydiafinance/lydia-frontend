@@ -9,14 +9,13 @@ import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
 import PageHeader from 'components/PageHeader'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { getNftStakeContract } from 'utils/contractHelpers'
 import makeBatchRequest from 'utils/makeBatchRequest'
+import { useNftStakeContract } from 'hooks/useContract'
 import { ManageLayout } from './styles'
 import NftListView from './NftListView'
 
-const nftStakeContract = getNftStakeContract()
-
 const NftStaking: React.FC = () => {
+  const nftStakeContract = useNftStakeContract()
   const { path } = useRouteMatch()
   const { t } = useTranslation()
   const { account } = useWeb3React()
@@ -71,7 +70,7 @@ const NftStaking: React.FC = () => {
     } else {
       setLoading(false)
     }
-  }, [account])
+  }, [account, nftStakeContract])
 
   return (
     <>

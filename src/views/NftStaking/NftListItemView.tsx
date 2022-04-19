@@ -7,7 +7,7 @@ import { useAvaxLionsNftContract } from 'hooks/useContract'
 import { getNftStakeAddress } from 'utils/addressHelpers'
 import { useWeb3React } from '@web3-react/core'
 
-const NftListItemView = ({ nft, onSelectEvent, onDeselectEvent, isSelected }) => {
+const NftListItemView = ({ nft, onSelectEvent, onDeselectEvent, isSelected, refresh }) => {
   const { t } = useTranslation()
   const avaxLionContract = useAvaxLionsNftContract()
   const { account } = useWeb3React()
@@ -38,6 +38,7 @@ const NftListItemView = ({ nft, onSelectEvent, onDeselectEvent, isSelected }) =>
       console.log(error)
     } finally {
       setApproving(false)
+      refresh()
     }
   }
 

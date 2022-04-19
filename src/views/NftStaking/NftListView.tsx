@@ -13,7 +13,7 @@ const NftListView = ({ title, emptyText, buttonText, withdrawMode = false }) => 
   const { account } = useWeb3React()
   const [isPending, setPending] = useState(false)
   const { t } = useTranslation()
-  const { nfts, isLoading } = useGetAvaxLionsNfts()
+  const { nfts, isLoading, refresh } = useGetAvaxLionsNfts()
   const [selectedItems, setSelectedItems] = useState([])
   const isEmpty = nfts.length === 0
 
@@ -30,7 +30,7 @@ const NftListView = ({ title, emptyText, buttonText, withdrawMode = false }) => 
     try {
       await nftStakeContract.methods
         .stake(selectedItems)
-        .send({ from: account, gas: 200000 })
+        .send({ from: account })
         .on('transactionHash', (tx) => {
           return tx.transactionHash
         })
@@ -46,7 +46,7 @@ const NftListView = ({ title, emptyText, buttonText, withdrawMode = false }) => 
     try {
       await nftStakeContract.methods
         .withdraw(selectedItems)
-        .send({ from: account, gas: 200000 })
+        .send({ from: account })
         .on('transactionHash', (tx) => {
           return tx.transactionHash
         })
@@ -79,6 +79,7 @@ const NftListView = ({ title, emptyText, buttonText, withdrawMode = false }) => 
                   onDeselectEvent={handleDeselect}
                   nft={nft}
                   isSelected={selectedItems.includes(nft.tokenId)}
+                  refresh={refresh}
                 />
               ))}
             </CardBody>

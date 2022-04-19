@@ -109,9 +109,9 @@ const useGetAvaxLionsNfts = () => {
     }
   }, [account, lastUpdated, dispatch])
 
-  // const refresh = () => dispatch({ type: 'refresh', timestamp: Date.now() })
+  const refresh = () => dispatch({ type: 'refresh', timestamp: Date.now() })
 
-  return { ...state }
+  return { ...state, refresh }
 }
 
 export default useGetAvaxLionsNfts

@@ -25,6 +25,9 @@ const NftStaking: React.FC = () => {
   const [earned, setEarned] = useState(BIG_ZERO)
   const [isClaiming, setIsClaiming] = useState(false)
 
+  const isEarned = BIG_ZERO.comparedTo(earned) !== 0
+  console.log(isEarned, earned)
+
   const handleClaimClick = async () => {
     setIsClaiming(true)
 
@@ -130,18 +133,20 @@ const NftStaking: React.FC = () => {
                 <Card className="manage">
                   <CardBody className="manage-header">
                     {t('Your unclaimed LYD')}{' '}
-                    <Button onClick={handleClaimClick} variant="primary" disabled={isClaiming}>
-                      {isClaiming ? t('Claiming') : t('Claim')}
-                    </Button>
+                    {isEarned && (
+                      <Button onClick={handleClaimClick} variant="primary" disabled={isClaiming}>
+                        {isClaiming ? t('Claiming') : t('Claim')}
+                      </Button>
+                    )}
                   </CardBody>
                   <CardBody className="manage-body">
                     <Heading scale="lg" color="text">
                       {earned.toFixed(5).toString()}
                     </Heading>
                   </CardBody>
-                  <CardBody>
+                  {/* <CardBody>
                     <Text>⭐️ {t('When you withdraw, the contract will automatically claim LYD on your behalf!')}</Text>
-                  </CardBody>
+                  </CardBody> */}
                   <CardFooter className="manage-footer">
                     <Button className="manage-btn" as="a" href="/nft-stake/stake" variant="danger">
                       {t('Stake NFTs')}

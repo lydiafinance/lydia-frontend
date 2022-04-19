@@ -31,6 +31,7 @@ export const ManageLayout = styled(FlexLayout)`
   .nft-card {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     max-width: 150px;
     margin: 10px;
@@ -42,13 +43,26 @@ export const ManageLayout = styled(FlexLayout)`
     .nft-image {
       display: flex;
       width: 120px;
-      padding: 5px;
       justify-content: center;
-      cursor: pointer;
+      .nft-unapproved {
+        cursor: pointer;
+      }
+      .nft-unapproved {
+        filter: grayscale(100%);
+        cursor: not-allowed;
+      }
     }
     .nft-details {
+      display: flex !important;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
       width: 120px;
       padding: 5px;
+
+      .nft-name {
+        margin-bottom: 5px;
+      }
     }
     img {
       display: block !important;

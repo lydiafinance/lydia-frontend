@@ -21,8 +21,6 @@ const NftListView = ({ title, emptyText, buttonText, withdrawMode = false }) => 
     setSelectedItems([...selectedItems, tokenId])
   }
 
-  console.log(nfts)
-
   const handleDeselect = ({ tokenId }) => {
     setSelectedItems(selectedItems.filter((item) => item !== tokenId))
   }
@@ -31,7 +29,7 @@ const NftListView = ({ title, emptyText, buttonText, withdrawMode = false }) => 
     setPending(true)
     try {
       await nftStakeContract.methods
-        .stake([100])
+        .stake(selectedItems)
         .send({ from: account, gas: 200000 })
         .on('transactionHash', (tx) => {
           return tx.transactionHash
@@ -47,7 +45,7 @@ const NftListView = ({ title, emptyText, buttonText, withdrawMode = false }) => 
     setPending(true)
     try {
       await nftStakeContract.methods
-        .withdraw([38])
+        .withdraw(selectedItems)
         .send({ from: account, gas: 200000 })
         .on('transactionHash', (tx) => {
           return tx.transactionHash
@@ -88,7 +86,7 @@ const NftListView = ({ title, emptyText, buttonText, withdrawMode = false }) => 
           <CardFooter className="manage-footer">
             <Button
               onClick={withdrawMode ? handleWithdrawEvent : handleStakeEvent}
-              disabled={(isEmpty && isLoading) || isPending}
+              disabled={(isEmpty && isLoading) || isPending || selectedItems.length === 0}
               variant="danger"
             >
               {isPending ? 'Pending...' : buttonText}

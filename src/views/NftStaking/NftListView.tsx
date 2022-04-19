@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Card, CardBody, CardFooter, Button, Text, Link, CardHeader, Breadcrumbs, Checkbox } from '@lydiafinance/uikit'
+import { Card, CardBody, CardFooter, Button, Text, Link, CardHeader, Breadcrumbs } from '@lydiafinance/uikit'
 import Page from 'components/layout/Page'
 import { useTranslation } from 'contexts/Localization'
 import useGetAvaxLionsNfts from 'hooks/useGetAvaxLionsNfts'
@@ -20,6 +20,8 @@ const NftListView = ({ title, emptyText, buttonText, withdrawMode = false }) => 
   const handleSelect = ({ tokenId }) => {
     setSelectedItems([...selectedItems, tokenId])
   }
+
+  console.log(nfts)
 
   const handleDeselect = ({ tokenId }) => {
     setSelectedItems(selectedItems.filter((item) => item !== tokenId))

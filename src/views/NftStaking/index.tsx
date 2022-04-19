@@ -24,9 +24,7 @@ const NftStaking: React.FC = () => {
   const [balanceOf, setBalanceOf] = useState(0)
   const [earned, setEarned] = useState(BIG_ZERO)
   const [isClaiming, setIsClaiming] = useState(false)
-
   const isEarned = BIG_ZERO.comparedTo(earned) !== 0
-  console.log(isEarned, earned)
 
   const handleClaimClick = async () => {
     setIsClaiming(true)

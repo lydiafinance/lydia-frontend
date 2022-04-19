@@ -1,5 +1,6 @@
 import { useWeb3React } from '@web3-react/core'
 import { useEffect, useReducer } from 'react'
+import { getNftStakeAddress } from 'utils/addressHelpers'
 import { getAvaxLionsContract } from 'utils/contractHelpers'
 import fetchData from '../lambda/lambda'
 
@@ -55,12 +56,14 @@ const useGetAvaxLionsNfts = () => {
           const _lions = []
           const getTokenId = async (index: number) => {
             try {
-              const { tokenOfOwnerByIndex, tokenURI } = avaxLionsContract.methods
+              const { tokenOfOwnerByIndex, tokenURI, getApproved } = avaxLionsContract.methods
               const tokenId = await tokenOfOwnerByIndex(account, index).call()
+              const approvedContract = await getApproved(tokenId).call()
+              const isApproved = approvedContract === getNftStakeAddress()
               const tokenUri = await tokenURI(tokenId).call()
               const tokenData = await fetchData(tokenUri)
 
-              return [Number(tokenId), tokenUri, tokenData]
+              return [Number(tokenId), tokenUri, tokenData, isApproved]
             } catch (error) {
               return null
             }
@@ -79,8 +82,8 @@ const useGetAvaxLionsNfts = () => {
               return accum
             }
 
-            const [tokenId, tokenUri, tokenData] = association
-            _lions.push({ tokenId, tokenUri, tokenData })
+            const [tokenId, tokenUri, tokenData, isApproved] = association
+            _lions.push({ tokenId, tokenUri, tokenData, isApproved })
 
             return {
               ...accum,

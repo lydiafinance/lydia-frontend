@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Card, CardBody, CardFooter, Button, Text, Link, CardHeader, Breadcrumbs, Checkbox } from '@lydiafinance/uikit'
 import Page from 'components/layout/Page'
 import { useTranslation } from 'contexts/Localization'
@@ -8,11 +8,17 @@ import NftListItemView from './NftListItemView'
 
 const NftListView = ({ title, emptyText, buttonText }) => {
   const { t } = useTranslation()
-
   const { nfts, isLoading } = useGetAvaxLionsNfts()
-  console.log(nfts, isLoading)
-
+  const [selectedItems, setSelectedItems] = useState([])
   const isEmpty = nfts.length === 0
+
+  const handleSelect = ({ tokenId }) => {
+    setSelectedItems([...selectedItems, tokenId])
+  }
+
+  const handleDeselect = ({ tokenId }) => {
+    setSelectedItems(selectedItems.filter((item) => item !== tokenId))
+  }
 
   return (
     <Page>
@@ -30,7 +36,13 @@ const NftListView = ({ title, emptyText, buttonText }) => {
           {!isEmpty && (
             <CardBody className="nft-grid">
               {nfts.map((nft) => (
-                <NftListItemView nft={nft} />
+                <NftListItemView
+                  key={nft.tokenId}
+                  onSelectEvent={handleSelect}
+                  onDeselectEvent={handleDeselect}
+                  nft={nft}
+                  isSelected={selectedItems.includes(nft.tokenId)}
+                />
               ))}
             </CardBody>
           )}

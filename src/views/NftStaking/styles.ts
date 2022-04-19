@@ -44,6 +44,7 @@ export const ManageLayout = styled(FlexLayout)`
       width: 120px;
       padding: 5px;
       justify-content: center;
+      cursor: pointer;
     }
     .nft-details {
       width: 120px;

@@ -8,10 +8,10 @@ import { useNftStakeContract } from 'hooks/useContract'
 import { ManageLayout } from './styles'
 import NftListItemView from './NftListItemView'
 
-const NftListView = ({ title, emptyText, buttonText }) => {
+const NftListView = ({ title, emptyText, buttonText, withdrawMode = false }) => {
   const nftStakeContract = useNftStakeContract()
   const { account } = useWeb3React()
-
+  const [isPending, setPending] = useState(false)
   const { t } = useTranslation()
   const { nfts, isLoading } = useGetAvaxLionsNfts()
   const [selectedItems, setSelectedItems] = useState([])
@@ -26,6 +26,7 @@ const NftListView = ({ title, emptyText, buttonText }) => {
   }
 
   const handleStakeEvent = async () => {
+    setPending(true)
     try {
       await nftStakeContract.methods
         .stake([100])
@@ -36,7 +37,23 @@ const NftListView = ({ title, emptyText, buttonText }) => {
     } catch (error) {
       console.log(error)
     } finally {
-      console.log('contract write')
+      setPending(false)
+    }
+  }
+
+  const handleWithdrawEvent = async () => {
+    setPending(true)
+    try {
+      await nftStakeContract.methods
+        .withdraw([38])
+        .send({ from: account, gas: 200000 })
+        .on('transactionHash', (tx) => {
+          return tx.transactionHash
+        })
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setPending(false)
     }
   }
 
@@ -67,8 +84,12 @@ const NftListView = ({ title, emptyText, buttonText }) => {
             </CardBody>
           )}
           <CardFooter className="manage-footer">
-            <Button onClick={handleStakeEvent} disabled={isEmpty && isLoading} variant="danger">
-              {buttonText}
+            <Button
+              onClick={withdrawMode ? handleWithdrawEvent : handleStakeEvent}
+              disabled={(isEmpty && isLoading) || isPending}
+              variant="danger"
+            >
+              {isPending ? 'Pending...' : buttonText}
             </Button>
           </CardFooter>
         </Card>

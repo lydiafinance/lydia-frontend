@@ -166,6 +166,7 @@ const NftStaking: React.FC = () => {
               title={t('Staked NFTs')}
               buttonText={t('Withdraw NFTs')}
               emptyText={t('You do not have staked avax lions')}
+              withdrawMode
             />
           </Route>
         </>

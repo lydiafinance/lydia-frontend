@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
+import PageHeader from 'components/PageHeader'
+import { Flex } from '@lydiafinance/uikit'
 
 export const ManageLayout = styled(FlexLayout)`
   .manage {
@@ -7,24 +9,41 @@ export const ManageLayout = styled(FlexLayout)`
   }
 
   .nft-container-card {
-    max-width: 64.5%;
+    ${({ theme }) => theme.mediaQueries.xs} {
+      max-width: 95%;
+    }
+    ${({ theme }) => theme.mediaQueries.sm} {
+      max-width: 90%;
+    }
+    ${({ theme }) => theme.mediaQueries.md} {
+      max-width: 85%;
+    }
+    ${({ theme }) => theme.mediaQueries.lg} {
+      max-width: 80%;
+    }
+    ${({ theme }) => theme.mediaQueries.xl} {
+      max-width: 70%;
+    }
   }
 
   .nft-grid {
     display: grid;
     ${({ theme }) => theme.mediaQueries.xs} {
-      grid-template-columns: auto;
+      grid-template-columns: auto auto;
+      padding: 0;
     }
     ${({ theme }) => theme.mediaQueries.sm} {
       grid-template-columns: auto auto;
+      padding: 24px;
     }
-
     ${({ theme }) => theme.mediaQueries.md} {
       grid-template-columns: auto auto auto;
     }
-
     ${({ theme }) => theme.mediaQueries.lg} {
       grid-template-columns: auto auto auto auto;
+    }
+    ${({ theme }) => theme.mediaQueries.xl} {
+      grid-template-columns: auto auto auto auto auto;
     }
   }
 
@@ -93,4 +112,50 @@ export const ManageLayout = styled(FlexLayout)`
   }
 `
 
-export const NftWrapper = styled.div``
+export const NftPageHeader = styled(PageHeader)`
+  position: relative;
+  display: block;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    display: none;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    display: block;
+  }
+`
+
+export const BannerImageContainer = styled.div`
+  top: 0;
+  position: absolute;
+  display: block;
+
+  ${({ theme }) => theme.mediaQueries.xs} {
+    display: none;
+  }
+  ${({ theme }) => theme.mediaQueries.sm} {
+    display: none;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    display: block;
+    left: 70px;
+    width: 230px;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    display: block;
+    left: 100px;
+    width: 257px;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
+    display: block;
+    left: 200px;
+    width: 257px;
+  }
+`
+
+export const BannerTextContainer = styled(Flex)`
+  ${({ theme }) => theme.mediaQueries.xs} {
+    padding-left: 0;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    padding-left: 200px;
+  }
+`

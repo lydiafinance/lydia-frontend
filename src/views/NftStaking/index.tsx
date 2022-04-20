@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { Route, useRouteMatch } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
-import orderBy from 'lodash/orderBy'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Flex, Card, CardBody, CardFooter, Button, Text } from '@lydiafinance/uikit'
+import { Heading, Flex, Card, CardBody, CardFooter, Button } from '@lydiafinance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
-import PageHeader from 'components/PageHeader'
 import { BIG_ZERO } from 'utils/bigNumber'
 import makeBatchRequest from 'utils/makeBatchRequest'
 import { useNftStakeContract } from 'hooks/useContract'
-import { ManageLayout } from './styles'
+import { BannerImageContainer, ManageLayout, NftPageHeader, BannerTextContainer } from './styles'
 import NftListView from './NftListView'
 
 const NftStaking: React.FC = () => {
@@ -75,8 +73,8 @@ const NftStaking: React.FC = () => {
 
   return (
     <>
-      <PageHeader>
-        <Flex justifyContent="center" alignItems="center" flexDirection={['column', null, 'row']}>
+      <NftPageHeader>
+        <BannerTextContainer justifyContent="center" alignItems="center" flexDirection={['column', null, 'row']}>
           <Flex flexDirection="column" mr={['8px', 0]} alignItems="center">
             <Heading as="h1" scale="xxl" color="text" mb="24px">
               {t('NFT Stake Farming')}
@@ -85,8 +83,11 @@ const NftStaking: React.FC = () => {
               {t('Stake Avax Lions to earn LYD!')}
             </Heading>
           </Flex>
-        </Flex>
-      </PageHeader>
+        </BannerTextContainer>
+        <BannerImageContainer>
+          <img src="/images/nft-stake/banner.png" alt="banner" />
+        </BannerImageContainer>
+      </NftPageHeader>
       {loading && (
         <Page>
           <FlexLayout>

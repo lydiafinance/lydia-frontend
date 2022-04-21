@@ -162,7 +162,7 @@ const NftStaking: React.FC = () => {
                     </Heading>
                   </CardBody>
                   {!isLoadingAvailableNfts && !emptyWalletBalance && (
-                    <a href="/nft-stake/withdraw">
+                    <a href="/nft-stake/stake">
                       <CardBody className="overview-body">
                         {availableNfts.map((nft) => (
                           <OverviewNftItem key={nft.tokenId} nft={nft} />

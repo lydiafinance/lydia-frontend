@@ -11,6 +11,7 @@ import makeBatchRequest from 'utils/makeBatchRequest'
 import { useNftStakeContract } from 'hooks/useContract'
 import useGetAvaxLionsStakedNfts from 'hooks/useGetAvaxLionsStakedNfts'
 import useToast from 'hooks/useToast'
+import useGetAvaxLionsNfts from 'hooks/useGetAvaxLionsNfts'
 import { BannerImageContainer, ManageLayout, NftPageHeader, BannerTextContainer } from './styles'
 import NftWithdrawListView from './NftWithdrawListView'
 import NftStakeListView from './NftStakeListView'
@@ -28,7 +29,11 @@ const NftStaking: React.FC = () => {
   const [isClaiming, setIsClaiming] = useState(false)
   const isEarned = BIG_ZERO.comparedTo(earned) !== 0
 
-  const { nfts, isLoading, refresh } = useGetAvaxLionsStakedNfts()
+  const { nfts: stakedNfts, isLoading: isLoadingStakedNfts } = useGetAvaxLionsStakedNfts()
+  const { nfts: availableNfts, isLoading: isLoadingAvailableNfts } = useGetAvaxLionsNfts()
+
+  const emptyWalletBalance = availableNfts.length === 0
+  const emptyContractBalance = stakedNfts.length === 0
 
   const { toastSuccess, toastWarning, toastError } = useToast()
 
@@ -123,8 +128,8 @@ const NftStaking: React.FC = () => {
         <>
           <Route exact path={`${path}`}>
             <Page>
-              <FlexLayout>
-                <Card>
+              <ManageLayout>
+                <Card className="manage">
                   <CardBody>{t('Total Staked')}</CardBody>
                   <CardFooter>
                     <Heading scale="lg" color="text">
@@ -132,30 +137,7 @@ const NftStaking: React.FC = () => {
                     </Heading>
                   </CardFooter>
                 </Card>
-                <Card isSuccess>
-                  <CardBody>{t('Your Avax Lion deposits')}</CardBody>
-                  <CardFooter>
-                    <Heading scale="lg" color="text">
-                      {balanceOf}
-                    </Heading>
-                  </CardFooter>
-                </Card>
-              </FlexLayout>
-              {!isLoading && balanceOf && (
-                <a href="/nft-stake/withdraw">
-                  <ManageLayout>
-                    <Card isSuccess className="manage overview-nft">
-                      <CardBody className="overview-body">
-                        {nfts.map((nft) => (
-                          <OverviewNftItem key={nft.tokenId} nft={nft} />
-                        ))}
-                      </CardBody>
-                    </Card>
-                  </ManageLayout>
-                </a>
-              )}
-              <ManageLayout>
-                <Card className="manage">
+                <Card isActive className="manage">
                   <CardBody className="manage-header">
                     {t('Your unclaimed LYD')}{' '}
                     {isEarned && (
@@ -169,13 +151,49 @@ const NftStaking: React.FC = () => {
                       {earned.toFixed(5).toString()}
                     </Heading>
                   </CardBody>
-                  {/* <CardBody>
-                    <Text>⭐️ {t('When you withdraw, the contract will automatically claim LYD on your behalf!')}</Text>
-                  </CardBody> */}
+                </Card>
+              </ManageLayout>
+              <ManageLayout>
+                <Card isWarning className="button-card overview-nft">
+                  <CardBody className="manage-header">
+                    {t('Your Available Avax Lions: ')}
+                    <Heading scale="lg" color="text">
+                      {availableNfts.length}
+                    </Heading>
+                  </CardBody>
+                  {!isLoadingAvailableNfts && !emptyWalletBalance && (
+                    <CardBody className="overview-body">
+                      <a href="/nft-stake/withdraw">
+                        {availableNfts.map((nft) => (
+                          <OverviewNftItem key={nft.tokenId} nft={nft} />
+                        ))}
+                      </a>
+                    </CardBody>
+                  )}
                   <CardFooter className="manage-footer">
                     <Button className="manage-btn" as="a" href="/nft-stake/stake" variant="danger">
                       {t('Stake NFTs')}
                     </Button>
+                  </CardFooter>
+                </Card>
+
+                <Card isSuccess className="button-card overview-nft">
+                  <CardBody className="manage-header">
+                    {t('Your Avax Lion deposits: ')}
+                    <Heading scale="lg" color="text">
+                      {stakedNfts.length}
+                    </Heading>
+                  </CardBody>
+                  {!isLoadingStakedNfts && !emptyContractBalance && (
+                    <CardBody className="overview-body">
+                      <a href="/nft-stake/withdraw">
+                        {stakedNfts.map((nft) => (
+                          <OverviewNftItem key={nft.tokenId} nft={nft} />
+                        ))}
+                      </a>
+                    </CardBody>
+                  )}
+                  <CardFooter className="manage-footer">
                     <Button className="manage-btn" as="a" href="/nft-stake/withdraw" variant="danger">
                       {t('Withdraw NFTs')}
                     </Button>

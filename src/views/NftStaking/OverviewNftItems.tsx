@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const Wrapper = styled.div`
   img {
-    width: 100px;
+    width: 75px;
     border-radius: 20px;
   }
 `

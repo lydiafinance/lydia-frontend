@@ -5,7 +5,11 @@ import { Flex } from '@lydiafinance/uikit'
 
 export const ManageLayout = styled(FlexLayout)`
   .manage {
-    max-width: 64.5%;
+    max-width: 33%;
+  }
+
+  .button-card {
+    max-width: 33%;
   }
 
   .nft-container-card {

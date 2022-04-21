@@ -10,6 +10,7 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import makeBatchRequest from 'utils/makeBatchRequest'
 import { useNftStakeContract } from 'hooks/useContract'
 import useGetAvaxLionsStakedNfts from 'hooks/useGetAvaxLionsStakedNfts'
+import useToast from 'hooks/useToast'
 import { BannerImageContainer, ManageLayout, NftPageHeader, BannerTextContainer } from './styles'
 import NftWithdrawListView from './NftWithdrawListView'
 import NftStakeListView from './NftStakeListView'
@@ -29,6 +30,8 @@ const NftStaking: React.FC = () => {
 
   const { nfts, isLoading, refresh } = useGetAvaxLionsStakedNfts()
 
+  const { toastSuccess, toastWarning, toastError } = useToast()
+
   const handleClaimClick = async () => {
     setIsClaiming(true)
 
@@ -37,10 +40,15 @@ const NftStaking: React.FC = () => {
         .getReward()
         .send({ from: account })
         .on('transactionHash', (tx) => {
+          toastSuccess(t('Success!'), t('You have successfully claimed your rewards.'))
           return tx.transactionHash
         })
-    } catch (error) {
-      console.log(error)
+    } catch ({ code }) {
+      if (code === 4001) {
+        toastWarning(t('Info'), t('Denied transaction signature.'))
+      } else {
+        toastError(t('Error'), t('Please refresh your page...'))
+      }
     } finally {
       setIsClaiming(false)
     }

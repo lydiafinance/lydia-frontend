@@ -4,6 +4,7 @@ import Page from 'components/layout/Page'
 import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
 import { useNftStakeContract } from 'hooks/useContract'
+import useToast from 'hooks/useToast'
 import { ManageLayout } from './styles'
 import NftListItemView from './NftListItemView'
 
@@ -14,6 +15,7 @@ const NftListView = ({ title, emptyText, buttonText, withdrawMode = false, nfts,
   const { t } = useTranslation()
   const [selectedItems, setSelectedItems] = useState([])
   const isEmpty = nfts.length === 0
+  const { toastSuccess, toastError, toastWarning } = useToast()
 
   const handleSelect = ({ tokenId }) => {
     setSelectedItems([...selectedItems, tokenId])
@@ -30,10 +32,16 @@ const NftListView = ({ title, emptyText, buttonText, withdrawMode = false, nfts,
         .stake(selectedItems)
         .send({ from: account })
         .on('transactionHash', (tx) => {
+          toastSuccess(t('Success!'), t('You have successfully staked your avax lion(s).'))
           return tx.transactionHash
         })
-    } catch (error) {
-      console.log(error)
+    } catch ({ code }) {
+      console.log(code)
+      if (code === 4001) {
+        toastWarning(t('Info'), t('Denied transaction signature.'))
+      } else {
+        toastError(t('Error'), t('Please refresh your page...'))
+      }
     } finally {
       setPending(false)
       refresh()
@@ -47,10 +55,15 @@ const NftListView = ({ title, emptyText, buttonText, withdrawMode = false, nfts,
         .withdraw(selectedItems)
         .send({ from: account })
         .on('transactionHash', (tx) => {
+          toastSuccess(t('Success!'), t('You have successfully withdraw your avax lion(s).'))
           return tx.transactionHash
         })
-    } catch (error) {
-      console.log(error)
+    } catch ({ code }) {
+      if (code === 4001) {
+        toastWarning(t('Info'), t('Denied transaction signature.'))
+      } else {
+        toastError(t('Error'), t('Please refresh your page...'))
+      }
     } finally {
       setPending(false)
       refresh()
@@ -73,9 +86,8 @@ const NftListView = ({ title, emptyText, buttonText, withdrawMode = false, nfts,
           {!isEmpty && (
             <CardBody className="nft-grid">
               {nfts.map((nft) => (
-                <div className="nft-grid-item">
+                <div key={nft.tokenId} className="nft-grid-item">
                   <NftListItemView
-                    key={nft.tokenId}
                     onSelectEvent={handleSelect}
                     onDeselectEvent={handleDeselect}
                     nft={nft}

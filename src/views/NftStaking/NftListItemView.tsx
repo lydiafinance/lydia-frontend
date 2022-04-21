@@ -6,12 +6,14 @@ import { Button, Checkbox } from '@lydiafinance/uikit'
 import { useAvaxLionsNftContract } from 'hooks/useContract'
 import { getNftStakeAddress } from 'utils/addressHelpers'
 import { useWeb3React } from '@web3-react/core'
+import useToast from 'hooks/useToast'
 
 const NftListItemView = ({ nft, onSelectEvent, onDeselectEvent, isSelected, refresh }) => {
   const { t } = useTranslation()
   const avaxLionContract = useAvaxLionsNftContract()
   const { account } = useWeb3React()
   const [isApproving, setApproving] = useState(false)
+  const { toastSuccess, toastWarning, toastError } = useToast()
 
   const handleChange = () => {
     if (!nft.isApproved) {
@@ -32,10 +34,15 @@ const NftListItemView = ({ nft, onSelectEvent, onDeselectEvent, isSelected, refr
         .approve(getNftStakeAddress(), nft.tokenId)
         .send({ from: account })
         .on('transactionHash', (tx) => {
+          toastSuccess(t('Success!'), t('You have successfully approved your avax lion.'))
           return tx.transactionHash
         })
-    } catch (error) {
-      console.log(error)
+    } catch ({ code }) {
+      if (code === 4001) {
+        toastWarning(t('Info'), t('Denied transaction signature.'))
+      } else {
+        toastError(t('Error'), t('Please refresh your page...'))
+      }
     } finally {
       setApproving(false)
       refresh()

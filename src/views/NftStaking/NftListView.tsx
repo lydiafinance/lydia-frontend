@@ -36,7 +36,6 @@ const NftListView = ({ title, emptyText, buttonText, withdrawMode = false, nfts,
           return tx.transactionHash
         })
     } catch ({ code }) {
-      console.log(code)
       if (code === 4001) {
         toastWarning(t('Info'), t('Denied transaction signature.'))
       } else {

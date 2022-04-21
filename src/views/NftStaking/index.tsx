@@ -11,6 +11,8 @@ import makeBatchRequest from 'utils/makeBatchRequest'
 import { useNftStakeContract } from 'hooks/useContract'
 import { BannerImageContainer, ManageLayout, NftPageHeader, BannerTextContainer } from './styles'
 import NftListView from './NftListView'
+import NftWithdrawListView from './NftWithdrawListView'
+import NftStakeListView from './NftStakeListView'
 
 const NftStaking: React.FC = () => {
   const nftStakeContract = useNftStakeContract()
@@ -159,19 +161,10 @@ const NftStaking: React.FC = () => {
             </Page>
           </Route>
           <Route exact path={`${path}/stake`}>
-            <NftListView
-              title={t('Available NFTs')}
-              buttonText={t('Stake NFTs')}
-              emptyText={t('You do not have avax lions')}
-            />
+            <NftStakeListView />
           </Route>
           <Route exact path={`${path}/withdraw`}>
-            <NftListView
-              title={t('Staked NFTs')}
-              buttonText={t('Withdraw NFTs')}
-              emptyText={t('You do not have staked avax lions')}
-              withdrawMode
-            />
+            <NftWithdrawListView />
           </Route>
         </>
       )}

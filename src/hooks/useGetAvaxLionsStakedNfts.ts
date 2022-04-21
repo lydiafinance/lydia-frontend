@@ -1,10 +1,10 @@
 import { useWeb3React } from '@web3-react/core'
 import { useEffect, useReducer } from 'react'
-import { getNftStakeAddress } from 'utils/addressHelpers'
 import { getAvaxLionsContract, getNftStakeContract } from 'utils/contractHelpers'
 import fetchData from '../lambda/lambda'
 
 const avaxLionsNftContract = getAvaxLionsContract()
+const nftStakeContract = getNftStakeContract()
 
 type Action = { type: 'set_nfts'; data } | { type: 'reset' } | { type: 'refresh'; timestamp: number }
 
@@ -43,7 +43,7 @@ const reducer = (state: State, action: Action) => {
   }
 }
 
-const useGetAvaxLionsNfts = () => {
+const useGetAvaxLionsStakedNfts = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { account } = useWeb3React()
   const { lastUpdated } = state
@@ -51,15 +51,15 @@ const useGetAvaxLionsNfts = () => {
   useEffect(() => {
     const fetchNfts = async () => {
       try {
-        const balanceOf = await avaxLionsNftContract.methods.balanceOf(account).call()
+        const balanceOf = await nftStakeContract.methods.balanceOf(account).call()
         if (balanceOf > 0) {
           const _lions = []
           const getTokenId = async (index: number) => {
             try {
-              const { tokenOfOwnerByIndex, tokenURI, getApproved } = avaxLionsNftContract.methods
+              const { tokenURI } = avaxLionsNftContract.methods
+              const { tokenOfOwnerByIndex } = nftStakeContract.methods
               const tokenId = await tokenOfOwnerByIndex(account, index).call()
-              const approvedContract = await getApproved(tokenId).call()
-              const isApproved = approvedContract === getNftStakeAddress()
+              const isApproved = true
               const tokenUri = await tokenURI(tokenId).call()
               const tokenData = await fetchData(tokenUri)
 
@@ -76,7 +76,6 @@ const useGetAvaxLionsNfts = () => {
           }
 
           const tokenIdsOwnedByWallet = await Promise.all(tokenIdPromises)
-          // console.log(tokenIdsOwnedByWallet)
           tokenIdsOwnedByWallet.reduce((accum, association) => {
             if (!association) {
               return accum
@@ -114,4 +113,4 @@ const useGetAvaxLionsNfts = () => {
   return { ...state, refresh }
 }
 
-export default useGetAvaxLionsNfts
+export default useGetAvaxLionsStakedNfts

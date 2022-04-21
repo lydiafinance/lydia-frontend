@@ -2,18 +2,16 @@ import React, { useState } from 'react'
 import { Card, CardBody, CardFooter, Button, Text, Link, CardHeader, Breadcrumbs } from '@lydiafinance/uikit'
 import Page from 'components/layout/Page'
 import { useTranslation } from 'contexts/Localization'
-import useGetAvaxLionsNfts from 'hooks/useGetAvaxLionsNfts'
 import { useWeb3React } from '@web3-react/core'
 import { useNftStakeContract } from 'hooks/useContract'
 import { ManageLayout } from './styles'
 import NftListItemView from './NftListItemView'
 
-const NftListView = ({ title, emptyText, buttonText, withdrawMode = false }) => {
+const NftListView = ({ title, emptyText, buttonText, withdrawMode = false, nfts, isLoading, refresh }) => {
   const nftStakeContract = useNftStakeContract()
   const { account } = useWeb3React()
   const [isPending, setPending] = useState(false)
   const { t } = useTranslation()
-  const { nfts, isLoading, refresh } = useGetAvaxLionsNfts()
   const [selectedItems, setSelectedItems] = useState([])
   const isEmpty = nfts.length === 0
 

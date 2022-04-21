@@ -45,8 +45,10 @@ const NftStaking: React.FC = () => {
         .getReward()
         .send({ from: account })
         .on('transactionHash', (tx) => {
-          toastSuccess(t('Success!'), t('You have successfully claimed your rewards.'))
           return tx.transactionHash
+        })
+        .on('confirmation', () => {
+          toastSuccess(t('Success!'), t('You have successfully claimed your rewards.'))
         })
     } catch ({ code }) {
       if (code === 4001) {
@@ -98,7 +100,7 @@ const NftStaking: React.FC = () => {
               {t('NFT Staking')}
             </Heading>
             <Heading scale="md" color="text">
-              {t('Stake Avax Lions to earn LYD!')}
+              {t('Stake AvaxLions to earn LYD!')}
             </Heading>
           </Flex>
         </BannerTextContainer>
@@ -133,7 +135,7 @@ const NftStaking: React.FC = () => {
                   <CardBody>{t('Total Staked')}</CardBody>
                   <CardFooter>
                     <Heading scale="lg" color="text">
-                      {totalStaked} {t('Avax Lions')}
+                      {totalStaked} {t('AvaxLions')}
                     </Heading>
                   </CardFooter>
                 </Card>
@@ -156,7 +158,7 @@ const NftStaking: React.FC = () => {
               <ManageLayout>
                 <Card isWarning className="button-card overview-nft">
                   <CardBody className="manage-header">
-                    {t('Your Available Avax Lions: ')}
+                    {t('Your Available AvaxLions:')}
                     <Heading scale="lg" color="text">
                       {availableNfts.length}
                     </Heading>
@@ -178,7 +180,7 @@ const NftStaking: React.FC = () => {
                 </Card>
                 <Card isSuccess className="button-card overview-nft">
                   <CardBody className="manage-header">
-                    {t('Your Avax Lion deposits: ')}
+                    {t('Your Avax Lion deposits:')}
                     <Heading scale="lg" color="text">
                       {stakedNfts.length}
                     </Heading>

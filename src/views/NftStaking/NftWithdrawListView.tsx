@@ -12,7 +12,7 @@ const NftWithdrawListView = () => {
     <NftListView
       title={t('Staked NFTs')}
       buttonText={t('Withdraw NFTs')}
-      emptyText={t('You do not have staked avax lions')}
+      emptyText={t('You do not have staked avaxlions')}
       withdrawMode
       nfts={nfts}
       isLoading={isLoading}

@@ -32,8 +32,10 @@ const NftListView = ({ title, emptyText, buttonText, withdrawMode = false, nfts,
         .stake(selectedItems)
         .send({ from: account })
         .on('transactionHash', (tx) => {
-          toastSuccess(t('Success!'), t('You have successfully staked your avax lion(s).'))
           return tx.transactionHash
+        })
+        .on('confirmation', () => {
+          toastSuccess(t('Success!'), t('You have successfully staked your avaxlion(s).'))
         })
     } catch ({ code }) {
       if (code === 4001) {
@@ -54,8 +56,10 @@ const NftListView = ({ title, emptyText, buttonText, withdrawMode = false, nfts,
         .withdraw(selectedItems)
         .send({ from: account })
         .on('transactionHash', (tx) => {
-          toastSuccess(t('Success!'), t('You have successfully withdraw your avax lion(s).'))
           return tx.transactionHash
+        })
+        .on('confirmation', () => {
+          toastSuccess(t('Success!'), t('You have successfully withdraw your avaxlion(s).'))
         })
     } catch ({ code }) {
       if (code === 4001) {

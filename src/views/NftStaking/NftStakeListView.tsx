@@ -12,7 +12,7 @@ const NftStakeListView = () => {
     <NftListView
       title={t('Available NFTs')}
       buttonText={t('Stake NFTs')}
-      emptyText={t('You do not have avax lions')}
+      emptyText={t('You do not have avaxlions')}
       nfts={nfts}
       isLoading={isLoading}
       refresh={refresh}

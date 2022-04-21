@@ -34,8 +34,10 @@ const NftListItemView = ({ nft, onSelectEvent, onDeselectEvent, isSelected, refr
         .approve(getNftStakeAddress(), nft.tokenId)
         .send({ from: account })
         .on('transactionHash', (tx) => {
-          toastSuccess(t('Success!'), t('You have successfully approved your avax lion.'))
           return tx.transactionHash
+        })
+        .on('confirmation', (tx) => {
+          toastSuccess(t('Success!'), t('You have successfully approved your avaxlion.'))
         })
     } catch ({ code }) {
       if (code === 4001) {

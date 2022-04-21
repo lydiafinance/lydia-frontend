@@ -33,15 +33,20 @@ export const ManageLayout = styled(FlexLayout)`
       padding: 0;
     }
     ${({ theme }) => theme.mediaQueries.sm} {
-      grid-template-columns: auto auto;
-      padding: 24px;
+      grid-template-columns: auto auto auto;
     }
     ${({ theme }) => theme.mediaQueries.md} {
       grid-template-columns: auto auto auto;
+      padding: 24px;
     }
     ${({ theme }) => theme.mediaQueries.lg} {
       grid-template-columns: auto auto auto auto;
     }
+  }
+
+  .nft-grid-item {
+    display: flex;
+    justify-content: center;
   }
 
   .nft-card {
@@ -54,7 +59,7 @@ export const ManageLayout = styled(FlexLayout)`
     padding: 10px;
     border-style: solid !important;
     border-color: grey !important;
-    border-radius: 10px !important;
+    border-radius: 20px !important;
     border: 1px;
     .nft-image {
       display: flex;

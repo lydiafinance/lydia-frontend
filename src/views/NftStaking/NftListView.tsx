@@ -73,14 +73,88 @@ const NftListView = ({ title, emptyText, buttonText, withdrawMode = false, nfts,
           {!isEmpty && (
             <CardBody className="nft-grid">
               {nfts.map((nft) => (
-                <NftListItemView
-                  key={nft.tokenId}
-                  onSelectEvent={handleSelect}
-                  onDeselectEvent={handleDeselect}
-                  nft={nft}
-                  isSelected={selectedItems.includes(nft.tokenId)}
-                  refresh={refresh}
-                />
+                <div className="nft-grid-item">
+                  <NftListItemView
+                    key={nft.tokenId}
+                    onSelectEvent={handleSelect}
+                    onDeselectEvent={handleDeselect}
+                    nft={nft}
+                    isSelected={selectedItems.includes(nft.tokenId)}
+                    refresh={refresh}
+                  />
+                </div>
+              ))}
+              {nfts.map((nft) => (
+                <div className="nft-grid-item">
+                  <NftListItemView
+                    key={nft.tokenId}
+                    onSelectEvent={handleSelect}
+                    onDeselectEvent={handleDeselect}
+                    nft={nft}
+                    isSelected={selectedItems.includes(nft.tokenId)}
+                    refresh={refresh}
+                  />
+                </div>
+              ))}
+              {nfts.map((nft) => (
+                <div className="nft-grid-item">
+                  <NftListItemView
+                    key={nft.tokenId}
+                    onSelectEvent={handleSelect}
+                    onDeselectEvent={handleDeselect}
+                    nft={nft}
+                    isSelected={selectedItems.includes(nft.tokenId)}
+                    refresh={refresh}
+                  />
+                </div>
+              ))}
+              {nfts.map((nft) => (
+                <div className="nft-grid-item">
+                  <NftListItemView
+                    key={nft.tokenId}
+                    onSelectEvent={handleSelect}
+                    onDeselectEvent={handleDeselect}
+                    nft={nft}
+                    isSelected={selectedItems.includes(nft.tokenId)}
+                    refresh={refresh}
+                  />
+                </div>
+              ))}
+              {nfts.map((nft) => (
+                <div className="nft-grid-item">
+                  <NftListItemView
+                    key={nft.tokenId}
+                    onSelectEvent={handleSelect}
+                    onDeselectEvent={handleDeselect}
+                    nft={nft}
+                    isSelected={selectedItems.includes(nft.tokenId)}
+                    refresh={refresh}
+                  />
+                </div>
+              ))}
+              {nfts.map((nft) => (
+                <div className="nft-grid-item">
+                  <NftListItemView
+                    key={nft.tokenId}
+                    onSelectEvent={handleSelect}
+                    onDeselectEvent={handleDeselect}
+                    nft={nft}
+                    isSelected={selectedItems.includes(nft.tokenId)}
+                    refresh={refresh}
+                  />
+                </div>
+              ))}
+              {nfts.map((nft) => (
+                <div className="nft-grid-item">
+                  <NftListItemView
+                    key={nft.tokenId}
+                    onSelectEvent={handleSelect}
+                    onDeselectEvent={handleDeselect}
+                    nft={nft}
+                    isSelected={selectedItems.includes(nft.tokenId)}
+                    refresh={refresh}
+                  />
+                </div>
               ))}
             </CardBody>
           )}

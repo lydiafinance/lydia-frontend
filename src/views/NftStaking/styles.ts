@@ -94,6 +94,17 @@ export const ManageLayout = styled(FlexLayout)`
     height: 20px;
   }
 
+  .overview-body {
+    display: grid;
+    column-gap: 15px;
+    row-gap: 15px;
+    grid-template-columns: auto auto auto auto auto;
+  }
+
+  .overview-nft {
+    cursor: pointer;
+  }
+
   .manage-header {
     display: flex;
     justify-content: space-between;

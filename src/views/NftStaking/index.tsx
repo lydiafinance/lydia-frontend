@@ -9,10 +9,11 @@ import Page from 'components/layout/Page'
 import { BIG_ZERO } from 'utils/bigNumber'
 import makeBatchRequest from 'utils/makeBatchRequest'
 import { useNftStakeContract } from 'hooks/useContract'
+import useGetAvaxLionsStakedNfts from 'hooks/useGetAvaxLionsStakedNfts'
 import { BannerImageContainer, ManageLayout, NftPageHeader, BannerTextContainer } from './styles'
-import NftListView from './NftListView'
 import NftWithdrawListView from './NftWithdrawListView'
 import NftStakeListView from './NftStakeListView'
+import OverviewNftItem from './OverviewNftItems'
 
 const NftStaking: React.FC = () => {
   const nftStakeContract = useNftStakeContract()
@@ -25,6 +26,8 @@ const NftStaking: React.FC = () => {
   const [earned, setEarned] = useState(BIG_ZERO)
   const [isClaiming, setIsClaiming] = useState(false)
   const isEarned = BIG_ZERO.comparedTo(earned) !== 0
+
+  const { nfts, isLoading, refresh } = useGetAvaxLionsStakedNfts()
 
   const handleClaimClick = async () => {
     setIsClaiming(true)
@@ -130,6 +133,19 @@ const NftStaking: React.FC = () => {
                   </CardFooter>
                 </Card>
               </FlexLayout>
+              {!isLoading && balanceOf && (
+                <a href="/nft-stake/withdraw">
+                  <ManageLayout>
+                    <Card isSuccess className="manage overview-nft">
+                      <CardBody className="overview-body">
+                        {nfts.map((nft) => (
+                          <OverviewNftItem key={nft.tokenId} nft={nft} />
+                        ))}
+                      </CardBody>
+                    </Card>
+                  </ManageLayout>
+                </a>
+              )}
               <ManageLayout>
                 <Card className="manage">
                   <CardBody className="manage-header">

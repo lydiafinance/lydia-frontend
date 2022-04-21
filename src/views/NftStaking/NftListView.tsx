@@ -36,6 +36,7 @@ const NftListView = ({ title, emptyText, buttonText, withdrawMode = false, nfts,
       console.log(error)
     } finally {
       setPending(false)
+      refresh()
     }
   }
 

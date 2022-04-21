@@ -32,7 +32,7 @@ const NftStaking: React.FC = () => {
     try {
       await nftStakeContract.methods
         .getReward()
-        .send({ from: account, gas: 200000 })
+        .send({ from: account })
         .on('transactionHash', (tx) => {
           return tx.transactionHash
         })
@@ -71,7 +71,7 @@ const NftStaking: React.FC = () => {
     } else {
       setLoading(false)
     }
-  }, [account, nftStakeContract])
+  }, [account, nftStakeContract, isClaiming])
 
   return (
     <>
@@ -79,7 +79,7 @@ const NftStaking: React.FC = () => {
         <BannerTextContainer justifyContent="center" alignItems="center" flexDirection={['column', null, 'row']}>
           <Flex flexDirection="column" mr={['8px', 0]} alignItems="center">
             <Heading as="h1" scale="xxl" color="text" mb="24px">
-              {t('NFT Stake Farming')}
+              {t('NFT Staking')}
             </Heading>
             <Heading scale="md" color="text">
               {t('Stake Avax Lions to earn LYD!')}

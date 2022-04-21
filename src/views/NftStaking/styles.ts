@@ -42,9 +42,6 @@ export const ManageLayout = styled(FlexLayout)`
     ${({ theme }) => theme.mediaQueries.lg} {
       grid-template-columns: auto auto auto auto;
     }
-    ${({ theme }) => theme.mediaQueries.xl} {
-      grid-template-columns: auto auto auto auto auto;
-    }
   }
 
   .nft-card {
@@ -63,10 +60,13 @@ export const ManageLayout = styled(FlexLayout)`
       display: flex;
       width: 120px;
       justify-content: center;
-      .nft-unapproved {
+
+      .nft-approved {
         cursor: pointer;
+        border-radius: 20px;
       }
       .nft-unapproved {
+        border-radius: 20px;
         filter: grayscale(100%);
         cursor: not-allowed;
       }
@@ -87,6 +87,11 @@ export const ManageLayout = styled(FlexLayout)`
       display: block !important;
       width: 100px;
     }
+  }
+
+  .nft-checkbox {
+    width: 20px;
+    height: 20px;
   }
 
   .manage-header {

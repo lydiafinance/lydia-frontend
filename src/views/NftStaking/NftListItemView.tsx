@@ -53,7 +53,9 @@ const NftListItemView = ({ nft, onSelectEvent, onDeselectEvent, isSelected, refr
       </div>
       <div className="nft-details">
         <div className="nft-name">
-          {nft.isApproved && <Checkbox checked={isSelected} onChange={handleChange} scale="sm" />}
+          {nft.isApproved && (
+            <Checkbox className="nft-checkbox" checked={isSelected} onChange={handleChange} scale="sm" />
+          )}
           {nft.tokenData.name}
         </div>
         {!nft.isApproved && (

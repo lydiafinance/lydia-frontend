@@ -162,13 +162,13 @@ const NftStaking: React.FC = () => {
                     </Heading>
                   </CardBody>
                   {!isLoadingAvailableNfts && !emptyWalletBalance && (
-                    <CardBody className="overview-body">
-                      <a href="/nft-stake/withdraw">
+                    <a href="/nft-stake/withdraw">
+                      <CardBody className="overview-body">
                         {availableNfts.map((nft) => (
                           <OverviewNftItem key={nft.tokenId} nft={nft} />
                         ))}
-                      </a>
-                    </CardBody>
+                      </CardBody>
+                    </a>
                   )}
                   <CardFooter className="manage-footer">
                     <Button className="manage-btn" as="a" href="/nft-stake/stake" variant="danger">
@@ -176,7 +176,6 @@ const NftStaking: React.FC = () => {
                     </Button>
                   </CardFooter>
                 </Card>
-
                 <Card isSuccess className="button-card overview-nft">
                   <CardBody className="manage-header">
                     {t('Your Avax Lion deposits: ')}
@@ -185,13 +184,13 @@ const NftStaking: React.FC = () => {
                     </Heading>
                   </CardBody>
                   {!isLoadingStakedNfts && !emptyContractBalance && (
-                    <CardBody className="overview-body">
-                      <a href="/nft-stake/withdraw">
+                    <a href="/nft-stake/withdraw">
+                      <CardBody className="overview-body">
                         {stakedNfts.map((nft) => (
                           <OverviewNftItem key={nft.tokenId} nft={nft} />
                         ))}
-                      </a>
-                    </CardBody>
+                      </CardBody>
+                    </a>
                   )}
                   <CardFooter className="manage-footer">
                     <Button className="manage-btn" as="a" href="/nft-stake/withdraw" variant="danger">

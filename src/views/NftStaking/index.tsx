@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect } from 'react'
-import { Route, useRouteMatch } from 'react-router-dom'
+import { Route, useRouteMatch, useHistory } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { Heading, Flex, Card, CardBody, CardFooter, Button } from '@lydiafinance/uikit'
@@ -28,6 +30,7 @@ const NftStaking: React.FC = () => {
   const [earned, setEarned] = useState(BIG_ZERO)
   const [isClaiming, setIsClaiming] = useState(false)
   const isEarned = BIG_ZERO.comparedTo(earned) !== 0
+  const history = useHistory()
 
   const { nfts: stakedNfts, isLoading: isLoadingStakedNfts } = useGetAvaxLionsStakedNfts()
   const { nfts: availableNfts, isLoading: isLoadingAvailableNfts } = useGetAvaxLionsNfts()
@@ -164,16 +167,16 @@ const NftStaking: React.FC = () => {
                     </Heading>
                   </CardBody>
                   {!isLoadingAvailableNfts && !emptyWalletBalance && (
-                    <a href="/nft-stake/stake">
+                    <span onClick={() => history.replace('/nft-stake/stake')}>
                       <CardBody className="overview-body">
                         {availableNfts.map((nft) => (
                           <OverviewNftItem key={nft.tokenId} nft={nft} />
                         ))}
                       </CardBody>
-                    </a>
+                    </span>
                   )}
                   <CardFooter className="manage-footer">
-                    <Button className="manage-btn" as="a" href="/nft-stake/stake" variant="danger">
+                    <Button className="manage-btn" onClick={() => history.replace('/nft-stake/stake')} variant="danger">
                       {t('Stake NFTs')}
                     </Button>
                   </CardFooter>
@@ -186,16 +189,20 @@ const NftStaking: React.FC = () => {
                     </Heading>
                   </CardBody>
                   {!isLoadingStakedNfts && !emptyContractBalance && (
-                    <a href="/nft-stake/withdraw">
+                    <span onClick={() => history.replace('/nft-stake/withdraw')}>
                       <CardBody className="overview-body">
                         {stakedNfts.map((nft) => (
                           <OverviewNftItem key={nft.tokenId} nft={nft} />
                         ))}
                       </CardBody>
-                    </a>
+                    </span>
                   )}
                   <CardFooter className="manage-footer">
-                    <Button className="manage-btn" as="a" href="/nft-stake/withdraw" variant="danger">
+                    <Button
+                      className="manage-btn"
+                      onClick={() => history.replace('/nft-stake/withdraw')}
+                      variant="danger"
+                    >
                       {t('Withdraw NFTs')}
                     </Button>
                   </CardFooter>

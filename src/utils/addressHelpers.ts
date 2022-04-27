@@ -63,3 +63,9 @@ export const getMulticallContract = () => {
 export const getProfileAddress = () => {
   return getAddress(addresses.profile)
 }
+export const getNftStakeAddress = () => {
+  return getAddress(addresses.nftStake)
+}
+export const getAvaxLionsAddress = () => {
+  return getAddress(addresses.avaxlions)
+}

@@ -23,6 +23,8 @@ import {
   getIfoV2Contract,
   getIfoV3Contract,
   getErc721Contract,
+  getNftStakeContract,
+  getAvaxLionsContract,
 } from 'utils/contractHelpers'
 
 /**
@@ -136,4 +138,14 @@ export const useMaximusDashboardContract = () => {
 export const useERC721 = (address: string) => {
   const web3 = useWeb3()
   return useMemo(() => getErc721Contract(address, web3), [address, web3])
+}
+
+export const useNftStakeContract = () => {
+  const web3 = useWeb3()
+  return useMemo(() => getNftStakeContract(web3), [web3])
+}
+
+export const useAvaxLionsNftContract = () => {
+  const web3 = useWeb3()
+  return useMemo(() => getAvaxLionsContract(web3), [web3])
 }

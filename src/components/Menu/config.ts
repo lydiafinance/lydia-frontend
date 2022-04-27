@@ -36,6 +36,11 @@ const config: MenuEntry[] = [
     href: '/maximizer'
   },
   {
+    label: 'NFT Stake',
+    icon: 'NftIcon',
+    href: '/nft-stake'
+  },
+  {
     label: 'Launchpad',
     icon: 'LaunchpadIcon',
     href: '/launchpad'

@@ -473,6 +473,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://elk.finance/',
   },
+  btcb: {
+    symbol: 'BTC.b',
+    address: {
+      [ChainId.AVALANCHE]: '0x152b9d0FdC40C096757F570A51E494bd4b943E50',
+      [ChainId.FUJI]: '0x152b9d0FdC40C096757F570A51E494bd4b943E50',
+    },
+    decimals: 8,
+    projectLink: '',
+  },
 }
 
 export default tokens

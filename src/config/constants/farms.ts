@@ -655,6 +655,17 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wavax,
     isFinished: false,
   },
+  {
+    pid: 56,
+    lpSymbol: 'WBTC-BTC.b LP',
+    lpAddresses: {
+      [ChainId.FUJI]: '0xaA14cB7ddbb793592DEe8D6b4bD2934fA3D2f492',
+      [ChainId.AVALANCHE]: '0xaA14cB7ddbb793592DEe8D6b4bD2934fA3D2f492',
+    },
+    token: tokens.wbtc_e,
+    quoteToken: tokens.btcb,
+    isFinished: false,
+  },
 ]
 
 export default farms

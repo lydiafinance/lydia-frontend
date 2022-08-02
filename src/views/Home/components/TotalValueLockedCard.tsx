@@ -23,7 +23,7 @@ export interface ApiTvlResponse {
 const TotalValueLockedCard = () => {
   const { t } = useTranslation()
   const data = useGetStats()
-  const tvl = data ? data?.total_value_locked_all.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
+  const tvl = data ? data?.total_value_locked_all?.toLocaleString('en-US', { maximumFractionDigits: 0 }) : null
   const deviceSize = useDeviceSize()
   const { isMobile } = deviceSize
 

@@ -8,7 +8,7 @@ BigNumber.config({
 
 // TODO: sweet hack :)
 export const AVAX_BLOCK_TIME = 1
-export const LYD_PER_SECOND = new BigNumber(6)
+export const LYD_PER_SECOND = new BigNumber(3)
 export const SECOND_PER_YEAR = new BigNumber(60 * 60 * 24 * 365) // 31536000
 export const BASE_URL = 'https://lydia.finance'
 export const BASE_EXCHANGE_URL = 'https://exchange.lydia.finance'

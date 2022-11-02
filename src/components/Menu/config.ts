@@ -58,20 +58,7 @@ const config: MenuEntry[] = [
   {
     label: "Buy LYD",
     icon: "CoinIcon",
-    items: [
-      {
-        label: "Lydia",
-        href: "https://exchange.lydia.finance",
-      },
-      {
-        label: "Pangolin",
-        href: "https://app.pangolin.exchange/#/swap?outputCurrency=0x4C9B4E1AC6F24CdE3660D5E4Ef1eBF77C710C084",
-      },
-      {
-        label: "LYD Gate",
-        href: "https://gate.lydia.finance/#/bridge",
-      }
-    ],
+    href: "https://exchange.lydia.finance",
   },
 ]
 
